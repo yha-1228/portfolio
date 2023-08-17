@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/is-empty-object';
@@ -28,7 +29,7 @@ type ContactFormValues = {
   message: string;
 };
 
-const initialContactFormValues: ContactFormValues = {
+const initialValues: ContactFormValues = {
   name: '',
   email: '',
   message: '',
@@ -58,19 +59,18 @@ function validate(values: ContactFormValues): ContactFormErrors {
 
 type ContactFormTouched = { [k in keyof ContactFormValues]: boolean };
 
-const initialContactFormTouched: ContactFormTouched = {
+const initialTouched: ContactFormTouched = {
   name: false,
   email: false,
   message: false,
 };
 
 export default function ContactForm() {
-  const [values, setValues] = useState(initialContactFormValues);
+  const [values, setValues] = useState(initialValues);
   const errors = validate(values);
 
-  const [touched, setTouched] = useState<ContactFormTouched>(
-    initialContactFormTouched
-  );
+  const [touched, setTouched] = useState<ContactFormTouched>(initialTouched);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -83,7 +83,15 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    alert(JSON.stringify(values, null, 2));
+    setSubmitting(true);
+    try {
+      await sendContact('contact', values);
+      alert('done');
+    } catch (error) {
+      alert('fail');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -141,7 +149,9 @@ export default function ContactForm() {
             ) : null}
           </div>
         </div>
-        <Button disabled={!isEmptyObject(errors)}>送信</Button>
+        <Button disabled={!isEmptyObject(errors) || submitting}>
+          {submitting ? '送信中...' : '送信'}
+        </Button>
       </form>
     </Container>
   );
