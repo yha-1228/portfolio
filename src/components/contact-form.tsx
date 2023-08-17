@@ -88,6 +88,7 @@ export default function ContactForm() {
       await sendContact('contact', values);
       alert('done');
     } catch (error) {
+      console.error(error);
       alert('fail');
     } finally {
       setSubmitting(false);
