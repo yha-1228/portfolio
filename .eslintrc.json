@@ -9,6 +9,12 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "tailwindcss"],
   "rules": {
+    "tailwindcss/classnames-order": [
+      "warn",
+      {
+        "callees": ["clsx, twMerge"]
+      }
+    ],
     "dot-notation": "warn",
     "no-useless-rename": "warn",
     "no-duplicate-imports": "error",
