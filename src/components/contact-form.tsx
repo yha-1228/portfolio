@@ -97,11 +97,8 @@ export default function ContactForm() {
 
   return (
     <Container>
-      <form name="contact" method="POST" data-netlify="true">
+      <form onSubmit={handleSubmit} name="contact">
         <input type="hidden" name="form-name" value="contact" />
-      </form>
-
-      <form onSubmit={handleSubmit}>
         <div className="space-y-3">
           <div>
             <div>
