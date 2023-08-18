@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { SiCodepen, SiGithub, SiZenn } from 'react-icons/si';
 import Logo from '@/assets/logo.svg';
@@ -7,16 +8,13 @@ import Container from './ui/container';
 
 const linkItems = [
   {
-    pathname: '/',
+    pathname: '/experience',
     label: '職務経歴',
   },
 ];
 
 function Header() {
-  /**
-   * TODO: get isCurrentPage?
-   */
-  const isActive = false;
+  const router = useRouter();
 
   return (
     <header className="sticky top-0 border-b bg-slate-50 py-5">
@@ -33,9 +31,12 @@ function Header() {
                   href={linkItem.pathname}
                   className={clsx(
                     'relative inline-block py-3 font-bold hover:text-blue-500',
-                    isActive ? 'bg-blue-50 text-blue-500' : 'text-gray-700',
-                    isActive && 'before:absolute before:bottom-0 before:left-0',
-                    isActive &&
+                    router.pathname === linkItem.pathname
+                      ? 'text-blue-500'
+                      : 'text-gray-700',
+                    router.pathname === linkItem.pathname &&
+                      'before:absolute before:bottom-0 before:left-0',
+                    router.pathname === linkItem.pathname &&
                       "before:h-0.5 before:w-full before:bg-blue-500 before:content-['']"
                   )}
                 >
