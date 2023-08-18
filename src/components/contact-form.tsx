@@ -65,6 +65,8 @@ const initialTouched: ContactFormTouched = {
   message: false,
 };
 
+const FORM_NAME = 'contact';
+
 export default function ContactForm() {
   const [values, setValues] = useState(initialValues);
   const errors = validate(values);
@@ -85,7 +87,7 @@ export default function ContactForm() {
 
     setSubmitting(true);
     try {
-      await sendContact('contact', values);
+      await sendContact(FORM_NAME, values);
       alert('done');
     } catch (error) {
       console.error(error);
@@ -97,7 +99,7 @@ export default function ContactForm() {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit} name="contact" data-netlify="true">
+      <form onSubmit={handleSubmit} name={FORM_NAME} data-netlify="true">
         <input type="hidden" name="form-name" value="contact" />
         <div className="space-y-3">
           <div>
