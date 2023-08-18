@@ -74,7 +74,7 @@ export default function ContactForm() {
   const [values, setValues] = useState(initialValues);
   const errors = validate(values);
 
-  const [touched, setTouched] = useState<ContactFormTouched>(initialTouched);
+  const [touched, setTouched] = useState(initialTouched);
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
