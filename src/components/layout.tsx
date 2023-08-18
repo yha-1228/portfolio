@@ -53,35 +53,36 @@ function Header() {
 
 // ----------------------------------------
 
+const footerItems = [
+  {
+    href: 'https://github.com/yha-1228',
+    label: 'GitHub',
+    icon: <SiGithub />,
+  },
+  {
+    href: 'https://zenn.dev/yhase_rqp',
+    label: 'Zenn',
+    icon: <SiZenn />,
+  },
+  {
+    href: 'https://codepen.io/yh10050846',
+    label: 'Codepen',
+    icon: <SiCodepen />,
+  },
+];
+
 function Footer() {
   return (
     <footer>
-      <div className="flex justify-center space-x-3">
-        <a
-          href="https://github.com/yha-1228"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <SiGithub />
-        </a>
-        <a
-          href="https://zenn.dev/yhase_rqp"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Zenn"
-        >
-          <SiZenn />
-        </a>
-        <a
-          href="https://codepen.io/yh10050846"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Codepen"
-        >
-          <SiCodepen />
-        </a>
-      </div>
+      <ul className="flex justify-center space-x-3">
+        {footerItems.map((item) => (
+          <li key={item.href}>
+            <a href={item.href} target="_blank" rel="noopener noreferrer">
+              {item.icon}
+            </a>
+          </li>
+        ))}
+      </ul>
     </footer>
   );
 }
