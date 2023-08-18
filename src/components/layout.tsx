@@ -59,16 +59,23 @@ function Footer() {
         <a
           href="https://github.com/yha-1228"
           target="_blank"
+          rel="noopener noreferrer"
           aria-label="GitHub"
         >
           <SiGithub />
         </a>
-        <a href="https://zenn.dev/yhase_rqp" target="_blank" aria-label="Zenn">
+        <a
+          href="https://zenn.dev/yhase_rqp"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Zenn"
+        >
           <SiZenn />
         </a>
         <a
           href="https://codepen.io/yh10050846"
           target="_blank"
+          rel="noopener noreferrer"
           aria-label="Codepen"
         >
           <SiCodepen />
