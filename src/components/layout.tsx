@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import Logo from '@/assets/logo.svg';
 import clsx from '@/utils/clsx';
-import Container from './container';
+import Container from './ui/container';
 
 const linkItems = [
   {
