@@ -4,8 +4,10 @@ import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/is-empty-object';
-import Button from './button';
-import Container from './container';
+import Button from './ui/button';
+import Container from './ui/container';
+import Input from './ui/input';
+import Textarea from './ui/textarea';
 
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -114,7 +116,7 @@ export default function ContactForm() {
               <label htmlFor="name">お名前</label>
             </div>
             <div>
-              <input
+              <Input
                 type="text"
                 name="name"
                 value={values.name}
@@ -131,7 +133,7 @@ export default function ContactForm() {
               <label htmlFor="email">メールアドレス</label>
             </div>
             <div>
-              <input
+              <Input
                 type="email"
                 name="email"
                 value={values.email}
@@ -148,7 +150,7 @@ export default function ContactForm() {
               <label htmlFor="message">お問い合わせ内容</label>
             </div>
             <div>
-              <textarea
+              <Textarea
                 name="message"
                 value={values.message}
                 onChange={handleChange}
