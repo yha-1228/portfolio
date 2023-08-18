@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
@@ -88,10 +89,11 @@ export default function ContactForm() {
     setSubmitting(true);
     try {
       await sendContact(FORM_NAME, values);
-      alert('done');
+      toast('done');
+      setValues(initialValues);
+      setTouched(initialTouched);
     } catch (error) {
-      console.error(error);
-      alert('fail');
+      toast('fail');
     } finally {
       setSubmitting(false);
     }
