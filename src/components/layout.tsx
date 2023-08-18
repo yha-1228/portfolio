@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { SiCodepen, SiGithub, SiZenn } from 'react-icons/si';
 import Logo from '@/assets/logo.svg';
 import clsx from '@/utils/clsx';
 import Container from './ui/container';
@@ -51,6 +52,34 @@ function Header() {
 
 // ----------------------------------------
 
+function Footer() {
+  return (
+    <footer>
+      <div className="flex justify-center space-x-3">
+        <a
+          href="https://github.com/yha-1228"
+          target="_blank"
+          aria-label="GitHub"
+        >
+          <SiGithub />
+        </a>
+        <a href="https://zenn.dev/yhase_rqp" target="_blank" aria-label="Zenn">
+          <SiZenn />
+        </a>
+        <a
+          href="https://codepen.io/yh10050846"
+          target="_blank"
+          aria-label="Codepen"
+        >
+          <SiCodepen />
+        </a>
+      </div>
+    </footer>
+  );
+}
+
+// ----------------------------------------
+
 type LayoutProps = React.PropsWithChildren<{
   title?: string;
 }>;
@@ -63,6 +92,7 @@ export default function Layout(props: LayoutProps) {
       <NextSeo title={title} />
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
