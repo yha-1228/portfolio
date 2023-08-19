@@ -15,6 +15,25 @@ module.exports = {
       // xl: '1280px',
       // '2xl': '1536px',
     },
+    extend: {
+      // @see https://tailwindcss.com/docs/font-family
+      fontFamily: {
+        base: [
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          'Open Sans',
+          'Helvetica Neue',
+          'sans-serif',
+        ],
+      },
+    },
   },
   plugins: [],
 };
