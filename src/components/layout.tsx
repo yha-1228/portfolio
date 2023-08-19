@@ -1,47 +1,69 @@
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { SiCodepen, SiGithub, SiZenn } from 'react-icons/si';
-import Logo from '@/assets/logo.svg';
-import clsx from '@/utils/clsx';
+import { twMerge } from 'tailwind-merge';
 import Container from './ui/container';
 
-const linkItems = [
+type NavLinkProps = React.ComponentPropsWithRef<typeof Link>;
+
+const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
+  (props, ref) => {
+    const { href, className, ...restProps } = props;
+    const router = useRouter();
+    const current = router.pathname === href;
+
+    return (
+      <Link
+        className={twMerge(
+          'relative inline-block py-2 font-bold',
+          'hover:text-blue-500',
+          current && 'text-blue-500',
+          current && 'before:absolute before:bottom-0 before:left-0',
+          current && "before:h-[1.5px] before:w-full before:content-['']",
+          current && 'before:bg-blue-500',
+          className
+        )}
+        href={href}
+        {...restProps}
+        ref={ref}
+      />
+    );
+  }
+);
+
+NavLink.displayName = 'NavLink';
+
+// ----------------------------------------
+
+const linkItems: NavLinkProps[] = [
   {
-    pathname: '/experience',
-    label: '職務経歴',
+    href: '/experience',
+    children: '職務経歴',
+  },
+  {
+    href: '/blog',
+    children: 'ブログ',
   },
 ];
 
 function Header() {
-  const router = useRouter();
-
   return (
-    <header className="sticky top-0 border-b bg-slate-50 py-5">
+    <header className="py-8">
       <Container>
         <nav className="flex items-center justify-between">
-          <Link href="/">
-            <Logo />
+          <Link
+            href="/"
+            className="text-2xl font-bold hover:underline active:outline active:outline-orange-400"
+          >
+            Yuta Hasegawa
           </Link>
 
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-5">
             {linkItems.map((linkItem) => (
-              <li key={linkItem.label}>
-                <Link
-                  href={linkItem.pathname}
-                  className={clsx(
-                    'relative inline-block py-3 font-bold hover:text-blue-500',
-                    router.pathname === linkItem.pathname
-                      ? 'text-blue-500'
-                      : 'text-gray-700',
-                    router.pathname === linkItem.pathname &&
-                      'before:absolute before:bottom-0 before:left-0',
-                    router.pathname === linkItem.pathname &&
-                      "before:h-0.5 before:w-full before:bg-blue-500 before:content-['']"
-                  )}
-                >
-                  {linkItem.label}
-                </Link>
+              <li key={`${linkItem.href}`}>
+                <NavLink {...linkItem} />
               </li>
             ))}
           </ul>
