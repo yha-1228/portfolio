@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import { SiCodepen, SiGithub, SiZenn } from 'react-icons/si';
 import { twMerge } from 'tailwind-merge';
 import Container from './ui/container';
 
@@ -79,32 +78,39 @@ const footerItems = [
   {
     href: 'https://github.com/yha-1228',
     label: 'GitHub',
-    icon: <SiGithub />,
   },
   {
     href: 'https://zenn.dev/yhase_rqp',
     label: 'Zenn',
-    icon: <SiZenn />,
   },
   {
     href: 'https://codepen.io/yh10050846',
     label: 'Codepen',
-    icon: <SiCodepen />,
   },
 ];
 
 function Footer() {
   return (
-    <footer>
+    <footer className="space-y-2 bg-slate-50 py-6">
       <ul className="flex justify-center space-x-3">
         {footerItems.map((item) => (
           <li key={item.href}>
-            <a href={item.href} target="_blank" rel="noopener noreferrer">
-              {item.icon}
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xl font-bold hover:underline"
+            >
+              {item.label}
             </a>
           </li>
         ))}
       </ul>
+      <div className="text-center">
+        <p className="text-sm text-gray-500">
+          Yuta Hasegawa &copy; {new Date().getFullYear()}
+        </p>
+      </div>
     </footer>
   );
 }
