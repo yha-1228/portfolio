@@ -20,9 +20,9 @@ export default function Blog({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   // 開発中なので表示しない
-  // if (Math.random() > -1) {
-  //   return null;
-  // }
+  if (Math.random() > -1) {
+    return null;
+  }
 
   return (
     <Layout title="ブログ">
