@@ -1,6 +1,7 @@
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
+import Heading2 from '@/components/ui/heading2';
 import Timeline, { TimelineItem } from '@/components/ui/timeline';
 
 const items: TimelineItem[] = [
@@ -33,15 +34,6 @@ const items: TimelineItem[] = [
     ),
   },
   {
-    time: '2020/12 - 2022/05',
-    heading: '請求書管理アプリの開発',
-    content: (
-      <p>
-        インボイス制度対応のため、医療業界向けの請求書管理ツール開発案件に開発メンバーとして参画。
-      </p>
-    ),
-  },
-  {
     time: '2020/08 - 2020/11',
     heading: '勤怠・締め日管理アプリの開発',
     content: (
@@ -56,7 +48,7 @@ const items: TimelineItem[] = [
     ),
   },
   {
-    time: '2020/08 - 2020/11',
+    time: '2019/07 - 2020/01, 2020/05 - 2020/06',
     heading: '建物維持管理アプリの保守',
     content: (
       <>
@@ -69,10 +61,6 @@ const items: TimelineItem[] = [
       </>
     ),
   },
-  {
-    time: '2019/04',
-    heading: '株式会社アイキューブに入社',
-  },
 ];
 
 export default function Experience() {
@@ -82,8 +70,14 @@ export default function Experience() {
         <Container>
           <section className="space-y-6">
             <Heading1>職務経歴</Heading1>
-            <div>
-              <Timeline items={items} />
+            <div className="mt-12">
+              <section className="space-y-5">
+                <div className="space-y-1">
+                  <Heading2>株式会社アイキューブ</Heading2>
+                  <div className="text-sm text-gray-500">2019/04 - 2023/08</div>
+                </div>
+                <Timeline items={items} />
+              </section>
             </div>
           </section>
         </Container>
