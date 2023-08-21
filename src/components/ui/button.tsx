@@ -27,7 +27,7 @@ const createClassName = ({
     whenDisabled,
     'hover:bg-primary-600',
     'active:bg-primary-700',
-    external
+    external,
   );
 };
 
@@ -50,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 Button.displayName = 'Button';
@@ -79,7 +79,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 ButtonLink.displayName = 'ButtonLink';

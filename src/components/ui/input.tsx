@@ -19,7 +19,7 @@ function createClassName({ isError, external }: CreateClassNameOptions) {
     'active:outline active:outline-2 active:outline-primary-500',
     'focus:outline focus:outline-2 focus:outline-primary-500',
     isError && 'border-danger-500',
-    external
+    external,
   );
 }
 
@@ -56,7 +56,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 Textarea.displayName = 'Textarea';

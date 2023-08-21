@@ -1,7 +1,7 @@
 import Layout from '@/components/layout';
-import Timeline, { TimelineItem } from '@/components/timeline';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
+import Timeline, { TimelineItem } from '@/components/ui/timeline';
 
 const items: TimelineItem[] = [
   {
