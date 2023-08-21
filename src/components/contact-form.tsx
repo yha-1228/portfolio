@@ -102,7 +102,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="py-8">
+    <div className="pb-14 pt-8">
       <Container>
         <section className="space-y-6">
           <Heading1>お問い合わせ</Heading1>
