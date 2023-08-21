@@ -22,13 +22,13 @@ function FeedbackNotification({
 }: FeedbackNotificationProps) {
   if (type == 'done') {
     return (
-      <div className="mt-10 flex items-center justify-between rounded-lg bg-blue-500 px-4 py-3 text-white">
+      <div className="mt-10 flex items-center justify-between rounded-lg bg-primary-500 px-4 py-3 text-white">
         <div className="flex items-center space-x-3">
           <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
           <div>{children}</div>
         </div>
         <button
-          className="inline-flex items-center rounded-full hover:bg-blue-600 active:bg-blue-700"
+          className="inline-flex items-center rounded-full hover:bg-primary-600 active:bg-primary-700"
           onClick={onClose}
         >
           <BsX style={{ width: 32, height: 32, color: '#fff' }} />
@@ -39,13 +39,13 @@ function FeedbackNotification({
 
   if (type === 'fail') {
     return (
-      <div className="mt-10 flex items-center justify-between rounded-lg bg-red-500 px-4 py-3 text-white">
+      <div className="mt-10 flex items-center justify-between rounded-lg bg-danger-500 px-4 py-3 text-white">
         <div className="flex items-center space-x-3">
           <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
           <div>{children}</div>
         </div>
         <button
-          className="inline-flex items-center rounded-full hover:bg-red-600 active:bg-red-700"
+          className="inline-flex items-center rounded-full hover:bg-danger-600 active:bg-danger-700"
           onClick={onClose}
         >
           <BsX style={{ width: 32, height: 32, color: '#fff' }} />
@@ -188,7 +188,7 @@ export default function ContactForm() {
                   />
                 </div>
                 {errors.name && touched.name ? (
-                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                  <p className="mt-1 text-sm text-danger-500">{errors.name}</p>
                 ) : null}
               </div>
               <div>
@@ -206,7 +206,7 @@ export default function ContactForm() {
                   />
                 </div>
                 {errors.email && touched.email ? (
-                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                  <p className="mt-1 text-sm text-danger-500">{errors.email}</p>
                 ) : null}
               </div>
               <div>
@@ -224,7 +224,9 @@ export default function ContactForm() {
                   />
                 </div>
                 {errors.message && touched.message ? (
-                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                  <p className="mt-1 text-sm text-danger-500">
+                    {errors.message}
+                  </p>
                 ) : null}
               </div>
               <div>

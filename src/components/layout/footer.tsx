@@ -24,7 +24,7 @@ export default function Footer() {
       <Container>
         <div
           className={twMerge(
-            'space-y-2 border-t border-solid border-t-gray-200 py-8',
+            'space-y-2 border-t border-solid border-t-gray-light-weak py-8',
             'md:flex md:items-center md:justify-between md:space-y-0'
           )}
         >

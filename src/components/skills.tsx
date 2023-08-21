@@ -103,8 +103,8 @@ type SkillDetailCardProps = {
 
 function SkillDetailCard({ heading, items }: SkillDetailCardProps) {
   return (
-    <section className="space-y-6 rounded-xl border border-solid border-gray-200 bg-gray-50 px-5 py-4">
-      <h4 className="border-b border-solid border-b-gray-200 pb-2 text-xl font-bold">
+    <section className="space-y-6 rounded-xl border border-solid border-gray-light-weak bg-gray-lightest px-5 py-4">
+      <h4 className="border-b border-solid border-b-gray-light-weak pb-2 text-xl font-bold">
         {heading}
       </h4>
 
@@ -144,7 +144,7 @@ export default function Skills() {
                     className={twMerge(
                       'whitespace-nowrap text-xl leading-[1.25] text-gray-500',
                       skillWord.specialty &&
-                        "relative font-bold text-gray-600 before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-yellow-300 before:content-['']"
+                        "relative font-bold text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-maker-300 before:content-['']"
                     )}
                   >
                     {skillWord.label}
