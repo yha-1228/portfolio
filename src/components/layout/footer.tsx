@@ -35,7 +35,7 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 text-xl font-bold hover:underline"
+                  className="inline-flex items-center space-x-1 text-lg font-bold hover:underline lg:text-xl"
                 >
                   <span>{item.label}</span>
                   <FiExternalLink />
