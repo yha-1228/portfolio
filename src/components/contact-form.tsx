@@ -181,6 +181,7 @@ export default function ContactForm() {
                   <Input
                     type="text"
                     name="name"
+                    id="name"
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -199,6 +200,7 @@ export default function ContactForm() {
                   <Input
                     type="email"
                     name="email"
+                    id="email"
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -216,6 +218,7 @@ export default function ContactForm() {
                 <div className="mt-2">
                   <Textarea
                     name="message"
+                    id="message"
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
