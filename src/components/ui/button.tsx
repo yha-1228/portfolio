@@ -22,11 +22,11 @@ const createClassName = ({
   external,
 }: CreateClassNameOptions) => {
   return twMerge(
-    'rounded-lg bg-blue-500 px-5 py-2 text-white',
+    'rounded-lg bg-primary-500 px-5 py-2 text-white',
     fullWidth ? 'block text-center' : '',
     whenDisabled,
-    'hover:bg-blue-600',
-    'active:bg-blue-700',
+    'hover:bg-primary-600',
+    'active:bg-primary-700',
     external
   );
 };
@@ -43,7 +43,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={createClassName({
           fullWidth,
-          whenDisabled: 'disabled:cursor-not-allowed disabled:bg-gray-400',
+          whenDisabled: 'disabled:cursor-not-allowed disabled:bg-gray-disabled',
           external: className,
         })}
         {...restProps}
@@ -70,7 +70,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         className={createClassName({
           fullWidth,
           whenDisabled: disabled
-            ? 'pointer-events-none disabled:bg-gray-400'
+            ? 'pointer-events-none disabled:bg-gray-disabled'
             : '',
           external: className,
         })}

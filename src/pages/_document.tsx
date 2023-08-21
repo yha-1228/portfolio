@@ -33,7 +33,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="font-base text-gray-600">
+      <body className="font-base text-gray-foreground">
         <Main />
         <NextScript />
       </body>
