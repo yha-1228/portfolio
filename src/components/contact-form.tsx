@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
+import { BsFillCheckCircleFill, BsX } from 'react-icons/bs';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
@@ -70,12 +70,21 @@ const initialTouched: ContactFormTouched = {
 
 const FORM_NAME = 'contact';
 
+type FeedbackType = 'done' | 'fail';
+
+const feedbackText = {
+  done: 'お問い合わせ内容を送信しました。',
+  fail: '送信中にエラーが発生しました。',
+};
+
 export default function ContactForm() {
   const [values, setValues] = useState(initialValues);
   const errors = validate(values);
 
   const [touched, setTouched] = useState(initialTouched);
   const [submitting, setSubmitting] = useState(false);
+
+  const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -91,11 +100,11 @@ export default function ContactForm() {
     setSubmitting(true);
     try {
       await sendContact(FORM_NAME, values);
-      toast('done');
+      setFeedbackType('done');
       setValues(initialValues);
       setTouched(initialTouched);
     } catch (error) {
-      toast('fail');
+      setFeedbackType('fail');
     } finally {
       setSubmitting(false);
     }
@@ -179,6 +188,34 @@ export default function ContactForm() {
             </div>
           </form>
         </section>
+        {feedbackType === 'done' && (
+          <div className="mt-10 flex items-center justify-between rounded-lg bg-blue-500 px-4 py-3 text-white">
+            <div className="flex items-center space-x-3">
+              <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
+              <div>{feedbackText.done}</div>
+            </div>
+            <button
+              className="inline-flex items-center hover:bg-blue-600 active:bg-blue-700"
+              onClick={() => setFeedbackType(null)}
+            >
+              <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+            </button>
+          </div>
+        )}
+        {feedbackType === 'fail' && (
+          <div className="mt-10 flex items-center justify-between rounded-lg bg-red-500 px-4 py-3 text-white">
+            <div className="flex items-center space-x-3">
+              <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
+              <div>{feedbackText.fail}</div>
+            </div>
+            <button
+              className="inline-flex items-center hover:bg-red-600 active:bg-red-700"
+              onClick={() => setFeedbackType(null)}
+            >
+              <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+            </button>
+          </div>
+        )}
       </Container>
     </div>
   );
