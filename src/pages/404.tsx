@@ -4,9 +4,9 @@ import Container from '@/components/ui/container';
 
 export default function NotFound() {
   return (
-    <Layout>
+    <Layout title="ページが見つかりません">
       <div className="pb-14 pt-8">
-        <Container title="ページが見つかりません">
+        <Container>
           <div className="space-y-10 text-center">
             <section className="space-y-3">
               <h1 className="text-2xl font-bold">ページが見つかりません</h1>
