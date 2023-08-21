@@ -13,13 +13,13 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
       <div
         className={twMerge(
           `${fluid ? 'w-full' : 'container mx-auto'} px-4`,
-          className
+          className,
         )}
         {...restProps}
         ref={ref}
       />
     );
-  }
+  },
 );
 
 Container.displayName = 'Container';

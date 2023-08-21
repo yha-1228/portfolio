@@ -25,7 +25,7 @@ export default function Footer() {
         <div
           className={twMerge(
             'space-y-2 border-t border-solid border-t-gray-light-weak py-8',
-            'md:flex md:items-center md:justify-between md:space-y-0'
+            'md:flex md:items-center md:justify-between md:space-y-0',
           )}
         >
           <ul className="flex justify-center space-x-4">
