@@ -22,7 +22,7 @@ const createClassName = ({
   external,
 }: CreateClassNameOptions) => {
   return twMerge(
-    'rounded-md bg-blue-500 px-5 py-2 text-white',
+    'rounded-lg bg-blue-500 px-5 py-2 text-white',
     fullWidth ? 'block text-center' : '',
     whenDisabled,
     'hover:bg-blue-600',
