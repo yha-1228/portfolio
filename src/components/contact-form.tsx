@@ -7,8 +7,7 @@ import isEmptyObject from '@/utils/is-empty-object';
 import { Button } from './ui/button';
 import Container from './ui/container';
 import Heading1 from './ui/heading1';
-import Input from './ui/input';
-import Textarea from './ui/textarea';
+import { Input, Textarea } from './ui/input';
 
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -114,61 +113,70 @@ export default function ContactForm() {
             netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="contact" />
-            <div className="space-y-3">
+            <div className="space-y-5">
               <div>
                 <div>
                   <label htmlFor="name">お名前</label>
                 </div>
-                <div>
+                <div className="mt-2">
                   <Input
                     type="text"
                     name="name"
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    isError={!!(errors.name && touched.name)}
                   />
                 </div>
                 {errors.name && touched.name ? (
-                  <p className="text-sm text-red-500">{errors.name}</p>
+                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
                 ) : null}
               </div>
               <div>
                 <div>
                   <label htmlFor="email">メールアドレス</label>
                 </div>
-                <div>
+                <div className="mt-2">
                   <Input
                     type="email"
                     name="email"
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    isError={!!(errors.email && touched.email)}
                   />
                 </div>
                 {errors.email && touched.email ? (
-                  <p className="text-sm text-red-500">{errors.email}</p>
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
                 ) : null}
               </div>
               <div>
                 <div>
                   <label htmlFor="message">お問い合わせ内容</label>
                 </div>
-                <div>
+                <div className="mt-2">
                   <Textarea
                     name="message"
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    rows={6}
+                    isError={!!(errors.message && touched.message)}
                   />
                 </div>
                 {errors.message && touched.message ? (
-                  <p className="text-sm text-red-500">{errors.message}</p>
+                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
                 ) : null}
               </div>
+              <div>
+                <Button
+                  disabled={!isEmptyObject(errors) || submitting}
+                  className="w-full lg:w-60"
+                >
+                  {submitting ? '送信中...' : '送信する'}
+                </Button>
+              </div>
             </div>
-            <Button disabled={!isEmptyObject(errors) || submitting}>
-              {submitting ? '送信中...' : '送信'}
-            </Button>
           </form>
         </section>
       </Container>
