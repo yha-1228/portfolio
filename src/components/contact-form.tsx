@@ -4,7 +4,7 @@ import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/is-empty-object';
-import Button from './ui/button';
+import { Button } from './ui/button';
 import Container from './ui/container';
 import Input from './ui/input';
 import Textarea from './ui/textarea';

@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { twMerge } from 'tailwind-merge';
+import { LinkComponentProps } from '@/lib/next/types';
 import Container from './ui/container';
 
-type NavLinkProps = React.ComponentPropsWithRef<typeof Link>;
+type NavLinkProps = LinkComponentProps;
 
 const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   (props, ref) => {
@@ -41,15 +42,11 @@ const linkItems: NavLinkProps[] = [
     href: '/experience',
     children: '職務経歴',
   },
-  {
-    href: '/blog',
-    children: 'ブログ',
-  },
 ];
 
 function Header() {
   return (
-    <header className="py-8">
+    <header className="bg-gray-50 py-5">
       <Container>
         <nav className="flex items-center justify-between">
           <Link
