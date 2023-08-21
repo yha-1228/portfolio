@@ -1,110 +1,43 @@
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
+import Heading1 from '@/components/ui/heading1';
+import client from '@/lib/microcms/client';
+import { BlogContent, ClientResponse } from '@/lib/microcms/types';
 
-export default function Blog() {
+export const getStaticProps: GetStaticProps<{
+  data: ClientResponse<BlogContent>;
+}> = async () => {
+  const data: ClientResponse<BlogContent> = await client.get({
+    endpoint: 'blog',
+  });
+  return { props: { data } };
+};
+
+// ----------------------------------------
+
+export default function Blog({
+  data,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  // 開発中なので表示しない
+  // if (Math.random() > -1) {
+  //   return null;
+  // }
+
   return (
     <Layout title="ブログ">
-      <Container>
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-        <br />
-        <p>
-          Duis consequat elit non. Non sunt cupidatat incididunt consectetur
-          quis veniam anim id minim veniam consectetur consectetur. Exercitation
-          sunt officia est occaecat mollit et culpa nisi Lorem adipisicing minim
-          tempor et commodo. Amet duis est quis pariatur enim incididunt do
-          aliqua tempor excepteur. Exercitation ea est excepteur officia
-          incididunt ut non occaecat. Sunt incididunt excepteur culpa commodo
-          reprehenderit cupidatat cillum mollit consequat sint anim anim.
-        </p>
-      </Container>
+      <div className="py-8">
+        <Container>
+          <section className="space-y-6">
+            <Heading1>ブログ</Heading1>
+            <ul>
+              {data.contents.map((content) => (
+                <li key={content.id}>{content.title}</li>
+              ))}
+            </ul>
+          </section>
+        </Container>
+      </div>
     </Layout>
   );
 }
