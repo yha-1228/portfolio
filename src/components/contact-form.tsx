@@ -9,6 +9,56 @@ import Container from './ui/container';
 import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
 
+type FeedbackNotificationProps = {
+  type: 'done' | 'fail';
+  children?: React.ReactNode;
+  onClose?: () => void;
+};
+
+function FeedbackNotification({
+  type,
+  children,
+  onClose,
+}: FeedbackNotificationProps) {
+  if (type == 'done') {
+    return (
+      <div className="mt-10 flex items-center justify-between rounded-lg bg-blue-500 px-4 py-3 text-white">
+        <div className="flex items-center space-x-3">
+          <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
+          <div>{children}</div>
+        </div>
+        <button
+          className="inline-flex items-center rounded-full hover:bg-blue-600 active:bg-blue-700"
+          onClick={onClose}
+        >
+          <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+        </button>
+      </div>
+    );
+  }
+
+  if (type === 'fail') {
+    return (
+      <div className="mt-10 flex items-center justify-between rounded-lg bg-red-500 px-4 py-3 text-white">
+        <div className="flex items-center space-x-3">
+          <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
+          <div>{children}</div>
+        </div>
+        <button
+          className="inline-flex items-center rounded-full hover:bg-red-600 active:bg-red-700"
+          onClick={onClose}
+        >
+          <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+        </button>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+// ----------------------------------------
+
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
 type ContactFormValues = {
@@ -188,33 +238,13 @@ export default function ContactForm() {
             </div>
           </form>
         </section>
-        {feedbackType === 'done' && (
-          <div className="mt-10 flex items-center justify-between rounded-lg bg-blue-500 px-4 py-3 text-white">
-            <div className="flex items-center space-x-3">
-              <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
-              <div>{feedbackText.done}</div>
-            </div>
-            <button
-              className="inline-flex items-center rounded-full hover:bg-blue-600 active:bg-blue-700"
-              onClick={() => setFeedbackType(null)}
-            >
-              <BsX style={{ width: 32, height: 32, color: '#fff' }} />
-            </button>
-          </div>
-        )}
-        {feedbackType === 'fail' && (
-          <div className="mt-10 flex items-center justify-between rounded-lg bg-red-500 px-4 py-3 text-white">
-            <div className="flex items-center space-x-3">
-              <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
-              <div>{feedbackText.fail}</div>
-            </div>
-            <button
-              className="inline-flex  items-center rounded-full hover:bg-red-600 active:bg-red-700"
-              onClick={() => setFeedbackType(null)}
-            >
-              <BsX style={{ width: 32, height: 32, color: '#fff' }} />
-            </button>
-          </div>
+        {feedbackType && (
+          <FeedbackNotification
+            type={feedbackType}
+            onClose={() => setFeedbackType(null)}
+          >
+            {feedbackText[feedbackType]}
+          </FeedbackNotification>
         )}
       </Container>
     </div>
