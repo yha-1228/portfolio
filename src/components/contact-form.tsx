@@ -195,7 +195,7 @@ export default function ContactForm() {
               <div>{feedbackText.done}</div>
             </div>
             <button
-              className="inline-flex items-center hover:bg-blue-600 active:bg-blue-700"
+              className="inline-flex items-center rounded-full hover:bg-blue-600 active:bg-blue-700"
               onClick={() => setFeedbackType(null)}
             >
               <BsX style={{ width: 32, height: 32, color: '#fff' }} />
@@ -209,7 +209,7 @@ export default function ContactForm() {
               <div>{feedbackText.fail}</div>
             </div>
             <button
-              className="inline-flex items-center hover:bg-red-600 active:bg-red-700"
+              className="inline-flex  items-center rounded-full hover:bg-red-600 active:bg-red-700"
               onClick={() => setFeedbackType(null)}
             >
               <BsX style={{ width: 32, height: 32, color: '#fff' }} />
