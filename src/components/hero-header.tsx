@@ -5,15 +5,15 @@ export default function HeroHeader() {
   return (
     <div className="py-9">
       <Container>
-        <div className="text-3xl font-bold leading-[1.2]">
-          ユーザーフレンドリーなシステムを開発します。
-        </div>
-        <div className="mt-7 space-y-1.5">
-          <p className="leading-[1.35]">
-            新卒でシステム開発会社に入社し、主にWebアプリ開発のフロントエンドを担当してきました。
+        <p className="text-2xl font-bold leading-[1.35]">
+          ユーザーフレンドリーで堅牢なWebを開発します。
+        </p>
+        <div className="mt-7 space-y-2">
+          <p className="leading-[1.5]">
+            新卒でシステム開発企業に入社し、主にWebアプリ開発のフロントエンドを担当してきました。
           </p>
-          <p className="leading-[1.35]">
-            HTML・CSS・Reactを利用し、ストレス無く閲覧や操作できるWebアプリケーションを提供できるよう心掛けています。
+          <p className="leading-[1.5]">
+            HTML・CSS・Reactを利用し、ストレス無く快適に閲覧や操作を行えるアプリケーションを提供できるよう心掛けています。
           </p>
         </div>
 
