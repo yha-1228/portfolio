@@ -19,18 +19,16 @@ export const getStaticProps: GetStaticProps<{
 export default function Blog({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // 開発中なので表示しない
-  if (Math.random() > -1) {
-    return null;
-  }
-
   return (
     <Layout title="ブログ">
       <div className="py-8">
         <Container>
           <section className="space-y-6">
             <Heading1>ブログ</Heading1>
-            <ul>
+            <ul
+              // 開発中なので表示しない
+              style={{ display: 'none' }}
+            >
               {data.contents.map((content) => (
                 <li key={content.id}>{content.title}</li>
               ))}
