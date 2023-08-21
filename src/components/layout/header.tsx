@@ -20,14 +20,14 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
           'hover:text-primary-500',
           current &&
             "text-primary-500 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:bg-primary-500 before:content-['']",
-          className
+          className,
         )}
         href={href}
         {...restProps}
         ref={ref}
       />
     );
-  }
+  },
 );
 
 NavLink.displayName = 'NavLink';

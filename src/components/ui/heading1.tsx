@@ -11,13 +11,13 @@ const Heading1 = React.forwardRef<HTMLHeadingElement, Heading1Props>(
       <h2
         className={twMerge(
           'text-3xl font-bold text-primary-500 lg:text-4xl',
-          className
+          className,
         )}
         {...restProps}
         ref={ref}
       />
     );
-  }
+  },
 );
 
 Heading1.displayName = 'Heading1';
