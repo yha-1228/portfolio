@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+const colors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 // @see https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
@@ -26,6 +27,18 @@ module.exports = {
       // '2xl': '1536px',
     },
     extend: {
+      colors: {
+        primary: colors.blue,
+        danger: colors.red,
+        maker: colors.yellow,
+        gray: {
+          foreground: colors.gray[600],
+          disabled: colors.gray[400],
+          'light-strong': colors.gray[300],
+          'light-weak': colors.gray[300],
+          lightest: colors.gray[50],
+        },
+      },
       // @see https://tailwindcss.com/docs/font-family
       fontFamily: {
         base: [
