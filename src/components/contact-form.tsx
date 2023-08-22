@@ -164,7 +164,7 @@ export default function ContactForm() {
     <div className="pb-14 pt-8">
       <Container>
         <section className="space-y-6">
-          <Heading1>お問い合わせ</Heading1>
+          <Heading1 className="text-primary-600">お問い合わせ</Heading1>
           <form
             onSubmit={handleSubmit}
             name={FORM_NAME}
@@ -174,7 +174,7 @@ export default function ContactForm() {
             <input type="hidden" name="form-name" value="contact" />
             <div className="space-y-5">
               <div>
-                <label className="block" htmlFor="name">
+                <label className="block font-bold" htmlFor="name">
                   お名前
                 </label>
                 <div className="mt-2">
@@ -193,7 +193,7 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
-                <label className="block" htmlFor="email">
+                <label className="block font-bold" htmlFor="email">
                   メールアドレス
                 </label>
                 <div className="mt-2">
@@ -212,7 +212,7 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
-                <label className="block" htmlFor="message">
+                <label className="block font-bold" htmlFor="message">
                   お問い合わせ内容
                 </label>
                 <div className="mt-2">

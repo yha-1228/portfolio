@@ -15,10 +15,10 @@ type CreateClassNameOptions = {
 
 function createClassName({ isError, external }: CreateClassNameOptions) {
   return twMerge(
-    'w-full block px-3 py-1 rounded-md border border-solid border-gray-light-strong',
-    'active:outline active:outline-2 active:outline-primary-500',
-    'focus:outline focus:outline-2 focus:outline-primary-500',
-    isError && 'border-danger-500',
+    'w-full block px-3 py-1 rounded-md',
+    'ring-1 ring-inset ring-gray-light-strong',
+    'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-600',
+    isError && 'ring-2 ring-danger-500 focus:ring-danger-600',
     external,
   );
 }
