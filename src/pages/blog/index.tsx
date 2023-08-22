@@ -30,7 +30,9 @@ export default function Blog({
               style={{ display: 'none' }}
             >
               {data.contents.map((content) => (
-                <li key={content.id}>{content.title}</li>
+                <li key={content.id} data-id={content.id}>
+                  {content.title}
+                </li>
               ))}
             </ul>
           </section>

@@ -17,9 +17,9 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
       <Link
         className={twMerge(
           'relative inline-block py-[2px] font-bold',
-          'hover:text-primary-500',
+          'hover:text-primary-600',
           current &&
-            "text-primary-500 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:bg-primary-500 before:content-['']",
+            "text-primary-600 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:bg-primary-600 before:content-['']",
           className,
         )}
         href={href}
