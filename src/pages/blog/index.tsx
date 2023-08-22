@@ -1,16 +1,15 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
-import client from '@/lib/microcms/client';
+import { getBlogContents } from '@/lib/microcms/client';
 import { BlogContent, ClientResponse } from '@/lib/microcms/types';
 
 export const getStaticProps: GetStaticProps<{
   data: ClientResponse<BlogContent>;
 }> = async () => {
-  const data: ClientResponse<BlogContent> = await client.get({
-    endpoint: 'blog',
-  });
+  const data = await getBlogContents();
   return { props: { data } };
 };
 
@@ -30,8 +29,8 @@ export default function Blog({
               style={{ display: 'none' }}
             >
               {data.contents.map((content) => (
-                <li key={content.id} data-id={content.id}>
-                  {content.title}
+                <li key={content.id}>
+                  <Link href={`/blog/${content.id}`}>{content.title}</Link>
                 </li>
               ))}
             </ul>
