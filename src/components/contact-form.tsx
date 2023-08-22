@@ -6,6 +6,7 @@ import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/is-empty-object';
 import { Button } from './ui/button';
 import Container from './ui/container';
+import FormErrorMessage from './ui/form-error-message';
 import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
 
@@ -28,6 +29,7 @@ function FeedbackNotification({
           <div>{children}</div>
         </div>
         <button
+          aria-label="閉じる"
           className="inline-flex items-center rounded-full hover:bg-primary-600 active:bg-primary-700"
           onClick={onClose}
         >
@@ -45,6 +47,7 @@ function FeedbackNotification({
           <div>{children}</div>
         </div>
         <button
+          aria-label="閉じる"
           className="inline-flex items-center rounded-full hover:bg-danger-600 active:bg-danger-700"
           onClick={onClose}
         >
@@ -204,12 +207,12 @@ export default function ContactForm() {
                   />
                 </div>
                 {showError('name', errors, touched) ? (
-                  <p
+                  <FormErrorMessage
                     id={createErrorId(id, 'name')}
-                    className="mt-1 text-sm text-danger-500"
+                    className="mt-1"
                   >
                     {errors.name}
-                  </p>
+                  </FormErrorMessage>
                 ) : null}
               </div>
               <div>
@@ -229,12 +232,12 @@ export default function ContactForm() {
                   />
                 </div>
                 {showError('email', errors, touched) ? (
-                  <p
+                  <FormErrorMessage
                     id={createErrorId(id, 'email')}
-                    className="mt-1 text-sm text-danger-500"
+                    className="mt-1"
                   >
                     {errors.email}
-                  </p>
+                  </FormErrorMessage>
                 ) : null}
               </div>
               <div>
@@ -254,12 +257,12 @@ export default function ContactForm() {
                   />
                 </div>
                 {showError('message', errors, touched) ? (
-                  <p
+                  <FormErrorMessage
                     id={createErrorId(id, 'message')}
-                    className="mt-1 text-sm text-danger-500"
+                    className="mt-1"
                   >
                     {errors.message}
-                  </p>
+                  </FormErrorMessage>
                 ) : null}
               </div>
               <div>
