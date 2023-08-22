@@ -178,7 +178,7 @@ export default function ContactForm() {
     <div className="pb-14 pt-8">
       <Container>
         <section className="space-y-6">
-          <Heading1 className="text-primary-600">お問い合わせ</Heading1>
+          <Heading1>お問い合わせ</Heading1>
           <form
             onSubmit={handleSubmit}
             name={FORM_NAME}
