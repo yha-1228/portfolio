@@ -8,6 +8,8 @@ const skillWords = [
   { label: 'CSS', specialty: true },
   { label: 'Sass', specialty: true },
   { label: 'CSS in JS', specialty: true },
+  { label: 'JavaScript', specialty: true },
+  { label: 'TypeScript', specialty: true },
   { label: 'jQuery' },
   { label: 'React', specialty: true },
   { label: 'Next.js' },
