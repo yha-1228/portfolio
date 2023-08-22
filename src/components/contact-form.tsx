@@ -174,9 +174,9 @@ export default function ContactForm() {
             <input type="hidden" name="form-name" value="contact" />
             <div className="space-y-5">
               <div>
-                <div>
-                  <label htmlFor="name">お名前</label>
-                </div>
+                <label className="block" htmlFor="name">
+                  お名前
+                </label>
                 <div className="mt-2">
                   <Input
                     type="text"
@@ -193,9 +193,9 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
-                <div>
-                  <label htmlFor="email">メールアドレス</label>
-                </div>
+                <label className="block" htmlFor="email">
+                  メールアドレス
+                </label>
                 <div className="mt-2">
                   <Input
                     type="email"
@@ -212,9 +212,9 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
-                <div>
-                  <label htmlFor="message">お問い合わせ内容</label>
-                </div>
+                <label className="block" htmlFor="message">
+                  お問い合わせ内容
+                </label>
                 <div className="mt-2">
                   <Textarea
                     name="message"
