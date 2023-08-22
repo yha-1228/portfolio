@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { BsFillCheckCircleFill, BsX } from 'react-icons/bs';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
@@ -127,7 +127,21 @@ const feedbackText = {
   fail: '送信中にエラーが発生しました。',
 };
 
+const createErrorId = (uniqId: string, name: keyof ContactFormValues) => {
+  return `${uniqId}-${name}-error`;
+};
+
+const showError = (
+  name: keyof ContactFormValues,
+  errors: ContactFormErrors,
+  touched: ContactFormTouched,
+) => {
+  return !!(errors[name] && touched[name]);
+};
+
 export default function ContactForm() {
+  const id = useId();
+
   const [values, setValues] = useState(initialValues);
   const errors = validate(values);
 
@@ -185,11 +199,17 @@ export default function ContactForm() {
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isError={!!(errors.name && touched.name)}
+                    invalid={showError('name', errors, touched)}
+                    aria-describedby={createErrorId(id, 'name')}
                   />
                 </div>
-                {errors.name && touched.name ? (
-                  <p className="mt-1 text-sm text-danger-500">{errors.name}</p>
+                {showError('name', errors, touched) ? (
+                  <p
+                    id={createErrorId(id, 'name')}
+                    className="mt-1 text-sm text-danger-500"
+                  >
+                    {errors.name}
+                  </p>
                 ) : null}
               </div>
               <div>
@@ -204,11 +224,17 @@ export default function ContactForm() {
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isError={!!(errors.email && touched.email)}
+                    invalid={showError('email', errors, touched)}
+                    aria-describedby={createErrorId(id, 'email')}
                   />
                 </div>
-                {errors.email && touched.email ? (
-                  <p className="mt-1 text-sm text-danger-500">{errors.email}</p>
+                {showError('email', errors, touched) ? (
+                  <p
+                    id={createErrorId(id, 'email')}
+                    className="mt-1 text-sm text-danger-500"
+                  >
+                    {errors.email}
+                  </p>
                 ) : null}
               </div>
               <div>
@@ -223,11 +249,15 @@ export default function ContactForm() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     rows={6}
-                    isError={!!(errors.message && touched.message)}
+                    invalid={showError('message', errors, touched)}
+                    aria-describedby={createErrorId(id, 'message')}
                   />
                 </div>
-                {errors.message && touched.message ? (
-                  <p className="mt-1 text-sm text-danger-500">
+                {showError('message', errors, touched) ? (
+                  <p
+                    id={createErrorId(id, 'message')}
+                    className="mt-1 text-sm text-danger-500"
+                  >
                     {errors.message}
                   </p>
                 ) : null}

@@ -5,7 +5,10 @@ import { twMerge } from 'tailwind-merge';
 // ----------------------------------------
 
 type InputBaseProps = {
-  isError?: boolean;
+  /**
+   * エラー時のスタイルと`aria-invalid`属性を指定する
+   */
+  invalid?: boolean;
 };
 
 type CreateClassNameOptions = {
@@ -28,11 +31,12 @@ function createClassName({ isError, external }: CreateClassNameOptions) {
 type InputProps = React.ComponentPropsWithRef<'input'> & InputBaseProps;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { isError, className, ...restProps } = props;
+  const { invalid, className, ...restProps } = props;
 
   return (
     <input
-      className={createClassName({ isError, external: className })}
+      aria-invalid={invalid || undefined}
+      className={createClassName({ isError: invalid, external: className })}
       {...restProps}
       ref={ref}
     />
@@ -47,11 +51,12 @@ type TextareaProps = React.ComponentPropsWithRef<'textarea'> & InputBaseProps;
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
-    const { isError, className, ...restProps } = props;
+    const { invalid, className, ...restProps } = props;
 
     return (
       <textarea
-        className={createClassName({ isError, external: className })}
+        aria-invalid={invalid || undefined}
+        className={createClassName({ isError: invalid, external: className })}
         {...restProps}
         ref={ref}
       />
