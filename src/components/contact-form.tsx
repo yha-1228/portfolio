@@ -29,6 +29,7 @@ function FeedbackNotification({
           <div>{children}</div>
         </div>
         <button
+          aria-label="閉じる"
           className="inline-flex items-center rounded-full hover:bg-primary-600 active:bg-primary-700"
           onClick={onClose}
         >
@@ -46,6 +47,7 @@ function FeedbackNotification({
           <div>{children}</div>
         </div>
         <button
+          aria-label="閉じる"
           className="inline-flex items-center rounded-full hover:bg-danger-600 active:bg-danger-700"
           onClick={onClose}
         >
