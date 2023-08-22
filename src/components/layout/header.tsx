@@ -16,7 +16,7 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
     return (
       <Link
         className={twMerge(
-          'relative inline-block py-[2px] font-bold',
+          'relative inline-flex items-center h-14 font-bold text-gray-500',
           'hover:text-primary-600',
           current &&
             "text-primary-600 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:bg-primary-600 before:content-['']",
@@ -43,7 +43,7 @@ const linkItems: NavLinkProps[] = [
 
 export default function Header() {
   return (
-    <header className="border-b border-solid border-b-gray-light-weak py-2">
+    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-weak bg-gray-lightest">
       <Container>
         <nav className="flex items-center justify-between">
           <Link href="/" className="text-xl font-bold hover:underline">
