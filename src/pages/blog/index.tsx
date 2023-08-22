@@ -1,4 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
@@ -28,8 +29,8 @@ export default function Blog({
               style={{ display: 'none' }}
             >
               {data.contents.map((content) => (
-                <li key={content.id} data-id={content.id}>
-                  {content.title}
+                <li key={content.id}>
+                  <Link href={`/blog/${content.id}`}>{content.title}</Link>
                 </li>
               ))}
             </ul>
