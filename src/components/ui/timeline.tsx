@@ -13,7 +13,7 @@ export default function Timeline({ items }: TimelineProps) {
     <div className="">
       {items.map((item) => (
         <div key={item.time}>
-          <div className="border-l-4 border-solid border-primary-500 pl-4 font-bold text-primary-500 ">
+          <div className="border-l-4 border-solid border-primary-600 pl-4 font-bold text-primary-600 ">
             {item.time}
           </div>
           <div className="border-l-4 border-solid border-l-gray-light-weak pl-4 text-lg font-bold">

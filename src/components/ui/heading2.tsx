@@ -9,10 +9,7 @@ const Heading2 = React.forwardRef<HTMLHeadingElement, Heading2Props>(
 
     return (
       <h3
-        className={twMerge(
-          'text-xl font-bold text-primary-500 lg:text-2xl',
-          className,
-        )}
+        className={twMerge('text-xl font-bold lg:text-2xl', className)}
         {...restProps}
         ref={ref}
       />

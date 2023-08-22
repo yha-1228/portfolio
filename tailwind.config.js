@@ -28,11 +28,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: colors.blue,
+        primary: colors.indigo,
         danger: colors.red,
         maker: colors.yellow,
         gray: {
-          foreground: colors.gray[600],
+          foreground: colors.gray[700],
           disabled: colors.gray[400],
           'light-strong': colors.gray[300],
           'light-weak': colors.gray[300],
