@@ -2,14 +2,12 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
-import client from '@/lib/microcms/client';
-import { BlogContent, ClientResponse } from '@/lib/microcms/types';
+import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
+import { BlogContent } from '@/lib/microcms/types';
 import clsx from '@/utils/clsx';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data: ClientResponse<BlogContent> = await client.get({
-    endpoint: 'blog',
-  });
+  const data = await getBlogContents();
 
   const paths = data.contents.map((content) => ({
     params: { id: content.id },
@@ -25,10 +23,7 @@ export const getStaticProps: GetStaticProps<{
   blog: BlogContent;
 }> = async (context) => {
   const id = context.params?.id as string;
-  const content: BlogContent = await client.get({
-    endpoint: 'blog',
-    contentId: id,
-  });
+  const content = await getBlogContent(id);
 
   return { props: { blog: content } };
 };

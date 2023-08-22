@@ -2,15 +2,13 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
-import client from '@/lib/microcms/client';
+import { getBlogContents } from '@/lib/microcms/client';
 import { BlogContent, ClientResponse } from '@/lib/microcms/types';
 
 export const getStaticProps: GetStaticProps<{
   data: ClientResponse<BlogContent>;
 }> = async () => {
-  const data: ClientResponse<BlogContent> = await client.get({
-    endpoint: 'blog',
-  });
+  const data = await getBlogContents();
   return { props: { data } };
 };
 
