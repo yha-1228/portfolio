@@ -73,7 +73,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           whenDisabled: disabled
             ? 'pointer-events-none disabled:bg-gray-disabled'
             : '',
-          external: className,
+          external: twMerge('text-center', className),
         })}
         aria-disabled={disabled}
         {...restProps}
