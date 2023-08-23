@@ -1,5 +1,9 @@
 import { useId, useState } from 'react';
-import { BsFillCheckCircleFill, BsX } from 'react-icons/bs';
+import {
+  BsFillCheckCircleFill,
+  BsFillExclamationCircleFill,
+  BsX,
+} from 'react-icons/bs';
 import { isAxiosNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
@@ -44,7 +48,7 @@ function FeedbackNotification({
     return (
       <div className="mt-10 flex items-center justify-between rounded-lg bg-danger-500 px-4 py-3 text-white">
         <div className="flex items-center space-x-3">
-          <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
+          <BsFillExclamationCircleFill style={{ width: 24, height: 24 }} />
           <div>{children}</div>
         </div>
         <button
