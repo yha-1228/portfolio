@@ -116,7 +116,7 @@ function SkillDetailCard({ heading, items }: SkillDetailCardProps) {
     <section className="rounded-lg border border-solid border-gray-light-strong">
       <div className="px-5 pb-6 pt-4 lg:px-6 lg:pb-7 lg:pt-5">
         <h4 className="pb-1.5 font-bold">{heading}</h4>
-        <hr className="h-0.5 w-1/12 border-0 bg-gray-light-strong" />
+        <hr className="h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
         <div className="mt-4 text-gray-500">
           <Show when={items1.length > 0}>
             <div>
