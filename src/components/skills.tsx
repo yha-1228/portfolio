@@ -60,11 +60,14 @@ const skillDetailData = [
         rank: 'good',
         text: 'Node.js, TypeScript, Expressでフルに開発経験があります。',
       },
-      { rank: 'normal', text: 'PHPは軽微な読み書きや実装ができます。' },
-      { rank: 'good', text: 'SQLの知識があります。' },
       {
         rank: 'normal',
-        text: 'マイグレーションやn+1などORM特有の経験はありません。',
+        text: 'PHPとJavaは軽微なコーディングや基礎的な実装が可能です。PHPの方が少し得意です。',
+      },
+      { rank: 'good', text: 'SQLの知識があります。' },
+      {
+        rank: 'bad',
+        text: 'マイグレーションなどORM特有の経験はありません。',
       },
       {
         rank: 'bad',
