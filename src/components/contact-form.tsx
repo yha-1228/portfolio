@@ -1,5 +1,6 @@
 import { useId, useState } from 'react';
 import { BsFillCheckCircleFill, BsX } from 'react-icons/bs';
+import { isAxiosNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
@@ -11,17 +12,17 @@ import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
 
 type FeedbackNotificationProps = {
-  type: 'done' | 'fail';
+  variant: 'primary' | 'danger';
   children?: React.ReactNode;
   onClose?: () => void;
 };
 
 function FeedbackNotification({
-  type,
+  variant,
   children,
   onClose,
 }: FeedbackNotificationProps) {
-  if (type == 'done') {
+  if (variant == 'primary') {
     return (
       <div className="mt-10 flex items-center justify-between rounded-lg bg-primary-500 px-4 py-3 text-white">
         <div className="flex items-center space-x-3">
@@ -39,7 +40,7 @@ function FeedbackNotification({
     );
   }
 
-  if (type === 'fail') {
+  if (variant === 'danger') {
     return (
       <div className="mt-10 flex items-center justify-between rounded-lg bg-danger-500 px-4 py-3 text-white">
         <div className="flex items-center space-x-3">
@@ -123,10 +124,9 @@ const initialTouched: ContactFormTouched = {
 
 const FORM_NAME = 'contact';
 
-type FeedbackType = 'done' | 'fail';
-
 const feedbackText = {
   done: 'お問い合わせ内容を送信しました。',
+  networkError: 'ネットワークに接続されていません。',
   fail: '送信中にエラーが発生しました。',
 };
 
@@ -142,6 +142,12 @@ const showError = (
   return !!(errors[name] && touched[name]);
 };
 
+type SubmitState =
+  | { state: 'idle' }
+  | { state: 'loading' }
+  | { state: 'success' }
+  | { state: 'error'; error: unknown };
+
 export default function ContactForm() {
   const id = useId();
 
@@ -149,9 +155,9 @@ export default function ContactForm() {
   const errors = validate(values);
 
   const [touched, setTouched] = useState(initialTouched);
-  const [submitting, setSubmitting] = useState(false);
-
-  const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
+  const [submitState, setSubmitState] = useState<SubmitState>({
+    state: 'idle',
+  });
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -164,16 +170,14 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setSubmitting(true);
+    setSubmitState({ state: 'loading' });
     try {
       await sendContact(FORM_NAME, values);
-      setFeedbackType('done');
+      setSubmitState({ state: 'success' });
       setValues(initialValues);
       setTouched(initialTouched);
     } catch (error) {
-      setFeedbackType('fail');
-    } finally {
-      setSubmitting(false);
+      setSubmitState({ state: 'error', error });
     }
   };
 
@@ -267,21 +271,33 @@ export default function ContactForm() {
               </div>
               <div>
                 <Button
-                  disabled={!isEmptyObject(errors) || submitting}
+                  disabled={
+                    !isEmptyObject(errors) || submitState.state === 'loading'
+                  }
                   className="w-full lg:w-60"
                 >
-                  {submitting ? '送信中...' : '送信する'}
+                  {submitState.state === 'loading' ? '送信中...' : '送信する'}
                 </Button>
               </div>
             </div>
           </form>
         </section>
-        {feedbackType && (
+        {submitState.state === 'success' && (
           <FeedbackNotification
-            type={feedbackType}
-            onClose={() => setFeedbackType(null)}
+            variant="primary"
+            onClose={() => setSubmitState({ state: 'idle' })}
           >
-            {feedbackText[feedbackType]}
+            {feedbackText.done}
+          </FeedbackNotification>
+        )}
+        {submitState.state === 'error' && (
+          <FeedbackNotification
+            variant="danger"
+            onClose={() => setSubmitState({ state: 'idle' })}
+          >
+            {isAxiosNetworkError(submitState.error)
+              ? feedbackText.networkError
+              : feedbackText.fail}
           </FeedbackNotification>
         )}
       </Container>
