@@ -70,15 +70,13 @@ export default function Experience() {
         <Container>
           <section className="space-y-6">
             <Heading1>職務経歴</Heading1>
-            <div className="mt-12">
-              <section className="space-y-5">
-                <div className="space-y-1">
-                  <Heading2>株式会社アイキューブ</Heading2>
-                  <div className="text-sm text-gray-500">2019/04 - 2023/08</div>
-                </div>
-                <Timeline items={items} />
-              </section>
-            </div>
+            <section className="mt-12 space-y-5">
+              <div className="space-y-1">
+                <Heading2>株式会社アイキューブ</Heading2>
+                <div className="text-sm text-gray-500">2019/04 - 2023/08</div>
+              </div>
+              <Timeline items={items} />
+            </section>
           </section>
         </Container>
       </div>
