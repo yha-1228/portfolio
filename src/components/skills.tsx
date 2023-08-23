@@ -95,7 +95,7 @@ const skillDetailData = [
         rank: 'good',
         text: '他の開発メンバーをサブリーダーとして管理し、PdMと話し合うことができます。',
       },
-      { rank: 'bad', text: 'PMや顧客折衝の経験はありません。' },
+      { rank: 'bad', text: 'PMの経験はありません。' },
     ],
   },
 ];
