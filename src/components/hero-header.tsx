@@ -8,7 +8,7 @@ export default function HeroHeader() {
         <p className="text-2xl font-bold leading-[1.35] lg:text-3xl">
           ユーザーフレンドリーで堅牢なWebを開発します。
         </p>
-        <div className="mt-8 space-y-2">
+        <div className="mt-8">
           <p className="lg:text-lg">
             新卒でシステム開発企業に入社し、主にWebアプリ開発のフロントエンドを担当してきました。マークアップ技術とReactを利用して、ストレス無く快適に閲覧や操作を行える体験を提供できるよう心掛けています。
           </p>
