@@ -95,7 +95,7 @@ const skillDetailData = [
         rank: 'good',
         text: '他の開発メンバーをサブリーダーとして管理し、PdMと話し合うことができます。',
       },
-      { rank: 'bad', text: 'PM業務や顧客折衝の経験はありません。' },
+      { rank: 'bad', text: 'PMや顧客折衝の経験はありません。' },
     ],
   },
 ];
@@ -113,42 +113,53 @@ function SkillDetailCard({ heading, items }: SkillDetailCardProps) {
   const items3 = items.filter((item) => item.rank === 'bad');
 
   return (
-    <section className="space-y-6 rounded-xl border border-solid border-gray-light-weak bg-gray-lightest px-5 py-4">
-      <h4 className="border-b border-solid border-b-gray-light-weak pb-2 text-xl font-bold">
-        {heading}
-      </h4>
-
-      <div>
-        <Show when={items1.length > 0}>
-          <h5 className="mb-3 mt-6 font-bold">可能</h5>
-          <ul className="space-y-2 pl-4">
-            {items1.map((item) => (
-              <li key={item.text} className="list-disc leading-[1.6]">
-                {item.text}
-              </li>
-            ))}
-          </ul>
-        </Show>
-        <Show when={items2.length > 0}>
-          <h5 className="mb-3 mt-6 font-bold">少し可能</h5>
-          <ul className="space-y-2 pl-4">
-            {items2.map((item) => (
-              <li key={item.text} className="list-disc leading-[1.6]">
-                {item.text}
-              </li>
-            ))}
-          </ul>
-        </Show>
-        <Show when={items3.length > 0}>
-          <h5 className="mb-3 mt-6 font-bold">未経験レベル</h5>
-          <ul className="space-y-2 pl-4">
-            {items3.map((item) => (
-              <li key={item.text} className="list-disc leading-[1.6]">
-                {item.text}
-              </li>
-            ))}
-          </ul>
-        </Show>
+    <section className="rounded-lg border border-solid border-gray-light-strong">
+      <div className="px-5 pb-6 pt-4 lg:px-6 lg:pb-7 lg:pt-5">
+        <h4 className="pb-1.5 font-bold">{heading}</h4>
+        <hr className="h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
+        <div className="mt-4 text-gray-500">
+          <Show when={items1.length > 0}>
+            <div>
+              <h5 className="pb-2 pt-5 text-xl font-bold text-primary-600">
+                可能
+              </h5>
+              <ul className="space-y-1 pl-4">
+                {items1.map((item) => (
+                  <li
+                    key={item.text}
+                    className="list-disc leading-[1.6] text-gray-foreground"
+                  >
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Show>
+          <Show when={items2.length > 0}>
+            <div>
+              <h5 className="pb-2 pt-5 text-xl font-bold">少し可能</h5>
+              <ul className="space-y-1 pl-4">
+                {items2.map((item) => (
+                  <li key={item.text} className="list-disc leading-[1.6]">
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Show>
+          <Show when={items3.length > 0}>
+            <div>
+              <h5 className="pb-2 pt-5 text-xl font-bold">未経験レベル</h5>
+              <ul className="space-y-1 pl-4">
+                {items3.map((item) => (
+                  <li key={item.text} className="list-disc leading-[1.6]">
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Show>
+        </div>
       </div>
     </section>
   );
