@@ -174,37 +174,33 @@ export default function Skills() {
         <section className="space-y-6">
           <Heading1>スキル</Heading1>
           <div>
-            <div>
-              <div className="flex flex-wrap gap-x-3 gap-y-[10px]">
-                {skillWords.map((skillWord) => (
-                  <div
-                    key={skillWord.label}
-                    className={twMerge(
-                      'whitespace-nowrap text-xl leading-[1.25] text-gray-500',
-                      skillWord.specialty &&
-                        "relative font-bold text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-maker-300 before:content-['']",
-                    )}
-                  >
-                    {skillWord.label}
-                  </div>
+            <div className="flex flex-wrap gap-x-3 gap-y-[10px]">
+              {skillWords.map((skillWord) => (
+                <div
+                  key={skillWord.label}
+                  className={twMerge(
+                    'whitespace-nowrap text-xl leading-[1.25] text-gray-500',
+                    skillWord.specialty &&
+                      'font-bold text-gray-foreground maker',
+                  )}
+                >
+                  {skillWord.label}
+                </div>
+              ))}
+            </div>
+            <section className="mt-12 space-y-5">
+              <Heading2>詳細</Heading2>
+              <ul className="space-y-6">
+                {skillDetailData.map((skillDetail) => (
+                  <li key={skillDetail.heading}>
+                    <SkillDetailCard
+                      heading={skillDetail.heading}
+                      items={skillDetail.items}
+                    />
+                  </li>
                 ))}
-              </div>
-            </div>
-            <div className="mt-12">
-              <section className="space-y-5">
-                <Heading2>詳細</Heading2>
-                <ul className="space-y-6">
-                  {skillDetailData.map((skillDetail) => (
-                    <li key={skillDetail.heading}>
-                      <SkillDetailCard
-                        heading={skillDetail.heading}
-                        items={skillDetail.items}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            </div>
+              </ul>
+            </section>
           </div>
         </section>
       </Container>

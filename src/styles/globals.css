@@ -16,3 +16,16 @@ html {
 body {
   line-height: inherit;
 }
+
+/* utils */
+/* -------------------------------------------------------- */
+
+.maker {
+  --width: 3.5px;
+
+  background: linear-gradient(
+    to top,
+    theme(colors.yellow.300) var(--width),
+    transparent var(--width)
+  );
+}
