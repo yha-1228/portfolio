@@ -16,7 +16,8 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
     return (
       <Link
         className={twMerge(
-          'relative inline-flex items-center h-14 font-bold text-gray-500 px-2.5',
+          // height: 14px (parent) - 1px (border-bottom)
+          'relative inline-flex items-center h-[55px] font-bold text-gray-500 px-2.5',
           ' hover:bg-gray-200',
           'active:text-gray-foreground',
           current &&
