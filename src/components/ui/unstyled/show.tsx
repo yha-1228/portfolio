@@ -9,5 +9,5 @@ type ShowProps = React.PropsWithChildren<{
  * @see https://www.solidjs.com/tutorial/flow_show
  */
 export default function Show({ when, fallback, children }: ShowProps) {
-  return when ? children : fallback;
+  return <>{when ? children : fallback}</>;
 }
