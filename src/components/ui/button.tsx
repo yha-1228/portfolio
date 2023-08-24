@@ -7,6 +7,7 @@ import { LinkComponentProps } from '@/lib/next/types';
 // ----------------------------------------
 
 type ButtonBaseProps = {
+  disabled?: boolean;
   fullWidth?: boolean;
   rightIcon?: React.ReactNode;
 };
@@ -68,18 +69,16 @@ Button.displayName = 'Button';
 
 // ----------------------------------------
 
-type ButtonLinkProps = LinkComponentProps & {
-  disabled?: boolean;
-} & ButtonBaseProps;
+type ButtonLinkProps = LinkComponentProps & ButtonBaseProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
     const {
       fullWidth,
       rightIcon,
+      disabled,
       className,
       children,
-      disabled,
       ...restProps
     } = props;
 
