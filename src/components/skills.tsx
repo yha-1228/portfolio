@@ -1,4 +1,5 @@
 import { twMerge } from 'tailwind-merge';
+import clsx from '@/utils/clsx';
 import Container from './ui/container';
 import Heading1 from './ui/heading1';
 import Heading2 from './ui/heading2';
@@ -105,15 +106,21 @@ const skillDetailData = [
 type SkillDetailCardProps = {
   heading: React.ReactNode;
   items: (typeof skillDetailData)[number]['items'];
+  className?: string;
 };
 
-function SkillDetailCard({ heading, items }: SkillDetailCardProps) {
+function SkillDetailCard({ heading, items, className }: SkillDetailCardProps) {
   const items1 = items.filter((item) => item.rank === 'good');
   const items2 = items.filter((item) => item.rank === 'normal');
   const items3 = items.filter((item) => item.rank === 'bad');
 
   return (
-    <section className="rounded-lg border border-solid border-gray-light-strong">
+    <section
+      className={twMerge(
+        'rounded-lg border border-solid border-gray-light-strong',
+        className,
+      )}
+    >
       <div className="px-5 pb-6 pt-4 lg:px-6 lg:pb-7 lg:pt-5">
         <h4 className="pb-1.5 font-bold">{heading}</h4>
         <hr className="h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
@@ -190,16 +197,23 @@ export default function Skills() {
             </div>
             <section className="mt-12 space-y-5">
               <Heading2>詳細</Heading2>
-              <ul className="space-y-6">
-                {skillDetailData.map((skillDetail) => (
-                  <li key={skillDetail.heading}>
+              <div className="space-y-6 md:flex md:flex-wrap md:justify-between md:gap-x-[16px] md:gap-y-[20px] md:space-y-0">
+                {skillDetailData.map((skillDetail, idx) => (
+                  <div
+                    key={skillDetail.heading}
+                    className="md:w-[calc(50%-calc(16px/2))]"
+                  >
                     <SkillDetailCard
+                      className={clsx(
+                        0 <= idx && idx <= 1 && 'md:h-[540px]',
+                        2 <= idx && idx <= 3 && 'md:h-[400px]',
+                      )}
                       heading={skillDetail.heading}
                       items={skillDetail.items}
                     />
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </section>
           </div>
         </section>
