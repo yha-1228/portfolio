@@ -77,6 +77,12 @@ type ContactFormValues = {
    */
   name: string;
   /**
+   * 会社名
+   *
+   * @description 任意, 入力された場合は100文字以内
+   */
+  companyName: string;
+  /**
    * メールアドレス
    *
    * @description 必須, Eメール
@@ -85,13 +91,14 @@ type ContactFormValues = {
   /**
    * お問い合わせ内容
    *
-   * @description 10文字以上
+   * @description 必須, 10000文字以内
    */
   message: string;
 };
 
 const initialValues: ContactFormValues = {
   name: '',
+  companyName: '',
   email: '',
   message: '',
 };
@@ -105,14 +112,22 @@ function validate(values: ContactFormValues): ContactFormErrors {
     errors.name = m.required;
   }
 
+  if (v.exists(values.companyName)) {
+    if (!v.isLength(values.companyName, { max: 100 })) {
+      errors.companyName = m.length({ max: 100 });
+    }
+  }
+
   if (!v.exists(values.email)) {
     errors.email = m.required;
   } else if (!v.isEmail(values.email)) {
     errors.email = m.email;
   }
 
-  if (!v.isLength(values.message, { min: 10 })) {
-    errors.message = m.length({ min: 10 });
+  if (!v.exists(values.message)) {
+    errors.message = m.required;
+  } else if (!v.isLength(values.message, { max: 10000 })) {
+    errors.message = m.length({ max: 10000 });
   }
 
   return errors;
@@ -122,6 +137,7 @@ type ContactFormTouched = { [k in keyof ContactFormValues]: boolean };
 
 const initialTouched: ContactFormTouched = {
   name: false,
+  companyName: false,
   email: false,
   message: false,
 };
@@ -190,6 +206,13 @@ export default function ContactForm() {
       <Container>
         <section className="space-y-6">
           <Heading1>お問い合わせ</Heading1>
+          <div>
+            <p>お気軽にお問い合わせください。</p>
+            <p aria-hidden="true" className="text-danger-500">
+              * は必須項目です。
+            </p>
+          </div>
+
           <form
             onSubmit={handleSubmit}
             name={FORM_NAME}
@@ -200,7 +223,13 @@ export default function ContactForm() {
             <div className="space-y-5">
               <div>
                 <label className="block font-bold" htmlFor="name">
-                  お名前
+                  お名前{' '}
+                  <span
+                    aria-label="必須項目"
+                    className="font-normal text-danger-500"
+                  >
+                    *
+                  </span>
                 </label>
                 <div className="mt-2">
                   <Input
@@ -224,8 +253,39 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
+                <label className="block font-bold" htmlFor="companyName">
+                  会社名
+                </label>
+                <div className="mt-2">
+                  <Input
+                    type="text"
+                    name="companyName"
+                    id="companyName"
+                    value={values.companyName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    invalid={showError('companyName', errors, touched)}
+                    aria-describedby={createErrorId(id, 'companyName')}
+                  />
+                </div>
+                {showError('companyName', errors, touched) ? (
+                  <FormErrorMessage
+                    id={createErrorId(id, 'companyName')}
+                    className="mt-1"
+                  >
+                    {errors.companyName}
+                  </FormErrorMessage>
+                ) : null}
+              </div>
+              <div>
                 <label className="block font-bold" htmlFor="email">
-                  メールアドレス
+                  メールアドレス{' '}
+                  <span
+                    aria-label="必須項目"
+                    className="font-normal text-danger-500"
+                  >
+                    *
+                  </span>
                 </label>
                 <div className="mt-2">
                   <Input
@@ -250,7 +310,13 @@ export default function ContactForm() {
               </div>
               <div>
                 <label className="block font-bold" htmlFor="message">
-                  お問い合わせ内容
+                  お問い合わせ内容{' '}
+                  <span
+                    aria-label="必須項目"
+                    className="font-normal text-danger-500"
+                  >
+                    *
+                  </span>
                 </label>
                 <div className="mt-2">
                   <Textarea
