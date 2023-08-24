@@ -7,7 +7,9 @@ import { LinkComponentProps } from '@/lib/next/types';
 // ----------------------------------------
 
 type ButtonBaseProps = {
+  disabled?: boolean;
   fullWidth?: boolean;
+  rightIcon?: React.ReactNode;
 };
 
 type CreateClassNameOptions = {
@@ -22,8 +24,8 @@ const createClassName = ({
   external,
 }: CreateClassNameOptions) => {
   return twMerge(
-    'rounded-lg bg-primary-600 px-5 py-2 text-white',
-    fullWidth ? 'block text-center' : '',
+    'inline-flex justify-center items-center rounded-lg bg-primary-600 px-5 py-2 text-white',
+    fullWidth ? 'flex text-center' : '',
     whenDisabled,
     'hover:bg-primary-700',
     'active:bg-primary-700',
@@ -38,7 +40,7 @@ type ButtonProps = React.ComponentPropsWithRef<'button'> & ButtonBaseProps;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { fullWidth, className, ...restProps } = props;
+    const { fullWidth, rightIcon, className, children, ...restProps } = props;
 
     return (
       <button
@@ -49,7 +51,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         })}
         {...restProps}
         ref={ref}
-      />
+      >
+        {rightIcon ? (
+          <>
+            <span>{children}</span>
+            <span className="ml-2 inline-flex items-center">{rightIcon}</span>
+          </>
+        ) : (
+          children
+        )}
+      </button>
     );
   },
 );
@@ -58,13 +69,18 @@ Button.displayName = 'Button';
 
 // ----------------------------------------
 
-type ButtonLinkProps = LinkComponentProps & {
-  disabled?: boolean;
-} & ButtonBaseProps;
+type ButtonLinkProps = LinkComponentProps & ButtonBaseProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
-    const { fullWidth, className, disabled, ...restProps } = props;
+    const {
+      fullWidth,
+      rightIcon,
+      disabled,
+      className,
+      children,
+      ...restProps
+    } = props;
 
     return (
       <Link
@@ -78,7 +94,16 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         aria-disabled={disabled}
         {...restProps}
         ref={ref}
-      />
+      >
+        {rightIcon ? (
+          <>
+            <span>{children}</span>
+            <span className="ml-2 inline-flex items-center">{rightIcon}</span>
+          </>
+        ) : (
+          children
+        )}
+      </Link>
     );
   },
 );

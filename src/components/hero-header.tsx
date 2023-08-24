@@ -1,3 +1,4 @@
+import { TbArrowRight } from 'react-icons/tb';
 import { ButtonLink } from './ui/button';
 import Container from './ui/container';
 
@@ -15,19 +16,25 @@ export default function HeroHeader() {
         </div>
 
         <div className="mt-11">
-          <ButtonLink
-            href="/experience"
-            fullWidth
-            className="font-bold lg:hidden"
-          >
-            職務経歴を見る
-          </ButtonLink>
-          <ButtonLink
-            href="/experience"
-            className="hidden w-52 font-bold lg:inline-block"
-          >
-            職務経歴を見る
-          </ButtonLink>
+          <div className="lg:hidden">
+            <ButtonLink
+              href="/experience"
+              fullWidth
+              className="font-bold"
+              rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
+            >
+              職務経歴を見る
+            </ButtonLink>
+          </div>
+          <div className="hidden lg:block">
+            <ButtonLink
+              href="/experience"
+              className="w-60 font-bold"
+              rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
+            >
+              職務経歴を見る
+            </ButtonLink>
+          </div>
         </div>
       </Container>
     </div>
