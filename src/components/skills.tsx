@@ -122,9 +122,11 @@ function SkillDetailCard({ heading, items, className }: SkillDetailCardProps) {
       )}
     >
       <div className="px-5 pb-6 pt-4 lg:px-6 lg:pb-7 lg:pt-5">
-        <h4 className="pb-1.5 font-bold">{heading}</h4>
-        <hr className="h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
-        <div className="mt-4 text-gray-500">
+        <div className="text-center">
+          <h4 className="pb-1.5 font-bold">{heading}</h4>
+          <hr className="mx-auto h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
+        </div>
+        <div className="mt-2 text-gray-500">
           <Show when={items1.length > 0}>
             <div>
               <h5 className="pb-2 pt-5 text-xl font-bold text-primary-600">
