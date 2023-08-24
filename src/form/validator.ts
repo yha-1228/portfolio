@@ -7,7 +7,7 @@ export function isEmail(input: string) {
 }
 
 type IsLengthOptions = {
-  min: number;
+  min?: number;
   max?: number;
 };
 
@@ -15,9 +15,17 @@ export function isLength(input: string, options: IsLengthOptions) {
   const { min, max } = options;
   const length = input.length;
 
-  if (!max) {
-    return min <= length;
-  } else {
-    return min <= length && length <= max;
+  if (min == null && max == null) {
+    return true;
   }
+
+  if (min != null && max == null) {
+    return min <= length;
+  }
+
+  if (min == null && max != null) {
+    return length <= max;
+  }
+
+  return (min as number) <= length && length <= (max as number);
 }
