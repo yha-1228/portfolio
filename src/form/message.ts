@@ -1,4 +1,4 @@
-export const required = '必須項目です。';
+export const required = '入力してください。';
 
 export const email = 'メールアドレスの形式で入力してください。';
 
