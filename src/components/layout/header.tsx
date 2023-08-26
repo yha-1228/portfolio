@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
 import Container from '../ui/container';
+import { pageLinks } from './page-links';
 
 type NavLinkProps = LinkComponentProps;
 
@@ -35,13 +36,6 @@ NavLink.displayName = 'NavLink';
 
 // ----------------------------------------
 
-const linkItems: NavLinkProps[] = [
-  {
-    href: '/experience',
-    children: '職務経歴',
-  },
-];
-
 export default function Header() {
   return (
     <header className="flex h-14 items-center border-b border-solid border-b-gray-light-weak bg-gray-lightest">
@@ -52,9 +46,9 @@ export default function Header() {
           </NavLink>
 
           <ul className="flex space-x-5">
-            {linkItems.map((linkItem) => (
-              <li key={`${linkItem.href}`}>
-                <NavLink {...linkItem} />
+            {pageLinks.map((pageLink) => (
+              <li key={`${pageLink.href}`}>
+                <NavLink href={pageLink.href}>{pageLink.label}</NavLink>
               </li>
             ))}
           </ul>
