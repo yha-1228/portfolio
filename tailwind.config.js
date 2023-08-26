@@ -35,7 +35,7 @@ module.exports = {
           foreground: colors.gray[700],
           disabled: colors.gray[400],
           'light-strong': colors.gray[300],
-          'light-weak': colors.gray[300],
+          'light-weak': colors.gray[200],
           lightest: colors.gray[50],
         },
       },
