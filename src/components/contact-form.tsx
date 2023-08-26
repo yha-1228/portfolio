@@ -4,7 +4,7 @@ import {
   BsFillExclamationCircleFill,
   BsX,
 } from 'react-icons/bs';
-import { isAxiosNetworkError } from '@/api/misc';
+import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
@@ -349,7 +349,7 @@ export default function ContactForm() {
             variant="danger"
             onClose={() => setSubmitState({ state: 'idle' })}
           >
-            {isAxiosNetworkError(submitState.error)
+            {isFetchNetworkError(submitState.error)
               ? feedbackText.networkError
               : feedbackText.fail}
           </FeedbackNotification>
