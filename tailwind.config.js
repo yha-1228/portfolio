@@ -30,7 +30,7 @@ module.exports = {
       colors: {
         primary: colors.indigo,
         danger: colors.red,
-        maker: colors.yellow,
+        maker: colors.yellow[300],
         gray: {
           foreground: colors.gray[700],
           disabled: colors.gray[400],
