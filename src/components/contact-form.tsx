@@ -152,7 +152,7 @@ const initialTouched: ContactFormTouched = {
 const FORM_NAME = 'contact';
 
 const feedbackText = {
-  done: 'お問い合わせ内容を送信しました。',
+  done: 'お問い合わせありがとうございます。',
   networkError: 'ネットワークに接続されていません。',
   fail: '送信中にエラーが発生しました。',
 };
