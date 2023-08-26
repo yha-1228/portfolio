@@ -27,7 +27,7 @@ export default function Footer() {
       <Container>
         <div className="border-t border-solid border-t-gray-light-weak pb-14 pt-10">
           <div className="flex justify-between">
-            <ul className="w-1/2 md:flex md:space-x-4">
+            <ul className="w-1/2 md:flex md:w-auto md:space-x-4">
               {myExternalLinks.map((item) => (
                 <li key={item.href}>
                   <a
@@ -41,7 +41,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <ul className="w-1/2 md:flex md:space-x-4">
+            <ul className="w-1/2 md:flex md:w-auto md:space-x-4">
               <li>
                 <Link href="/" className="font-bold hover:underline">
                   トップ
