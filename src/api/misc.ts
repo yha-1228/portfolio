@@ -1,8 +1,6 @@
-import { AxiosError } from 'axios';
-
-export const isAxiosNetworkError = (error: unknown) => {
-  if (error instanceof AxiosError) {
-    return error.code === 'ERR_NETWORK';
+export const isFetchNetworkError = (error: unknown) => {
+  if (error instanceof Error) {
+    return error.message === 'Failed to fetch';
   } else {
     return false;
   }
