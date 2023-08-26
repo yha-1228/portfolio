@@ -25,6 +25,7 @@ const createClassName = ({
 }: CreateClassNameOptions) => {
   return twMerge(
     'inline-flex justify-center items-center rounded-lg bg-primary-600 px-5 py-2 text-white',
+    'duration-200 transition-colors ease-out',
     fullWidth ? 'flex text-center' : '',
     whenDisabled,
     'hover:bg-primary-700',
