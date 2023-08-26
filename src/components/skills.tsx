@@ -91,7 +91,7 @@ export default function Skills() {
                 <div
                   key={skillWord.label}
                   className={twMerge(
-                    'whitespace-nowrap text-xl leading-[1.25] text-gray-foreground-weak',
+                    'whitespace-nowrap text-xl leading-[1.05] text-gray-foreground-weak',
                     skillWord.specialty &&
                       'font-bold text-gray-foreground maker',
                   )}

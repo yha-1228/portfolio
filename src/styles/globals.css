@@ -21,7 +21,7 @@ body {
 /* -------------------------------------------------------- */
 
 .maker {
-  --width: 3.5px;
+  --width: 6px;
 
   background: linear-gradient(
     to top,
