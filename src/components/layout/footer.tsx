@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer>
       <Container>
-        <div className="border-t border-solid border-t-gray-light-weak pb-14 pt-10">
+        <div className="border-t border-solid border-t-gray-light-200 pb-14 pt-10">
           <div className="flex justify-between">
             <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
               {myExternalLinks.map((item) => (
@@ -59,7 +59,9 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <p className="mt-10 text-gray-500 md:mt-5">{COPYRIGHT_TEXT}</p>
+          <p className="mt-10 text-gray-foreground-weak md:mt-5">
+            {COPYRIGHT_TEXT}
+          </p>
         </div>
       </Container>
     </footer>

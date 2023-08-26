@@ -26,19 +26,23 @@ module.exports = {
       // xl: '1280px',
       // '2xl': '1536px',
     },
-    extend: {
-      colors: {
-        primary: colors.indigo,
-        danger: colors.red,
-        maker: colors.yellow[300],
-        gray: {
-          foreground: colors.gray[700],
-          disabled: colors.gray[400],
-          'light-strong': colors.gray[300],
-          'light-weak': colors.gray[200],
-          lightest: colors.gray[50],
-        },
+    colors: {
+      primary: colors.indigo,
+      danger: colors.red,
+      maker: colors.yellow[300],
+      gray: {
+        foreground: colors.gray[700],
+        'foreground-weak': colors.gray[500],
+        disabled: colors.gray[400],
+        'light-300': colors.gray[300],
+        'light-200': colors.gray[200],
+        'light-100': colors.gray[100],
+        'light-50': colors.gray[50],
       },
+      white: colors.white,
+    },
+
+    extend: {
       // @see https://tailwindcss.com/docs/font-family
       fontFamily: {
         base: [

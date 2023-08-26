@@ -18,7 +18,7 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
       <Link
         className={twMerge(
           // height: 14px (parent) - 1px (border-bottom)
-          'relative inline-flex items-center h-[55px] font-bold text-gray-500',
+          'relative inline-flex items-center h-[55px] font-bold text-gray-foreground-weak',
           'hover:text-gray-foreground',
           current &&
             "text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-primary-600 before:content-['']",
@@ -38,7 +38,7 @@ NavLink.displayName = 'NavLink';
 
 export default function Header() {
   return (
-    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-weak bg-gray-lightest">
+    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-200 bg-gray-light-50">
       <Container>
         <nav className="flex items-center justify-between">
           <NavLink href="/" className="text-xl">

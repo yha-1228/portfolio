@@ -34,7 +34,7 @@ export default function Timeline({ items }: TimelineProps) {
         })}
       >
         {spacer}
-        <ul className="flex-1 border-l-2 border-solid border-l-gray-light-weak">
+        <ul className="flex-1 border-l-2 border-solid border-l-gray-light-200">
           {items.map((item) => (
             <li key={item.heading} className="mb-8 flex last:mb-0">
               <div className="relative ml-[var(--space-between-content)] w-full">
@@ -49,10 +49,10 @@ export default function Timeline({ items }: TimelineProps) {
                 <div className="absolute top-[-1.05rem] text-xl font-bold text-primary-600">
                   {item.point}
                 </div>
-                <div className="mt-7 space-y-4 border-t border-solid border-t-gray-light-weak pt-2">
+                <div className="mt-7 space-y-4 border-t border-solid border-t-gray-light-200 pt-2">
                   <div className="font-bold">{item.heading}</div>
                   <Show when={!!item.content}>
-                    <div className="space-y-3 leading-[1.65] text-gray-500">
+                    <div className="space-y-3 leading-[1.65] text-gray-foreground-weak">
                       {item.content}
                     </div>
                   </Show>
