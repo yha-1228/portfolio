@@ -9,6 +9,7 @@ import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/object/is-empty-object';
+import FieldLabel from './field-label';
 import { Button } from './ui/button';
 import Container from './ui/container';
 import FormErrorMessage from './ui/form-error-message';
@@ -223,15 +224,9 @@ export default function ContactForm() {
             <div className="space-y-5">
               <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
                 <div className="md:w-1/3">
-                  <label className="block font-bold" htmlFor="name">
-                    お名前{' '}
-                    <span
-                      aria-label="必須項目"
-                      className="font-normal text-danger-500"
-                    >
-                      *
-                    </span>
-                  </label>
+                  <FieldLabel htmlFor="name" reqired>
+                    お名前
+                  </FieldLabel>
                   <div className="mt-2">
                     <Input
                       type="text"
@@ -254,15 +249,9 @@ export default function ContactForm() {
                   ) : null}
                 </div>
                 <div className="md:w-1/3">
-                  <label className="block font-bold" htmlFor="email">
-                    メールアドレス{' '}
-                    <span
-                      aria-label="必須項目"
-                      className="font-normal text-danger-500"
-                    >
-                      *
-                    </span>
-                  </label>
+                  <FieldLabel htmlFor="email" reqired>
+                    メールアドレス
+                  </FieldLabel>
                   <div className="mt-2">
                     <Input
                       type="email"
@@ -286,9 +275,7 @@ export default function ContactForm() {
                 </div>
               </div>
               <div>
-                <label className="block font-bold" htmlFor="companyName">
-                  会社名
-                </label>
+                <FieldLabel htmlFor="companyName">会社名</FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
@@ -311,15 +298,9 @@ export default function ContactForm() {
                 ) : null}
               </div>
               <div>
-                <label className="block font-bold" htmlFor="message">
-                  お問い合わせ内容{' '}
-                  <span
-                    aria-label="必須項目"
-                    className="font-normal text-danger-500"
-                  >
-                    *
-                  </span>
-                </label>
+                <FieldLabel htmlFor="message" reqired>
+                  お問い合わせ内容
+                </FieldLabel>
                 <div className="mt-2">
                   <Textarea
                     name="message"
