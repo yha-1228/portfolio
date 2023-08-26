@@ -9,11 +9,13 @@ import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import isEmptyObject from '@/utils/object/is-empty-object';
+import FieldLabel from './field-label';
 import { Button } from './ui/button';
 import Container from './ui/container';
 import FormErrorMessage from './ui/form-error-message';
 import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
+import Show from './ui/unstyled/show';
 
 type FeedbackNotificationProps = {
   variant: 'primary' | 'danger';
@@ -77,17 +79,17 @@ type ContactFormValues = {
    */
   name: string;
   /**
-   * 会社名
-   *
-   * @description 任意, 入力された場合は100文字以内
-   */
-  companyName: string;
-  /**
    * メールアドレス
    *
    * @description 必須, Eメール
    */
   email: string;
+  /**
+   * 会社名
+   *
+   * @description 任意, 入力された場合は100文字以内
+   */
+  companyName: string;
   /**
    * お問い合わせ内容
    *
@@ -98,8 +100,8 @@ type ContactFormValues = {
 
 const initialValues: ContactFormValues = {
   name: '',
-  companyName: '',
   email: '',
+  companyName: '',
   message: '',
 };
 
@@ -112,16 +114,16 @@ function validate(values: ContactFormValues): ContactFormErrors {
     errors.name = m.required;
   }
 
-  if (v.exists(values.companyName)) {
-    if (!v.isLength(values.companyName, { max: 100 })) {
-      errors.companyName = m.length({ max: 100 });
-    }
-  }
-
   if (!v.exists(values.email)) {
     errors.email = m.required;
   } else if (!v.isEmail(values.email)) {
     errors.email = m.email;
+  }
+
+  if (v.exists(values.companyName)) {
+    if (!v.isLength(values.companyName, { max: 100 })) {
+      errors.companyName = m.length({ max: 100 });
+    }
   }
 
   if (!v.exists(values.message)) {
@@ -221,41 +223,60 @@ export default function ContactForm() {
           >
             <input type="hidden" name="form-name" value="contact" />
             <div className="space-y-5">
-              <div>
-                <label className="block font-bold" htmlFor="name">
-                  お名前{' '}
-                  <span
-                    aria-label="必須項目"
-                    className="font-normal text-danger-500"
-                  >
-                    *
-                  </span>
-                </label>
-                <div className="mt-2">
-                  <Input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    invalid={showError('name', errors, touched)}
-                    aria-describedby={createErrorId(id, 'name')}
-                  />
+              <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
+                <div className="md:w-1/3">
+                  <FieldLabel htmlFor="name" reqired>
+                    お名前
+                  </FieldLabel>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      invalid={showError('name', errors, touched)}
+                      aria-describedby={createErrorId(id, 'name')}
+                    />
+                  </div>
+                  <Show when={showError('name', errors, touched)}>
+                    <FormErrorMessage
+                      id={createErrorId(id, 'name')}
+                      className="mt-1"
+                    >
+                      {errors.name}
+                    </FormErrorMessage>
+                  </Show>
                 </div>
-                {showError('name', errors, touched) ? (
-                  <FormErrorMessage
-                    id={createErrorId(id, 'name')}
-                    className="mt-1"
-                  >
-                    {errors.name}
-                  </FormErrorMessage>
-                ) : null}
+                <div className="md:w-1/3">
+                  <FieldLabel htmlFor="email" reqired>
+                    メールアドレス
+                  </FieldLabel>
+                  <div className="mt-2">
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      invalid={showError('email', errors, touched)}
+                      aria-describedby={createErrorId(id, 'email')}
+                    />
+                  </div>
+                  <Show when={showError('email', errors, touched)}>
+                    <FormErrorMessage
+                      id={createErrorId(id, 'email')}
+                      className="mt-1"
+                    >
+                      {errors.email}
+                    </FormErrorMessage>
+                  </Show>
+                </div>
               </div>
               <div>
-                <label className="block font-bold" htmlFor="companyName">
-                  会社名
-                </label>
+                <FieldLabel htmlFor="companyName">会社名</FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
@@ -268,56 +289,19 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'companyName')}
                   />
                 </div>
-                {showError('companyName', errors, touched) ? (
+                <Show when={showError('companyName', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'companyName')}
                     className="mt-1"
                   >
                     {errors.companyName}
                   </FormErrorMessage>
-                ) : null}
+                </Show>
               </div>
               <div>
-                <label className="block font-bold" htmlFor="email">
-                  メールアドレス{' '}
-                  <span
-                    aria-label="必須項目"
-                    className="font-normal text-danger-500"
-                  >
-                    *
-                  </span>
-                </label>
-                <div className="mt-2">
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    invalid={showError('email', errors, touched)}
-                    aria-describedby={createErrorId(id, 'email')}
-                  />
-                </div>
-                {showError('email', errors, touched) ? (
-                  <FormErrorMessage
-                    id={createErrorId(id, 'email')}
-                    className="mt-1"
-                  >
-                    {errors.email}
-                  </FormErrorMessage>
-                ) : null}
-              </div>
-              <div>
-                <label className="block font-bold" htmlFor="message">
-                  お問い合わせ内容{' '}
-                  <span
-                    aria-label="必須項目"
-                    className="font-normal text-danger-500"
-                  >
-                    *
-                  </span>
-                </label>
+                <FieldLabel htmlFor="message" reqired>
+                  お問い合わせ内容
+                </FieldLabel>
                 <div className="mt-2">
                   <Textarea
                     name="message"
@@ -330,14 +314,14 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'message')}
                   />
                 </div>
-                {showError('message', errors, touched) ? (
+                <Show when={showError('message', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'message')}
                     className="mt-1"
                   >
                     {errors.message}
                   </FormErrorMessage>
-                ) : null}
+                </Show>
               </div>
               <div>
                 <Button
