@@ -21,11 +21,11 @@ body {
 /* -------------------------------------------------------- */
 
 .maker {
-  --width: 3.5px;
+  --width: 6px;
 
   background: linear-gradient(
     to top,
-    theme(colors.yellow.300) var(--width),
+    theme(colors.maker) var(--width),
     transparent var(--width)
   );
 }

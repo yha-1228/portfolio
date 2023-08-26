@@ -4,7 +4,7 @@ import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
 import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
 import { BlogContent } from '@/lib/microcms/types';
-import clsx from '@/utils/react/clsx';
+import clsx from '@/utils/css/clsx';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getBlogContents();

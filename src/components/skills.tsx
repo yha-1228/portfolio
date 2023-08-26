@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { SkillDetail, skillDetails, skillWords } from '@/data/skills';
-import clsx from '@/utils/react/clsx';
+import clsx from '@/utils/css/clsx';
 import Container from './ui/container';
 import Heading1 from './ui/heading1';
 import Heading2 from './ui/heading2';
@@ -20,16 +20,16 @@ function SkillDetailCard({ heading, items, className }: SkillDetailCardProps) {
   return (
     <section
       className={twMerge(
-        'rounded-lg border border-solid border-gray-light-strong',
+        'rounded-lg border border-solid border-gray-light-300',
         className,
       )}
     >
       <div className="px-5 pb-6 pt-4 lg:px-6 lg:pb-7 lg:pt-5">
         <div className="text-center">
           <h4 className="pb-1.5 font-bold">{heading}</h4>
-          <hr className="mx-auto h-0.5 w-[2.5rem] border-0 bg-gray-light-strong" />
+          <hr className="mx-auto h-0.5 w-[2.5rem] border-0 bg-gray-light-300" />
         </div>
-        <div className="mt-2 text-gray-500">
+        <div className="mt-2 text-gray-foreground-weak">
           <Show when={itemsGood.length > 0}>
             <div>
               <h5 className="pb-2 pt-5 text-xl font-bold text-primary-600">
@@ -91,7 +91,7 @@ export default function Skills() {
                 <div
                   key={skillWord.label}
                   className={twMerge(
-                    'whitespace-nowrap text-xl leading-[1.25] text-gray-500',
+                    'whitespace-nowrap text-xl leading-[1.05] text-gray-foreground-weak',
                     skillWord.specialty &&
                       'font-bold text-gray-foreground maker',
                   )}
