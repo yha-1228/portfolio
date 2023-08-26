@@ -209,9 +209,9 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="pb-14 pt-8">
+    <div className="py-14">
       <Container>
-        <section className="space-y-6">
+        <div className="space-y-6">
           <Heading1>お問い合わせ</Heading1>
           <div>
             <p>お気軽にお問い合わせください。</p>
@@ -238,6 +238,7 @@ export default function ContactForm() {
                       type="text"
                       name="name"
                       id="name"
+                      placeholder="田中 太郎"
                       value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -254,7 +255,7 @@ export default function ContactForm() {
                     </FormErrorMessage>
                   </Show>
                 </div>
-                <div className="md:w-1/3">
+                <div className="md:w-2/3">
                   <FieldLabel htmlFor="email" reqired>
                     メールアドレス
                   </FieldLabel>
@@ -263,6 +264,7 @@ export default function ContactForm() {
                       type="email"
                       name="email"
                       id="email"
+                      placeholder="lorem-ipsum-dolor@sitamet.com"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -287,6 +289,7 @@ export default function ContactForm() {
                     type="text"
                     name="companyName"
                     id="companyName"
+                    placeholder="株式会社Lorem Ipsum / 自営業"
                     value={values.companyName}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -340,7 +343,7 @@ export default function ContactForm() {
               </div>
             </div>
           </form>
-        </section>
+        </div>
         {submitState.state === 'success' && (
           <FeedbackNotification
             className="mt-10"
