@@ -1,8 +1,8 @@
 import { BsFillCircleFill } from 'react-icons/bs';
 import resolveConfig from 'tailwindcss/resolveConfig';
+import clsx from '@/utils/css/clsx.js';
 import createStyleAttr from '@/utils/css/create-style-attr';
 import { px } from '@/utils/css/unit';
-import clsx from '@/utils/react/clsx';
 import tailwindConfig from '../../../tailwind.config.js';
 import Show from './unstyled/show';
 

@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { SkillDetail, skillDetails, skillWords } from '@/data/skills';
-import clsx from '@/utils/react/clsx';
+import clsx from '@/utils/css/clsx';
 import Container from './ui/container';
 import Heading1 from './ui/heading1';
 import Heading2 from './ui/heading2';
