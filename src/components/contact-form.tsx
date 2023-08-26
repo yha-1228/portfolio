@@ -15,6 +15,7 @@ import Container from './ui/container';
 import FormErrorMessage from './ui/form-error-message';
 import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
+import Show from './ui/unstyled/show';
 
 type FeedbackNotificationProps = {
   variant: 'primary' | 'danger';
@@ -239,14 +240,14 @@ export default function ContactForm() {
                       aria-describedby={createErrorId(id, 'name')}
                     />
                   </div>
-                  {showError('name', errors, touched) ? (
+                  <Show when={showError('name', errors, touched)}>
                     <FormErrorMessage
                       id={createErrorId(id, 'name')}
                       className="mt-1"
                     >
                       {errors.name}
                     </FormErrorMessage>
-                  ) : null}
+                  </Show>
                 </div>
                 <div className="md:w-1/3">
                   <FieldLabel htmlFor="email" reqired>
@@ -264,14 +265,14 @@ export default function ContactForm() {
                       aria-describedby={createErrorId(id, 'email')}
                     />
                   </div>
-                  {showError('email', errors, touched) ? (
+                  <Show when={showError('email', errors, touched)}>
                     <FormErrorMessage
                       id={createErrorId(id, 'email')}
                       className="mt-1"
                     >
                       {errors.email}
                     </FormErrorMessage>
-                  ) : null}
+                  </Show>
                 </div>
               </div>
               <div>
@@ -288,14 +289,14 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'companyName')}
                   />
                 </div>
-                {showError('companyName', errors, touched) ? (
+                <Show when={showError('companyName', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'companyName')}
                     className="mt-1"
                   >
                     {errors.companyName}
                   </FormErrorMessage>
-                ) : null}
+                </Show>
               </div>
               <div>
                 <FieldLabel htmlFor="message" reqired>
@@ -313,14 +314,14 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'message')}
                   />
                 </div>
-                {showError('message', errors, touched) ? (
+                <Show when={showError('message', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'message')}
                     className="mt-1"
                   >
                     {errors.message}
                   </FormErrorMessage>
-                ) : null}
+                </Show>
               </div>
               <div>
                 <Button
