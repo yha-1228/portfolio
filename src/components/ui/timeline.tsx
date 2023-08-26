@@ -1,7 +1,17 @@
-export type TimelineItem = {
-  time: string | string[];
+import { BsFillCircleFill } from 'react-icons/bs';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import createStyleAttr from '@/utils/css/create-style-attr';
+import { px } from '@/utils/css/unit';
+import clsx from '@/utils/react/clsx';
+import tailwindConfig from '../../../tailwind.config.js';
+import Show from './unstyled/show';
+
+const { theme } = resolveConfig(tailwindConfig);
+
+type TimelineItem = {
+  point: string;
   heading: string;
-  content: React.ReactNode;
+  content?: React.ReactNode;
 };
 
 type TimelineProps = {
@@ -9,46 +19,49 @@ type TimelineProps = {
 };
 
 export default function Timeline({ items }: TimelineProps) {
-  const lastIndex = items.length - 1;
+  const spacer = <div className="w-[calc(var(--dot-size)/2)]" />;
 
   return (
     <div>
-      {items.map((item, index) => (
-        <div key={item.heading + item.content}>
-          {Array.isArray(item.time) ? (
-            <>
-              {item.time.map((t) => (
+      <div
+        className={clsx(
+          'flex',
+          'pt-[9px]', // dotを上に上げた分、ルート要素はそれも囲うようにする。目視
+        )}
+        style={createStyleAttr({
+          '--dot-size': px(16),
+          '--space-between-content': theme?.spacing?.[4],
+        })}
+      >
+        {spacer}
+        <ul className="flex-1 border-l-2 border-solid border-l-gray-light-weak">
+          {items.map((item) => (
+            <li key={item.heading} className="mb-8 flex last:mb-0">
+              <div className="relative ml-[var(--space-between-content)] w-full">
                 <div
-                  key={t}
-                  className="border-l-4 border-solid border-primary-600 pl-4 text-xl font-bold leading-[1.45] text-primary-600"
+                  className={clsx(
+                    'absolute -top-2',
+                    'left-[calc(-1*calc(var(--space-between-content)+calc(var(--dot-size)/2))-2px+1px)]',
+                  )}
                 >
-                  {t}
+                  <BsFillCircleFill className="h-[var(--dot-size)] w-[var(--dot-size)] text-primary-600" />
                 </div>
-              ))}
-            </>
-          ) : (
-            <div className="border-l-4 border-solid border-primary-600 pl-4 text-xl font-bold text-primary-600">
-              {item.time}
-            </div>
-          )}
-          <div className="h-4 border-l-4 border-solid border-l-gray-light-weak" />
-          <div className="flex justify-between">
-            <div className="border-l-4 border-solid border-l-gray-light-weak" />
-
-            <div className="flex-1 pl-5">
-              <div className="space-y-4 border-t border-solid border-t-gray-light-weak pt-3">
-                <div className="font-bold">{item.heading}</div>
-                <div className="space-y-3 leading-[1.65] text-gray-500">
-                  {item.content}
+                <div className="absolute top-[-1.05rem] text-xl font-bold text-primary-600">
+                  {item.point}
+                </div>
+                <div className="mt-7 space-y-4 border-t border-solid border-t-gray-light-weak pt-2">
+                  <div className="font-bold">{item.heading}</div>
+                  <Show when={!!item.content}>
+                    <div className="space-y-3 leading-[1.65] text-gray-500">
+                      {item.content}
+                    </div>
+                  </Show>
                 </div>
               </div>
-            </div>
-          </div>
-          {index !== lastIndex && (
-            <div className="h-5 border-l-4 border-solid border-l-gray-light-weak" />
-          )}
-        </div>
-      ))}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
