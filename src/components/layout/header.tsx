@@ -2,23 +2,34 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
+import resolveConfig from 'tailwindcss/resolveConfig';
 import { LinkComponentProps } from '@/lib/next/types';
+import { px } from '@/utils/css/unit';
+import createStyleAttr from '@/utils/react/create-style-attr';
+import tailwindConfig from '../../../tailwind.config';
 import Container from '../ui/container';
 import { pageLinks } from './page-links';
+
+const { theme } = resolveConfig(tailwindConfig);
 
 type NavLinkProps = LinkComponentProps;
 
 const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   (props, ref) => {
-    const { href, className, ...restProps } = props;
+    const { href, style, className, ...restProps } = props;
     const router = useRouter();
     const current = router.pathname === href;
 
     return (
       <Link
+        style={createStyleAttr({
+          '--parent-height': theme?.width?.[14],
+          '--parent-border-b-width': px(1),
+          ...style,
+        })}
         className={twMerge(
-          // height: 14px (parent) - 1px (border-bottom)
-          'relative inline-flex items-center h-[55px] font-bold text-gray-foreground-weak',
+          'h-[calc(var(--parent-height)-var(--parent-border-b-width))]',
+          'relative inline-flex items-center font-bold text-gray-foreground-weak',
           'hover:text-gray-foreground',
           current &&
             "text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-primary-600 before:content-['']",
