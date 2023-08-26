@@ -4,6 +4,7 @@ import {
   BsFillExclamationCircleFill,
   BsX,
 } from 'react-icons/bs';
+import { twMerge } from 'tailwind-merge';
 import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
@@ -21,50 +22,54 @@ type FeedbackNotificationProps = {
   variant: 'primary' | 'danger';
   children?: React.ReactNode;
   onClose?: () => void;
+  className?: string;
 };
 
-function FeedbackNotification({
-  variant,
-  children,
-  onClose,
-}: FeedbackNotificationProps) {
-  if (variant == 'primary') {
-    return (
-      <div className="mt-10 flex items-center justify-between rounded-lg bg-primary-500 px-4 py-3 text-white">
-        <div className="flex items-center space-x-3">
-          <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />
-          <div>{children}</div>
-        </div>
-        <button
-          aria-label="閉じる"
-          className="inline-flex items-center rounded-full hover:bg-primary-600 active:bg-primary-700"
-          onClick={onClose}
-        >
-          <BsX style={{ width: 32, height: 32, color: '#fff' }} />
-        </button>
-      </div>
-    );
-  }
+type VariantClassMap = Record<FeedbackNotificationProps['variant'], string>;
 
-  if (variant === 'danger') {
-    return (
-      <div className="mt-10 flex items-center justify-between rounded-lg bg-danger-500 px-4 py-3 text-white">
-        <div className="flex items-center space-x-3">
-          <BsFillExclamationCircleFill style={{ width: 24, height: 24 }} />
-          <div>{children}</div>
-        </div>
-        <button
-          aria-label="閉じる"
-          className="inline-flex items-center rounded-full hover:bg-danger-600 active:bg-danger-700"
-          onClick={onClose}
-        >
-          <BsX style={{ width: 32, height: 32, color: '#fff' }} />
-        </button>
-      </div>
-    );
-  }
+const variantRootClassMap: VariantClassMap = {
+  primary: 'bg-primary-500',
+  danger: 'bg-danger-500',
+};
 
-  return null;
+const variantButtonClassMap: VariantClassMap = {
+  primary: 'hover:bg-primary-600 active:bg-primary-700',
+  danger: 'hover:bg-danger-600 active:bg-danger-700',
+};
+
+type VariantIconMap = Record<
+  FeedbackNotificationProps['variant'],
+  React.ReactNode
+>;
+
+const variantIconMap: VariantIconMap = {
+  primary: <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />,
+  danger: <BsFillExclamationCircleFill style={{ width: 24, height: 24 }} />,
+};
+
+function FeedbackNotification(props: FeedbackNotificationProps) {
+  const { variant, children, onClose, className } = props;
+
+  return (
+    <div
+      className={twMerge(
+        className,
+        `flex items-center justify-between rounded-lg ${variantRootClassMap[variant]} px-4 py-3 text-white`,
+      )}
+    >
+      <div className="flex items-center space-x-3">
+        {variantIconMap[variant]}
+        <div>{children}</div>
+      </div>
+      <button
+        aria-label="閉じる"
+        className={`inline-flex items-center rounded-full ${variantButtonClassMap[variant]}`}
+        onClick={onClose}
+      >
+        <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+      </button>
+    </div>
+  );
 }
 
 // ----------------------------------------
@@ -338,6 +343,7 @@ export default function ContactForm() {
         </section>
         {submitState.state === 'success' && (
           <FeedbackNotification
+            className="mt-10"
             variant="primary"
             onClose={() => setSubmitState({ state: 'idle' })}
           >
@@ -346,6 +352,7 @@ export default function ContactForm() {
         )}
         {submitState.state === 'error' && (
           <FeedbackNotification
+            className="mt-10"
             variant="danger"
             onClose={() => setSubmitState({ state: 'idle' })}
           >
