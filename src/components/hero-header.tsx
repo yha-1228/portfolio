@@ -29,7 +29,7 @@ export default function HeroHeader() {
           <div className="hidden lg:block">
             <ButtonLink
               href="/experience"
-              className="w-60 font-bold"
+              className="px-7 font-bold"
               rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
             >
               職務経歴を見る
