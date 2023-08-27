@@ -40,6 +40,7 @@ module.exports = {
         'light-50': colors.gray[50],
       },
       white: colors.white,
+      transparent: colors.transparent,
     },
 
     extend: {
