@@ -5,6 +5,7 @@ import Heading1 from '@/components/ui/heading1';
 import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
 import { BlogContent } from '@/lib/microcms/types';
 import clsx from '@/utils/css/clsx';
+import { formatISODate } from '@/utils/date/formatter';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getBlogContents();
@@ -39,13 +40,13 @@ export default function BlogId({
         <Container>
           <section className="space-y-6">
             <Heading1>{blog.title}</Heading1>
-            <div
-              // 開発中なので表示しない
-              style={{ display: 'none' }}
-            >
-              <p>{blog.publishedAt}</p>
+            <div>
+              <p className="text-gray-foreground-weak">
+                {formatISODate(blog.publishedAt)}に投稿
+              </p>
               <div
                 className={clsx(
+                  'mt-4 border-t border-solid border-t-gray-light-300',
                   '[&>h1]:text-3xl [&>h1]:mt-10 [&>h1]:mb-5',
                   '[&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4',
                   '[&>p]:my-4',
