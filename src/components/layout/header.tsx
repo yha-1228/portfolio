@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { LinkComponentProps } from '@/lib/next/types';
-import { px } from '@/utils/css/unit';
 import createStyleAttr from '@/utils/react/create-style-attr';
 import tailwindConfig from '../../../tailwind.config';
 import Container from '../ui/container';
@@ -35,7 +34,7 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
           'hover:text-gray-foreground',
           'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
           current &&
-            "text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-primary-600 before:content-['']",
+            "text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[1.5px] before:w-full before:bg-primary-600 before:content-['']",
           className,
         )}
         href={href}
@@ -52,11 +51,11 @@ NavLink.displayName = 'NavLink';
 
 export default function Header() {
   return (
-    <header className="flex h-16 items-center border-b border-solid border-b-gray-light-200">
+    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-200">
       <Container>
         <nav className="flex items-center justify-between">
           <NavLink
-            parentHeight={theme?.width?.[16]}
+            parentHeight={theme?.width?.[14]}
             href="/"
             className="text-xl"
           >
@@ -66,7 +65,7 @@ export default function Header() {
           <ul className="flex space-x-5">
             {pageLinks.map((pageLink) => (
               <li key={`${pageLink.href}`}>
-                <NavLink parentHeight={theme?.width?.[16]} href={pageLink.href}>
+                <NavLink parentHeight={theme?.width?.[14]} href={pageLink.href}>
                   {pageLink.label}
                 </NavLink>
               </li>
