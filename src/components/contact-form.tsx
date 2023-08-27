@@ -273,7 +273,7 @@ export default function ContactForm() {
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="lorem-ipsum-dolor@sitamet.com"
+                      placeholder="email@example.com"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -298,7 +298,7 @@ export default function ContactForm() {
                     type="text"
                     name="companyName"
                     id="companyName"
-                    placeholder="株式会社Lorem Ipsum / 自営業"
+                    placeholder="株式会社ABC / 自営業"
                     value={values.companyName}
                     onChange={handleChange}
                     onBlur={handleBlur}
