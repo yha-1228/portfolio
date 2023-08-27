@@ -24,13 +24,15 @@ export default function Blog({
         <Container>
           <section className="space-y-6">
             <Heading1>ブログ</Heading1>
-            <ul
-              // 開発中なので表示しない
-              style={{ display: 'none' }}
-            >
+            <ul>
               {data.contents.map((content) => (
                 <li key={content.id}>
-                  <Link href={`/blog/${content.id}`}>{content.title}</Link>
+                  <Link
+                    href={`/blog/${content.id}`}
+                    className="font-bold hover:underline"
+                  >
+                    {content.title}
+                  </Link>
                 </li>
               ))}
             </ul>
