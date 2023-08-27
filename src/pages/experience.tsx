@@ -15,7 +15,7 @@ export default function Experience() {
             <section className="mt-12 space-y-5">
               <div className="space-y-1">
                 <Heading2>株式会社アイキューブ</Heading2>
-                <div className="text-sm text-gray-foreground-weak">
+                <div className="pointer-events-none text-sm text-gray-foreground-weak">
                   2019/04 - 2023/08
                 </div>
               </div>
