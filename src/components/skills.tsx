@@ -46,12 +46,16 @@ function SkillDetailCard({
       >
         <Show when={itemsGood.length > 0}>
           <div>
-            <h5 className="pb-2 pt-3 text-lg font-bold text-primary-600">
-              可能
-            </h5>
-            <ul className="space-y-1.5 pl-4">
+            <h5 className="pb-2 pt-3 text-lg font-bold">可能</h5>
+            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
               {itemsGood.map((item) => (
-                <li key={item.text} className="list-disc leading-[1.6]">
+                <li
+                  key={item.text}
+                  className={clsx(
+                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                    "bg-[url('/assets/check-circle-fill-color-foreground.svg')]",
+                  )}
+                >
                   {item.text}
                 </li>
               ))}
@@ -61,9 +65,15 @@ function SkillDetailCard({
         <Show when={itemsNormal.length > 0}>
           <div>
             <h5 className="pb-2 pt-3 text-lg font-bold">少し可能</h5>
-            <ul className="space-y-1.5 pl-4">
+            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
               {itemsNormal.map((item) => (
-                <li key={item.text} className="list-disc leading-[1.6]">
+                <li
+                  key={item.text}
+                  className={clsx(
+                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                    "bg-[url('/assets/check-circle-color-foreground.svg')]",
+                  )}
+                >
                   {item.text}
                 </li>
               ))}
@@ -71,11 +81,17 @@ function SkillDetailCard({
           </div>
         </Show>
         <Show when={itemsBad.length > 0}>
-          <div className="text-gray-foreground-weak">
+          <div>
             <h5 className="pb-2 pt-3 text-lg font-bold">未経験レベル</h5>
-            <ul className="space-y-1.5 pl-4">
+            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
               {itemsBad.map((item) => (
-                <li key={item.text} className="list-disc leading-[1.6]">
+                <li
+                  key={item.text}
+                  className={clsx(
+                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                    "bg-[url('/assets/dash-circle-color-foreground.svg')]",
+                  )}
+                >
                   {item.text}
                 </li>
               ))}
