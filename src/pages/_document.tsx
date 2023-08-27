@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="ja">
       <Head>
+        <meta name="format-detection" content="telephone=no" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
