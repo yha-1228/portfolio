@@ -46,7 +46,7 @@ export default function Timeline({ items }: TimelineProps) {
                 >
                   <BsFillCircleFill className="h-[var(--dot-size)] w-[var(--dot-size)] text-primary-600" />
                 </div>
-                <div className="absolute top-[-1.05rem] text-xl font-bold text-primary-600">
+                <div className="pointer-events-none absolute top-[-1.05rem] text-xl font-bold text-primary-600">
                   {item.point}
                 </div>
                 <div className="mt-7 space-y-4 border-t border-solid border-t-gray-light-200 pt-2">
