@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import {
   BsFillCheckCircleFill,
   BsFillExclamationCircleFill,
