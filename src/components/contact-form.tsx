@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import {
   BsFillCheckCircleFill,
   BsFillExclamationCircleFill,
@@ -9,6 +9,8 @@ import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
+import useWindowEvent from '@/hooks/use-window-event';
+import existsValue from '@/utils/object/exists-value';
 import isEmptyObject from '@/utils/object/is-empty-object';
 import FieldLabel from './field-label';
 import { Button } from './ui/button';
@@ -208,11 +210,18 @@ export default function ContactForm() {
     }
   };
 
+  useWindowEvent('beforeunload', (e) => {
+    if (existsValue(values)) {
+      e.returnValue = '';
+    }
+  });
+
   return (
     <div className="py-14">
       <Container>
         <div className="space-y-6">
           <Heading1>お問い合わせ</Heading1>
+
           <div>
             <p>お気軽にお問い合わせください。</p>
             <p aria-hidden="true" className="text-danger-500">
