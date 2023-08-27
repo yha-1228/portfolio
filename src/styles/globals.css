@@ -21,11 +21,25 @@ body {
 /* -------------------------------------------------------- */
 
 .maker {
-  --width: 6px;
+  --start: 5%;
+  --end: 20%;
+
+  @media (min-width: theme(screens.lg)) {
+    --start: 25%;
+    --end: 35%;
+  }
 
   background: linear-gradient(
     to top,
-    theme(colors.maker) var(--width),
-    transparent var(--width)
+    transparent 0%,
+    transparent var(--start),
+    theme(colors.maker) var(--start),
+    theme(colors.maker) var(--end),
+    transparent var(--end),
+    transparent 100%
   );
+}
+
+.card-shadow {
+  box-shadow: 0px 2px 25px -15px rgba(0, 0, 0, 0.2);
 }

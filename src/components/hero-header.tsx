@@ -4,7 +4,7 @@ import Container from './ui/container';
 
 export default function HeroHeader() {
   return (
-    <div className="bg-gray-light-100 py-9">
+    <div className="py-14">
       <Container>
         <p className="text-2xl font-bold leading-[1.35] lg:text-3xl">
           ユーザーフレンドリーで堅牢なWebを開発します。

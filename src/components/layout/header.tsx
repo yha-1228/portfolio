@@ -30,7 +30,9 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
         className={twMerge(
           'h-[calc(var(--parent-height)-var(--parent-border-b-width))]',
           'relative inline-flex items-center font-bold text-gray-foreground-weak',
+          'duration-200 transition-colors ease-out',
           'hover:text-gray-foreground',
+          'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
           current &&
             "text-gray-foreground before:absolute before:bottom-0 before:left-0 before:h-[2.5px] before:w-full before:bg-primary-600 before:content-['']",
           className,
