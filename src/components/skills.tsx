@@ -10,14 +10,14 @@ import Show from './ui/unstyled/show';
 type SkillDetailCardProps = {
   heading: React.ReactNode;
   items: SkillDetail['items'];
-  className?: string;
+  contentClassName?: string;
   accent?: boolean;
 };
 
 function SkillDetailCard({
   heading,
   items,
-  className,
+  contentClassName,
   accent,
 }: SkillDetailCardProps) {
   const itemsGood = items.filter((item) => item.rank === 'good');
@@ -25,30 +25,25 @@ function SkillDetailCard({
   const itemsBad = items.filter((item) => item.rank === 'bad');
 
   return (
-    <div
-      className={twMerge(
-        'rounded-lg pt-6 pb-6 bg-white card-shadow',
-        accent && 'border-solid border-2 border-primary-600',
-        className,
-      )}
-    >
-      <div className="text-center">
-        <h4
-          className={clsx(
-            'font-bold',
-            accent ? 'text-primary-600' : 'text-gray-foreground-weak',
-          )}
-        >
-          {heading}
-        </h4>
-        <hr
-          className={clsx(
-            'mx-auto mt-1.5 h-0.5 w-[2.5rem] border-0',
-            accent ? 'bg-primary-600' : 'bg-gray-light-300',
-          )}
-        />
+    <div className="card-shadow">
+      <div
+        className={clsx(
+          'rounded-t-lg py-4 text-center',
+          accent
+            ? 'bg-primary-600 text-white border-b border-solid border-b-transparent'
+            : 'bg-white text-gray-foreground border-b border-solid border-b-gray-light-200',
+        )}
+      >
+        <h4 className="font-bold">{heading}</h4>
       </div>
-      <div className="space-y-5 border-solid px-5 text-gray-foreground lg:px-6">
+      <div
+        className={twMerge(
+          'space-y-5 rounded-b-lg border-solid bg-white px-5 pt-5 pb-6 text-gray-foreground lg:px-6',
+          'border-2 border-solid border-t-0',
+          accent ? 'border-primary-600' : 'border-transparent',
+          contentClassName,
+        )}
+      >
         <Show when={itemsGood.length > 0}>
           <div>
             <h5 className="pb-2 pt-3 text-lg font-bold text-primary-600">
@@ -130,9 +125,9 @@ export default function Skills() {
                   >
                     <SkillDetailCard
                       accent={idx === 0}
-                      className={clsx(
-                        0 <= idx && idx <= 1 && 'md:h-[540px]',
-                        2 <= idx && idx <= 3 && 'md:h-[360px]',
+                      contentClassName={clsx(
+                        0 <= idx && idx <= 1 && 'md:h-[490px]',
+                        2 <= idx && idx <= 3 && 'md:h-[310px]',
                       )}
                       heading={skillDetail.category}
                       items={skillDetail.items}
