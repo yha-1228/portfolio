@@ -33,7 +33,7 @@ export default function Timeline({ items }: TimelineProps) {
         })}
       >
         {spacer}
-        <ul className="flex-1 border-l-2 border-solid border-l-gray-light-300">
+        <ul className="flex-1 border-l-2 border-solid border-l-primary-600">
           {items.map((item) => (
             <li key={item.heading} className="mb-10 flex last:mb-0">
               <div className="relative ml-[var(--space-between-content)] w-full">
@@ -43,13 +43,15 @@ export default function Timeline({ items }: TimelineProps) {
                     'left-[calc(-1*calc(var(--space-between-content)+calc(var(--dot-size)/2))-2px+1px)]',
                   )}
                 >
-                  <div className="h-[var(--dot-size)] w-[var(--dot-size)] rounded-full border-4 border-solid border-gray-light-300 bg-white" />
+                  <div className="h-[var(--dot-size)] w-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
                 </div>
-                <div className="pointer-events-none absolute top-[-0.85rem] font-semibold">
+                <div className="pointer-events-none absolute top-[-0.85rem] font-semibold text-primary-600">
                   {item.point}
                 </div>
-                <div className="mt-5 border-t border-solid border-t-gray-light-200 pt-2">
-                  <div className="text-xl font-bold">{item.heading}</div>
+                <div className="mt-6 border-t border-solid border-t-gray-light-300 pt-2">
+                  <div className="py-1 text-xl font-bold leading-snug">
+                    {item.heading}
+                  </div>
                   <Show when={!!item.content}>
                     <div className="mt-3 space-y-2.5 text-sm leading-[1.65] text-gray-foreground-weak">
                       {item.content}
