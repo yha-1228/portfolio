@@ -21,13 +21,8 @@ body {
 /* -------------------------------------------------------- */
 
 .maker {
-  --start: 5%;
-  --end: 20%;
-
-  @media (min-width: theme(screens.lg)) {
-    --start: 25%;
-    --end: 35%;
-  }
+  --start: 10%;
+  --end: 35%;
 
   background: linear-gradient(
     to top,
