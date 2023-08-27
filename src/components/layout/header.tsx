@@ -12,23 +12,24 @@ import { pageLinks } from './page-links';
 
 const { theme } = resolveConfig(tailwindConfig);
 
-type NavLinkProps = LinkComponentProps;
+type NavLinkProps = LinkComponentProps & {
+  parentHeight: unknown;
+};
 
 const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   (props, ref) => {
-    const { href, style, className, ...restProps } = props;
+    const { parentHeight, href, style, className, ...restProps } = props;
     const router = useRouter();
     const current = router.pathname === href;
 
     return (
       <Link
         style={createStyleAttr({
-          '--parent-height': theme?.width?.[14],
-          '--parent-border-b-width': px(1),
+          '--parent-height': parentHeight,
           ...style,
         })}
         className={twMerge(
-          'h-[calc(var(--parent-height)-var(--parent-border-b-width))]',
+          'h-[var(--parent-height)]',
           'relative inline-flex items-center font-bold text-gray-foreground-weak',
           'duration-200 transition-colors ease-out',
           'hover:text-gray-foreground',
@@ -51,17 +52,23 @@ NavLink.displayName = 'NavLink';
 
 export default function Header() {
   return (
-    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-200 bg-gray-light-50">
+    <header className="flex h-16 items-center border-b border-solid border-b-gray-light-200">
       <Container>
         <nav className="flex items-center justify-between">
-          <NavLink href="/" className="text-xl">
+          <NavLink
+            parentHeight={theme?.width?.[16]}
+            href="/"
+            className="text-xl"
+          >
             Yuta Hasegawa
           </NavLink>
 
           <ul className="flex space-x-5">
             {pageLinks.map((pageLink) => (
               <li key={`${pageLink.href}`}>
-                <NavLink href={pageLink.href}>{pageLink.label}</NavLink>
+                <NavLink parentHeight={theme?.width?.[16]} href={pageLink.href}>
+                  {pageLink.label}
+                </NavLink>
               </li>
             ))}
           </ul>
