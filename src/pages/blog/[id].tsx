@@ -1,4 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
+import { BsChevronLeft } from 'react-icons/bs';
 import Layout from '@/components/layout';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
@@ -38,7 +40,15 @@ export default function BlogId({
     <Layout title={blog.title}>
       <div className="py-8">
         <Container>
-          <section className="space-y-6">
+          <Link
+            href="/blog"
+            className="inline-flex items-center space-x-1 hover:underline"
+          >
+            <BsChevronLeft />
+            <span>戻る</span>
+          </Link>
+
+          <section className="mt-8 space-y-6">
             <Heading1>{blog.title}</Heading1>
             <div>
               <p className="text-gray-foreground-weak">
