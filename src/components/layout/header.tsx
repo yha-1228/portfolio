@@ -11,7 +11,14 @@ import { pageLinks } from './page-links';
 
 const { theme } = resolveConfig(tailwindConfig);
 
+// ----------------------------------------
+
+const isMatchFirstPath = (firstPath: string, target: string) => {
+  return firstPath.split('/')[1] === target.split('/')[1];
+};
+
 type NavLinkProps = LinkComponentProps & {
+  href: string;
   parentHeight: unknown;
 };
 
@@ -19,7 +26,7 @@ const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   (props, ref) => {
     const { parentHeight, href, style, className, ...restProps } = props;
     const router = useRouter();
-    const current = router.pathname === href;
+    const current = isMatchFirstPath(href, router.pathname);
 
     return (
       <Link
