@@ -36,11 +36,6 @@ export default function Footer() {
               ))}
             </ul>
             <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
-              <li>
-                <TextLink className="font-bold" href="/">
-                  トップ
-                </TextLink>
-              </li>
               {pageLinks.map((pageLink) => (
                 <li key={pageLink.href}>
                   <TextLink className="font-bold" href={pageLink.href}>

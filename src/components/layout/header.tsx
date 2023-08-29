@@ -25,13 +25,18 @@ export default function Header() {
           </NavLink>
 
           <ul className="flex space-x-5">
-            {pageLinks.map((pageLink) => (
-              <li key={`${pageLink.href}`}>
-                <NavLink parentHeight={theme?.width?.[14]} href={pageLink.href}>
-                  {pageLink.label}
-                </NavLink>
-              </li>
-            ))}
+            {pageLinks
+              .filter((pageLink) => pageLink.href !== '/')
+              .map((pageLink) => (
+                <li key={`${pageLink.href}`}>
+                  <NavLink
+                    parentHeight={theme?.width?.[14]}
+                    href={pageLink.href}
+                  >
+                    {pageLink.label}
+                  </NavLink>
+                </li>
+              ))}
           </ul>
         </nav>
       </Container>
