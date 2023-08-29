@@ -5,8 +5,7 @@ type FieldLabelProps = React.ComponentPropsWithRef<'label'> & {
   /**
    * 必須項目を示す。以下の処理が入る。
    *
-   * - "*"マークを表示
-   * - `aria-label="必須項目"`が付与
+   * - "*"マークを表示 (スクリーンリーダーの場合: "必須項目")
    */
   reqired?: boolean;
 };
@@ -24,9 +23,10 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
         {reqired ? (
           <>
             {children}{' '}
-            <span aria-label="必須項目" className="font-normal text-danger-500">
+            <span aria-hidden="true" className="font-normal text-danger-500">
               *
             </span>
+            <span className="sr-only">必須</span>
           </>
         ) : (
           children

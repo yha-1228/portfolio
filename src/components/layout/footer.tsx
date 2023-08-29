@@ -18,7 +18,7 @@ const myExternalLinks = [
   },
 ];
 
-const COPYRIGHT_TEXT = <>Yuta Hasegawa &copy; {new Date().getFullYear()}</>;
+const COPYRIGHT_TEXT = `Yuta Hasegawa © ${new Date().getFullYear()}`;
 
 export default function Footer() {
   return (
