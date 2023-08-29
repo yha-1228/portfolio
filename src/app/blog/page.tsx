@@ -19,10 +19,7 @@ export default async function Page() {
           <ul>
             {blogContentsInfo.contents.map((content) => (
               <li key={content.id}>
-                <TextLink
-                  href={`/blog/${content.id}`}
-                  className="font-bold hover:underline"
-                >
+                <TextLink href={`/blog/${content.id}`} className="font-bold">
                   {content.title}
                 </TextLink>
               </li>
