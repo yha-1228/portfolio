@@ -1,7 +1,7 @@
 'use client';
 
-import ErrorDisplay from '@/components/error-display';
 import { ButtonLink } from '@/components/ui/button';
+import ErrorDisplay from '@/components/ui/error-display';
 import useTitle from '@/hooks/use-title';
 import { SITE_TITLE } from '../../constants';
 

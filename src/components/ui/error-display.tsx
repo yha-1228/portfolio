@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import Container from './ui/container';
+import Container from './container';
 
 type ErrorDisplayProps = {
   className?: string;
