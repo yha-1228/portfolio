@@ -8,7 +8,7 @@ import Show from './unstyled/show';
 const { theme } = resolveConfig(tailwindConfig);
 
 type TimelineItem = {
-  point: string;
+  point: React.ReactNode;
   heading: string;
   content?: React.ReactNode;
 };
@@ -45,7 +45,7 @@ export default function Timeline({ items }: TimelineProps) {
                 >
                   <div className="h-[var(--dot-size)] w-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
                 </div>
-                <div className="pointer-events-none absolute top-[-0.85rem] font-semibold text-primary-600">
+                <div className="absolute top-[-0.85rem] font-semibold text-primary-600">
                   {item.point}
                 </div>
                 <div className="mt-6 border-t border-solid border-t-gray-light-300 pt-2">
