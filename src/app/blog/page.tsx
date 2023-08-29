@@ -3,6 +3,7 @@ import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
 import { TextLink } from '@/components/ui/text-link';
 import { getBlogContents } from '@/lib/microcms/client';
+import { routes } from '@/routes';
 
 export const metadata: Metadata = {
   title: 'ブログ',
@@ -19,7 +20,10 @@ export default async function Page() {
           <ul>
             {contents.map((content) => (
               <li key={content.id}>
-                <TextLink href={`/blog/${content.id}`} className="font-bold">
+                <TextLink
+                  href={routes.blog.children[':id'].generateHref(content.id)}
+                  className="font-bold"
+                >
                   {content.title}
                 </TextLink>
               </li>
