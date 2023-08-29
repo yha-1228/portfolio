@@ -13,7 +13,6 @@ import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import useBeforeUnload from '@/hooks/use-beforeunload';
 import existsValue from '@/utils/object/exists-value';
-import isEmptyObject from '@/utils/object/is-empty-object';
 import { Button } from './ui/button';
 import Container from './ui/container';
 import FieldLabel from './ui/field-label';
@@ -343,7 +342,7 @@ export default function ContactForm() {
               <div>
                 <Button
                   disabled={
-                    !isEmptyObject(errors) || submitState.state === 'loading'
+                    existsValue(errors) || submitState.state === 'loading'
                   }
                   className="w-full lg:w-60"
                 >
