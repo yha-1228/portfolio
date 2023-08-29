@@ -47,7 +47,7 @@ module.exports = {
       // @see https://tailwindcss.com/docs/font-family
       fontFamily: {
         base: [
-          'Inter',
+          'var(--font-inter)',
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',

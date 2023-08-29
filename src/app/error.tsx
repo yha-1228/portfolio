@@ -1,0 +1,22 @@
+'use client';
+
+import { useEffect } from 'react';
+import ErrorDisplay from '@/components/error-display';
+import { Button } from '@/components/ui/button';
+import { NextErrorProps } from '@/lib/next/types';
+import { SITE_TITLE } from '../../constants';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function Error({ error, reset }: NextErrorProps) {
+  useEffect(() => {
+    document.title = `${SITE_TITLE} | エラーが発生しました`;
+  }, []);
+
+  return (
+    <ErrorDisplay
+      heading="エラーが発生しました"
+      detail="予期せぬエラーが発生しました。"
+      action={<Button onClick={reset}>問題の箇所をもう一度読み込む</Button>}
+    />
+  );
+}
