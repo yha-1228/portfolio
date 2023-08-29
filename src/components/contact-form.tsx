@@ -11,7 +11,7 @@ import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
-import useWindowEvent from '@/hooks/use-window-event';
+import useBeforeUnload from '@/hooks/use-beforeunload';
 import existsValue from '@/utils/object/exists-value';
 import isEmptyObject from '@/utils/object/is-empty-object';
 import { Button } from './ui/button';
@@ -212,10 +212,8 @@ export default function ContactForm() {
     }
   };
 
-  useWindowEvent('beforeunload', (e) => {
-    if (existsValue(values)) {
-      e.returnValue = '';
-    }
+  useBeforeUnload({
+    enabled: existsValue(values),
   });
 
   return (
