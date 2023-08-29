@@ -1,9 +1,9 @@
 import React from 'react';
 import resolveConfig from 'tailwindcss/resolveConfig';
+import { routes } from '@/routes';
 import tailwindConfig from '../../../tailwind.config';
 import Container from '../ui/container';
 import NavLink from './nav-link';
-import { pageLinks } from './page-links';
 
 const { theme } = resolveConfig(tailwindConfig);
 
@@ -21,15 +21,12 @@ export default function Header() {
           </NavLink>
 
           <ul className="flex space-x-5">
-            {pageLinks
-              .filter((pageLink) => pageLink.href !== '/')
-              .map((pageLink) => (
-                <li key={`${pageLink.href}`}>
-                  <NavLink
-                    parentHeight={theme?.width?.[14]}
-                    href={pageLink.href}
-                  >
-                    {pageLink.label}
+            {Object.values(routes)
+              .filter((route) => route.hierarchy === 1)
+              .map((route) => (
+                <li key={`${route.href}`}>
+                  <NavLink parentHeight={theme?.width?.[14]} href={route.href}>
+                    {route.label}
                   </NavLink>
                 </li>
               ))}

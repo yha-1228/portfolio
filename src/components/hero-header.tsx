@@ -1,4 +1,5 @@
 import { TbArrowRight } from 'react-icons/tb';
+import { routes } from '@/routes';
 import { ButtonLink } from './ui/button';
 import Container from './ui/container';
 
@@ -18,7 +19,7 @@ export default function HeroHeader() {
         <div className="mt-11">
           <div className="lg:hidden">
             <ButtonLink
-              href="/experience"
+              href={routes.experience.href}
               fullWidth
               className="font-bold"
               rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
@@ -28,7 +29,7 @@ export default function HeroHeader() {
           </div>
           <div className="hidden lg:block">
             <ButtonLink
-              href="/experience"
+              href={routes.experience.href}
               className="px-7 font-bold"
               rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
             >

@@ -5,6 +5,7 @@ import Heading1 from '@/components/ui/heading1';
 import { TextLink } from '@/components/ui/text-link';
 import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
 import { GenerateMetadataProps, NextPageProps } from '@/lib/next/types';
+import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
 import { formatISODate } from '@/utils/date/formatter';
 
@@ -31,7 +32,10 @@ export default async function Page({ params }: NextPageProps<'id'>) {
   return (
     <div className="py-8">
       <Container>
-        <TextLink href="/blog" className="inline-flex items-center space-x-1">
+        <TextLink
+          href={routes.blog.href}
+          className="inline-flex items-center space-x-1"
+        >
           <BsChevronLeft />
           <span>戻る</span>
         </TextLink>

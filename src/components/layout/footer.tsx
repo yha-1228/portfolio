@@ -1,7 +1,7 @@
 import React from 'react';
+import { routes } from '@/routes';
 import Container from '../ui/container';
 import { ExternalTextLink, TextLink } from '../ui/text-link';
-import { pageLinks } from './page-links';
 
 const myExternalLinks = [
   {
@@ -36,10 +36,10 @@ export default function Footer() {
               ))}
             </ul>
             <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
-              {pageLinks.map((pageLink) => (
-                <li key={pageLink.href}>
-                  <TextLink className="font-bold" href={pageLink.href}>
-                    {pageLink.label}
+              {Object.values(routes).map((route) => (
+                <li key={route.href}>
+                  <TextLink className="font-bold" href={route.href}>
+                    {route.label}
                   </TextLink>
                 </li>
               ))}
