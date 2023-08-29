@@ -8,10 +8,6 @@ import { pageLinks } from './page-links';
 const { theme } = resolveConfig(tailwindConfig);
 
 export default function Header() {
-  // if (Math.random() > -1) {
-  //   throw new Error('err!');
-  // }
-
   return (
     <header className="flex h-14 items-center border-b border-solid border-b-gray-light-200">
       <Container>
