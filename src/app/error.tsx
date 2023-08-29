@@ -1,3 +1,5 @@
+'use client';
+
 import ErrorDisplay from '@/components/error-display';
 import { Button } from '@/components/ui/button';
 import useTitle from '@/hooks/use-title';
