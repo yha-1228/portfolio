@@ -20,8 +20,8 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const blogContents = await getBlogContents();
-  return blogContents.contents.map((content) => ({ id: content.id }));
+  const { contents } = await getBlogContents();
+  return contents.map((content) => ({ id: content.id }));
 }
 
 export default async function Page({ params }: NextPageProps<'id'>) {
