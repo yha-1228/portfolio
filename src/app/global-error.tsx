@@ -1,16 +1,12 @@
-'use client';
-
-import { useEffect } from 'react';
 import ErrorDisplay from '@/components/error-display';
 import { Button } from '@/components/ui/button';
+import useTitle from '@/hooks/use-title';
 import { NextErrorProps } from '@/lib/next/types';
 import { SITE_TITLE } from '../../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Error({ error, reset }: NextErrorProps) {
-  useEffect(() => {
-    document.title = `${SITE_TITLE} | エラーが発生しました`;
-  }, []);
+  useTitle(`${SITE_TITLE} | エラーが発生しました`);
 
   return (
     <html lang="ja">
