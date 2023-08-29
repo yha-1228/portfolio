@@ -22,7 +22,7 @@ export default function Header() {
 
           <ul className="flex space-x-5">
             {Object.values(routes)
-              .filter((route) => route.hierarchy === 1)
+              .filter((route) => route.href !== '/')
               .map((route) => (
                 <li key={`${route.href}`}>
                   <NavLink parentHeight={theme?.width?.[14]} href={route.href}>
