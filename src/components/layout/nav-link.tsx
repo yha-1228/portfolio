@@ -6,11 +6,7 @@ import { usePathname } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
 import createStyleAttr from '@/utils/react/create-style-attr';
-
-const isMatchFirstPath = (firstPath: string, target: string | null) => {
-  if (target == null) target = '';
-  return firstPath.split('/')[1] === target.split('/')[1];
-};
+import { isMatchFirstPath } from '@/utils/url/matching';
 
 type NavLinkProps = LinkComponentProps & {
   href: string;
