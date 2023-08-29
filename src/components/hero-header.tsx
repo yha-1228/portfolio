@@ -21,7 +21,6 @@ export default function HeroHeader() {
             <ButtonLink
               href={routes.experience.href}
               fullWidth
-              className="font-bold"
               rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
             >
               職務経歴を見る
@@ -30,7 +29,7 @@ export default function HeroHeader() {
           <div className="hidden lg:block">
             <ButtonLink
               href={routes.experience.href}
-              className="px-7 font-bold"
+              className="px-7"
               rightIcon={<TbArrowRight style={{ fontSize: 20 }} />}
             >
               職務経歴を見る
