@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export type GenerateMetadataProps<T extends string> = {
-  params: { [k in T]: string };
+  params: { [key in T]: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -23,5 +23,5 @@ export type NextErrorProps = {
 };
 
 export type NextPageProps<T extends string> = {
-  params: { [k in T]: string };
+  params: { [key in T]: string };
 };

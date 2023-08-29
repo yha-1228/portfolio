@@ -7,7 +7,7 @@ import { OmitKey } from '@/types';
 
 const createClassName = (className?: string) => {
   return twMerge(
-    'rounded-sm hover:underline',
+    'rounded-sm underline-offset-[0.15em] hover:underline',
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
     className,
   );
@@ -23,7 +23,7 @@ const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
 
     return (
       <Link
-        className={twMerge(createClassName('inline-block'), className)}
+        className={twMerge(createClassName(), className)}
         {...restProps}
         ref={ref}
       />

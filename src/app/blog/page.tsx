@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const blogContentsInfo = await getBlogContents();
+  const { contents } = await getBlogContents();
 
   return (
     <div className="py-8">
@@ -17,7 +17,7 @@ export default async function Page() {
         <section className="space-y-6">
           <Heading1>ブログ</Heading1>
           <ul>
-            {blogContentsInfo.contents.map((content) => (
+            {contents.map((content) => (
               <li key={content.id}>
                 <TextLink href={`/blog/${content.id}`} className="font-bold">
                   {content.title}

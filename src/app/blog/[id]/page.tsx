@@ -20,13 +20,13 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const blogContents = await getBlogContents();
-  return blogContents.contents.map((content) => ({ id: content.id }));
+  const { contents } = await getBlogContents();
+  return contents.map((content) => ({ id: content.id }));
 }
 
 export default async function Page({ params }: NextPageProps<'id'>) {
   const { id } = params;
-  const blogContent = await getBlogContent(id);
+  const content = await getBlogContent(id);
 
   return (
     <div className="py-8">
@@ -37,10 +37,10 @@ export default async function Page({ params }: NextPageProps<'id'>) {
         </TextLink>
 
         <section className="mt-8 space-y-6">
-          <Heading1>{blogContent.title}</Heading1>
+          <Heading1>{content.title}</Heading1>
           <div>
             <p className="text-gray-foreground-weak">
-              {formatISODate(blogContent.publishedAt)}に投稿
+              {formatISODate(content.publishedAt)}に投稿
             </p>
             <div
               className={clsx(
@@ -52,7 +52,7 @@ export default async function Page({ params }: NextPageProps<'id'>) {
                 '[&>ul>li]:list-disc',
               )}
               dangerouslySetInnerHTML={{
-                __html: `${blogContent.body}`,
+                __html: `${content.body}`,
               }}
             />
           </div>
