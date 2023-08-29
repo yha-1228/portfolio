@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
-import { TextLink } from '@/components/ui/text-link';
+import Tag from '@/components/ui/tag';
 import { getBlogContents } from '@/lib/microcms/client';
 import { routes } from '@/routes';
+import { formatISODate } from '@/utils/date/formatter';
 
 export const metadata: Metadata = {
   title: 'ブログ',
@@ -20,12 +22,21 @@ export default async function Page() {
           <ul>
             {contents.map((content) => (
               <li key={content.id}>
-                <TextLink
+                <Link
                   href={routes.blog.routes[':id'].generateHref(content.id)}
-                  className="font-bold"
+                  className="block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out hover:bg-gray-light-50 hover:text-gray-foreground [&:hover>[data-title]]:underline"
                 >
-                  {content.title}
-                </TextLink>
+                  <div
+                    className="text-xl font-bold underline-offset-[0.18em]"
+                    data-title
+                  >
+                    {content.title}
+                  </div>
+                  <p className="text-sm text-gray-foreground-weak">
+                    {formatISODate(content.publishedAt)}に投稿
+                  </p>
+                  <Tag className="mt-5">{content.tag.tagName}</Tag>
+                </Link>
               </li>
             ))}
           </ul>
