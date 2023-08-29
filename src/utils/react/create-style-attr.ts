@@ -5,7 +5,7 @@
 export default function createStyleAttr(
   styles: React.CSSProperties & {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [k in `--${string}`]: unknown;
+    [key in `--${string}`]: unknown;
   },
 ) {
   return styles as React.CSSProperties;

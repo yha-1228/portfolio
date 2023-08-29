@@ -114,7 +114,7 @@ const initialValues: ContactFormValues = {
   message: '',
 };
 
-type ContactFormErrors = { [k in keyof ContactFormValues]?: string };
+type ContactFormErrors = { [key in keyof ContactFormValues]?: string };
 
 function validate(values: ContactFormValues): ContactFormErrors {
   const errors: ContactFormErrors = {};
@@ -144,7 +144,7 @@ function validate(values: ContactFormValues): ContactFormErrors {
   return errors;
 }
 
-type ContactFormTouched = { [k in keyof ContactFormValues]: boolean };
+type ContactFormTouched = { [key in keyof ContactFormValues]: boolean };
 
 const initialTouched: ContactFormTouched = {
   name: false,
