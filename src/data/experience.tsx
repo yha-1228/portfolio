@@ -1,12 +1,16 @@
 type JobExperience = {
-  point: string;
+  point: React.ReactNode;
   title: string;
   description?: React.ReactNode;
 };
 
 export const jobExperienceList: JobExperience[] = [
   {
-    point: '2022/05 - 2023/07',
+    point: (
+      <>
+        2022/05 <span>-</span> 2023/07
+      </>
+    ),
     title: 'SFAツールの開発',
     description: (
       <>
@@ -20,7 +24,11 @@ export const jobExperienceList: JobExperience[] = [
     ),
   },
   {
-    point: '2020/12 - 2022/05',
+    point: (
+      <>
+        2020/12 <span>-</span> 2022/05
+      </>
+    ),
     title: '請求書管理アプリの開発',
     description: (
       <>
@@ -34,7 +42,11 @@ export const jobExperienceList: JobExperience[] = [
     ),
   },
   {
-    point: '2020/08 - 2020/11',
+    point: (
+      <>
+        2020/08 <span>-</span> 2020/11
+      </>
+    ),
     title: '勤怠・締め日管理アプリの開発',
     description: (
       <>
@@ -48,11 +60,19 @@ export const jobExperienceList: JobExperience[] = [
     ),
   },
   {
-    point: '2020/05 - 2020/06',
+    point: (
+      <>
+        2020/05 <span>-</span> 2020/06
+      </>
+    ),
     title: '以下と同様',
   },
   {
-    point: '2019/07 - 2020/01',
+    point: (
+      <>
+        2019/07 <span>-</span> 2020/01
+      </>
+    ),
     title: '建物維持管理アプリの保守',
     description: (
       <>

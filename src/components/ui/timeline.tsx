@@ -8,7 +8,7 @@ import Show from './unstyled/show';
 const { theme } = resolveConfig(tailwindConfig);
 
 type TimelineItem = {
-  point: string;
+  point: React.ReactNode;
   heading: string;
   content?: React.ReactNode;
 };
