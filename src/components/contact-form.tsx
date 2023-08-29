@@ -11,12 +11,12 @@ import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
-import useWindowEvent from '@/hooks/use-window-event';
+import useBeforeUnload from '@/hooks/use-beforeunload';
 import existsValue from '@/utils/object/exists-value';
 import isEmptyObject from '@/utils/object/is-empty-object';
-import FieldLabel from './field-label';
 import { Button } from './ui/button';
 import Container from './ui/container';
+import FieldLabel from './ui/field-label';
 import FormErrorMessage from './ui/form-error-message';
 import Heading1 from './ui/heading1';
 import { Input, Textarea } from './ui/input';
@@ -212,10 +212,8 @@ export default function ContactForm() {
     }
   };
 
-  useWindowEvent('beforeunload', (e) => {
-    if (existsValue(values)) {
-      e.returnValue = '';
-    }
+  useBeforeUnload({
+    enabled: existsValue(values),
   });
 
   return (
