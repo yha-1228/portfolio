@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { BsChevronLeft } from 'react-icons/bs';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
+import Tag from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
 import { GenerateMetadataProps, NextPageProps } from '@/lib/next/types';
@@ -40,15 +41,16 @@ export default async function Page({ params }: NextPageProps<'id'>) {
           <span>戻る</span>
         </TextLink>
 
-        <section className="mt-8 space-y-6">
+        <article className="mt-8">
           <Heading1>{content.title}</Heading1>
-          <div>
-            <p className="text-gray-foreground-weak">
-              {formatISODate(content.publishedAt)}に投稿
-            </p>
+          <p className="mt-2 text-gray-foreground-weak">
+            {formatISODate(content.publishedAt)}に投稿
+          </p>
+          <div className="mt-8 md:rounded-xl md:border md:border-solid md:border-gray-light-300 md:p-10">
+            <Tag>{content.tag.tagName}</Tag>
             <div
               className={clsx(
-                'mt-4 border-t border-solid border-t-gray-light-300',
+                'mt-6',
                 '[&>h1]:text-3xl [&>h1]:mt-10 [&>h1]:mb-5',
                 '[&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4',
                 '[&>p]:my-4',
@@ -60,7 +62,7 @@ export default async function Page({ params }: NextPageProps<'id'>) {
               }}
             />
           </div>
-        </section>
+        </article>
       </Container>
     </div>
   );
