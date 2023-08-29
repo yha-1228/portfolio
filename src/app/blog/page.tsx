@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
+import { TextLink } from '@/components/ui/text-link';
 import { getBlogContents } from '@/lib/microcms/client';
 
 export const metadata: Metadata = {
@@ -19,12 +19,12 @@ export default async function Page() {
           <ul>
             {blogContentsInfo.contents.map((content) => (
               <li key={content.id}>
-                <Link
+                <TextLink
                   href={`/blog/${content.id}`}
                   className="font-bold hover:underline"
                 >
                   {content.title}
-                </Link>
+                </TextLink>
               </li>
             ))}
           </ul>

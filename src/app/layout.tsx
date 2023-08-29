@@ -29,28 +29,3 @@ export default function RootLayout({ children }: NextLayoutProps) {
     </html>
   );
 }
-
-// export default function App({ Component, pageProps }: AppProps) {
-//   return (
-//     <>
-//       <DefaultSeo {...defaultSeoProps} />
-//       <ErrorBoundary
-//         fallback={
-//           <ErrorDisplay
-//             className="border-t-4 border-solid border-danger-500"
-//             heading="エラー"
-//             detail="予期せぬエラーが発生しました。"
-//             action={
-//               <Button onClick={() => window.location.reload()}>
-//                 再度読み込む
-//               </Button>
-//             }
-//           />
-//         }
-//       >
-//         <Component {...pageProps} />
-//       </ErrorBoundary>
-//       <Toaster />
-//     </>
-//   );
-// }

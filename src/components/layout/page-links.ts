@@ -1,5 +1,9 @@
 export const pageLinks = [
   {
+    href: '/',
+    label: 'トップ',
+  },
+  {
     href: '/experience',
     label: '職務経歴',
   },

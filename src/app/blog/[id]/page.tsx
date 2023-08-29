@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { BsChevronLeft } from 'react-icons/bs';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
+import { TextLink } from '@/components/ui/text-link';
 import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
 import { GenerateMetadataProps, NextPageProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
@@ -31,13 +31,10 @@ export default async function Page({ params }: NextPageProps<'id'>) {
   return (
     <div className="py-8">
       <Container>
-        <Link
-          href="/blog"
-          className="inline-flex items-center space-x-1 hover:underline"
-        >
+        <TextLink href="/blog" className="inline-flex items-center space-x-1">
           <BsChevronLeft />
           <span>戻る</span>
-        </Link>
+        </TextLink>
 
         <section className="mt-8 space-y-6">
           <Heading1>{blogContent.title}</Heading1>

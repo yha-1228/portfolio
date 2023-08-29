@@ -1,10 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import { FiExternalLink } from 'react-icons/fi';
-import { ClassNameValue, twMerge } from 'tailwind-merge';
-import { LinkComponentProps } from '@/lib/next/types';
-import { OmitKey } from '@/types';
 import Container from '../ui/container';
+import { ExternalTextLink, TextLink } from '../ui/text-link';
 import { pageLinks } from './page-links';
 
 const myExternalLinks = [
@@ -24,65 +20,6 @@ const myExternalLinks = [
 
 const COPYRIGHT_TEXT = <>Yuta Hasegawa &copy; {new Date().getFullYear()}</>;
 
-// ----------------------------------------
-
-const createClassName = (isFlex: boolean, ...classes: ClassNameValue[]) => {
-  return twMerge(
-    isFlex ? 'inline-flex items-center space-x-1' : 'inline-block',
-    'rounded-sm font-bold hover:underline',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
-    ...classes,
-  );
-};
-
-// ----------------------------------------
-
-type FooterExternalLinkProps = OmitKey<
-  React.ComponentPropsWithRef<'a'>,
-  'target' | 'rel'
->;
-
-const FooterExternalLink = React.forwardRef<
-  HTMLAnchorElement,
-  FooterExternalLinkProps
->((props, ref) => {
-  const { className, ...restProps } = props;
-
-  return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      className={createClassName(true, className)}
-      {...restProps}
-      ref={ref}
-    />
-  );
-});
-
-FooterExternalLink.displayName = 'FooterExternalLink';
-
-// ----------------------------------------
-
-type FooterLinkProps = LinkComponentProps;
-
-const FooterLink = React.forwardRef<HTMLAnchorElement, FooterLinkProps>(
-  (props, ref) => {
-    const { className, ...restProps } = props;
-
-    return (
-      <Link
-        className={createClassName(false, className)}
-        {...restProps}
-        ref={ref}
-      />
-    );
-  },
-);
-
-FooterLink.displayName = 'FooterLink';
-
-// ----------------------------------------
-
 export default function Footer() {
   return (
     <footer>
@@ -92,20 +29,18 @@ export default function Footer() {
             <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
               {myExternalLinks.map((item) => (
                 <li key={item.href}>
-                  <FooterExternalLink href={item.href}>
-                    <span>{item.label}</span>
-                    <FiExternalLink />
-                  </FooterExternalLink>
+                  <ExternalTextLink className="font-bold" href={item.href}>
+                    {item.label}
+                  </ExternalTextLink>
                 </li>
               ))}
             </ul>
             <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
-              <li>
-                <FooterLink href="/">トップ</FooterLink>
-              </li>
               {pageLinks.map((pageLink) => (
                 <li key={pageLink.href}>
-                  <FooterLink href={pageLink.href}>{pageLink.label}</FooterLink>
+                  <TextLink className="font-bold" href={pageLink.href}>
+                    {pageLink.label}
+                  </TextLink>
                 </li>
               ))}
             </ul>
