@@ -13,7 +13,7 @@ export const routes = {
     href: '/blog',
     label: 'ブログ',
     hierarchy: 1,
-    children: {
+    routes: {
       ':id': {
         generateHref: (id: string) => `/blog/${id}`,
         hierarchy: 2,

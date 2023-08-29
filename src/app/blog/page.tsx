@@ -21,7 +21,7 @@ export default async function Page() {
             {contents.map((content) => (
               <li key={content.id}>
                 <TextLink
-                  href={routes.blog.children[':id'].generateHref(content.id)}
+                  href={routes.blog.routes[':id'].generateHref(content.id)}
                   className="font-bold"
                 >
                   {content.title}
