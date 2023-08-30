@@ -1,22 +1,26 @@
-export type TagName = '技術' | '日常';
+import { Prettify } from '@/types';
 
-export type BlogContent = {
+export type Base = {
   id: string;
-  title: string;
-  body: string;
-  tag: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    revisedAt: string;
-    tagName: TagName;
-  };
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
 };
+
+export type Tag = Prettify<
+  Base & {
+    tagName: string;
+  }
+>;
+
+export type BlogContent = Prettify<
+  Base & {
+    title: string;
+    body: string;
+    tag: Tag;
+  }
+>;
 
 export type ClientResponse<T> = {
   contents: T[];
