@@ -24,7 +24,7 @@ export default function Header() {
             {Object.values(routes)
               .filter((route) => route.href !== '/')
               .map((route) => (
-                <li key={`${route.href}`}>
+                <li key={route.href}>
                   <NavLink parentHeight={theme?.width?.[14]} href={route.href}>
                     {route.label}
                   </NavLink>
