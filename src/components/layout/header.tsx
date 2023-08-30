@@ -20,7 +20,7 @@ export default function Header() {
             Yuta Hasegawa
           </Link>
 
-          <ul className="flex space-x-7">
+          <ul className="flex space-x-5 md:space-x-7">
             {Object.values(routes)
               .filter((route) => route.href !== '/')
               .map((route) => (
