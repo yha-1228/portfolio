@@ -29,7 +29,7 @@ module.exports = {
     colors: {
       primary: colors.indigo,
       danger: colors.red,
-      maker: colors.yellow[300],
+      marker: colors.yellow[300],
       gray: {
         foreground: colors.gray[700],
         'foreground-weak': colors.gray[500],
