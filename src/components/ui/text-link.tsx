@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
-import { OmitKey } from '@/types';
+import { OmitKey } from '@/types/utils';
 
 const createClassName = (className?: string) => {
   return twMerge(

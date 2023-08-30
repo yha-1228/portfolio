@@ -1,4 +1,4 @@
-import { Prettify } from '@/types';
+import { Prettify } from '@/types/utils';
 
 export type Base = {
   id: string;
