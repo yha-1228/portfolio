@@ -4,39 +4,26 @@ import Container from './ui/container';
 
 export default function HeroHeader() {
   return (
-    <div className="py-14">
+    <div className="pb-14 pt-9">
       <Container>
-        <p className="text-2xl font-bold leading-[1.35] lg:text-3xl">
+        <p className="text-2xl font-bold leading-[1.35] lg:text-4xl">
           ユーザーフレンドリーで堅牢なWebを開発します。
         </p>
-        <div className="mt-8">
+        <div className="mt-3.5">
           <p className="lg:text-lg">
             新卒でシステム開発企業に入社し、主にWebアプリ開発のフロントエンドを担当してきました。マークアップ技術とReactを利用して、ストレス無く快適に閲覧や操作を行える体験を提供できるよう心掛けています。
           </p>
         </div>
 
-        <div className="mt-11">
-          <div className="lg:hidden">
-            <ButtonLink
-              href={routes.experience.href}
-              className="flex items-center"
-            >
-              <span>職務経歴を見る</span>
-              <span className="ml-1 inline-block">-&gt;</span>
-            </ButtonLink>
-          </div>
-          <div className="hidden lg:block">
-            <ButtonLink
-              href={routes.experience.href}
-              className="group inline-flex items-center px-6 py-2.5 text-lg"
-            >
-              <span>職務経歴を見る</span>
-              <span className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </ButtonLink>
-          </div>
-        </div>
+        <ButtonLink
+          href={routes.experience.href}
+          className="group mt-8 flex items-center lg:inline-flex lg:items-center lg:px-6 lg:py-2 lg:text-lg"
+        >
+          <span>職務経歴を見る</span>
+          <span className="ml-1 inline-block lg:ml-1.5 lg:transition-transform lg:duration-300 lg:group-hover:translate-x-1 lg:motion-reduce:transform-none">
+            -&gt;
+          </span>
+        </ButtonLink>
       </Container>
     </div>
   );
