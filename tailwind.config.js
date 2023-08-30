@@ -31,7 +31,7 @@ module.exports = {
       danger: colors.red,
       marker: colors.yellow[300],
       gray: {
-        foreground: colors.gray[700],
+        foreground: colors.gray[800],
         'foreground-weak': colors.gray[500],
         disabled: colors.gray[400],
         'light-300': colors.gray[300],
