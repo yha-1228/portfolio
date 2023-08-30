@@ -24,12 +24,9 @@ export default async function Page() {
               <li key={content.id}>
                 <Link
                   href={routes.blog.routes[':id'].generateHref(content.id)}
-                  className="block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out hover:bg-gray-light-50 hover:text-gray-foreground [&:hover>[data-title]]:underline"
+                  className="group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-gray-foreground"
                 >
-                  <div
-                    className="text-xl font-bold underline-offset-[0.18em]"
-                    data-title
-                  >
+                  <div className="text-xl font-bold text-gray-foreground-weak underline-offset-[0.18em] group-hover:text-gray-foreground">
                     {content.title}
                   </div>
                   <p className="text-sm text-gray-foreground-weak">
