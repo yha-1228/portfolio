@@ -12,7 +12,7 @@
     "tailwindcss/classnames-order": [
       "warn",
       {
-        "callees": ["clsx, twMerge", "createClassName"]
+        "callees": ["clsx", "twMerge", "createClassName"]
       }
     ],
     "dot-notation": "warn",

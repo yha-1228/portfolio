@@ -31,7 +31,7 @@ export default function HeroHeader() {
               className="group inline-flex items-center px-6 py-2.5 text-lg"
             >
               <span>職務経歴を見る</span>
-              <span className="ml-1.5 inline-block transition-transform duration-500 ease-out group-hover:translate-x-1 motion-reduce:transform-none">
+              <span className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none">
                 -&gt;
               </span>
             </ButtonLink>

@@ -1,16 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import resolveConfig from 'tailwindcss/resolveConfig';
 import { routes } from '@/routes';
-import tailwindConfig from '../../../tailwind.config';
 import Container from '../ui/container';
 import NavLink from './nav-link';
 
-const { theme } = resolveConfig(tailwindConfig);
-
 export default function Header() {
   return (
-    <header className="flex h-14 items-center border-b border-solid border-b-gray-light-200">
+    <header className="flex h-16 items-center border-b border-solid border-b-gray-light-200">
       <Container>
         <nav className="flex items-center justify-between">
           <Link
@@ -25,9 +21,7 @@ export default function Header() {
               .filter((route) => route.href !== '/')
               .map((route) => (
                 <li key={route.href}>
-                  <NavLink parentHeight={theme?.width?.[14]} href={route.href}>
-                    {route.label}
-                  </NavLink>
+                  <NavLink href={route.href}>{route.label}</NavLink>
                 </li>
               ))}
           </ul>

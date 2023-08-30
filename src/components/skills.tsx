@@ -124,7 +124,7 @@ export default function Skills() {
                   className={twMerge(
                     'whitespace-nowrap text-xl lg:text-2xl !leading-[1.2] text-gray-foreground-weak',
                     skillWord.specialty &&
-                      'font-bold text-gray-foreground maker',
+                      'font-bold text-gray-foreground marker',
                   )}
                 >
                   {skillWord.label}
