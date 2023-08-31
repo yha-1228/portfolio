@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import { routes } from '@/routes';
+import clsx from '@/utils/css/clsx';
 import Container from '../ui/container';
 import ActiveLink from '../ui/unstyled/active-link';
 
@@ -24,14 +24,14 @@ export default function Header() {
                 <li key={route.href}>
                   <ActiveLink
                     href={route.href}
-                    className={twMerge(
+                    className={clsx(
                       'relative inline-flex h-16 items-center py-1',
                       'font-bold text-gray-foreground/70',
                       'transition-colors duration-200 ease-out',
                       'hover:text-gray-foreground',
                       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
                     )}
-                    activeClassName={twMerge(
+                    activeClassName={clsx(
                       'text-primary-600 hover:text-primary-600',
                       "before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:content-['']",
                       'before:bg-primary-600',

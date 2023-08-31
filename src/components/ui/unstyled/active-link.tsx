@@ -3,8 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
+import clsx from '@/utils/css/clsx';
 import { isMatchFirstPath } from '@/utils/url/matching';
 
 type ActiveLinkProps = LinkComponentProps & {
@@ -25,7 +25,7 @@ const ActiveLink = React.forwardRef<HTMLAnchorElement, ActiveLinkProps>(
 
     return (
       <Link
-        className={twMerge(className, current && activeClassName)}
+        className={clsx(className, current && activeClassName)}
         {...restProps}
         ref={ref}
       />

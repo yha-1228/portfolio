@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import clsx from '@/utils/css/clsx';
 
 type FieldLabelProps = React.ComponentPropsWithRef<'label'> & {
   /**
@@ -16,7 +16,7 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
 
     return (
       <label
-        className={twMerge('block font-bold', className)}
+        className={clsx('block font-bold', className)}
         {...restProps}
         ref={ref}
       >

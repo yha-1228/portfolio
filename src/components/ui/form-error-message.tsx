@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import clsx from '@/utils/css/clsx';
 
 type FormErrorMessageProps = React.ComponentPropsWithRef<'p'>;
 
@@ -11,7 +11,7 @@ const FormErrorMessage = React.forwardRef<
 
   return (
     <p
-      className={twMerge('text-sm text-danger-500', className)}
+      className={clsx('text-sm text-danger-500', className)}
       {...restProps}
       ref={ref}
     />

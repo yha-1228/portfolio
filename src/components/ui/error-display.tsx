@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 import { Button, ButtonLink } from '@/components/ui/button';
 import useTitle from '@/hooks/use-title';
 import { NextErrorProps } from '@/lib/next/types';
+import clsx from '@/utils/css/clsx';
 import { SITE_TITLE } from '../../../constants';
 import Container from './container';
 
@@ -19,7 +19,7 @@ function ErrorDisplay(props: ErrorDisplayProps) {
   const { className, heading, detail, action } = props;
 
   return (
-    <div className={twMerge('pb-14 pt-8', className)}>
+    <div className={clsx('pb-14 pt-8', className)}>
       <Container>
         <div className="space-y-10 text-center">
           <section className="space-y-3">

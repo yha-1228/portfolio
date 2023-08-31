@@ -6,12 +6,12 @@ import {
   BsFillExclamationCircleFill,
   BsX,
 } from 'react-icons/bs';
-import { twMerge } from 'tailwind-merge';
 import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
 import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import useBeforeUnload from '@/hooks/use-beforeunload';
+import clsx from '@/utils/css/clsx';
 import existsValue from '@/utils/object/exists-value';
 import { Button } from './ui/button';
 import Container from './ui/container';
@@ -55,7 +55,7 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
 
   return (
     <div
-      className={twMerge(
+      className={clsx(
         className,
         `flex items-center justify-between rounded-lg ${variantRootClassMap[variant]} px-4 py-3 text-white`,
       )}
