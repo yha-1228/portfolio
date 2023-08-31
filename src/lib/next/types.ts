@@ -23,7 +23,7 @@ export type LinkComponentProps = React.ComponentPropsWithRef<typeof Link>;
  */
 export type NextLayoutProps = {
   children: React.ReactNode;
-  searchParams?: { [key: string]: string | string[] };
+  params?: { [key: string]: string | string[] };
 };
 
 /**
