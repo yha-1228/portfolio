@@ -1,5 +1,5 @@
 import { createClient } from 'microcms-js-sdk';
-import { BlogContent, ClientResponse } from './types';
+import { BlogContent, BlogListResponse } from './types';
 
 /**
  * @see https://document.microcms.io/tutorial/next/next-getting-started
@@ -9,10 +9,10 @@ const client = createClient({
   apiKey: process.env.API_KEY || '',
 });
 
-export function getBlogContents() {
+export function getBlogListResponse() {
   return client.get({
     endpoint: 'blog',
-  }) as Promise<ClientResponse<BlogContent>>;
+  }) as Promise<BlogListResponse>;
 }
 
 export function getBlogContent(id: string) {
