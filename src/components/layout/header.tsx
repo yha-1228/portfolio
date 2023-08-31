@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
-import Container from '../ui/container';
+import Container from '../ui/styled/container';
 import ActiveLink from '../ui/unstyled/active-link';
 
 export default function Header() {

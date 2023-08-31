@@ -1,6 +1,6 @@
 import { routes } from '@/routes';
-import { ButtonLink } from './ui/button';
-import Container from './ui/container';
+import { ButtonLink } from './ui/styled/button';
+import Container from './ui/styled/container';
 
 export default function HeroHeader() {
   return (

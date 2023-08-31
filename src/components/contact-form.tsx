@@ -13,12 +13,12 @@ import * as v from '@/form/validator';
 import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import existsValue from '@/utils/object/exists-value';
-import { Button } from './ui/button';
-import Container from './ui/container';
-import FieldLabel from './ui/field-label';
-import FormErrorMessage from './ui/form-error-message';
-import Heading1 from './ui/heading1';
-import { Input, Textarea } from './ui/input';
+import { Button } from './ui/styled/button';
+import Container from './ui/styled/container';
+import FieldLabel from './ui/styled/field-label';
+import FormErrorMessage from './ui/styled/form-error-message';
+import Heading1 from './ui/styled/heading1';
+import { Input, Textarea } from './ui/styled/input';
 import Show from './ui/unstyled/show';
 
 type FeedbackNotificationProps = {

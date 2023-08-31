@@ -1,6 +1,6 @@
 'use client';
 
-import { ErrorBoard } from '@/components/ui/error-display';
+import { ErrorBoard } from '@/components/ui/styled/error-display';
 import useTitle from '@/hooks/use-title';
 import { NextErrorProps } from '@/lib/next/types';
 import { SITE_TITLE } from '../../constants';

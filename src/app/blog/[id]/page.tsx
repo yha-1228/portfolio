@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { BsChevronLeft } from 'react-icons/bs';
-import Container from '@/components/ui/container';
-import Heading1 from '@/components/ui/heading1';
-import Tag from '@/components/ui/tag';
-import { TextLink } from '@/components/ui/text-link';
+import Container from '@/components/ui/styled/container';
+import Heading1 from '@/components/ui/styled/heading1';
+import Tag from '@/components/ui/styled/tag';
+import { TextLink } from '@/components/ui/styled/text-link';
 import { getBlogContent, getBlogListResponse } from '@/lib/microcms/client';
 import {
   GenerateMetadataProps,

@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import Container from '@/components/ui/container';
-import Heading1 from '@/components/ui/heading1';
-import Heading2 from '@/components/ui/heading2';
-import Timeline from '@/components/ui/timeline';
+import Container from '@/components/ui/styled/container';
+import Heading1 from '@/components/ui/styled/heading1';
+import Heading2 from '@/components/ui/styled/heading2';
+import Timeline from '@/components/ui/styled/timeline';
 import { items } from '@/data/experience';
 
 export const metadata: Metadata = {

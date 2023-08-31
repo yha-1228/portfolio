@@ -1,9 +1,9 @@
 import { SkillDetail, skillDetails, skillWords } from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import styles from './skills.module.css';
-import Container from './ui/container';
-import Heading1 from './ui/heading1';
-import Heading2 from './ui/heading2';
+import Container from './ui/styled/container';
+import Heading1 from './ui/styled/heading1';
+import Heading2 from './ui/styled/heading2';
 import Show from './ui/unstyled/show';
 
 type SkillDetailCardProps = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { routes } from '@/routes';
-import Container from '../ui/container';
-import { ExternalTextLink, TextLink } from '../ui/text-link';
+import Container from '../ui/styled/container';
+import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
 
 const myExternalLinks = [
   {

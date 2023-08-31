@@ -2,8 +2,8 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 import clsx from '@/utils/css/clsx';
 import { px } from '@/utils/css/unit';
 import createStyleAttr from '@/utils/react/create-style-attr';
-import tailwindConfig from '../../../tailwind.config';
-import Show from './unstyled/show';
+import tailwindConfig from '../../../../tailwind.config';
+import Show from '../unstyled/show';
 
 const { theme } = resolveConfig(tailwindConfig);
 
