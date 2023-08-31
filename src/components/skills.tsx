@@ -132,9 +132,9 @@ export default function Skills() {
             </div>
             <div className="mt-16">
               <Heading2 className="sr-only">経験レベル</Heading2>
-              <div className="mt-6 space-y-6 md:flex md:flex-wrap md:justify-between md:gap-x-[16px] md:gap-y-[20px] md:space-y-0">
+              <ul className="mt-6 space-y-6 md:flex md:flex-wrap md:justify-between md:gap-x-[16px] md:gap-y-[20px] md:space-y-0">
                 {skillDetails.map((skillDetail, idx) => (
-                  <div
+                  <li
                     key={skillDetail.category}
                     className="md:w-[calc(50%-calc(16px/2))]"
                   >
@@ -147,9 +147,9 @@ export default function Skills() {
                       heading={skillDetail.category}
                       items={skillDetail.items}
                     />
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
