@@ -4,7 +4,7 @@ import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
 import Tag from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
-import { getBlogContent, getBlogContents } from '@/lib/microcms/client';
+import { getBlogContent, getBlogListResponse } from '@/lib/microcms/client';
 import { GenerateMetadataProps, NextPageProps } from '@/lib/next/types';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
@@ -22,7 +22,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const { contents } = await getBlogContents();
+  const { contents } = await getBlogListResponse();
   return contents.map((content) => ({ id: content.id }));
 }
 

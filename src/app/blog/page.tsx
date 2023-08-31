@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Container from '@/components/ui/container';
 import Heading1 from '@/components/ui/heading1';
 import Tag from '@/components/ui/tag';
-import { getBlogContents } from '@/lib/microcms/client';
+import { getBlogListResponse } from '@/lib/microcms/client';
 import { routes } from '@/routes';
 import { formatISODate } from '@/utils/date/formatter';
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const { contents } = await getBlogContents();
+  const { contents } = await getBlogListResponse();
 
   return (
     <main className="py-8">

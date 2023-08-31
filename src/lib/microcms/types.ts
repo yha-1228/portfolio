@@ -1,30 +1,20 @@
+import { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
 import { Prettify } from '@/types/utils';
 
-export type Base = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
+type Content<TFields> = Prettify<TFields & MicroCMSListContent>;
+
+type TagFields = {
+  tagName: string;
 };
 
-export type Tag = Prettify<
-  Base & {
-    tagName: string;
-  }
->;
+export type TagContent = Content<TagFields>;
 
-export type BlogContent = Prettify<
-  Base & {
-    title: string;
-    body: string;
-    tag: Tag;
-  }
->;
-
-export type ClientResponse<T> = {
-  contents: T[];
-  totalCount: number;
-  offset: number;
-  limit: number;
+type BlogFields = {
+  title: string;
+  body: string;
+  tag: TagFields & MicroCMSListContent;
 };
+
+export type BlogContent = Content<BlogFields>;
+
+export type BlogListResponse = Prettify<MicroCMSListResponse<BlogFields>>;
