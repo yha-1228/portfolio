@@ -8,18 +8,15 @@ import { LinkComponentProps } from '@/lib/next/types';
 
 type ButtonBaseProps = {
   disabled?: boolean;
-  fullWidth?: boolean;
   rightIcon?: React.ReactNode;
 };
 
 type CreateClassNameOptions = {
-  fullWidth?: boolean;
   whenDisabled: string;
   external?: string;
 };
 
 const createClassName = ({
-  fullWidth,
   whenDisabled,
   external,
 }: CreateClassNameOptions) => {
@@ -27,7 +24,6 @@ const createClassName = ({
     'inline-flex items-center justify-center rounded-lg bg-primary-600 px-5 py-2',
     'font-bold text-white',
     'transition-colors duration-200 ease-out',
-    fullWidth ? 'flex text-center' : '',
     whenDisabled,
     'hover:bg-primary-700',
     'active:bg-primary-700',
@@ -42,12 +38,11 @@ type ButtonProps = React.ComponentPropsWithRef<'button'> & ButtonBaseProps;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { fullWidth, rightIcon, className, children, ...restProps } = props;
+    const { rightIcon, className, children, ...restProps } = props;
 
     return (
       <button
         className={createClassName({
-          fullWidth,
           whenDisabled: 'disabled:cursor-not-allowed disabled:bg-gray-disabled',
           external: className,
         })}
@@ -75,19 +70,11 @@ type ButtonLinkProps = LinkComponentProps & ButtonBaseProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
-    const {
-      fullWidth,
-      rightIcon,
-      disabled,
-      className,
-      children,
-      ...restProps
-    } = props;
+    const { rightIcon, disabled, className, children, ...restProps } = props;
 
     return (
       <Link
         className={createClassName({
-          fullWidth,
           whenDisabled: disabled
             ? 'pointer-events-none disabled:bg-gray-disabled'
             : '',
