@@ -30,16 +30,16 @@ function SkillDetailCard({
         className={clsx(
           'rounded-t-lg py-4 text-center',
           accent
-            ? 'bg-primary-600 text-white border-b border-solid border-b-transparent'
-            : 'bg-white text-gray-foreground border-b border-solid border-b-gray-light-200',
+            ? 'border-b border-solid border-b-transparent bg-primary-600 text-white'
+            : 'border-b border-solid border-b-gray-light-200 bg-white text-gray-foreground',
         )}
       >
         <h4 className="font-bold">{heading}</h4>
       </div>
       <div
         className={twMerge(
-          'space-y-5 rounded-b-lg border-solid bg-white px-5 pt-5 pb-6 text-gray-foreground lg:px-6',
-          'border-2 border-solid border-t-0',
+          'space-y-5 rounded-b-lg border-solid bg-white px-5 pb-6 pt-5 text-gray-foreground lg:px-6',
+          'border-2 border-t-0 border-solid',
           accent ? 'border-primary-600' : 'border-transparent',
           contentClassName,
         )}
@@ -122,9 +122,9 @@ export default function Skills() {
                 <div
                   key={skillWord.label}
                   className={twMerge(
-                    'whitespace-nowrap text-xl lg:text-2xl !leading-[1.2] text-gray-foreground-weak',
+                    'whitespace-nowrap text-xl !leading-[1.2] text-gray-foreground-weak lg:text-2xl',
                     skillWord.specialty &&
-                      'font-bold text-gray-foreground marker',
+                      'marker font-bold text-gray-foreground',
                   )}
                 >
                   {skillWord.label}

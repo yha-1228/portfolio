@@ -9,7 +9,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   return (
     <div
       className={twMerge(
-        'inline-block rounded-full text-gray-foreground-weak bg-gray-light-100 px-3.5 py-0.5 text-sm',
+        'inline-block rounded-full bg-gray-light-100 px-3.5 py-0.5 text-sm text-gray-foreground-weak',
         className,
       )}
       {...restProps}

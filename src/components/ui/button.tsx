@@ -8,31 +8,13 @@ import { LinkComponentProps } from '@/lib/next/types';
 
 type ButtonBaseProps = {
   disabled?: boolean;
-  fullWidth?: boolean;
   rightIcon?: React.ReactNode;
 };
 
-type CreateClassNameOptions = {
-  fullWidth?: boolean;
-  whenDisabled: string;
-  external?: string;
-};
-
-const createClassName = ({
-  fullWidth,
-  whenDisabled,
-  external,
-}: CreateClassNameOptions) => {
+const createClassName = (className?: string) => {
   return twMerge(
-    'inline-flex justify-center items-center rounded-lg bg-primary-600 px-5 py-2',
-    'text-white font-bold',
-    'duration-200 transition-colors ease-out',
-    fullWidth ? 'flex text-center' : '',
-    whenDisabled,
-    'hover:bg-primary-700',
-    'active:bg-primary-700',
-    'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300',
-    external,
+    'inline-flex items-center justify-center rounded-lg bg-primary-600 px-5 py-2 font-bold text-white transition-colors duration-200 ease-out hover:bg-primary-700 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300 active:bg-primary-700',
+    className,
   );
 };
 
@@ -42,15 +24,16 @@ type ButtonProps = React.ComponentPropsWithRef<'button'> & ButtonBaseProps;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { fullWidth, rightIcon, className, children, ...restProps } = props;
+    const { rightIcon, className, children, ...restProps } = props;
 
     return (
       <button
-        className={createClassName({
-          fullWidth,
-          whenDisabled: 'disabled:cursor-not-allowed disabled:bg-gray-disabled',
-          external: className,
-        })}
+        className={createClassName(
+          twMerge(
+            'disabled:cursor-not-allowed disabled:bg-gray-disabled',
+            className,
+          ),
+        )}
         {...restProps}
         ref={ref}
       >
@@ -75,24 +58,16 @@ type ButtonLinkProps = LinkComponentProps & ButtonBaseProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
-    const {
-      fullWidth,
-      rightIcon,
-      disabled,
-      className,
-      children,
-      ...restProps
-    } = props;
+    const { rightIcon, disabled, className, children, ...restProps } = props;
 
     return (
       <Link
-        className={createClassName({
-          fullWidth,
-          whenDisabled: disabled
-            ? 'pointer-events-none disabled:bg-gray-disabled'
-            : '',
-          external: twMerge('text-center', className),
-        })}
+        className={createClassName(
+          twMerge(
+            disabled && 'pointer-events-none bg-gray-disabled',
+            className,
+          ),
+        )}
         aria-disabled={disabled}
         {...restProps}
         ref={ref}
