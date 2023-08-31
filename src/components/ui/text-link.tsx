@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import { LinkComponentProps } from '@/lib/next/types';
-import { OmitKey } from '@/types/utils';
 import clsx from '@/utils/css/clsx';
+import ExternalLink, { ExternalLinkProps } from './unstyled/external-link';
 
 const createClassName = (className?: string) => {
   return clsx(
@@ -35,10 +35,7 @@ TextLink.displayName = 'TextLink';
 
 // ----------------------------------------
 
-type ExternalTextLinkProps = OmitKey<
-  React.ComponentPropsWithRef<'a'>,
-  'target' | 'rel'
->;
+type ExternalTextLinkProps = ExternalLinkProps;
 
 const ExternalTextLink = React.forwardRef<
   HTMLAnchorElement,
@@ -47,9 +44,7 @@ const ExternalTextLink = React.forwardRef<
   const { className, children, ...restProps } = props;
 
   return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
+    <ExternalLink
       className={clsx(
         createClassName('inline-flex items-center space-x-1'),
         className,
@@ -59,7 +54,7 @@ const ExternalTextLink = React.forwardRef<
     >
       <span>{children}</span>
       <FiExternalLink />
-    </a>
+    </ExternalLink>
   );
 });
 
