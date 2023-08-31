@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="py-8">
+    <main className="py-8">
       <Container>
         <section className="space-y-6">
           <Heading1>職務経歴</Heading1>
@@ -32,6 +32,6 @@ export default function Page() {
           </section>
         </section>
       </Container>
-    </div>
+    </main>
   );
 }

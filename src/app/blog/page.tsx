@@ -15,7 +15,7 @@ export default async function Page() {
   const { contents } = await getBlogContents();
 
   return (
-    <div className="py-8">
+    <main className="py-8">
       <Container>
         <section className="space-y-6">
           <Heading1>ブログ</Heading1>
@@ -39,6 +39,6 @@ export default async function Page() {
           </ul>
         </section>
       </Container>
-    </div>
+    </main>
   );
 }
