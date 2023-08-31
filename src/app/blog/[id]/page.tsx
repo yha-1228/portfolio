@@ -5,7 +5,10 @@ import Heading1 from '@/components/ui/heading1';
 import Tag from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { getBlogContent, getBlogListResponse } from '@/lib/microcms/client';
-import { GenerateMetadataProps, NextPagePropsWithParams } from '@/lib/next/types';
+import {
+  GenerateMetadataProps,
+  NextPagePropsWithParams,
+} from '@/lib/next/types';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
 import { formatISODate } from '@/utils/date/formatter';
