@@ -1,5 +1,8 @@
 type ShowProps = React.PropsWithChildren<{
   when?: boolean;
+  /**
+   * @default null
+   */
   fallback?: React.ReactNode;
 }>;
 
@@ -21,6 +24,6 @@ type ShowProps = React.PropsWithChildren<{
  *}
  * ```
  */
-export default function Show({ when, fallback, children }: ShowProps) {
+export default function Show({ when, fallback = null, children }: ShowProps) {
   return <>{when ? children : fallback}</>;
 }
