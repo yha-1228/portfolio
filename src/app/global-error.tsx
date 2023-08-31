@@ -1,7 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import ErrorDisplay from '@/components/ui/error-display';
+import { ErrorBoard } from '@/components/ui/error-display';
 import useTitle from '@/hooks/use-title';
 import { NextErrorProps } from '@/lib/next/types';
 import { SITE_TITLE } from '../../constants';
@@ -13,11 +12,7 @@ export default function Error({ error, reset }: NextErrorProps) {
   return (
     <html lang="ja">
       <body>
-        <ErrorDisplay
-          heading="エラーが発生しました"
-          detail="予期せぬエラーが発生しました。"
-          action={<Button onClick={reset}>問題の箇所をもう一度読み込む</Button>}
-        />
+        <ErrorBoard error={error} reset={reset} />
       </body>
     </html>
   );
