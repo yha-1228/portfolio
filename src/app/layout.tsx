@@ -23,7 +23,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
     <html lang="ja" dir="ltr">
       <body className={clsx(inter.variable, 'font-base text-gray-foreground')}>
         <Header />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>

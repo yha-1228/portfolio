@@ -4,10 +4,10 @@ import Skills from '@/components/skills';
 
 export default function Page() {
   return (
-    <>
+    <main>
       <HeroHeader />
       <Skills />
       <ContactForm />
-    </>
+    </main>
   );
 }

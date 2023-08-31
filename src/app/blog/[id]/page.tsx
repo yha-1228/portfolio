@@ -31,7 +31,7 @@ export default async function Page({ params }: NextPageProps<'id'>) {
   const content = await getBlogContent(id);
 
   return (
-    <div className="py-8">
+    <main className="py-8">
       <Container>
         <TextLink
           href={routes.blog.href}
@@ -51,8 +51,8 @@ export default async function Page({ params }: NextPageProps<'id'>) {
             <div
               className={clsx(
                 'mt-6',
-                '[&>h1]:text-3xl [&>h1]:mt-10 [&>h1]:mb-5',
-                '[&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4',
+                '[&>h1]:mb-5 [&>h1]:mt-10 [&>h1]:text-3xl',
+                '[&>h2]:mb-4 [&>h2]:mt-10 [&>h2]:text-2xl',
                 '[&>p]:my-4',
                 '[&>ul]:pl-9',
                 '[&>ul>li]:list-disc',
@@ -64,6 +64,6 @@ export default async function Page({ params }: NextPageProps<'id'>) {
           </div>
         </article>
       </Container>
-    </div>
+    </main>
   );
 }
