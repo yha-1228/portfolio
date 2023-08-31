@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 /**
  * Type of `generateMetadata` args
- * 
+ *
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 export type GenerateMetadataProps<T extends string> = {
@@ -26,10 +26,9 @@ export type NextLayoutProps = {
   searchParams?: { [key: string]: string | string[] };
 };
 
-
 /**
  * Type of `error.tsx` props
- * 
+ *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/error#props
  */
 export type NextErrorProps = {
