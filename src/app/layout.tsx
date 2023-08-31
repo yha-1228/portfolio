@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
-import { CounterProvider } from '@/context';
 import { NextLayoutProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
 import { SITE_TITLE } from '../../constants';
@@ -23,11 +22,9 @@ export default function RootLayout({ children }: NextLayoutProps) {
   return (
     <html lang="ja" dir="ltr">
       <body className={clsx(inter.variable, 'font-base text-gray-foreground')}>
-        <CounterProvider initialCount={1}>
-          <Header />
-          {children}
-          <Footer />
-        </CounterProvider>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
