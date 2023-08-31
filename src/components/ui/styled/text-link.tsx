@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import { LinkComponentProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
-import ExternalLink, { ExternalLinkProps } from './unstyled/external-link';
+import ExternalLink, { ExternalLinkProps } from '../unstyled/external-link';
 
 const createClassName = (className?: string) => {
   return clsx(

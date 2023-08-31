@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Container from '@/components/ui/container';
-import Heading1 from '@/components/ui/heading1';
-import Tag from '@/components/ui/tag';
+import Container from '@/components/ui/styled/container';
+import Heading1 from '@/components/ui/styled/heading1';
+import Tag from '@/components/ui/styled/tag';
 import { getBlogListResponse } from '@/lib/microcms/client';
 import { routes } from '@/routes';
 import { formatISODate } from '@/utils/date/formatter';
