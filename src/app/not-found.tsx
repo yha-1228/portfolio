@@ -10,6 +10,7 @@ export default function NotFound() {
 
   return (
     <ErrorDisplay
+      as="main"
       heading="ページが見つかりません"
       detail="アクセスしたページは存在しないか、削除された可能性があります。"
       action={<ButtonLink href="/">ホームに戻る</ButtonLink>}
