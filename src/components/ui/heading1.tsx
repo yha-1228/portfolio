@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import clsx from '@/utils/css/clsx';
 
 type Heading1Props = React.ComponentPropsWithRef<'h2'>;
 
@@ -9,7 +9,7 @@ const Heading1 = React.forwardRef<HTMLHeadingElement, Heading1Props>(
 
     return (
       <h2
-        className={twMerge('text-3xl font-bold lg:text-4xl', className)}
+        className={clsx('text-3xl font-bold lg:text-4xl', className)}
         {...restProps}
         ref={ref}
       />

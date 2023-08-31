@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
-import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
 import { OmitKey } from '@/types/utils';
+import clsx from '@/utils/css/clsx';
 
 const createClassName = (className?: string) => {
-  return twMerge(
+  return clsx(
     'rounded-sm underline-offset-[0.15em] hover:underline',
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
     className,
@@ -23,7 +23,7 @@ const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
 
     return (
       <Link
-        className={twMerge(createClassName(), className)}
+        className={clsx(createClassName(), className)}
         {...restProps}
         ref={ref}
       />
@@ -50,7 +50,7 @@ const ExternalTextLink = React.forwardRef<
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className={twMerge(
+      className={clsx(
         createClassName('inline-flex items-center space-x-1'),
         className,
       )}

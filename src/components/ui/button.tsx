@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import { LinkComponentProps } from '@/lib/next/types';
+import clsx from '@/utils/css/clsx';
 
 // common
 // ----------------------------------------
@@ -12,7 +12,7 @@ type ButtonBaseProps = {
 };
 
 const createClassName = (className?: string) => {
-  return twMerge(
+  return clsx(
     'inline-flex items-center justify-center rounded-lg bg-primary-600 px-5 py-2 font-bold text-white transition-colors duration-200 ease-out hover:bg-primary-700 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300 active:bg-primary-700',
     className,
   );
@@ -29,7 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={createClassName(
-          twMerge(
+          clsx(
             'disabled:cursor-not-allowed disabled:bg-gray-disabled',
             className,
           ),
@@ -63,10 +63,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
     return (
       <Link
         className={createClassName(
-          twMerge(
-            disabled && 'pointer-events-none bg-gray-disabled',
-            className,
-          ),
+          clsx(disabled && 'pointer-events-none bg-gray-disabled', className),
         )}
         aria-disabled={disabled}
         {...restProps}

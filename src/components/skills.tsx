@@ -1,4 +1,3 @@
-import { twMerge } from 'tailwind-merge';
 import { SkillDetail, skillDetails, skillWords } from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import styles from './skills.module.css';
@@ -37,9 +36,9 @@ function SkillDetailCard({
         <h4 className="font-bold">{heading}</h4>
       </div>
       <div
-        className={twMerge(
+        className={clsx(
           'space-y-5 rounded-b-lg border-solid bg-white px-5 pb-6 pt-5 text-gray-foreground lg:px-6',
-          'border-2 border-t-0 border-solid',
+          'border-2 border-t-0',
           accent ? 'border-primary-600' : 'border-transparent',
           contentClassName,
         )}
@@ -121,7 +120,7 @@ export default function Skills() {
               {skillWords.map((skillWord) => (
                 <div
                   key={skillWord.label}
-                  className={twMerge(
+                  className={clsx(
                     'whitespace-nowrap text-xl !leading-[1.2] text-gray-foreground-weak lg:text-2xl',
                     skillWord.specialty &&
                       'marker font-bold text-gray-foreground',

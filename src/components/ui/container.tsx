@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import clsx from '@/utils/css/clsx';
 
 type ContainerProps = React.ComponentPropsWithRef<'div'> & {
   fluid?: boolean;
@@ -11,7 +11,7 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
 
     return (
       <div
-        className={twMerge(
+        className={clsx(
           `${fluid ? 'w-full' : 'container mx-auto'} px-4`,
           className,
         )}
