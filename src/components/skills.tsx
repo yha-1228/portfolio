@@ -1,4 +1,4 @@
-import { SkillDetail, skillDetails, skillWords } from '@/data/skills';
+import { Rank, SkillDetail, skillDetails, skillWords } from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import styles from './skills.module.css';
 import Container from './ui/styled/container';
@@ -9,94 +9,75 @@ import Show from './ui/unstyled/show';
 type SkillDetailCardProps = {
   heading: React.ReactNode;
   items: SkillDetail['items'];
-  contentClassName?: string;
   accent?: boolean;
+  className?: string;
 };
 
-function SkillDetailCard({
-  heading,
-  items,
-  contentClassName,
-  accent,
-}: SkillDetailCardProps) {
-  const itemsGood = items.filter((item) => item.rank === 'good');
-  const itemsNormal = items.filter((item) => item.rank === 'normal');
-  const itemsBad = items.filter((item) => item.rank === 'bad');
+const rankHeadingMap: { [key in Rank]: string } = {
+  good: '可能',
+  normal: '少し可能',
+  bad: '未経験レベル',
+};
+
+const rankIconClassNameMap: { [key in Rank]: string } = {
+  good: "bg-[url('/assets/check-circle-fill-color-foreground.svg')]",
+  normal: "bg-[url('/assets/check-circle-color-foreground.svg')]",
+  bad: "bg-[url('/assets/dash-circle-color-foreground.svg')]",
+};
+
+function SkillDetailCard(props: SkillDetailCardProps) {
+  const { heading, items, className, accent } = props;
 
   return (
-    <div className="card-shadow">
-      <div
-        className={clsx(
-          'rounded-t-lg py-4 text-center',
-          accent
-            ? 'border-b border-solid border-b-transparent bg-primary-600 text-white'
-            : 'border-b border-solid border-b-gray-light-200 bg-white text-gray-foreground',
-        )}
-      >
-        <h4 className="font-bold">{heading}</h4>
+    <div
+      className={clsx(
+        'rounded-lg px-5 lg:px-6',
+        'card-shadow bg-white',
+        'border-2 border-solid',
+        accent ? 'border-primary-600' : 'border-transparent',
+        className,
+      )}
+    >
+      <div className="pb-3 pt-4">
+        <h4 className="text-sm font-bold text-gray-foreground-weak">
+          {heading}
+        </h4>
       </div>
       <div
         className={clsx(
-          'space-y-5 rounded-b-lg border-solid bg-white px-5 pb-6 pt-5 text-gray-foreground lg:px-6',
-          'border-2 border-t-0',
-          accent ? 'border-primary-600' : 'border-transparent',
-          contentClassName,
+          'space-y-5 pb-6 pt-4',
+          'text-gray-foreground',
+          'border-t border-solid border-t-gray-light-300',
         )}
       >
-        <Show when={itemsGood.length > 0}>
-          <div>
-            <h5 className="pb-2 pt-3 text-lg font-bold">可能</h5>
-            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
-              {itemsGood.map((item) => (
-                <li
-                  key={item.text}
-                  className={clsx(
-                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
-                    "bg-[url('/assets/check-circle-fill-color-foreground.svg')]",
-                  )}
-                >
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Show>
-        <Show when={itemsNormal.length > 0}>
-          <div>
-            <h5 className="pb-2 pt-3 text-lg font-bold">少し可能</h5>
-            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
-              {itemsNormal.map((item) => (
-                <li
-                  key={item.text}
-                  className={clsx(
-                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
-                    "bg-[url('/assets/check-circle-color-foreground.svg')]",
-                  )}
-                >
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Show>
-        <Show when={itemsBad.length > 0}>
-          <div>
-            <h5 className="pb-2 pt-3 text-lg font-bold">未経験レベル</h5>
-            <ul className="mt-4 space-y-1.5 text-sm text-gray-foreground-weak">
-              {itemsBad.map((item) => (
-                <li
-                  key={item.text}
-                  className={clsx(
-                    'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
-                    "bg-[url('/assets/dash-circle-color-foreground.svg')]",
-                  )}
-                >
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Show>
+        {(['good', 'normal', 'bad'] as Rank[]).map((rank) => {
+          const filteredItemsByRank = items.filter(
+            (item) => item.rank === rank,
+          );
+
+          return (
+            <Show key={rank} when={filteredItemsByRank.length > 0}>
+              <div>
+                <h5 className="pb-2 pt-3 text-lg font-bold">
+                  {rankHeadingMap[rank]}
+                </h5>
+                <ul className="mt-2 space-y-2.5 text-sm text-gray-foreground-weak">
+                  {filteredItemsByRank.map((item) => (
+                    <li
+                      key={item.text}
+                      className={clsx(
+                        'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                        rankIconClassNameMap[rank],
+                      )}
+                    >
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Show>
+          );
+        })}
       </div>
     </div>
   );
@@ -140,12 +121,12 @@ export default function Skills() {
                   >
                     <SkillDetailCard
                       accent={idx === 0}
-                      contentClassName={clsx(
-                        0 <= idx && idx <= 1 && 'md:h-[490px]',
-                        2 <= idx && idx <= 3 && 'md:h-[310px]',
-                      )}
                       heading={skillDetail.category}
                       items={skillDetail.items}
+                      className={clsx(
+                        0 <= idx && idx <= 1 && 'md:h-[510px]',
+                        2 <= idx && idx <= 3 && 'md:h-[330px]',
+                      )}
                     />
                   </li>
                 ))}
