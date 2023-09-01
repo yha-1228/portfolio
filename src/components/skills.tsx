@@ -39,9 +39,7 @@ function SkillDetailCard(props: SkillDetailCardProps) {
       )}
     >
       <div className="pb-3 pt-4">
-        <h4 className="text-sm font-bold text-gray-foreground-weak">
-          {heading}
-        </h4>
+        <h4 className="text-sm font-bold">{heading}</h4>
       </div>
       <div
         className={clsx(
