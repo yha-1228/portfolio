@@ -17,7 +17,11 @@ const ActiveLink = React.forwardRef<HTMLAnchorElement, ActiveLinkProps>(
 
     let { href } = props;
     if (typeof href !== 'string') {
-      href = href.pathname || '';
+      if (href.pathname != null) {
+        href = href.pathname;
+      } else {
+        throw new Error(`href.pathnameの値がないので判定できません`);
+      }
     }
 
     const pathname = usePathname();
