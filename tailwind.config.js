@@ -4,6 +4,24 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 // @see https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
 
+// --------------------------------------------------
+
+/**
+ * `Array.map`のオブジェクト版
+ */
+function mapBy(object, callbackfn) {
+  const newObject = {};
+
+  Object.entries(object).forEach(([key, value]) => {
+    const newValue = callbackfn(value, key);
+    newObject[key] = newValue;
+  });
+
+  return newObject;
+}
+
+// --------------------------------------------------
+
 /**
  * var(--base-line-height)の値と合わせる
  */
@@ -61,61 +79,11 @@ module.exports = {
           'sans-serif',
         ],
       },
-      fontSize: {
-        // line-heightだけ共通の値で上書きする
-        xs: [
-          defaultTheme.fontSize.xs[0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        sm: [
-          defaultTheme.fontSize.sm[0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        base: [
-          defaultTheme.fontSize.base[0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        lg: [
-          defaultTheme.fontSize.lg[0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        xl: [
-          defaultTheme.fontSize.xl[0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '2xl': [
-          defaultTheme.fontSize['2xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '3xl': [
-          defaultTheme.fontSize['3xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '4xl': [
-          defaultTheme.fontSize['4xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '5xl': [
-          defaultTheme.fontSize['5xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '6xl': [
-          defaultTheme.fontSize['6xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '7xl': [
-          defaultTheme.fontSize['7xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '8xl': [
-          defaultTheme.fontSize['8xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-        '9xl': [
-          defaultTheme.fontSize['9xl'][0],
-          { lineHeight: baseLineHeight.toString() },
-        ],
-      },
+      // line-heightだけ共通の値で上書きする
+      fontSize: mapBy(defaultTheme.fontSize, (fontSizeConfig) => [
+        fontSizeConfig[0],
+        { lineHeight: baseLineHeight.toString() },
+      ]),
       // @see https://tailwindcss.com/docs/line-height
       lineHeight: {
         base: baseLineHeight.toString(),

@@ -17,9 +17,11 @@ export const skillWords = [
   { label: 'Git' },
 ];
 
+export type Rank = 'good' | 'normal' | 'bad';
+
 export type SkillDetail = {
   category: string;
-  items: { rank: 'good' | 'normal' | 'bad'; text: string }[];
+  items: { rank: Rank; text: string }[];
 };
 
 export const skillDetails: SkillDetail[] = [
