@@ -5,7 +5,7 @@ import { BlogContent, BlogListResponse } from './types';
  * @see https://document.microcms.io/tutorial/next/next-getting-started
  */
 const client = createClient({
-  serviceDomain: 'yh-blog',
+  serviceDomain: process.env.SERVICE_DOMAIN || '',
   apiKey: process.env.API_KEY || '',
 });
 
