@@ -2,34 +2,22 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import useIsMatchCurrentPath from '@/hooks/use-match-current-path';
 import { LinkComponentProps } from '@/lib/next/types';
-import clsx from '@/utils/css/clsx';
-import { isMatchFirstPath } from '@/utils/url/matching';
+import { OmitKey } from '@/types/utils';
 
-type ActiveLinkProps = LinkComponentProps & {
-  activeClassName?: string;
-};
+type ActiveLinkProps = OmitKey<LinkComponentProps, 'aria-current'>;
 
 const ActiveLink = React.forwardRef<HTMLAnchorElement, ActiveLinkProps>(
   (props, ref) => {
-    const { activeClassName, className, ...restProps } = props;
-
-    let { href } = props;
-    if (typeof href !== 'string') {
-      if (href.pathname != null) {
-        href = href.pathname;
-      } else {
-        throw new Error(`href.pathnameの値がないので判定できません`);
-      }
-    }
-
-    const pathname = usePathname();
-    const current = isMatchFirstPath(href, pathname);
+    const { href, ...restProps } = props;
+    const isCurrent = useIsMatchCurrentPath(href);
 
     return (
       <Link
-        className={clsx(className, current && activeClassName)}
+        aria-current={isCurrent ? 'page' : undefined}
+        data-current={isCurrent ? true : undefined}
+        href={href}
         {...restProps}
         ref={ref}
       />
