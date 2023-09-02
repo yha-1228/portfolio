@@ -12,12 +12,12 @@ export default function Header() {
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak"
+            className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak"
           >
             Yuta Hasegawa
           </Link>
 
-          <ul className="flex space-x-5 md:space-x-7">
+          <ul className="flex space-x-4 md:space-x-5">
             {Object.values(routes)
               .filter((route) => route.href !== '/')
               .map((route) => (
@@ -30,6 +30,8 @@ export default function Header() {
                       'transition-colors duration-200 ease-out',
                       'hover:text-gray-foreground',
                       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
+                      "before:content-[''] hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:h-0.5 hover:before:w-full",
+                      'hover:before:bg-primary-600',
                     )}
                     activeClassName={clsx(
                       'text-primary-600 hover:text-primary-600',

@@ -21,7 +21,12 @@ const inter = Inter({
 export default function RootLayout({ children }: NextLayoutProps) {
   return (
     <html lang="ja" dir="ltr">
-      <body className={clsx(inter.variable, 'font-base text-gray-foreground')}>
+      <body
+        className={clsx(
+          inter.variable,
+          'overflow-y-scroll font-base text-gray-foreground',
+        )}
+      >
         <Header />
         {children}
         <Footer />

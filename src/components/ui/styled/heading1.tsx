@@ -1,15 +1,15 @@
 import React from 'react';
 import clsx from '@/utils/css/clsx';
 
-type Heading1Props = React.ComponentPropsWithRef<'h2'>;
+type Heading1Props = React.ComponentPropsWithRef<'h1'>;
 
 const Heading1 = React.forwardRef<HTMLHeadingElement, Heading1Props>(
   (props, ref) => {
     const { className, ...restProps } = props;
 
     return (
-      <h2
-        className={clsx('text-3xl font-bold lg:text-4xl', className)}
+      <h1
+        className={clsx('mb-8 text-4xl font-bold leading-tight', className)}
         {...restProps}
         ref={ref}
       />

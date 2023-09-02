@@ -8,8 +8,11 @@ const Heading2 = React.forwardRef<HTMLHeadingElement, Heading2Props>(
     const { className, ...restProps } = props;
 
     return (
-      <h3
-        className={clsx('text-xl font-bold lg:text-2xl', className)}
+      <h2
+        className={clsx(
+          'mb-6 mt-12 text-2xl font-bold leading-tight',
+          className,
+        )}
         {...restProps}
         ref={ref}
       />
