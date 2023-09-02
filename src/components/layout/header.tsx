@@ -7,12 +7,12 @@ import ActiveLink from '../ui/unstyled/active-link';
 
 export default function Header() {
   return (
-    <header className="flex h-[64px] items-center border-b border-solid border-b-gray-light-300">
+    <header className="flex h-[64px] items-center border-b border-solid border-b-gray-light-300 sm:h-[72px]">
       <Container>
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak max-[350px]:text-base sm:text-2xl"
+            className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak max-[350px]:text-base sm:text-2xl"
           >
             Yuta Hasegawa
           </Link>
@@ -25,7 +25,7 @@ export default function Header() {
                   <ActiveLink
                     href={route.href}
                     className={clsx(
-                      'relative inline-flex h-[calc(64px-1px)] items-center px-2 max-[350px]:px-1.5 max-[350px]:text-sm sm:px-3',
+                      'relative inline-flex h-[calc(64px-1px)] items-center px-2 max-[350px]:px-1.5 max-[350px]:text-sm sm:h-[calc(72px-1px)] sm:px-3',
                       'font-bold text-gray-foreground/50',
                       'transition-colors duration-200 ease-out',
                       "hover:text-primary-600 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:h-0.5 hover:before:w-full hover:before:bg-transparent hover:before:content-['']",
