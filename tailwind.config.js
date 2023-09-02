@@ -27,6 +27,22 @@ function mapBy(object, callbackfn) {
  */
 const baseLineHeight = 1.75;
 
+const myColors = {
+  myBlue: {
+    50: '#eaf6ff',
+    100: '#d8eeff',
+    200: '#b9dcff',
+    300: '#8ec4ff',
+    400: '#629eff',
+    500: '#3e77ff',
+    600: '#1c4cff',
+    700: '#1e48f1',
+    800: '#1237c1',
+    900: '#183697',
+    950: '#0e1d58',
+  },
+};
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -42,7 +58,7 @@ module.exports = {
       lg: '1024px',
     },
     colors: {
-      primary: colors.indigo,
+      primary: myColors.myBlue,
       danger: colors.red,
       marker: colors.yellow[300],
       gray: {
