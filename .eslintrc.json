@@ -18,7 +18,10 @@
     "dot-notation": "warn",
     "no-useless-rename": "warn",
     "no-duplicate-imports": "error",
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
     "react/jsx-curly-brace-presence": "warn",
