@@ -19,6 +19,7 @@ import FieldLabel from './ui/styled/field-label';
 import FormErrorMessage from './ui/styled/form-error-message';
 import Heading1 from './ui/styled/heading1';
 import { Input, Textarea } from './ui/styled/input';
+import Paragraph from './ui/styled/paragraph';
 import Show from './ui/unstyled/show';
 
 type FeedbackNotificationProps = {
@@ -216,142 +217,143 @@ export default function ContactForm() {
   });
 
   return (
-    <div className="py-14">
+    <div className="pb-12 pt-10">
       <Container>
-        <div className="space-y-6">
-          <Heading1>お問い合わせ</Heading1>
+        <Heading1>お問い合わせ</Heading1>
 
-          <div>
-            <p>お気軽にお問い合わせください。</p>
-            <p aria-hidden="true" className="text-danger-500">
-              * は必須項目です。
-            </p>
-          </div>
+        <Paragraph>
+          お気軽にお問い合わせください。
+          <br />
+          <span aria-hidden="true" className="text-danger-500">
+            * は必須項目です。
+          </span>
+        </Paragraph>
 
-          <form
-            onSubmit={handleSubmit}
-            name={FORM_NAME}
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-          >
-            <input type="hidden" name="form-name" value="contact" />
-            <div className="space-y-5">
-              <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
-                <div className="md:w-1/3">
-                  <FieldLabel htmlFor="name" reqired>
-                    お名前
-                  </FieldLabel>
-                  <div className="mt-2">
-                    <Input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="田中 太郎"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      invalid={showError('name', errors, touched)}
-                      aria-describedby={createErrorId(id, 'name')}
-                    />
-                  </div>
-                  <Show when={showError('name', errors, touched)}>
-                    <FormErrorMessage
-                      id={createErrorId(id, 'name')}
-                      className="mt-1"
-                    >
-                      {errors.name}
-                    </FormErrorMessage>
-                  </Show>
-                </div>
-                <div className="md:w-2/3">
-                  <FieldLabel htmlFor="email" reqired>
-                    メールアドレス
-                  </FieldLabel>
-                  <div className="mt-2">
-                    <Input
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="email@example.com"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      invalid={showError('email', errors, touched)}
-                      aria-describedby={createErrorId(id, 'email')}
-                    />
-                  </div>
-                  <Show when={showError('email', errors, touched)}>
-                    <FormErrorMessage
-                      id={createErrorId(id, 'email')}
-                      className="mt-1"
-                    >
-                      {errors.email}
-                    </FormErrorMessage>
-                  </Show>
-                </div>
-              </div>
-              <div>
-                <FieldLabel htmlFor="companyName">会社名</FieldLabel>
+        <form
+          onSubmit={handleSubmit}
+          name={FORM_NAME}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="mt-10"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <div className="space-y-5">
+            <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
+              <div className="md:w-1/3">
+                <FieldLabel htmlFor="name" reqired>
+                  お名前
+                </FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
-                    name="companyName"
-                    id="companyName"
-                    placeholder="株式会社ABC / 自営業"
-                    value={values.companyName}
+                    name="name"
+                    id="name"
+                    placeholder="田中 太郎"
+                    value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    invalid={showError('companyName', errors, touched)}
-                    aria-describedby={createErrorId(id, 'companyName')}
+                    invalid={showError('name', errors, touched)}
+                    aria-describedby={createErrorId(id, 'name')}
                   />
                 </div>
-                <Show when={showError('companyName', errors, touched)}>
+                <Show when={showError('name', errors, touched)}>
                   <FormErrorMessage
-                    id={createErrorId(id, 'companyName')}
+                    id={createErrorId(id, 'name')}
                     className="mt-1"
                   >
-                    {errors.companyName}
+                    {errors.name}
                   </FormErrorMessage>
                 </Show>
               </div>
-              <div>
-                <FieldLabel htmlFor="message" reqired>
-                  お問い合わせ内容
+              <div className="md:w-2/3">
+                <FieldLabel htmlFor="email" reqired>
+                  メールアドレス
                 </FieldLabel>
                 <div className="mt-2">
-                  <Textarea
-                    name="message"
-                    id="message"
-                    value={values.message}
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="email@example.com"
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    rows={6}
-                    invalid={showError('message', errors, touched)}
-                    aria-describedby={createErrorId(id, 'message')}
+                    invalid={showError('email', errors, touched)}
+                    aria-describedby={createErrorId(id, 'email')}
                   />
                 </div>
-                <Show when={showError('message', errors, touched)}>
+                <Show when={showError('email', errors, touched)}>
                   <FormErrorMessage
-                    id={createErrorId(id, 'message')}
+                    id={createErrorId(id, 'email')}
                     className="mt-1"
                   >
-                    {errors.message}
+                    {errors.email}
                   </FormErrorMessage>
                 </Show>
               </div>
-              <div>
-                <Button
-                  disabled={
-                    existsValue(errors) || submitState.state === 'loading'
-                  }
-                  className="w-full lg:w-60"
-                >
-                  {submitState.state === 'loading' ? '送信中...' : '送信する'}
-                </Button>
-              </div>
             </div>
-          </form>
-        </div>
+            <div>
+              <FieldLabel htmlFor="companyName">会社名</FieldLabel>
+              <div className="mt-2">
+                <Input
+                  type="text"
+                  name="companyName"
+                  id="companyName"
+                  placeholder="株式会社ABC / 自営業"
+                  value={values.companyName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  invalid={showError('companyName', errors, touched)}
+                  aria-describedby={createErrorId(id, 'companyName')}
+                />
+              </div>
+              <Show when={showError('companyName', errors, touched)}>
+                <FormErrorMessage
+                  id={createErrorId(id, 'companyName')}
+                  className="mt-1"
+                >
+                  {errors.companyName}
+                </FormErrorMessage>
+              </Show>
+            </div>
+            <div>
+              <FieldLabel htmlFor="message" reqired>
+                お問い合わせ内容
+              </FieldLabel>
+              <div className="mt-2">
+                <Textarea
+                  name="message"
+                  id="message"
+                  value={values.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  rows={6}
+                  invalid={showError('message', errors, touched)}
+                  aria-describedby={createErrorId(id, 'message')}
+                />
+              </div>
+              <Show when={showError('message', errors, touched)}>
+                <FormErrorMessage
+                  id={createErrorId(id, 'message')}
+                  className="mt-1"
+                >
+                  {errors.message}
+                </FormErrorMessage>
+              </Show>
+            </div>
+            <div>
+              <Button
+                disabled={
+                  existsValue(errors) || submitState.state === 'loading'
+                }
+                className="w-full md:w-60"
+              >
+                {submitState.state === 'loading' ? '送信中...' : '送信する'}
+              </Button>
+            </div>
+          </div>
+        </form>
+
         {submitState.state === 'success' && (
           <FeedbackNotification
             className="mt-10"

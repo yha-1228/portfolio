@@ -36,13 +36,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      // 忘れそうなので明示
       // https://tailwindcss.com/docs/screens
       sm: '640px',
       md: '768px',
-      lg: '924px',
-      // xl: '1280px',
-      // '2xl': '1536px',
+      lg: '1024px',
     },
     colors: {
       primary: colors.indigo,
