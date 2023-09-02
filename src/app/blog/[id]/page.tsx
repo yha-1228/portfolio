@@ -34,7 +34,7 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
   const content = await getBlogContent(id);
 
   return (
-    <main className="py-8">
+    <main className="pb-12 pt-10">
       <Container>
         <TextLink
           href={routes.blog.href}
@@ -45,23 +45,24 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
         </TextLink>
 
         <article className="mt-8">
-          <Heading1>{content.title}</Heading1>
-          <p className="mt-2 text-gray-foreground-weak">
-            {formatISODate(content.publishedAt)}に投稿
-          </p>
-          <div className="mt-8 md:rounded-xl md:border md:border-solid md:border-gray-light-300 md:p-10">
+          <header>
+            <Heading1 className="mb-0">{content.title}</Heading1>
+            <p className="mt-4 text-sm font-normal text-gray-foreground-weak">
+              {formatISODate(content.publishedAt)} に投稿
+            </p>
+          </header>
+          <div className="mt-8 border-t border-solid border-t-gray-light-300 py-5 md:py-6">
             <Tag>{content.tag.tagName}</Tag>
             <div
               className={clsx(
-                'mt-6',
-                '[&>h1]:mb-5 [&>h1]:mt-10 [&>h1]:text-3xl',
-                '[&>h2]:mb-4 [&>h2]:mt-10 [&>h2]:text-2xl',
-                '[&>p]:my-4',
+                'pt-4',
+                '[&>h2]:mb-6 [&>h2]:mt-12 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:leading-tight',
+                '[&>p]:my-5',
                 '[&>ul]:pl-9',
                 '[&>ul>li]:list-disc',
               )}
               dangerouslySetInnerHTML={{
-                __html: `${content.body}`,
+                __html: content.body,
               }}
             />
           </div>

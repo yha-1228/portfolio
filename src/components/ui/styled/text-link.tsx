@@ -5,13 +5,10 @@ import { LinkComponentProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
 import ExternalLink, { ExternalLinkProps } from '../unstyled/external-link';
 
-const createClassName = (className?: string) => {
-  return clsx(
-    'rounded-sm underline-offset-[0.15em] hover:underline',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
-    className,
-  );
-};
+const baseClassName = clsx(
+  'rounded-sm underline-offset-[0.15em] hover:underline',
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
+);
 
 // ----------------------------------------
 
@@ -23,7 +20,7 @@ const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
 
     return (
       <Link
-        className={clsx(createClassName(), className)}
+        className={clsx(baseClassName, className)}
         {...restProps}
         ref={ref}
       />
@@ -46,7 +43,8 @@ const ExternalTextLink = React.forwardRef<
   return (
     <ExternalLink
       className={clsx(
-        createClassName('inline-flex items-center space-x-1'),
+        baseClassName,
+        'inline-flex items-center space-x-1',
         className,
       )}
       {...restProps}
