@@ -20,7 +20,7 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <div
         className={clsx(
-          `${fluid ? 'w-full' : 'container mx-auto'} px-4`,
+          `${fluid ? 'w-full' : 'container mx-auto'} px-5`,
           until && untilMaxWidthMap[until],
           className,
         )}
