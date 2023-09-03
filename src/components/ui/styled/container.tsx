@@ -1,20 +1,27 @@
 import React from 'react';
 import clsx from '@/utils/css/clsx';
 
+type Until = 'md' | 'lg';
+
+const untilMaxWidthMap: { [key in Until]: string } = {
+  md: 'max-w-screen-md',
+  lg: 'max-w-screen-lg',
+};
+
 type ContainerProps = React.ComponentPropsWithRef<'div'> & {
   fluid?: boolean;
-  lockLg?: boolean;
+  until?: Until;
 };
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (props, ref) => {
-    const { className, fluid, lockLg, ...restProps } = props;
+    const { className, fluid, until, ...restProps } = props;
 
     return (
       <div
         className={clsx(
           `${fluid ? 'w-full' : 'container mx-auto'} px-4`,
-          lockLg && 'lg:max-w-screen-md',
+          until && untilMaxWidthMap[until],
           className,
         )}
         {...restProps}

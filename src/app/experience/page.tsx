@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="pb-12 pt-10">
-      <Container lockLg>
+    <main className="py-14">
+      <Container until="md">
         <section className="space-y-6">
           <Heading1>職務経歴</Heading1>
           {items.map((item) => (

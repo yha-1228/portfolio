@@ -34,8 +34,8 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
   const content = await getBlogContent(id);
 
   return (
-    <main className="pb-12 pt-10">
-      <Container lockLg>
+    <main className="py-14">
+      <Container until="md">
         <TextLink
           href={routes.blog.href}
           className="inline-flex items-center space-x-1"
