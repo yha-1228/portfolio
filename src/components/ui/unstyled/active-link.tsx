@@ -8,6 +8,9 @@ import { OmitKey } from '@/types/utils';
 
 type ActiveLinkProps = OmitKey<LinkComponentProps, 'aria-current'>;
 
+/**
+ * `href`に指定したURLが現在地と同じとき、`data-active="true"`になる。
+ */
 const ActiveLink = React.forwardRef<HTMLAnchorElement, ActiveLinkProps>(
   (props, ref) => {
     const { href, ...restProps } = props;
