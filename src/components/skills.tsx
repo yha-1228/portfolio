@@ -1,11 +1,9 @@
 import React from 'react';
 import { Rank, SkillDetail, skillDetails, skillWords } from '@/data/skills';
 import clsx from '@/utils/css/clsx';
-import styles from './skills.module.css';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
 import Heading2 from './ui/styled/heading2';
-import Divide from './ui/unstyled/divide';
 import Show from './ui/unstyled/show';
 
 type SkillDetailCardProps = {
@@ -34,14 +32,14 @@ function SkillDetailCard(props: SkillDetailCardProps) {
     <div
       className={clsx(
         'rounded-lg px-5 lg:px-6',
-        'card-shadow bg-white',
+        'bg-white shadow-card',
         'border-2 border-solid',
-        accent ? 'border-primary-600' : 'border-transparent',
+        accent ? 'border-primary-600' : 'border-white',
         className,
       )}
     >
       <div className="pb-3 pt-4">
-        <h4 className="text-sm font-bold">{heading}</h4>
+        <h4 className="font-bold">{heading}</h4>
       </div>
       <div
         className={clsx(
@@ -87,60 +85,107 @@ function SkillDetailCard(props: SkillDetailCardProps) {
 
 export default function Skills() {
   return (
-    <div
-      className={clsx(
-        styles.root,
-        'border-t border-solid border-t-gray-light-200 pb-12 pt-10',
-      )}
-    >
-      <Container>
-        <Heading1>スキル紹介</Heading1>
-        <Heading2>言語・ツール</Heading2>
-        <div className="rounded-lg border border-solid border-gray-light-300 bg-white px-5 py-3">
-          <Divide
-            by={
-              <span className="px-1.5 text-lg text-gray-foreground-weak lg:text-xl">
-                /
-              </span>
-            }
-          >
-            {skillWords.map((skillWord) => (
-              <div
-                key={skillWord.label}
-                className={clsx(
-                  'inline-block whitespace-nowrap text-lg !leading-[1.2] text-gray-foreground-weak lg:text-xl',
-                  skillWord.specialty &&
-                    'marker font-bold text-gray-foreground',
-                )}
-              >
-                {skillWord.label}
+    <>
+      <div className="bg-gray-light-100 py-14">
+        <Container>
+          <Heading1>言語/FW等</Heading1>
+          <div className="space-y-8 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
+            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
+              <Heading2 className="mb-3 mt-2 text-2xl">フロントエンド</Heading2>
+              <div>
+                <ul className="list-inside list-disc space-y-1 pl-1">
+                  {skillWords
+                    .filter((s) => s.category === 'fe')
+                    .map((s) => (
+                      <li
+                        key={s.label}
+                        className={clsx(
+                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </li>
+                    ))}
+                </ul>
               </div>
-            ))}
-          </Divide>
-        </div>
+            </section>
+            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
+              <Heading2 className="mb-3 mt-2 text-2xl">バックエンド</Heading2>
+              <div>
+                <ul className="list-inside list-disc space-y-1 pl-1">
+                  {skillWords
+                    .filter((s) => s.category === 'be')
+                    .map((s) => (
+                      <li
+                        key={s.label}
+                        className={clsx(
+                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </section>
+            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
+              <Heading2 className="mb-3 mt-2 text-2xl">ツール等</Heading2>
+              <div>
+                <ul className="list-inside list-disc space-y-1 pl-1">
+                  {skillWords
+                    .filter((s) => s.category === 'tools')
+                    .map((s) => (
+                      <li
+                        key={s.label}
+                        className={clsx(
+                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </section>
+          </div>
+        </Container>
+      </div>
 
-        <Heading2 className="mt-12 border-t border-solid border-t-gray-light-300 pt-12">
-          可能な作業
-        </Heading2>
-        <ul className="mt-6 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">
-          {skillDetails.map((skillDetail, idx) => (
-            <li
-              key={skillDetail.category}
-              className="lg:w-[calc(50%-calc(16px/2))]"
-            >
-              <SkillDetailCard
-                accent={idx === 0}
-                heading={skillDetail.category}
-                items={skillDetail.items}
-                className={clsx(
-                  0 <= idx && idx <= 1 && 'lg:h-[calc(8px*60)]',
-                  2 <= idx && idx <= 3 && 'lg:h-[calc(8px*39)]',
-                )}
-              />
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </div>
+      <div className="bg-gray-light-100">
+        <Container>
+          <hr className="h-[2px] w-full border-0 bg-gray-light-300" />
+        </Container>
+      </div>
+
+      <div className="bg-gray-light-100 py-14">
+        <Container>
+          <Heading1>提供可能な業務</Heading1>
+          <ul className="mt-6 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">
+            {skillDetails.map((skillDetail, idx) => (
+              <li
+                key={skillDetail.category}
+                className="lg:w-[calc(50%-calc(16px/2))]"
+              >
+                <SkillDetailCard
+                  accent={idx === 0}
+                  heading={skillDetail.category}
+                  items={skillDetail.items}
+                  className={clsx(
+                    0 <= idx && idx <= 1 && 'lg:h-[calc(8px*60)]',
+                    2 <= idx && idx <= 3 && 'lg:h-[calc(8px*39)]',
+                  )}
+                />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </div>
+    </>
   );
 }

@@ -101,6 +101,10 @@ module.exports = {
       lineHeight: {
         base: baseLineHeight.toString(),
       },
+      boxShadow: {
+        card: '0px 2px 25px -15px rgba(0, 0, 0, 0.2)',
+        wide: '0 30px 60px rgba(0,0,0,.12)',
+      },
     },
   },
   plugins: [],

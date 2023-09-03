@@ -15,8 +15,8 @@ export default async function Page() {
   const { contents } = await getBlogListResponse();
 
   return (
-    <main className="pb-12 pt-10">
-      <Container lockLg>
+    <main className="py-14">
+      <Container>
         <section className="space-y-6">
           <Heading1>ブログ</Heading1>
           <ul>

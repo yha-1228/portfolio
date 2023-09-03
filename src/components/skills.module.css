@@ -1,7 +1,0 @@
-.root {
-  background: linear-gradient(
-    to bottom,
-    theme(colors.gray.light-50) 0%,
-    theme(colors.gray.light-100) 100%
-  );
-}

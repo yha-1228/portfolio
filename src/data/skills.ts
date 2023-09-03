@@ -1,20 +1,51 @@
-export const skillWords = [
-  { label: 'HTML', specialty: true },
-  { label: 'CSS', specialty: true },
-  { label: 'Sass', specialty: true },
-  { label: 'CSS in JS', specialty: true },
-  { label: 'JavaScript', specialty: true },
-  { label: 'TypeScript', specialty: true },
-  { label: 'jQuery' },
-  { label: 'React', specialty: true },
-  { label: 'Next.js' },
-  { label: 'Node.js' },
-  { label: 'Express', specialty: true },
-  { label: 'PHP' },
-  { label: 'Java' },
-  { label: 'SQL' },
-  { label: 'Figma' },
-  { label: 'Git' },
+type SkillWord = {
+  label: string;
+  strong?: boolean;
+  category: 'fe' | 'be' | 'tools';
+  category2: 'lang' | 'libOrFw' | 'tools';
+};
+
+export const skillWords: SkillWord[] = [
+  {
+    category2: 'lang',
+    category: 'fe',
+    label: 'React',
+    strong: true,
+  },
+  { category2: 'libOrFw', category: 'fe', label: 'Next.js' },
+  { category2: 'lang', category: 'fe', label: 'TypeScript', strong: true },
+  {
+    category2: 'lang',
+    category: 'fe',
+    label: 'HTML/CSS/JavaScript',
+    strong: true,
+  },
+  { category2: 'lang', category: 'fe', label: 'Sass(Scss)', strong: true },
+  { category2: 'lang', category: 'fe', label: 'CSS in JS', strong: true },
+  { category2: 'lang', category: 'fe', label: 'Tailwind CSS' },
+  { category2: 'libOrFw', category: 'fe', label: 'jQuery' },
+
+  {
+    category2: 'lang',
+    category: 'be',
+    label: 'TypeScript(Backend)',
+    strong: true,
+  },
+  { category2: 'lang', category: 'be', label: 'Node.js', strong: true },
+  { category2: 'libOrFw', category: 'be', label: 'Express', strong: true },
+  { category2: 'lang', category: 'be', label: 'PHP' },
+  { category2: 'lang', category: 'be', label: 'Java' },
+  { category2: 'lang', category: 'be', label: 'SQL' },
+
+  {
+    category2: 'tools',
+    category: 'tools',
+    label: 'Visual Studio Code',
+    strong: true,
+  },
+  { category2: 'tools', category: 'tools', label: 'Git' },
+  { category2: 'tools', category: 'tools', label: 'Figma' },
+  { category2: 'tools', category: 'tools', label: 'iTerm2' },
 ];
 
 export type Rank = 'good' | 'normal' | 'bad';

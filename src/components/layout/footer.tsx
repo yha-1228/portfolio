@@ -22,7 +22,7 @@ const COPYRIGHT_TEXT = `Yuta Hasegawa © ${new Date().getFullYear()}`;
 
 export default function Footer() {
   return (
-    <footer className="border-t border-solid border-t-gray-light-200 bg-gray-light-100 pb-14 pt-10">
+    <footer className="border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10">
       <Container>
         <div>
           <div className="flex justify-between">
