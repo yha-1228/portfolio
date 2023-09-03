@@ -198,7 +198,7 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<SubmitState>({
     state: 'idle',
   });
-  const [topErrorVisible, setTopErrorVisible] = useState(false);
+  const [allErrorVisible, setAllErrorVisible] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -213,7 +213,7 @@ export default function ContactForm() {
 
     if (existsValue(errors)) {
       setTouched(mapObject(initialTouched, (_value) => true));
-      setTopErrorVisible(true);
+      setAllErrorVisible(true);
 
       return;
     }
@@ -368,7 +368,7 @@ export default function ContactForm() {
             </div>
 
             <div className="mt-10 lg:mt-14">
-              <Show when={existsValue(errors) && topErrorVisible}>
+              <Show when={existsValue(errors) && allErrorVisible}>
                 <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
                   <div className="font-bold">
                     {objectValues(errors).length}件の項目に問題があります。
