@@ -281,7 +281,7 @@ export default function ContactForm() {
                   <Show when={showError('name', errors, touched)}>
                     <FormErrorMessage
                       id={createErrorId(id, 'name')}
-                      className="mt-1"
+                      className="mt-2"
                     >
                       {errors.name}
                     </FormErrorMessage>
@@ -307,7 +307,7 @@ export default function ContactForm() {
                   <Show when={showError('email', errors, touched)}>
                     <FormErrorMessage
                       id={createErrorId(id, 'email')}
-                      className="mt-1"
+                      className="mt-2"
                     >
                       {errors.email}
                     </FormErrorMessage>
@@ -334,7 +334,7 @@ export default function ContactForm() {
                 <Show when={showError('companyName', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'companyName')}
-                    className="mt-1"
+                    className="mt-2"
                   >
                     {errors.companyName}
                   </FormErrorMessage>
@@ -359,7 +359,7 @@ export default function ContactForm() {
                 <Show when={showError('message', errors, touched)}>
                   <FormErrorMessage
                     id={createErrorId(id, 'message')}
-                    className="mt-1"
+                    className="mt-2"
                   >
                     {errors.message}
                   </FormErrorMessage>
