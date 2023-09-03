@@ -103,7 +103,7 @@ export default function Skills() {
       <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>言語/FW等</Heading1>
-          <div className="space-y-8 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
+          <div className="space-y-6 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
             {(['fe', 'be', 'tools'] as SkillWord['category'][]).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
@@ -113,9 +113,9 @@ export default function Skills() {
                 return (
                   <section
                     key={category}
-                    className="border-t border-solid border-t-gray-light-300 pt-1.5"
+                    className="border-t border-solid border-t-gray-foreground-weak sm:pt-1.5"
                   >
-                    <Heading2 className="mb-3 mt-2 text-2xl">
+                    <Heading2 className="mb-1 mt-2 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
                     <Divide
@@ -161,13 +161,13 @@ export default function Skills() {
         </Container>
       </div>
 
-      <div className="bg-gray-light-100">
+      <div className="bg-gray-light-100 pt-3">
         <Container>
-          <hr className="h-[2px] w-full border-0 bg-gray-light-300" />
+          <hr className="h-[2px] w-full border-0 bg-gray-foreground" />
         </Container>
       </div>
 
-      <div className="bg-gray-light-100 py-14">
+      <div className="bg-gray-light-100 pb-14 pt-8">
         <Container>
           <Heading1>提供可能な業務</Heading1>
           <ul className="mt-6 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">
