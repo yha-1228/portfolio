@@ -113,12 +113,12 @@ export default function Skills() {
                 return (
                   <section
                     key={category}
-                    className="border-t border-solid border-t-gray-foreground-weak pt-2"
+                    className="border-t border-solid border-t-gray-light-400 pt-2"
                   >
                     <Heading2 className="mb-1 mt-2 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
-                    <div className="sm:hidden">
+                    <div className="leading-loose sm:hidden">
                       <Divide
                         by={
                           <span className="text-gray-foreground-weak">
@@ -168,7 +168,7 @@ export default function Skills() {
         </Container>
       </div>
 
-      <div className="bg-gray-light-100 pb-14 pt-8">
+      <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>提供可能な業務</Heading1>
           <ul className="mt-6 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">

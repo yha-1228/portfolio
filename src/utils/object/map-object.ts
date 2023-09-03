@@ -1,6 +1,6 @@
 export default function mapObject<T extends object, U, K extends keyof T>(
   object: T,
-  callbackfn: (value: T, key?: K) => U,
+  callbackfn: (value: T, key: K) => U,
 ) {
   const newObject: { [k in K]?: U } = {};
 
