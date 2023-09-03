@@ -182,8 +182,8 @@ export default function Skills() {
                   heading={skillDetail.category}
                   items={skillDetail.items}
                   className={clsx(
-                    0 <= idx && idx <= 1 && 'lg:h-[calc(8px*60)]',
-                    2 <= idx && idx <= 3 && 'lg:h-[calc(8px*39)]',
+                    0 <= idx && idx <= 1 && 'lg:h-[calc(8px*62)]',
+                    2 <= idx && idx <= 3 && 'lg:h-[calc(8px*43)]',
                   )}
                 />
               </li>

@@ -17,12 +17,17 @@ export default function Header() {
 
   return (
     <header>
-      <div className="border-b border-solid border-b-gray-light-300">
+      <div
+        className={clsx(
+          !open && 'border-b border-solid border-b-gray-light-300',
+        )}
+      >
         <Container>
           <nav className="relative flex h-[4rem] items-center justify-between sm:h-[4.5rem]">
             <Link
               href="/"
               className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak"
+              onClick={() => setOpen(false)}
             >
               Yuta Hasegawa
             </Link>
@@ -49,7 +54,7 @@ export default function Header() {
                   <ActiveLink
                     href={route.href}
                     className={clsx(
-                      'relative inline-flex items-center px-3 sm:h-[calc(4.5rem-1px)]',
+                      'relative inline-flex items-center px-3 sm:h-[4.5rem]',
                       'font-bold text-gray-foreground/50',
                       'transition-colors duration-200 ease-out',
                       "hover:text-primary-600 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:h-0.5 hover:before:w-full hover:before:bg-transparent hover:before:content-['']",
@@ -70,29 +75,33 @@ export default function Header() {
         </Container>
       </div>
 
-      <Container
+      <div
         className={clsx(
-          !open && 'hidden',
-          'border-b border-solid border-b-gray-light-300 bg-white py-5 sm:hidden',
+          !open
+            ? 'hidden'
+            : 'border-b border-solid border-b-gray-light-300 bg-white py-3',
+          'sm:hidden',
         )}
       >
-        <ul className="flex space-x-4">
-          {routesWithoutHome.map((route) => (
-            <li key={route.href}>
-              <ActiveLink
-                href={route.href}
-                className={clsx(
-                  'flex h-11 items-center font-bold text-gray-foreground-weak',
-                  'data-[active]:rounded-full data-[active]:bg-primary-100 data-[active]:px-5 data-[active]:text-primary-600',
-                )}
-                onClick={() => setOpen(false)}
-              >
-                {route.label}
-              </ActiveLink>
-            </li>
-          ))}
-        </ul>
-      </Container>
+        <Container>
+          <ul className="divide-y divide-solid divide-gray-light-200">
+            {routesWithoutHome.map((route) => (
+              <li key={route.href}>
+                <ActiveLink
+                  href={route.href}
+                  className={clsx(
+                    'flex h-12 items-center text-gray-foreground-weak',
+                    'font-bold data-[active]:text-primary-600',
+                  )}
+                  onClick={() => setOpen(false)}
+                >
+                  {route.label}
+                </ActiveLink>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </div>
     </header>
   );
 }
