@@ -6,7 +6,6 @@ import { BsList, BsX } from 'react-icons/bs';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
 import Container from '../ui/styled/container';
-import { TextLink } from '../ui/styled/text-link';
 import ActiveLink from '../ui/unstyled/active-link';
 
 const routesWithoutHome = Object.values(routes).filter(
@@ -23,7 +22,7 @@ export default function Header() {
           <nav className="relative flex h-[4rem] items-center justify-between sm:h-[4.5rem]">
             <Link
               href="/"
-              className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak max-[350px]:text-base sm:text-2xl"
+              className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak"
             >
               Yuta Hasegawa
             </Link>
@@ -74,19 +73,22 @@ export default function Header() {
       <Container
         className={clsx(
           !open && 'hidden',
-          'border-b border-solid border-b-gray-light-300 bg-gray-light-100 py-3 sm:hidden',
+          'border-b border-solid border-b-gray-light-300 bg-white py-5 sm:hidden',
         )}
       >
         <ul className="flex space-x-4">
           {routesWithoutHome.map((route) => (
             <li key={route.href}>
-              <TextLink
+              <ActiveLink
                 href={route.href}
-                className="font-bold"
+                className={clsx(
+                  'flex h-11 items-center font-bold text-gray-foreground-weak',
+                  'data-[active]:rounded-full data-[active]:bg-primary-100 data-[active]:px-5 data-[active]:text-primary-600',
+                )}
                 onClick={() => setOpen(false)}
               >
                 {route.label}
-              </TextLink>
+              </ActiveLink>
             </li>
           ))}
         </ul>
