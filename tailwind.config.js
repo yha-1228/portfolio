@@ -1,9 +1,26 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const colors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
-const mapObject = require('./src/utils/object/map-object');
 
 // @see https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
+
+// --------------------------------------------------
+
+/**
+ * `Array.map`のオブジェクト版
+ */
+function mapBy(object, callbackfn) {
+  const newObject = {};
+
+  Object.entries(object).forEach(([key, value]) => {
+    const newValue = callbackfn(value, key);
+    newObject[key] = newValue;
+  });
+
+  return newObject;
+}
+
+// --------------------------------------------------
 
 /**
  * var(--base-line-height)の値と合わせる
@@ -76,7 +93,7 @@ module.exports = {
         ],
       },
       // line-heightだけ共通の値で上書きする
-      fontSize: mapObject(defaultTheme.fontSize, (fontSizeConfig) => [
+      fontSize: mapBy(defaultTheme.fontSize, (fontSizeConfig) => [
         fontSizeConfig[0],
         { lineHeight: baseLineHeight.toString() },
       ]),
