@@ -113,7 +113,7 @@ export default function Skills() {
                 return (
                   <section
                     key={category}
-                    className="border-t border-solid border-t-gray-light-300 pt-2"
+                    className="border-t border-solid border-t-gray-light-400 pt-2"
                   >
                     <Heading2 className="mb-1 mt-2 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}

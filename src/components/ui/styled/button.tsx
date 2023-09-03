@@ -32,7 +32,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={clsx(
           baseClassName,
-          'disabled:cursor-not-allowed disabled:bg-gray-disabled',
+          'disabled:cursor-not-allowed disabled:bg-gray-light-400',
           className,
         )}
         {...restProps}
@@ -65,7 +65,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       <Link
         className={clsx(
           baseClassName,
-          disabled && 'pointer-events-none bg-gray-disabled',
+          disabled && 'pointer-events-none bg-gray-light-400',
           className,
         )}
         aria-disabled={disabled}

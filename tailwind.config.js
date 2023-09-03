@@ -64,7 +64,7 @@ module.exports = {
       gray: {
         foreground: colors.gray[800],
         'foreground-weak': colors.gray[500],
-        disabled: colors.gray[400],
+        'light-400': colors.gray[400],
         'light-300': colors.gray[300],
         'light-200': colors.gray[200],
         'light-100': colors.gray[100],
