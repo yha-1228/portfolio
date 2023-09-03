@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import Link from 'next/link';
 import useIsMatchCurrentPath from '@/hooks/use-match-current-path';
 import { LinkComponentProps } from '@/lib/next/types';
@@ -11,17 +11,16 @@ type ActiveLinkProps = OmitKey<LinkComponentProps, 'aria-current'>;
 const ActiveLink = React.forwardRef<HTMLAnchorElement, ActiveLinkProps>(
   (props, ref) => {
     const { href, ...restProps } = props;
-    const isCurrent = useIsMatchCurrentPath(href);
+    const isActive = useIsMatchCurrentPath(href);
 
-    return (
-      <Link
-        aria-current={isCurrent ? 'page' : undefined}
-        data-current={isCurrent ? true : undefined}
-        href={href}
-        {...restProps}
-        ref={ref}
-      />
-    );
+    const activeProps = {
+      'aria-current': (isActive
+        ? 'page'
+        : undefined) as HTMLAttributes<HTMLAnchorElement>['aria-current'],
+      'data-active': isActive ? true : undefined,
+    };
+
+    return <Link {...activeProps} href={href} {...restProps} ref={ref} />;
   },
 );
 
