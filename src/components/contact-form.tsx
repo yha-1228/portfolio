@@ -223,7 +223,7 @@ export default function ContactForm() {
   });
 
   return (
-    <div className="border-t-4 border-solid border-t-gray-light-300 py-14 lg:pb-20">
+    <div className="py-14 lg:pb-20">
       <Container>
         <Heading1>お問い合わせ</Heading1>
 
