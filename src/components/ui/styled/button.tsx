@@ -41,7 +41,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon ? (
           <>
             <span>{children}</span>
-            <span className="ml-2 inline-flex items-center">{rightIcon}</span>
+            <span className="ml-2 inline-flex items-center" aria-hidden="true">
+              {rightIcon}
+            </span>
           </>
         ) : (
           children
@@ -75,7 +77,9 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         {rightIcon ? (
           <>
             <span>{children}</span>
-            <span className="ml-2 inline-flex items-center">{rightIcon}</span>
+            <span className="ml-2 inline-flex items-center" aria-hidden="true">
+              {rightIcon}
+            </span>
           </>
         ) : (
           children
