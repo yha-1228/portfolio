@@ -14,6 +14,7 @@ import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import existsValue from '@/utils/object/exists-value';
 import mapObject from '@/utils/object/map-object';
+import { objectKeys, objectValues } from '@/utils/object/typed-native';
 import { Button } from './ui/styled/button';
 import Container from './ui/styled/container';
 import FieldLabel from './ui/styled/field-label';
@@ -154,6 +155,13 @@ const initialTouched: ContactFormTouched = {
   message: false,
 };
 
+const keyLabelMap: { [key in keyof ContactFormValues]: string } = {
+  name: 'お名前',
+  email: 'メールアドレス',
+  companyName: '会社名',
+  message: 'お問い合わせ内容',
+};
+
 const FORM_NAME = 'contact';
 
 const feedbackText = {
@@ -190,6 +198,7 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<SubmitState>({
     state: 'idle',
   });
+  const [topErrorVisible, setTopErrorVisible] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -204,6 +213,8 @@ export default function ContactForm() {
 
     if (existsValue(errors)) {
       setTouched(mapObject(initialTouched, (_value) => true));
+      setTopErrorVisible(true);
+
       return;
     }
 
@@ -235,7 +246,12 @@ export default function ContactForm() {
           </span>
         </Paragraph>
 
-        <div className="mt-10 rounded-xl bg-white lg:border lg:border-solid lg:border-gray-light-200 lg:px-10 lg:pb-11 lg:pt-8 lg:shadow-wide">
+        <div
+          className={clsx(
+            'mt-10',
+            'lg:rounded-xl lg:border lg:border-solid lg:border-gray-light-200 lg:bg-white lg:px-10 lg:pb-11 lg:pt-8 lg:shadow-wide',
+          )}
+        >
           <form
             onSubmit={handleSubmit}
             name={FORM_NAME}
@@ -247,7 +263,7 @@ export default function ContactForm() {
               <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
                 <div className="md:w-1/3">
                   <FieldLabel htmlFor="name" reqired>
-                    お名前
+                    {keyLabelMap.name}
                   </FieldLabel>
                   <div className="mt-2">
                     <Input
@@ -273,7 +289,7 @@ export default function ContactForm() {
                 </div>
                 <div className="md:w-2/3">
                   <FieldLabel htmlFor="email" reqired>
-                    メールアドレス
+                    {keyLabelMap.email}
                   </FieldLabel>
                   <div className="mt-2">
                     <Input
@@ -299,7 +315,9 @@ export default function ContactForm() {
                 </div>
               </div>
               <div>
-                <FieldLabel htmlFor="companyName">会社名</FieldLabel>
+                <FieldLabel htmlFor="companyName">
+                  {keyLabelMap.companyName}
+                </FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
@@ -324,7 +342,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <FieldLabel htmlFor="message" reqired>
-                  お問い合わせ内容
+                  {keyLabelMap.message}
                 </FieldLabel>
                 <div className="mt-2">
                   <Textarea
@@ -350,6 +368,21 @@ export default function ContactForm() {
             </div>
 
             <div className="mt-10 lg:mt-14">
+              <Show when={existsValue(errors) && topErrorVisible}>
+                <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
+                  <div className="font-bold">
+                    {objectValues(errors).length}件の項目に問題があります。
+                  </div>
+                  <ul className="mt-3">
+                    {objectKeys(errors).map((key) => (
+                      <li key={key} className="text-sm">
+                        {keyLabelMap[key]}: {errors[key]}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Show>
+
               <Button
                 disabled={submitState.state === 'loading'}
                 className="w-full md:w-full"
