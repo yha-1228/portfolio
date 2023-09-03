@@ -1,4 +1,4 @@
-type SkillWord = {
+export type SkillWord = {
   label: string;
   strong?: boolean;
   category: 'fe' | 'be' | 'tools';

@@ -1,5 +1,11 @@
 import React from 'react';
-import { Rank, SkillDetail, skillDetails, skillWords } from '@/data/skills';
+import {
+  Rank,
+  SkillDetail,
+  SkillWord,
+  skillDetails,
+  skillWords,
+} from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
@@ -84,6 +90,13 @@ function SkillDetailCard(props: SkillDetailCardProps) {
 
 // ----------------------------------------
 
+const skillWordCategoryHeadingMap: { [key in SkillWord['category']]: string } =
+  {
+    fe: 'フロントエンド',
+    be: 'バックエンド',
+    tools: 'ツール等',
+  };
+
 export default function Skills() {
   return (
     <>
@@ -91,129 +104,60 @@ export default function Skills() {
         <Container>
           <Heading1>言語/FW等</Heading1>
           <div className="space-y-8 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
-            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
-              <Heading2 className="mb-3 mt-2 text-2xl">フロントエンド</Heading2>
-              <div className="sm:hidden">
-                <Divide
-                  by={<span className="text-gray-foreground-weak">{', '}</span>}
-                >
-                  {skillWords
-                    .filter((s) => s.category === 'fe')
-                    .map((s) => (
-                      <span
-                        key={s.label}
-                        className={clsx(
-                          'text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
+            {(['fe', 'be', 'tools'] as SkillWord['category'][]).map(
+              (category) => {
+                const filteredSkillWordsByCategory = skillWords.filter(
+                  (s) => s.category === category,
+                );
+
+                return (
+                  <section
+                    key={category}
+                    className="border-t border-solid border-t-gray-light-300 pt-1.5"
+                  >
+                    <Heading2 className="mb-3 mt-2 text-2xl">
+                      {skillWordCategoryHeadingMap[category]}
+                    </Heading2>
+                    <div className="sm:hidden">
+                      <Divide
+                        by={
+                          <span className="text-gray-foreground-weak">
+                            {', '}
+                          </span>
+                        }
                       >
-                        {s.label}
-                      </span>
-                    ))}
-                </Divide>
-              </div>
-              <div className="hidden sm:block">
-                <ul className="list-inside list-disc space-y-1 pl-1">
-                  {skillWords
-                    .filter((s) => s.category === 'fe')
-                    .map((s) => (
-                      <li
-                        key={s.label}
-                        className={clsx(
-                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
-                      >
-                        {s.label}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            </section>
-            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
-              <Heading2 className="mb-3 mt-2 text-2xl">バックエンド</Heading2>
-              <div className="sm:hidden">
-                <Divide
-                  by={<span className="text-gray-foreground-weak">{', '}</span>}
-                >
-                  {skillWords
-                    .filter((s) => s.category === 'be')
-                    .map((s) => (
-                      <span
-                        key={s.label}
-                        className={clsx(
-                          'text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
-                      >
-                        {s.label}
-                      </span>
-                    ))}
-                </Divide>
-              </div>
-              <div className="hidden sm:block">
-                <ul className="list-inside list-disc space-y-1 pl-1">
-                  {skillWords
-                    .filter((s) => s.category === 'be')
-                    .map((s) => (
-                      <li
-                        key={s.label}
-                        className={clsx(
-                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
-                      >
-                        {s.label}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            </section>
-            <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
-              <Heading2 className="mb-3 mt-2 text-2xl">ツール等</Heading2>
-              <div className="sm:hidden">
-                <Divide
-                  by={<span className="text-gray-foreground-weak">{', '}</span>}
-                >
-                  {skillWords
-                    .filter((s) => s.category === 'tools')
-                    .map((s) => (
-                      <span
-                        key={s.label}
-                        className={clsx(
-                          'text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
-                      >
-                        {s.label}
-                      </span>
-                    ))}
-                </Divide>
-              </div>
-              <div className="hidden sm:block">
-                <ul className="list-inside list-disc space-y-1 pl-1">
-                  {skillWords
-                    .filter((s) => s.category === 'tools')
-                    .map((s) => (
-                      <li
-                        key={s.label}
-                        className={clsx(
-                          'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
-                          s.strong &&
-                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                        )}
-                      >
-                        {s.label}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            </section>
+                        {filteredSkillWordsByCategory.map((s) => (
+                          <span
+                            key={s.label}
+                            className={clsx(
+                              'text-gray-foreground-weak',
+                              s.strong &&
+                                'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                            )}
+                          >
+                            {s.label}
+                          </span>
+                        ))}
+                      </Divide>
+                    </div>
+                    <ul className="hidden list-inside list-disc space-y-1 pl-1 sm:block">
+                      {filteredSkillWordsByCategory.map((s) => (
+                        <li
+                          key={s.label}
+                          className={clsx(
+                            'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
+                            s.strong &&
+                              'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                          )}
+                        >
+                          {s.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                );
+              },
+            )}
           </div>
         </Container>
       </div>
