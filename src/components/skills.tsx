@@ -103,7 +103,7 @@ export default function Skills() {
       <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>言語/FW等</Heading1>
-          <div className="space-y-6 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
+          <div className="space-y-10 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
             {(['fe', 'be', 'tools'] as SkillWord['category'][]).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
@@ -113,32 +113,33 @@ export default function Skills() {
                 return (
                   <section
                     key={category}
-                    className="border-t border-solid border-t-gray-foreground-weak sm:pt-1.5"
+                    className="border-t border-solid border-t-gray-foreground-weak pt-2"
                   >
                     <Heading2 className="mb-1 mt-2 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
-                    <Divide
-                      className="sm:hidden"
-                      by={
-                        <span className="text-gray-foreground-weak">
-                          {', '}
-                        </span>
-                      }
-                    >
-                      {filteredSkillWordsByCategory.map((s) => (
-                        <span
-                          key={s.label}
-                          className={clsx(
-                            'text-gray-foreground-weak',
-                            s.strong &&
-                              'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                          )}
-                        >
-                          {s.label}
-                        </span>
-                      ))}
-                    </Divide>
+                    <div className="sm:hidden">
+                      <Divide
+                        by={
+                          <span className="text-gray-foreground-weak">
+                            {', '}
+                          </span>
+                        }
+                      >
+                        {filteredSkillWordsByCategory.map((s) => (
+                          <span
+                            key={s.label}
+                            className={clsx(
+                              'text-gray-foreground-weak',
+                              s.strong &&
+                                'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                            )}
+                          >
+                            {s.label}
+                          </span>
+                        ))}
+                      </Divide>
+                    </div>
                     <ul className="hidden list-inside list-disc space-y-1 pl-1 sm:block">
                       {filteredSkillWordsByCategory.map((s) => (
                         <li

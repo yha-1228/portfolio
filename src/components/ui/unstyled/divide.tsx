@@ -1,22 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
-type DivideProps = {
-  children: React.ReactNode[];
+type DivideProps = React.PropsWithChildren<{
   by: React.ReactNode;
-  /**
-   * @default "div"
-   */
-  as?: React.ElementType<any>;
-  className?: string;
-  style?: React.CSSProperties;
-};
+}>;
 
+/**
+ * @example
+ * ```tsx
+ * <Divide by=",">{['foo', 'bar', 'buz']}</Divide>
+ * // output: foo, bar, buz
+ * ```
+ */
 export default function Divide(props: DivideProps) {
-  const { children, by, as: Wrapper = 'div', className, style } = props;
+  const { children, by } = props;
 
   return (
-    <Wrapper className={className} style={style}>
+    <>
       {React.Children.map(children, (child, index) => {
         if (index === 0) return child;
         return (
@@ -26,6 +25,6 @@ export default function Divide(props: DivideProps) {
           </>
         );
       })}
-    </Wrapper>
+    </>
   );
 }
