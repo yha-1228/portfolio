@@ -4,6 +4,7 @@ import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
 import Heading2 from './ui/styled/heading2';
+import Divide from './ui/unstyled/divide';
 import Show from './ui/unstyled/show';
 
 type SkillDetailCardProps = {
@@ -92,7 +93,27 @@ export default function Skills() {
           <div className="space-y-8 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
             <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
               <Heading2 className="mb-3 mt-2 text-2xl">フロントエンド</Heading2>
-              <div>
+              <div className="sm:hidden">
+                <Divide
+                  by={<span className="text-gray-foreground-weak">{', '}</span>}
+                >
+                  {skillWords
+                    .filter((s) => s.category === 'fe')
+                    .map((s) => (
+                      <span
+                        key={s.label}
+                        className={clsx(
+                          'text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </span>
+                    ))}
+                </Divide>
+              </div>
+              <div className="hidden sm:block">
                 <ul className="list-inside list-disc space-y-1 pl-1">
                   {skillWords
                     .filter((s) => s.category === 'fe')
@@ -113,7 +134,27 @@ export default function Skills() {
             </section>
             <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
               <Heading2 className="mb-3 mt-2 text-2xl">バックエンド</Heading2>
-              <div>
+              <div className="sm:hidden">
+                <Divide
+                  by={<span className="text-gray-foreground-weak">{', '}</span>}
+                >
+                  {skillWords
+                    .filter((s) => s.category === 'be')
+                    .map((s) => (
+                      <span
+                        key={s.label}
+                        className={clsx(
+                          'text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </span>
+                    ))}
+                </Divide>
+              </div>
+              <div className="hidden sm:block">
                 <ul className="list-inside list-disc space-y-1 pl-1">
                   {skillWords
                     .filter((s) => s.category === 'be')
@@ -134,7 +175,27 @@ export default function Skills() {
             </section>
             <section className="border-t border-solid border-t-gray-light-300 pt-1.5">
               <Heading2 className="mb-3 mt-2 text-2xl">ツール等</Heading2>
-              <div>
+              <div className="sm:hidden">
+                <Divide
+                  by={<span className="text-gray-foreground-weak">{', '}</span>}
+                >
+                  {skillWords
+                    .filter((s) => s.category === 'tools')
+                    .map((s) => (
+                      <span
+                        key={s.label}
+                        className={clsx(
+                          'text-gray-foreground-weak',
+                          s.strong &&
+                            'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                        )}
+                      >
+                        {s.label}
+                      </span>
+                    ))}
+                </Divide>
+              </div>
+              <div className="hidden sm:block">
                 <ul className="list-inside list-disc space-y-1 pl-1">
                   {skillWords
                     .filter((s) => s.category === 'tools')
