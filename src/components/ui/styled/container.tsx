@@ -4,8 +4,8 @@ import clsx from '@/utils/css/clsx';
 type Until = 'md' | 'lg';
 
 const untilMaxWidthMap: { [key in Until]: string } = {
-  md: 'max-w-screen-md',
-  lg: 'max-w-screen-lg',
+  md: 'md:max-w-screen-md',
+  lg: 'lg:max-w-screen-lg',
 };
 
 type ContainerProps = React.ComponentPropsWithRef<'div'> & {
@@ -20,7 +20,7 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <div
         className={clsx(
-          `${fluid ? 'w-full' : 'container mx-auto'} px-4`,
+          `${fluid ? 'w-full' : 'container mx-auto'} px-5`,
           until && untilMaxWidthMap[until],
           className,
         )}

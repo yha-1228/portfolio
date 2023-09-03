@@ -118,28 +118,27 @@ export default function Skills() {
                     <Heading2 className="mb-3 mt-2 text-2xl">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
-                    <div className="sm:hidden">
-                      <Divide
-                        by={
-                          <span className="text-gray-foreground-weak">
-                            {', '}
-                          </span>
-                        }
-                      >
-                        {filteredSkillWordsByCategory.map((s) => (
-                          <span
-                            key={s.label}
-                            className={clsx(
-                              'text-gray-foreground-weak',
-                              s.strong &&
-                                'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                            )}
-                          >
-                            {s.label}
-                          </span>
-                        ))}
-                      </Divide>
-                    </div>
+                    <Divide
+                      className="sm:hidden"
+                      by={
+                        <span className="text-gray-foreground-weak">
+                          {', '}
+                        </span>
+                      }
+                    >
+                      {filteredSkillWordsByCategory.map((s) => (
+                        <span
+                          key={s.label}
+                          className={clsx(
+                            'text-gray-foreground-weak',
+                            s.strong &&
+                              'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                          )}
+                        >
+                          {s.label}
+                        </span>
+                      ))}
+                    </Divide>
                     <ul className="hidden list-inside list-disc space-y-1 pl-1 sm:block">
                       {filteredSkillWordsByCategory.map((s) => (
                         <li
