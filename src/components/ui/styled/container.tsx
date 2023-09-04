@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import clsx from '@/utils/css/clsx';
 
@@ -8,29 +9,32 @@ const untilMaxWidthMap: { [key in Until]: string } = {
   lg: 'lg:max-w-screen-lg',
 };
 
-type ContainerProps = React.ComponentPropsWithRef<'div'> & {
+type ContainerProps = React.ComponentProps<'div'> & {
   fluid?: boolean;
   until?: Until;
+  /**
+   * @default "div"
+   */
+  as?: React.ElementType<any>;
 };
 
-const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  (props, ref) => {
-    const { className, fluid, until, ...restProps } = props;
+export default function Container(props: ContainerProps) {
+  const {
+    className,
+    fluid,
+    until,
+    as: Component = 'div',
+    ...restProps
+  } = props;
 
-    return (
-      <div
-        className={clsx(
-          `${fluid ? 'w-full' : 'container mx-auto'} px-5`,
-          until && untilMaxWidthMap[until],
-          className,
-        )}
-        {...restProps}
-        ref={ref}
-      />
-    );
-  },
-);
-
-Container.displayName = 'Container';
-
-export default Container;
+  return (
+    <Component
+      className={clsx(
+        `${fluid ? 'w-full' : 'container mx-auto'} px-5`,
+        until && untilMaxWidthMap[until],
+        className,
+      )}
+      {...restProps}
+    />
+  );
+}
