@@ -170,8 +170,16 @@ const feedbackText = {
   fail: '送信中にエラーが発生しました。',
 };
 
-const createErrorId = (uniqId: string, name: keyof ContactFormValues) => {
-  return `${uniqId}-${name}-error`;
+const createFieldId = (uniqId: string, key: keyof ContactFormTouched) => {
+  return `${uniqId}-${key}`;
+};
+
+const createLabelId = (uniqId: string, key: keyof ContactFormTouched) => {
+  return `${uniqId}-${key}-label`;
+};
+
+const createErrorId = (uniqId: string, key: keyof ContactFormValues) => {
+  return `${uniqId}-${key}-error`;
 };
 
 const showError = (
@@ -262,14 +270,18 @@ export default function ContactForm() {
             <div className="space-y-5">
               <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
                 <div className="md:w-1/3">
-                  <FieldLabel htmlFor="name" reqired>
+                  <FieldLabel
+                    id={createLabelId(id, 'name')}
+                    htmlFor={createFieldId(id, 'name')}
+                    reqired
+                  >
                     {keyLabelMap.name}
                   </FieldLabel>
                   <div className="mt-2">
                     <Input
                       type="text"
+                      id={createFieldId(id, 'name')}
                       name="name"
-                      id="name"
                       placeholder="田中 太郎"
                       value={values.name}
                       onChange={handleChange}
@@ -288,14 +300,18 @@ export default function ContactForm() {
                   </Show>
                 </div>
                 <div className="md:w-2/3">
-                  <FieldLabel htmlFor="email" reqired>
+                  <FieldLabel
+                    id={createLabelId(id, 'email')}
+                    htmlFor={createFieldId(id, 'email')}
+                    reqired
+                  >
                     {keyLabelMap.email}
                   </FieldLabel>
                   <div className="mt-2">
                     <Input
                       type="email"
+                      id={createFieldId(id, 'email')}
                       name="email"
-                      id="email"
                       placeholder="email@example.com"
                       value={values.email}
                       onChange={handleChange}
@@ -315,14 +331,17 @@ export default function ContactForm() {
                 </div>
               </div>
               <div>
-                <FieldLabel htmlFor="companyName">
+                <FieldLabel
+                  id={createLabelId(id, 'companyName')}
+                  htmlFor={createFieldId(id, 'companyName')}
+                >
                   {keyLabelMap.companyName}
                 </FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
+                    id={createFieldId(id, 'companyName')}
                     name="companyName"
-                    id="companyName"
                     placeholder="株式会社ABC / 自営業"
                     value={values.companyName}
                     onChange={handleChange}
@@ -341,13 +360,17 @@ export default function ContactForm() {
                 </Show>
               </div>
               <div>
-                <FieldLabel htmlFor="message" reqired>
+                <FieldLabel
+                  id={createLabelId(id, 'message')}
+                  htmlFor={createFieldId(id, 'message')}
+                  reqired
+                >
                   {keyLabelMap.message}
                 </FieldLabel>
                 <div className="mt-2">
                   <Textarea
+                    id={createFieldId(id, 'message')}
                     name="message"
-                    id="message"
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -376,7 +399,12 @@ export default function ContactForm() {
                   <ul className="mt-3">
                     {objectKeys(errors).map((key) => (
                       <li key={key} className="text-sm">
-                        {keyLabelMap[key]}: {errors[key]}
+                        <a
+                          href={`#${createLabelId(id, key)}`}
+                          className="underline underline-offset-2"
+                        >
+                          {keyLabelMap[key]}: {errors[key]}
+                        </a>
                       </li>
                     ))}
                   </ul>
