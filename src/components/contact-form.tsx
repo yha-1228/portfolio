@@ -413,7 +413,7 @@ export default function ContactForm() {
 
               <Button
                 disabled={submitState.state === 'loading'}
-                className="w-full md:w-full"
+                className="w-full"
               >
                 {submitState.state === 'loading' ? '送信中...' : '送信する'}
               </Button>
