@@ -17,24 +17,27 @@ export const skillWords: SkillWord[] = [
   {
     category2: 'lang',
     category: 'fe',
-    label: 'HTML/CSS/JavaScript',
+    label: 'CSS, Sass',
     strong: true,
   },
-  { category2: 'lang', category: 'fe', label: 'Sass(Scss)', strong: true },
-  { category2: 'lang', category: 'fe', label: 'CSS in JS', strong: true },
-  { category2: 'lang', category: 'fe', label: 'Tailwind CSS' },
+  {
+    category2: 'lang',
+    category: 'fe',
+    label: 'Tailwind CSS',
+    strong: true,
+  },
   { category2: 'libOrFw', category: 'fe', label: 'jQuery' },
+  { category2: 'libOrFw', category: 'fe', label: 'jotai', strong: true },
 
   {
     category2: 'lang',
     category: 'be',
-    label: 'TypeScript(Backend)',
+    label: 'TypeScript',
     strong: true,
   },
   { category2: 'lang', category: 'be', label: 'Node.js', strong: true },
   { category2: 'libOrFw', category: 'be', label: 'Express', strong: true },
   { category2: 'lang', category: 'be', label: 'PHP' },
-  { category2: 'lang', category: 'be', label: 'Java' },
   { category2: 'lang', category: 'be', label: 'SQL' },
 
   {
@@ -43,7 +46,7 @@ export const skillWords: SkillWord[] = [
     label: 'Visual Studio Code',
     strong: true,
   },
-  { category2: 'tools', category: 'tools', label: 'Git' },
+  { category2: 'tools', category: 'tools', label: 'Jira' },
   { category2: 'tools', category: 'tools', label: 'Figma' },
   { category2: 'tools', category: 'tools', label: 'iTerm2' },
 ];
