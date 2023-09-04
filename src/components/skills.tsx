@@ -115,22 +115,15 @@ export default function Skills() {
                     key={category}
                     className="border-t border-solid border-t-gray-light-400 pt-2"
                   >
-                    <Heading2 className="mb-1 mt-2 text-2xl sm:mb-3">
+                    <Heading2 className="mb-2 mt-1 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
                     <div className="leading-loose sm:hidden">
-                      <Divide
-                        by={
-                          <span className="text-gray-foreground-weak">
-                            {', '}
-                          </span>
-                        }
-                      >
+                      <Divide by=", ">
                         {filteredSkillWordsByCategory.map((s) => (
                           <span
                             key={s.label}
                             className={clsx(
-                              'text-gray-foreground-weak',
                               s.strong &&
                                 'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
                             )}
@@ -145,7 +138,7 @@ export default function Skills() {
                         <li
                           key={s.label}
                           className={clsx(
-                            'break-all pl-[1.5rem] indent-[-1.6rem] text-lg text-gray-foreground-weak',
+                            'break-all pl-[1.5rem] indent-[-1.6rem] text-lg',
                             s.strong &&
                               'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
                           )}
