@@ -220,7 +220,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     if (existsValue(errors)) {
-      setTouched(mapObject(initialTouched, (_value) => true));
+      setTouched(mapObject(initialTouched, true));
       setAllErrorVisible(true);
 
       return;
