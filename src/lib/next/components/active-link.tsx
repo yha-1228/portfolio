@@ -2,9 +2,9 @@
 
 import React, { HTMLAttributes } from 'react';
 import Link from 'next/link';
-import useIsMatchCurrentPath from '@/hooks/use-match-current-path';
 import { LinkComponentProps } from '@/lib/next/types';
 import { OmitKey } from '@/types/utils';
+import useIsMatchCurrentPath from '../hooks/use-match-current-path';
 
 type ActiveLinkProps = OmitKey<LinkComponentProps, 'aria-current'>;
 
