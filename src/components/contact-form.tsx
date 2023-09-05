@@ -49,8 +49,8 @@ type VariantIconMap = Record<
 >;
 
 const variantIconMap: VariantIconMap = {
-  primary: <BsFillCheckCircleFill style={{ width: 24, height: 24 }} />,
-  danger: <BsFillExclamationCircleFill style={{ width: 24, height: 24 }} />,
+  primary: <BsFillCheckCircleFill className="h-6 w-6" />,
+  danger: <BsFillExclamationCircleFill className="h-6 w-6" />,
 };
 
 function FeedbackNotification(props: FeedbackNotificationProps) {
@@ -72,7 +72,7 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
         className={`inline-flex items-center rounded-full ${variantButtonClassMap[variant]}`}
         onClick={onClose}
       >
-        <BsX style={{ width: 32, height: 32, color: '#fff' }} />
+        <BsX className="h-8 w-8" />
       </button>
     </div>
   );
