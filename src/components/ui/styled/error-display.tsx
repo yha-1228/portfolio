@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Button, ButtonLink } from '@/components/ui/styled/button';
+import { SITE_TITLE } from '@/constants';
 import useTitle from '@/hooks/use-title';
 import { NextErrorProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
-import { SITE_TITLE } from '../../../../constants';
 import Container from './container';
 
 type ErrorDisplayProps = {

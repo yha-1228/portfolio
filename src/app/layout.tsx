@@ -3,9 +3,9 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import { SITE_TITLE } from '@/constants';
 import { NextLayoutProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
-import { SITE_TITLE } from '../../constants';
 
 export const metadata: Metadata = {
   title: { template: `${SITE_TITLE} | %s`, default: SITE_TITLE },
