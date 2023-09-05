@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { BsList, BsX } from 'react-icons/bs';
+import { BsChevronRight, BsList, BsX } from 'react-icons/bs';
 import ActiveLink from '@/lib/next/components/active-link';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
@@ -85,12 +85,13 @@ export default function Header() {
               <ActiveLink
                 href={route.href}
                 className={clsx(
-                  'flex h-12 items-center font-bold text-gray-foreground-weak',
-                  'data-[active]:text-primary-600',
+                  'flex h-12 items-center justify-between font-bold',
+                  '[&>span]:text-gray-foreground-weak [&>span]:data-[active]:text-primary-600',
                 )}
                 onClick={() => setOpen(false)}
               >
-                {route.label}
+                <span>{route.label}</span>
+                <BsChevronRight />
               </ActiveLink>
             </li>
           ))}
