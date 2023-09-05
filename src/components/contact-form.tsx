@@ -155,6 +155,8 @@ const initialTouched: ContactFormTouched = {
   message: false,
 };
 
+const initialAllErrorVisible = false;
+
 const keyLabelMap: { [key in keyof ContactFormValues]: string } = {
   name: 'お名前',
   email: 'メールアドレス',
@@ -206,7 +208,9 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<SubmitState>({
     state: 'idle',
   });
-  const [allErrorVisible, setAllErrorVisible] = useState(false);
+  const [allErrorVisible, setAllErrorVisible] = useState(
+    initialAllErrorVisible,
+  );
 
   const handleChange = (e: React.ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -232,6 +236,7 @@ export default function ContactForm() {
       setSubmitState({ state: 'success' });
       setValues(initialValues);
       setTouched(initialTouched);
+      setAllErrorVisible(initialAllErrorVisible);
     } catch (error) {
       setSubmitState({ state: 'error', error });
     }
