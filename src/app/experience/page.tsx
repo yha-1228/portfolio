@@ -3,6 +3,7 @@ import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';
 import Timeline from '@/components/ui/styled/timeline';
+import { MAIN_CONTENT_ID } from '@/constants';
 import { items } from '@/data/experience';
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="py-14">
+    <main id={MAIN_CONTENT_ID} className="py-14">
       <Container until="md">
         <section className="space-y-6">
           <Heading1>職務経歴</Heading1>
