@@ -1,8 +1,7 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Footer from '@/components/layout/footer';
-import Header from '@/components/layout/header';
+import Layout from '@/components/layout';
 import { SITE_TITLE } from '@/constants';
 import { NextLayoutProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
@@ -27,9 +26,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
           'overflow-y-scroll font-base text-gray-foreground',
         )}
       >
-        <Header />
-        {children}
-        <Footer />
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
