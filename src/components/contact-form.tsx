@@ -220,6 +220,15 @@ export default function ContactForm() {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
+  const handleErrorListItemClick = (key: keyof ContactFormValues) => {
+    const labelId = createLabelId(id, key);
+    window.location.href = `#${labelId}`;
+
+    const fieldId = createFieldId(id, key);
+    const fieldElem = document.getElementById(fieldId);
+    fieldElem?.focus();
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -404,12 +413,13 @@ export default function ContactForm() {
                   <ul className="mt-3">
                     {objectKeys(errors).map((key) => (
                       <li key={key} className="text-sm">
-                        <a
-                          href={`#${createLabelId(id, key)}`}
+                        <button
+                          type="button"
+                          onClick={() => handleErrorListItemClick(key)}
                           className="underline underline-offset-2"
                         >
                           {keyLabelMap[key]}: {errors[key]}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>

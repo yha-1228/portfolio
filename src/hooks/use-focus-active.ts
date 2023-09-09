@@ -16,16 +16,12 @@ export default function useFocusActive<T extends HTMLElement>(
 
   useElementEvent(ref, 'focusin', (e) => {
     setFocusActive(true);
-    if (ref.current) {
-      onFocusin?.(e);
-    }
+    onFocusin?.(e);
   });
 
   useElementEvent(ref, 'focusout', (e) => {
     setFocusActive(false);
-    if (ref.current) {
-      onFocusout?.(e);
-    }
+    onFocusout?.(e);
   });
 
   return focusActive;
