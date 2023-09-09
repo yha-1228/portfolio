@@ -222,12 +222,11 @@ export default function ContactForm() {
 
   const handleErrorListItemClick = (key: keyof ContactFormValues) => {
     const labelId = createLabelId(id, key);
-    const labelElem = document.getElementById(labelId);
-    labelElem?.scrollIntoView({ behavior: 'smooth' });
+    window.location.href = `#${labelId}`;
 
     const fieldId = createFieldId(id, key);
     const fieldElem = document.getElementById(fieldId);
-    fieldElem?.focus({ preventScroll: true });
+    fieldElem?.focus();
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
