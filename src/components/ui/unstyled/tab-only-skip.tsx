@@ -2,9 +2,9 @@
 
 import React from 'react';
 import useFocusActive from '@/hooks/use-focus-active';
-import { OmitKey } from '@/types/utils';
 import clsx from '@/utils/css/clsx';
 import { generateContext } from '@/utils/react/context';
+import type { OmitKey } from '@/types/utils';
 
 const [Context, useContext] =
   generateContext<React.RefObject<HTMLAnchorElement>>();

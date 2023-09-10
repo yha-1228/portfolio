@@ -1,5 +1,5 @@
 import { createClient } from 'microcms-js-sdk';
-import { BlogContent, BlogListResponse } from './types';
+import type { BlogContent, BlogListResponse } from './types';
 
 /**
  * @see https://document.microcms.io/tutorial/next/next-getting-started

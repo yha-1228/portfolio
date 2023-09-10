@@ -4,9 +4,9 @@ import React from 'react';
 import { Button, ButtonLink } from '@/components/ui/styled/button';
 import { SITE_TITLE } from '@/constants';
 import useTitle from '@/hooks/use-title';
-import { NextErrorProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
 import Container from './container';
+import type { NextErrorProps } from '@/lib/next/types';
 
 type ErrorDisplayProps = {
   className?: string;

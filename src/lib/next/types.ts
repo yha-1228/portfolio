@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import type Link from 'next/link';
 
 /**
  * Type of `generateMetadata` args

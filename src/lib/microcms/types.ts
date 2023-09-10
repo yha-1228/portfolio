@@ -1,5 +1,8 @@
-import { MicroCMSListContent, MicroCMSListResponse } from 'microcms-js-sdk';
-import { Prettify } from '@/types/utils';
+import type { Prettify } from '@/types/utils';
+import type {
+  MicroCMSListContent,
+  MicroCMSListResponse,
+} from 'microcms-js-sdk';
 
 type Content<TFields> = Prettify<TFields & MicroCMSListContent>;
 

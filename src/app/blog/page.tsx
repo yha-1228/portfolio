@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import Link from 'next/link';
 import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
@@ -6,6 +5,7 @@ import Tag from '@/components/ui/styled/tag';
 import { getBlogListResponse } from '@/lib/microcms/client';
 import { routes } from '@/routes';
 import { formatISODate } from '@/utils/date/formatter';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ブログ',
