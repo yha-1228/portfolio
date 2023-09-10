@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Tag from '@/components/ui/styled/tag';
-import { MAIN_CONTENT_ID } from '@/constants';
 import { getBlogListResponse } from '@/lib/microcms/client';
 import { routes } from '@/routes';
 import { formatISODate } from '@/utils/date/formatter';
@@ -16,7 +15,7 @@ export default async function Page() {
   const { contents } = await getBlogListResponse();
 
   return (
-    <main id={MAIN_CONTENT_ID} className="py-14">
+    <div className="py-14">
       <Container>
         <section className="space-y-6">
           <Heading1>ブログ</Heading1>
@@ -40,6 +39,6 @@ export default async function Page() {
           </ul>
         </section>
       </Container>
-    </main>
+    </div>
   );
 }
