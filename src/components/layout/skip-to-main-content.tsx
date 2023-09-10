@@ -2,8 +2,8 @@
 
 import { MAIN_CONTENT_ID } from '@/constants';
 import clsx from '@/utils/css/clsx';
-import Container from './ui/styled/container';
-import TabOnlySkip from './ui/unstyled/tab-only-skip';
+import Container from '../ui/styled/container';
+import TabOnlySkip from '../ui/unstyled/tab-only-skip';
 
 export default function SkipToMainContent() {
   return (

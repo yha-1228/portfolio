@@ -1,10 +1,6 @@
 import React from 'react';
 
-export function createContext<T>(defaultValue?: T) {
-  return React.createContext<T | undefined>(defaultValue);
-}
-
-type Options<T> = {
+type GenerateContextOptions<T> = {
   defaultValue?: T;
   /**
    * @default "useContext"
@@ -16,7 +12,7 @@ type Options<T> = {
   providerName?: string;
 };
 
-export function generateContext<T>(options: Options<T> = {}) {
+export function generateContext<T>(options: GenerateContextOptions<T> = {}) {
   const {
     defaultValue,
     hookName = 'useContext',
@@ -28,7 +24,7 @@ export function generateContext<T>(options: Options<T> = {}) {
     const value = React.useContext(Context);
     if (!value)
       throw new Error(`${hookName} must be inside <${providerName} />`);
-    return value;
+    return value as T;
   }
 
   return [Context, useContext] as const;

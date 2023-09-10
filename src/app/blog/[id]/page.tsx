@@ -4,7 +4,6 @@ import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Tag from '@/components/ui/styled/tag';
 import { TextLink } from '@/components/ui/styled/text-link';
-import { MAIN_CONTENT_ID } from '@/constants';
 import { getBlogContent, getBlogListResponse } from '@/lib/microcms/client';
 import {
   GenerateMetadataProps,
@@ -35,7 +34,7 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
   const content = await getBlogContent(id);
 
   return (
-    <main id={MAIN_CONTENT_ID} className="py-14">
+    <div className="py-14">
       <Container until="md">
         <TextLink
           href={routes.blog.href}
@@ -69,6 +68,6 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
           </div>
         </article>
       </Container>
-    </main>
+    </div>
   );
 }
