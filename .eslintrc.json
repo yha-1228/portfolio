@@ -9,12 +9,15 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "import", "tailwindcss"],
   "rules": {
+    // Tailwind CSS
     "tailwindcss/classnames-order": [
       "warn",
       {
         "callees": ["clsx", "twMerge", "createClassName"]
       }
     ],
+
+    // JavaScript
     "dot-notation": "warn",
     "no-useless-rename": "warn",
     "no-duplicate-imports": "error",
@@ -22,6 +25,8 @@
       "warn",
       { "argsIgnorePattern": "^_" }
     ],
+
+    // React
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
     "react/jsx-curly-brace-presence": "warn",
@@ -30,6 +35,8 @@
     "react/self-closing-comp": "warn",
     "react/jsx-fragments": "warn",
     "react/hook-use-state": "warn",
+
+    // Import plugin
     "import/newline-after-import": ["error", { "count": 1 }],
     "import/no-cycle": "error",
     "import/order": [
