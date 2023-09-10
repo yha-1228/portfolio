@@ -1,10 +1,11 @@
 'use client';
 
-import React, { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { LinkComponentProps } from '@/lib/next/types';
-import { OmitKey } from '@/types/utils';
 import useIsMatchCurrentPath from '../hooks/use-match-current-path';
+import type { LinkComponentProps } from '@/lib/next/types';
+import type { OmitKey } from '@/types/utils';
 
 type ActiveLinkProps = OmitKey<LinkComponentProps, 'aria-current'>;
 

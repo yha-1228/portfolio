@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Url } from 'next/dist/shared/lib/router/router';
 import useIsMatchCurrentPath from '../hooks/use-match-current-path';
+import type { Url } from 'next/dist/shared/lib/router/router';
 
 type ChildrenProps = {
   isActive: boolean;

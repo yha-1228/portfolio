@@ -1,10 +1,10 @@
 import '@/styles/globals.css';
-import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Layout from '@/components/layout';
 import { SITE_TITLE } from '@/constants';
-import { NextLayoutProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
+import type { NextLayoutProps } from '@/lib/next/types';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: { template: `${SITE_TITLE} | %s`, default: SITE_TITLE },

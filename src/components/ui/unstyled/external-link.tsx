@@ -1,5 +1,5 @@
 import React from 'react';
-import { OmitKey } from '@/types/utils';
+import type { OmitKey } from '@/types/utils';
 
 export type ExternalLinkProps = OmitKey<
   React.ComponentPropsWithRef<'a'>,

@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
 import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';
 import Timeline from '@/components/ui/styled/timeline';
 import { items } from '@/data/experience';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '職務経歴',

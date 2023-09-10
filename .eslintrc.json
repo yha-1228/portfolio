@@ -20,11 +20,21 @@
     // JavaScript
     "dot-notation": "warn",
     "no-useless-rename": "warn",
-    "no-duplicate-imports": "error",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       { "argsIgnorePattern": "^_" }
     ],
+
+    // TypeScript
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+    "@typescript-eslint/consistent-type-imports": "warn",
 
     // React
     "react/react-in-jsx-scope": "off",
@@ -37,6 +47,7 @@
     "react/hook-use-state": "warn",
 
     // Import plugin
+    "import/no-duplicates": "warn",
     "import/newline-after-import": ["error", { "count": 1 }],
     "import/no-cycle": "error",
     "import/order": [

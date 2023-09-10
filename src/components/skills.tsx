@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  Rank,
-  SkillDetail,
-  SkillWord,
-  skillDetails,
-  skillWords,
-} from '@/data/skills';
+import { skillDetails, skillWords } from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
 import Heading2 from './ui/styled/heading2';
 import Divide from './ui/unstyled/divide';
 import Show from './ui/unstyled/show';
+import type { Rank, SkillDetail, SkillWord } from '@/data/skills';
 
 type SkillDetailCardProps = {
   heading: React.ReactNode;
