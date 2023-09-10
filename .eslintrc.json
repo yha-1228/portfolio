@@ -7,7 +7,7 @@
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "plugins": ["@typescript-eslint", "import", "tailwindcss"],
   "rules": {
     "tailwindcss/classnames-order": [
       "warn",
