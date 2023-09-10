@@ -48,6 +48,5 @@ function Link(props: LinkProps) {
 
 // ----------------------------------------
 
-const TabOnlySkip = Object.assign(Provider, { Link });
-
-export default TabOnlySkip;
+export { Provider as TabOnlySkipContainer };
+export { Link as TabOnlySkipLink };
