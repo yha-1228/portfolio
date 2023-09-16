@@ -3,12 +3,13 @@ import clsx from '@/utils/css/clsx';
 import { px } from '@/utils/css/unit';
 import createStyleAttr from '@/utils/react/create-style-attr';
 import tailwindConfig from '../../../../tailwind.config';
+import AvoidTelLink from '../unstyled/avoid-tel-link';
 import Show from '../unstyled/show';
 
 const { theme } = resolveConfig(tailwindConfig);
 
 type TimelineItem = {
-  point: React.ReactNode;
+  point: string;
   heading: string;
   content?: React.ReactNode;
 };
@@ -45,7 +46,7 @@ export default function Timeline({ items }: TimelineProps) {
                 <div className="h-[var(--dot-size)] w-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
               </div>
               <div className="absolute top-[-0.85rem] font-semibold text-primary-600">
-                {item.point}
+                <AvoidTelLink>{item.point}</AvoidTelLink>
               </div>
               <div className="mt-6 border-t border-solid border-t-gray-light-300 pt-2">
                 <div className="py-1 text-xl font-bold leading-snug">

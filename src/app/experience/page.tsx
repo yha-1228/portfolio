@@ -2,6 +2,7 @@ import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';
 import Timeline from '@/components/ui/styled/timeline';
+import AvoidTelLink from '@/components/ui/unstyled/avoid-tel-link';
 import { items } from '@/data/experience';
 import type { Metadata } from 'next';
 
@@ -20,7 +21,7 @@ export default function Page() {
               <div className="space-y-1">
                 <Heading2>{item.company}</Heading2>
                 <div className="text-sm text-gray-foreground-weak">
-                  {item.kikan}
+                  <AvoidTelLink>{item.kikan}</AvoidTelLink>
                 </div>
               </div>
               <Timeline
