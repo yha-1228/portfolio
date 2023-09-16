@@ -1,8 +1,8 @@
 type Item = {
   company: string;
-  kikan: React.ReactNode;
+  kikan: string;
   experiences: Array<{
-    kikan: React.ReactNode;
+    kikan: string;
     title: string;
     description?: React.ReactNode;
   }>;
@@ -11,18 +11,10 @@ type Item = {
 export const items: Item[] = [
   {
     company: '株式会社アイキューブ',
-    kikan: (
-      <>
-        2019/04 <span>-</span> 2023/08
-      </>
-    ),
+    kikan: '2019/04 - 2023/08',
     experiences: [
       {
-        kikan: (
-          <>
-            2022/05 <span>-</span> 2023/07
-          </>
-        ),
+        kikan: '2022/05 - 2023/07',
         title: 'SFAツールの開発',
         description: (
           <>
@@ -36,11 +28,7 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: (
-          <>
-            2020/12 <span>-</span> 2022/05
-          </>
-        ),
+        kikan: '2020/12 - 2022/05',
         title: '請求書管理アプリの開発',
         description: (
           <>
@@ -54,11 +42,7 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: (
-          <>
-            2020/08 <span>-</span> 2020/11
-          </>
-        ),
+        kikan: '2020/08 - 2020/11',
         title: '勤怠・締め日管理アプリの開発',
         description: (
           <>
@@ -72,19 +56,11 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: (
-          <>
-            2020/05 <span>-</span> 2020/06
-          </>
-        ),
+        kikan: '2020/05 - 2020/06',
         title: '以下と同様',
       },
       {
-        kikan: (
-          <>
-            2019/07 <span>-</span> 2020/01
-          </>
-        ),
+        kikan: '2019/07 - 2020/01',
         title: '建物維持管理アプリの保守',
         description: (
           <>
