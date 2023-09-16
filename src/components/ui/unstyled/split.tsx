@@ -1,18 +1,18 @@
 import React from 'react';
 
-type DivideProps = React.PropsWithChildren<{
-  by: React.ReactNode;
+type SplitProps = React.PropsWithChildren<{
+  separator: React.ReactNode;
 }>;
 
 /**
  * @example
  * ```tsx
- * <Divide by=",">{['foo', 'bar', 'buz']}</Divide>
+ * <Split separator=",">{['foo', 'bar', 'buz']}</Split>
  * // output: foo, bar, buz
  * ```
  */
-export default function Divide(props: DivideProps) {
-  const { children, by } = props;
+export default function Split(props: SplitProps) {
+  const { children, separator } = props;
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Divide(props: DivideProps) {
         if (index === 0) return child;
         return (
           <>
-            {by}
+            {separator}
             {child}
           </>
         );
