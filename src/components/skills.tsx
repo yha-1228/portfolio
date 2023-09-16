@@ -4,8 +4,8 @@ import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
 import Heading2 from './ui/styled/heading2';
-import Divide from './ui/unstyled/divide';
 import Show from './ui/unstyled/show';
+import Split from './ui/unstyled/split';
 import type { Rank, SkillDetail, SkillWord } from '@/data/skills';
 
 type SkillDetailCardProps = {
@@ -114,7 +114,7 @@ export default function Skills() {
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
                     <div className="leading-loose sm:hidden">
-                      <Divide by=", ">
+                      <Split separator=", ">
                         {filteredSkillWordsByCategory.map((s) => (
                           <span
                             key={s.label}
@@ -126,7 +126,7 @@ export default function Skills() {
                             {s.label}
                           </span>
                         ))}
-                      </Divide>
+                      </Split>
                     </div>
                     <ul className="hidden list-inside list-disc space-y-1 pl-1 sm:block">
                       {filteredSkillWordsByCategory.map((s) => (
