@@ -1,9 +1,9 @@
 ---
 name: 'バグ報告'
-about: Use this template for tracking new features.
+about:
 title: ''
 labels: bug
-assignees: octocat
+assignees:
 ---
 
 ### 概要
