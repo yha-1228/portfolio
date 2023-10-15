@@ -3,7 +3,7 @@ name: 'バグ報告'
 about: ''
 title: ''
 labels: bug
-assignees:
+assignees: ''
 ---
 
 ### 概要
