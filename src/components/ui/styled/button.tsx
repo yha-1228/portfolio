@@ -63,6 +63,15 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
     const { rightIcon, disabled, className, children, ...restProps } = props;
 
+    const ariaProps: Pick<
+      LinkComponentProps,
+      'aria-disabled' | 'role' | 'tabIndex'
+    > = {
+      'aria-disabled': disabled,
+      role: 'button',
+      ...(disabled ? { tabIndex: -1 } : {}),
+    };
+
     return (
       <Link
         className={clsx(
@@ -70,7 +79,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           disabled && 'pointer-events-none bg-gray-light-400',
           className,
         )}
-        aria-disabled={disabled}
+        {...ariaProps}
         {...restProps}
         ref={ref}
       >
