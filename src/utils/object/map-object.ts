@@ -1,3 +1,5 @@
+import type { ValueOf } from '@/types/utils';
+
 /**
  * @example
  * ```ts
@@ -20,7 +22,7 @@
  */
 export default function mapObject<T extends object, U>(
   object: T,
-  condition: ((value: T[keyof T], key: keyof T) => U) | U,
+  condition: ((value: ValueOf<T>, key: keyof T) => U) | U,
 ) {
   const newObject: { [k in keyof T]?: U } = {};
 
