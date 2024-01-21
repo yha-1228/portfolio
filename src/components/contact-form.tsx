@@ -104,7 +104,7 @@ type ContactFormValues = {
   /**
    * お問い合わせ内容
    *
-   * @description 必須, 10000文字以内
+   * @description 必須, 10文字以上, 10000文字以内
    */
   message: string;
 };
@@ -139,6 +139,8 @@ function validate(values: ContactFormValues): ContactFormErrors {
 
   if (!v.exists(values.message)) {
     errors.message = m.required;
+  } else if (!v.isLength(values.message, { min: 10 })) {
+    errors.message = m.length({ min: 10 });
   } else if (!v.isLength(values.message, { max: 10000 })) {
     errors.message = m.length({ max: 10000 });
   }
@@ -393,14 +395,16 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'message')}
                   />
                 </div>
-                <Show when={showError('message', errors, touched)}>
-                  <FormErrorMessage
-                    id={createErrorId(id, 'message')}
-                    className="mt-2"
-                  >
-                    {errors.message}
-                  </FormErrorMessage>
-                </Show>
+                <div className="mt-2">
+                  <div className="text-sm text-gray-foreground-weak">
+                    10文字以上
+                  </div>
+                  <Show when={showError('message', errors, touched)}>
+                    <FormErrorMessage id={createErrorId(id, 'message')}>
+                      {errors.message}
+                    </FormErrorMessage>
+                  </Show>
+                </div>
               </div>
             </div>
 
