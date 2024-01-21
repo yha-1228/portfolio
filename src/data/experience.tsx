@@ -10,7 +10,7 @@ type Item = {
 
 export const items: Item[] = [
   {
-    company: '株式会社アイキューブ',
+    company: 'システム開発会社',
     kikan: '2019/04 - 2023/08',
     experiences: [
       {
