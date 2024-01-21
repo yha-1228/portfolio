@@ -24,5 +24,5 @@ export default function AvoidTelLink({ children }: AvildTelLinkProps) {
     return <>{children}</>;
   }
 
-  return <Split separator={<>&zwnj;</>}>{children.toString().split('')}</Split>;
+  return <Split separator={<>&zwnj;</>}>{children.split('')}</Split>;
 }
