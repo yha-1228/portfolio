@@ -3,7 +3,7 @@ type Item = {
   kikan: string;
   experiences: Array<{
     kikan: string;
-    title: string;
+    title: React.ReactNode;
     description?: React.ReactNode;
   }>;
 };
@@ -14,8 +14,15 @@ export const items: Item[] = [
     kikan: '2023/09 - 現在',
     experiences: [
       {
-        kikan: '2023/09 - 2024/06 (大手受託制作会社)',
-        title: '1. 求人掲載サイト開発',
+        kikan: '2023/09 - 2024/06',
+        title: (
+          <>
+            求人掲載サイト開発 <br />
+            <div className="mt-2 text-lg font-normal text-gray-foreground">
+              (大手受託制作会社)
+            </div>
+          </>
+        ),
         description: (
           <>
             <p>
@@ -39,7 +46,7 @@ export const items: Item[] = [
     experiences: [
       {
         kikan: '2022/05 - 2023/07',
-        title: '2. SFAツールの開発',
+        title: 'SFAツールの開発',
         description: (
           <>
             <p>
@@ -56,7 +63,7 @@ export const items: Item[] = [
       },
       {
         kikan: '2020/12 - 2022/05',
-        title: '3. 請求書管理アプリの開発',
+        title: '請求書管理アプリの開発',
         description: (
           <>
             <p>
@@ -73,7 +80,7 @@ export const items: Item[] = [
       },
       {
         kikan: '2020/08 - 2020/11',
-        title: '4. 勤怠・締め日管理アプリの開発',
+        title: '勤怠・締め日管理アプリの開発',
         description: (
           <>
             <p>
@@ -94,7 +101,7 @@ export const items: Item[] = [
       },
       {
         kikan: '2019/07 - 2020/01',
-        title: '5. 建物維持管理アプリの保守',
+        title: '建物維持管理アプリの保守',
         description: (
           <>
             <p>

@@ -10,7 +10,7 @@ const { theme } = resolveConfig(tailwindConfig);
 
 type TimelineItem = {
   point: string;
-  heading: string;
+  heading: React.ReactNode;
   content?: React.ReactNode;
 };
 
@@ -34,8 +34,8 @@ export default function Timeline({ items }: TimelineProps) {
     >
       {spacer}
       <ul className="flex-1 border-l-2 border-solid border-l-primary-600">
-        {items.map((item) => (
-          <li key={item.heading} className="mb-10 flex last:mb-0">
+        {items.map((item, index) => (
+          <li key={index} className="mb-10 flex last:mb-0">
             <div className="relative ml-[var(--space-between-content)] w-full">
               <div
                 className={clsx(
