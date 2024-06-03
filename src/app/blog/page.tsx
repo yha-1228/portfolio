@@ -19,7 +19,7 @@ export default async function Page() {
       <Container>
         <section className="space-y-6">
           <Heading1>ブログ</Heading1>
-          <ul>
+          <ul className="space-y-4">
             {contents.map((content) => (
               <li key={content.id}>
                 <Link
