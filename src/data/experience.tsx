@@ -14,7 +14,7 @@ export const items: Item[] = [
     kikan: '2023/09 - 現在',
     experiences: [
       {
-        kikan: '2023/09 - 2024/06',
+        kikan: '2023/09/19 - 2024/06',
         title: (
           <>
             求人掲載サイト開発 <br />
@@ -45,7 +45,7 @@ export const items: Item[] = [
     kikan: '2019/04 - 2023/08',
     experiences: [
       {
-        kikan: '2022/05 - 2023/07',
+        kikan: '2022/05/09 - 2023/07',
         title: 'SFAツールの開発',
         description: (
           <>
@@ -62,7 +62,7 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: '2020/12 - 2022/05',
+        kikan: '2020/12 - 2022/05/06',
         title: '請求書管理アプリの開発',
         description: (
           <>
