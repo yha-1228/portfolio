@@ -281,6 +281,7 @@ export default function ContactForm() {
             name={FORM_NAME}
             data-netlify="true"
             netlify-honeypot="bot-field"
+            noValidate
           >
             <input type="hidden" name="form-name" value="contact" />
             <div className="space-y-5">
