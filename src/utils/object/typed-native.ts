@@ -1,13 +1,15 @@
 /**
- * 型推論される`Object.keys`
+ * 型推論される`Object.entries`
  */
-export function objectKeys<T extends object>(o: T) {
-  return Object.keys(o) as (keyof T)[];
-}
+export function entriesOf<T extends object>(o: T) {
+  const result: [keyof T, T[Extract<keyof T, string>]][] = [];
 
-/**
- * 型推論される`Object.values`
- */
-export function objectValues<T extends object>(o: T) {
-  return Object.values(o) as T[];
+  for (const key in o) {
+    if (Object.prototype.hasOwnProperty.call(o, key)) {
+      const value = o[key];
+      result.push([key, value]);
+    }
+  }
+
+  return result;
 }

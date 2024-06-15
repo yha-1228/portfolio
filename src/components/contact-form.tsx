@@ -14,7 +14,7 @@ import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import existsValue from '@/utils/object/exists-value';
 import mapObject from '@/utils/object/map-object';
-import { objectKeys, objectValues } from '@/utils/object/typed-native';
+import { entriesOf } from '@/utils/object/typed-native';
 import { Button } from './ui/styled/button';
 import Container from './ui/styled/container';
 import FieldLabel from './ui/styled/field-label';
@@ -413,17 +413,21 @@ export default function ContactForm() {
               <Show when={existsValue(errors) && allErrorVisible}>
                 <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
                   <div className="font-bold">
-                    {objectValues(errors).length}件の項目に問題があります。
+                    {Object.values(errors).length}件の項目に問題があります。
                   </div>
-                  <ul className="mt-3">
-                    {objectKeys(errors).map((key) => (
-                      <li key={key} className="text-sm">
+                  <ul className="mt-3 space-y-1.5 sm:space-y-0">
+                    {entriesOf(errors).map(([key, error]) => (
+                      <li key={key} className="text-sm sm:flex sm:space-x-1">
+                        <div className="font-bold">
+                          {keyLabelMap[key]}
+                          <span className="hidden sm:inline">: </span>
+                        </div>
                         <button
                           type="button"
                           onClick={() => handleErrorListItemClick(key)}
-                          className="underline underline-offset-2"
+                          className="text-left underline underline-offset-2"
                         >
-                          {keyLabelMap[key]}: {errors[key]}
+                          {error}
                         </button>
                       </li>
                     ))}

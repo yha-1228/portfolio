@@ -11,10 +11,10 @@ type Item = {
 export const items: Item[] = [
   {
     company: '自営業',
-    kikan: '2023/09 - 現在',
+    kikan: '2023年9月 - 現在',
     experiences: [
       {
-        kikan: '2023/09/19 - 2024/06',
+        kikan: '2023年9月中旬 - 2024年6月',
         title: (
           <>
             求人掲載サイト開発 <br />
@@ -42,10 +42,10 @@ export const items: Item[] = [
   },
   {
     company: '株式会社アイキューブ',
-    kikan: '2019/04 - 2023/08',
+    kikan: '2019年4月 - 2023年8月',
     experiences: [
       {
-        kikan: '2022/05/09 - 2023/07',
+        kikan: '2022年5月初旬 - 2023年7月',
         title: 'SFAツールの開発',
         description: (
           <>
@@ -62,7 +62,7 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: '2020/12 - 2022/05/06',
+        kikan: '2020年12月 - 2022年5月初旬',
         title: '請求書管理アプリの開発',
         description: (
           <>
@@ -79,7 +79,7 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: '2020/08 - 2020/11',
+        kikan: '2020年8月 - 2020年11月',
         title: '勤怠・締め日管理アプリの開発',
         description: (
           <>
@@ -96,11 +96,11 @@ export const items: Item[] = [
         ),
       },
       {
-        kikan: '2020/05 - 2020/06',
+        kikan: '2020年5月 - 2020年6月',
         title: '以下同様',
       },
       {
-        kikan: '2019/07 - 2020/01',
+        kikan: '2019年7月 - 2020年1月',
         title: '建物維持管理アプリの保守',
         description: (
           <>
