@@ -415,15 +415,19 @@ export default function ContactForm() {
                   <div className="font-bold">
                     {Object.values(errors).length}件の項目に問題があります。
                   </div>
-                  <ul className="mt-3">
+                  <ul className="mt-3 space-y-1.5 sm:space-y-0">
                     {entriesOf(errors).map(([key, error]) => (
-                      <li key={key} className="text-sm">
+                      <li key={key} className="text-sm sm:flex sm:space-x-1">
+                        <div className="font-bold">
+                          {keyLabelMap[key]}
+                          <span className="hidden sm:inline">: </span>
+                        </div>
                         <button
                           type="button"
                           onClick={() => handleErrorListItemClick(key)}
-                          className="underline underline-offset-2"
+                          className="text-left underline underline-offset-2"
                         >
-                          {keyLabelMap[key]}: {error}
+                          {error}
                         </button>
                       </li>
                     ))}
