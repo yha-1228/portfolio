@@ -7,7 +7,7 @@
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import", "tailwindcss"],
+  "plugins": ["@typescript-eslint", "import", "tailwindcss", "unused-imports"],
   "rules": {
     // Tailwind CSS
     "tailwindcss/classnames-order": [
@@ -20,10 +20,6 @@
     // JavaScript
     "dot-notation": "warn",
     "no-useless-rename": "warn",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { "argsIgnorePattern": "^_" }
-    ],
 
     // TypeScript
     "@typescript-eslint/naming-convention": [
@@ -33,7 +29,6 @@
         "format": ["PascalCase"]
       }
     ],
-    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "@typescript-eslint/consistent-type-imports": "warn",
 
     // React
@@ -76,6 +71,19 @@
           "order": "asc",
           "caseInsensitive": true
         }
+      }
+    ],
+
+    // - unused-imports
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
       }
     ]
   }
