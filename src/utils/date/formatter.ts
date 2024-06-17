@@ -1,5 +1,4 @@
-import format from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
+import { format, parseISO } from "date-fns";
 
 export function formatISODate(dateStr: string | undefined) {
   if (!dateStr) return null;
