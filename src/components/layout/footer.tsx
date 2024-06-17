@@ -3,7 +3,12 @@ import { routes } from '@/routes';
 import Container from '../ui/styled/container';
 import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
 
-const myExternalLinks = [
+type LinkInterface = {
+  href: string;
+  label: string;
+};
+
+const myExternalLinks: LinkInterface[] = [
   {
     href: 'https://github.com/yha-1228',
     label: 'GitHub',
