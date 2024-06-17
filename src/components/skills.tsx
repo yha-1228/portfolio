@@ -133,7 +133,7 @@ export default function Skills() {
                         <li
                           key={s.label}
                           className={clsx(
-                            'break-all pl-[1.5rem] indent-[-1.6rem] text-lg',
+                            'break-all pl-6 indent-[-1.6rem] text-lg',
                             s.strong &&
                               'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
                           )}

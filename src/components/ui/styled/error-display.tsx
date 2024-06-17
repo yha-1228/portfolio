@@ -24,7 +24,7 @@ function ErrorDisplay(props: ErrorDisplayProps) {
         <div className="space-y-10 text-center">
           <section className="space-y-3">
             <h1 className="text-2xl font-bold">{heading}</h1>
-            <div className="leading-[1.5]">{detail}</div>
+            <div className="leading-normal">{detail}</div>
           </section>
           {action && <div>{action}</div>}
         </div>
@@ -45,8 +45,7 @@ export function NotFoundBoard() {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function ErrorBoard({ error, reset }: NextErrorProps) {
+export function ErrorBoard(_: NextErrorProps) {
   useTitle(`${SITE_TITLE} | エラーが発生しました`);
 
   return (

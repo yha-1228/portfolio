@@ -43,7 +43,7 @@ export default function Timeline({ items }: TimelineProps) {
                   'left-[calc(-1*calc(var(--space-between-content)+calc(var(--dot-size)/2))-2px+1px)]',
                 )}
               >
-                <div className="h-[var(--dot-size)] w-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
+                <div className="size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
               </div>
               <div className="absolute top-[-0.85rem] font-semibold text-primary-600">
                 <AvoidTelLink>{item.point}</AvoidTelLink>
