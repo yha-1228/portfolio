@@ -60,6 +60,7 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
                 '[&>p]:my-5',
                 '[&>ul]:pl-9',
                 '[&>ul>li]:list-disc',
+                '[&>hr]:my-6 [&>hr]:border-y-2 [&>hr]:text-gray-light-200',
               )}
               dangerouslySetInnerHTML={{
                 __html: content.body,
