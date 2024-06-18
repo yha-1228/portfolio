@@ -23,7 +23,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
       <body
         className={clsx(
           inter.variable,
-          'overflow-y-scroll font-base text-gray-foreground',
+          'flex min-h-dvh flex-col overflow-y-scroll font-base text-gray-foreground',
         )}
       >
         <Layout>{children}</Layout>
