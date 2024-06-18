@@ -35,7 +35,7 @@ export default function Header() {
 
           <button
             className={clsx(
-              'flex h-9 w-9 items-center justify-center sm:hidden',
+              'flex size-9 items-center justify-center sm:hidden',
               'absolute -right-1.5 top-1/2 -translate-y-1/2',
             )}
             onClick={() => setOpen((prev) => !prev)}
@@ -43,9 +43,9 @@ export default function Header() {
           >
             <span aria-hidden="true">
               {open ? (
-                <BsX className="h-8 w-8" />
+                <BsX className="size-8" />
               ) : (
-                <BsList className="h-8 w-8" />
+                <BsList className="size-8" />
               )}
             </span>
           </button>

@@ -3,7 +3,12 @@ import { routes } from '@/routes';
 import Container from '../ui/styled/container';
 import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
 
-const myExternalLinks = [
+type LinkInterface = {
+  href: string;
+  label: string;
+};
+
+const myExternalLinks: LinkInterface[] = [
   {
     href: 'https://github.com/yha-1228',
     label: 'GitHub',
@@ -22,7 +27,7 @@ const COPYRIGHT_TEXT = `Yuta Hasegawa © ${new Date().getFullYear()}`;
 
 export default function Footer() {
   return (
-    <footer className="border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10">
+    <footer className="mt-auto border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10">
       <Container>
         <div className="flex justify-between">
           <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
