@@ -243,7 +243,11 @@ export default function ContactForm() {
 
     setSubmitState({ state: 'loading' });
     try {
-      await sendContact(FORM_NAME, values);
+      await sendContact({
+        htmlFilepath: '/__forms.html',
+        formName: FORM_NAME,
+        data: values,
+      });
       setSubmitState({ state: 'success' });
       setValues(initialValues);
       setTouched(initialTouched);
