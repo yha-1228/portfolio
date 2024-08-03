@@ -1,28 +1,25 @@
-type Item = {
-  company: string;
+export type Experience = {
   kikan: string;
-  experiences: Array<{
-    kikan: string;
-    title: React.ReactNode;
-    description?: React.ReactNode;
-  }>;
+  title: React.ReactNode;
+  projectCompanyName?: React.ReactNode;
+  description?: React.ReactNode;
 };
 
-export const items: Item[] = [
+export type ExperiencesOverviewItem = {
+  company: string;
+  kikan: string;
+  experiences: Experience[];
+};
+
+export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
   {
     company: '自営業',
     kikan: '2023年9月 - 現在',
     experiences: [
       {
         kikan: '2023年9月中旬 - 2024年6月',
-        title: (
-          <>
-            求人掲載サイト開発 <br />
-            <div className="mt-2 text-lg font-normal text-gray-foreground">
-              (大手受託制作会社)
-            </div>
-          </>
-        ),
+        title: '求人掲載サイト開発',
+        projectCompanyName: '大手受託制作会社',
         description: (
           <>
             <p>

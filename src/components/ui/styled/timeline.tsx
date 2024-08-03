@@ -8,13 +8,13 @@ import Show from '../unstyled/show';
 
 const { theme } = resolveConfig(tailwindConfig);
 
-type TimelineItem = {
+export type TimelineItem = {
   point: string;
   heading: React.ReactNode;
   content?: React.ReactNode;
 };
 
-type TimelineProps = {
+export type TimelineProps = {
   items: TimelineItem[];
 };
 
