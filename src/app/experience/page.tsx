@@ -3,12 +3,35 @@ import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';
 import Timeline from '@/components/ui/styled/timeline';
 import AvoidTelLink from '@/components/ui/unstyled/avoid-tel-link';
-import { items } from '@/data/experience';
+import { experiencesOverviewItems } from '@/data/experience';
+import type { TimelineItem } from '@/components/ui/styled/timeline';
+import type { Experience } from '@/data/experience';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '職務経歴',
 };
+
+function experienceToTimelineItem(experience: Experience): TimelineItem {
+  const { kikan, title, projectCompanyName, description } = experience;
+
+  const heading = projectCompanyName ? (
+    <>
+      {title} <br />
+      <div className="mt-2 text-lg font-normal text-gray-foreground">
+        {projectCompanyName}
+      </div>
+    </>
+  ) : (
+    title
+  );
+
+  return {
+    point: kikan,
+    heading: heading,
+    content: description,
+  };
+}
 
 export default function Page() {
   return (
@@ -16,20 +39,21 @@ export default function Page() {
       <Container until="md">
         <section className="space-y-6">
           <Heading1>職務経歴</Heading1>
-          {items.map((item) => (
-            <section className="mt-12 space-y-5" key={item.company}>
+          {experiencesOverviewItems.map((experiencesOverviewItem) => (
+            <section
+              className="mt-12 space-y-5"
+              key={experiencesOverviewItem.company}
+            >
               <div className="space-y-1">
-                <Heading2>{item.company}</Heading2>
+                <Heading2>{experiencesOverviewItem.company}</Heading2>
                 <div className="text-sm text-gray-foreground-weak">
-                  <AvoidTelLink>{item.kikan}</AvoidTelLink>
+                  <AvoidTelLink>{experiencesOverviewItem.kikan}</AvoidTelLink>
                 </div>
               </div>
               <Timeline
-                items={item.experiences.map((experience) => ({
-                  point: experience.kikan,
-                  heading: experience.title,
-                  content: experience.description,
-                }))}
+                items={experiencesOverviewItem.experiences.map((experience) =>
+                  experienceToTimelineItem(experience),
+                )}
               />
             </section>
           ))}
