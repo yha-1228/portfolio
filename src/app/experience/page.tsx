@@ -19,7 +19,7 @@ function experienceToTimelineItem(experience: Experience): TimelineItem {
     <>
       {title} <br />
       <div className="mt-2 text-lg font-normal text-gray-foreground">
-        ({projectCompanyName})
+        {projectCompanyName}
       </div>
     </>
   ) : (
