@@ -4,18 +4,19 @@ import React from 'react';
 import { Button, ButtonLink } from '@/components/ui/styled/button';
 import { SITE_TITLE } from '@/constants';
 import useTitle from '@/hooks/use-title';
+import { isPageError404 } from '@/lib/next/helpers';
 import clsx from '@/utils/css/clsx';
 import Container from './container';
 import type { NextErrorProps } from '@/lib/next/types';
 
-type ErrorDisplayProps = {
+type ErrorBoardViewProps = {
   className?: string;
   heading: React.ReactNode;
   detail: React.ReactNode;
   action?: React.ReactNode;
 };
 
-function ErrorDisplay(props: ErrorDisplayProps) {
+function ErrorBoardView(props: ErrorBoardViewProps) {
   const { className, heading, detail, action } = props;
 
   return (
@@ -33,11 +34,13 @@ function ErrorDisplay(props: ErrorDisplayProps) {
   );
 }
 
+// ----------------------------------------
+
 export function NotFoundBoard() {
   useTitle(`${SITE_TITLE} | ページが見つかりません`);
 
   return (
-    <ErrorDisplay
+    <ErrorBoardView
       heading="ページが見つかりません"
       detail="アクセスしたページは存在しないか、削除された可能性があります。"
       action={<ButtonLink href="/">ホームに戻る</ButtonLink>}
@@ -45,11 +48,9 @@ export function NotFoundBoard() {
   );
 }
 
-export function ErrorBoard(_: NextErrorProps) {
-  useTitle(`${SITE_TITLE} | エラーが発生しました`);
-
+export function SystemErrorBoard() {
   return (
-    <ErrorDisplay
+    <ErrorBoardView
       heading="エラーが発生しました"
       detail="予期せぬエラーが発生しました。"
       action={
@@ -57,4 +58,16 @@ export function ErrorBoard(_: NextErrorProps) {
       }
     />
   );
+}
+
+export function ErrorDisplayRoot({ error }: NextErrorProps) {
+  useTitle(`${SITE_TITLE} | エラーが発生しました`);
+
+  const found404Error = isPageError404(error);
+
+  if (found404Error) {
+    return <NotFoundBoard />;
+  } else {
+    return <SystemErrorBoard />;
+  }
 }

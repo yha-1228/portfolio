@@ -1,6 +1,6 @@
 'use client';
 
-import { ErrorBoard } from '@/components/ui/styled/error-display';
+import { ErrorDisplayRoot } from '@/components/ui/styled/error-display';
 import { SITE_TITLE } from '@/constants';
 import useTitle from '@/hooks/use-title';
 import type { NextErrorProps } from '@/lib/next/types';
@@ -12,7 +12,7 @@ export default function Error({ error, reset }: NextErrorProps) {
   return (
     <html lang="ja">
       <body>
-        <ErrorBoard error={error} reset={reset} />
+        <ErrorDisplayRoot error={error} reset={reset} />
       </body>
     </html>
   );
