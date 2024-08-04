@@ -1,8 +1,8 @@
 'use client';
 
-import { ErrorBoard } from '@/components/ui/styled/error-display';
+import { ErrorDisplayRoot } from '@/components/ui/styled/error-display';
 import type { NextErrorProps } from '@/lib/next/types';
 
 export default function Error({ error, reset }: NextErrorProps) {
-  return <ErrorBoard error={error} reset={reset} />;
+  return <ErrorDisplayRoot error={error} reset={reset} />;
 }
