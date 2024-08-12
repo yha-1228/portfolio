@@ -15,8 +15,8 @@ const baseClassName = clsx(
   'inline-flex items-center justify-center rounded-md px-5 py-2 font-bold',
   'transition-colors duration-200 ease-out',
   'bg-primary-600 text-white',
-  'hover:bg-primary-700',
-  'active:bg-primary-700',
+  'hover:bg-primary-800',
+  'active:bg-primary-800',
   'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300',
 );
 
