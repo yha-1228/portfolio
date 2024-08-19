@@ -27,7 +27,10 @@ export default function Header() {
         <div className="relative flex h-[var(--root-height)] items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak"
+            className={clsx(
+              'text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak',
+              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
+            )}
             onClick={() => setOpen(false)}
           >
             Yuta Hasegawa
