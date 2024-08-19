@@ -8,15 +8,15 @@ import Show from '../unstyled/show';
 
 const { theme } = resolveConfig(tailwindConfig);
 
-export type TimelineItem = {
+export interface TimelineItem {
   point: string;
   heading: React.ReactNode;
   content?: React.ReactNode;
-};
+}
 
-export type TimelineProps = {
+export interface TimelineProps {
   items: TimelineItem[];
-};
+}
 
 export default function Timeline({ items }: TimelineProps) {
   const spacer = <div className="w-[calc(var(--dot-size)/2)]" />;

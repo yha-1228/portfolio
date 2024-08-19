@@ -6,17 +6,17 @@ import type {
 
 type Content<TFields> = Prettify<TFields & MicroCMSListContent>;
 
-type TagFields = {
+interface TagFields {
   tagName: string;
-};
+}
 
 export type TagContent = Content<TagFields>;
 
-type BlogFields = {
+interface BlogFields {
   title: string;
   body: string;
   tag: TagFields & MicroCMSListContent;
-};
+}
 
 export type BlogContent = Content<BlogFields>;
 

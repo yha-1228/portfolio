@@ -24,12 +24,12 @@ import { Input, Textarea } from './ui/styled/input';
 import Paragraph from './ui/styled/paragraph';
 import Show from './ui/unstyled/show';
 
-type FeedbackNotificationProps = {
+interface FeedbackNotificationProps {
   variant: 'primary' | 'danger';
   children?: React.ReactNode;
   onClose?: () => void;
   className?: string;
-};
+}
 
 type VariantClassMap = Record<FeedbackNotificationProps['variant'], string>;
 
@@ -82,7 +82,7 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
 
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
-type ContactFormValues = {
+interface ContactFormValues {
   /**
    * お名前
    *
@@ -107,7 +107,7 @@ type ContactFormValues = {
    * @description 必須, 10文字以上, 10000文字以内
    */
   message: string;
-};
+}
 
 const initialValues: ContactFormValues = {
   name: '',
