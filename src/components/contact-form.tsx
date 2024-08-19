@@ -82,7 +82,7 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
 
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
-interface ContactFormValues {
+type ContactFormValues = {
   /**
    * お名前
    *
