@@ -1,6 +1,6 @@
 import React from 'react';
 
-type GenerateContextOptions<T> = {
+interface GenerateContextOptions<T> {
   defaultValue?: T;
   /**
    * @default "useContext"
@@ -10,7 +10,7 @@ type GenerateContextOptions<T> = {
    * @default "Context.Provider"
    */
   providerName?: string;
-};
+}
 
 export function generateContext<T>(options: GenerateContextOptions<T> = {}) {
   const {

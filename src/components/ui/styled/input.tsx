@@ -4,12 +4,12 @@ import clsx from '@/utils/css/clsx';
 // common
 // ----------------------------------------
 
-type InputBaseProps = {
+interface InputBaseProps {
   /**
    * エラー時のスタイルと`aria-invalid`属性を指定する
    */
   invalid?: boolean;
-};
+}
 
 function createClassName(invalid: boolean | undefined) {
   return clsx(

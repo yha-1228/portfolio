@@ -8,12 +8,12 @@ import Show from './ui/unstyled/show';
 import Split from './ui/unstyled/split';
 import type { Rank, SkillDetail, SkillWord } from '@/data/skills';
 
-type SkillDetailCardProps = {
+interface SkillDetailCardProps {
   heading: React.ReactNode;
   items: SkillDetail['items'];
   accent?: boolean;
   className?: string;
-};
+}
 
 const rankHeadingMap: { [key in Rank]: string } = {
   good: '可能',

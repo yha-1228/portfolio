@@ -3,10 +3,10 @@ import { routes } from '@/routes';
 import Container from '../ui/styled/container';
 import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
 
-type LinkInterface = {
+interface LinkInterface {
   href: string;
   label: string;
-};
+}
 
 const myExternalLinks: LinkInterface[] = [
   {

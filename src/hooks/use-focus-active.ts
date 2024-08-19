@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import useElementEvent from './use-element-event';
 
-type UseFocusActiveOptions = {
+interface UseFocusActiveOptions {
   onFocusin?: (ev: HTMLElementEventMap['focusin']) => void;
   onFocusout?: (ev: HTMLElementEventMap['focusout']) => void;
-};
+}
 
 export default function useFocusActive<T extends HTMLElement>(
   ref: React.RefObject<T>,

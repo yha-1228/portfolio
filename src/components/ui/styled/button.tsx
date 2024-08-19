@@ -6,10 +6,10 @@ import type { LinkComponentProps } from '@/lib/next/types';
 // common
 // ----------------------------------------
 
-type ButtonBaseProps = {
+interface ButtonBaseProps {
   disabled?: boolean;
   rightIcon?: React.ReactNode;
-};
+}
 
 const baseClassName = clsx(
   'inline-flex items-center justify-center rounded-md px-5 py-2 font-bold',

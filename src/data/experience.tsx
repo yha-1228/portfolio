@@ -1,15 +1,15 @@
-export type Experience = {
+export interface Experience {
   kikan: string;
   title: React.ReactNode;
   projectCompanyName?: React.ReactNode;
   description?: React.ReactNode;
-};
+}
 
-export type ExperiencesOverviewItem = {
+export interface ExperiencesOverviewItem {
   company: string;
   kikan: string;
   experiences: Experience[];
-};
+}
 
 export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
   {

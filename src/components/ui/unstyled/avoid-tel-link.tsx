@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import isTouchDevice from '@/utils/device/is-touch-device';
 import Split from './split';
 
-type AvildTelLinkProps = {
+interface AvildTelLinkProps {
   children: string;
-};
+}
 
 /**
  * `<meta name="format-detection" .. />`を指定してもiOSのChromeで電話番号リンクが付いてしまうため、

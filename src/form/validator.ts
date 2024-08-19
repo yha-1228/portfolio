@@ -6,10 +6,10 @@ export function isEmail(input: string) {
   return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input);
 }
 
-type IsLengthOptions = {
+interface IsLengthOptions {
   min?: number;
   max?: number;
-};
+}
 
 export function isLength(input: string, options: IsLengthOptions) {
   const { min, max } = options;

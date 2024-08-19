@@ -1,11 +1,11 @@
 import encode from '@/lib/netlify/encode';
 import type { Dict } from '@/types/utils';
 
-export type SendContactParams = {
+export interface SendContactParams {
   htmlFilepath: string;
   formName: string;
   data: Dict<string>;
-};
+}
 
 /**
  * @see https://docs.netlify.com/frameworks/next-js/overview/#netlify-forms-compatibility

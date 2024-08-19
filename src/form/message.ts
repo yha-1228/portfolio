@@ -2,10 +2,10 @@ export const required = '入力してください。';
 
 export const email = 'メールアドレスの形式で入力してください。';
 
-type LengthOptions = {
+interface LengthOptions {
   min?: number;
   max?: number;
-};
+}
 
 export function length(options: LengthOptions) {
   const { min, max } = options;

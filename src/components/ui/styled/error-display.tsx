@@ -9,12 +9,12 @@ import clsx from '@/utils/css/clsx';
 import Container from './container';
 import type { NextErrorProps } from '@/lib/next/types';
 
-type ErrorBoardViewProps = {
+interface ErrorBoardViewProps {
   className?: string;
   heading: React.ReactNode;
   detail: React.ReactNode;
   action?: React.ReactNode;
-};
+}
 
 function ErrorBoardView(props: ErrorBoardViewProps) {
   const { className, heading, detail, action } = props;

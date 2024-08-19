@@ -1,9 +1,9 @@
-export type SkillWord = {
+export interface SkillWord {
   label: string;
   strong?: boolean;
   category: 'fe' | 'be' | 'tools';
   category2: 'lang' | 'libOrFw' | 'tools';
-};
+}
 
 export const skillWords: SkillWord[] = [
   {
@@ -53,10 +53,10 @@ export const skillWords: SkillWord[] = [
 
 export type Rank = 'good' | 'normal' | 'bad';
 
-export type SkillDetail = {
+export interface SkillDetail {
   category: string;
   items: { rank: Rank; text: string }[];
-};
+}
 
 export const skillDetails: SkillDetail[] = [
   {

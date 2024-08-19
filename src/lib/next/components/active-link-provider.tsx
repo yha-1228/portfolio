@@ -4,15 +4,15 @@ import React from 'react';
 import useIsMatchCurrentPath from '../hooks/use-match-current-path';
 import type { Url } from 'next/dist/shared/lib/router/router';
 
-type ChildrenProps = {
+interface ChildrenProps {
   isActive: boolean;
   ariaProps: { 'aria-current': 'page' | undefined };
-};
+}
 
-type ActiveLinkProviderProps = {
+interface ActiveLinkProviderProps {
   href: Url;
   children?: ({ isActive }: ChildrenProps) => React.ReactNode;
-};
+}
 
 export default function ActiveLinkProvider(props: ActiveLinkProviderProps) {
   const { href, children } = props;
