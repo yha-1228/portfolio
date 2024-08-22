@@ -46,9 +46,9 @@ export const skillWords: SkillWord[] = [
     label: 'Visual Studio Code',
     strong: true,
   },
-  { category2: 'tools', category: 'tools', label: 'Jira' },
+  { category2: 'tools', category: 'tools', label: 'GitHub' },
+  { category2: 'tools', category: 'tools', label: 'Notion' },
   { category2: 'tools', category: 'tools', label: 'Figma' },
-  { category2: 'tools', category: 'tools', label: 'iTerm2' },
 ];
 
 export type Rank = 'good' | 'normal' | 'bad';
