@@ -1,12 +1,11 @@
-import resolveConfig from 'tailwindcss/resolveConfig';
+import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
 import { px } from '@/utils/css/unit';
 import createStyleAttr from '@/utils/react/create-style-attr';
-import tailwindConfig from '../../../../tailwind.config';
 import AvoidTelLink from '../unstyled/avoid-tel-link';
 import Show from '../unstyled/show';
 
-const { theme } = resolveConfig(tailwindConfig);
+const { theme } = tailwindFullConfig;
 
 export interface TimelineItem {
   point: string;
