@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { routes } from '@/routes';
 import { ButtonLink } from './ui/styled/button';
 import Container from './ui/styled/container';
@@ -21,7 +22,12 @@ export default function HeroHeader() {
         >
           <span>職務経歴を見る</span>
           <span className="ml-1 inline-block lg:ml-1.5 lg:transition-transform lg:duration-300 lg:group-hover:translate-x-1 lg:motion-reduce:transform-none">
-            -&gt;
+            <Image
+              src="/assets/arrow-right-white.svg"
+              alt=""
+              width={16}
+              height={16}
+            />
           </span>
         </ButtonLink>
       </Container>
