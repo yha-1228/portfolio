@@ -9,7 +9,10 @@ const Heading1 = React.forwardRef<HTMLHeadingElement, Heading1Props>(
 
     return (
       <h1
-        className={clsx('mb-8 text-4xl font-bold leading-tight', className)}
+        className={clsx(
+          'mb-8 text-3xl font-bold leading-tight sm:text-4xl',
+          className,
+        )}
         {...restProps}
         ref={ref}
       />

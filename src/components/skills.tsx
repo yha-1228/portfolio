@@ -76,7 +76,7 @@ export default function Skills() {
       <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>言語/FW等</Heading1>
-          <div className="space-y-10 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
+          <div className="space-y-3 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
             {(['fe', 'be', 'tools'] as SkillWord['category'][]).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
