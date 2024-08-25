@@ -2,53 +2,25 @@ export interface SkillWord {
   label: string;
   strong?: boolean;
   category: 'fe' | 'be' | 'tools';
-  category2: 'lang' | 'libOrFw' | 'tools';
 }
 
 export const skillWords: SkillWord[] = [
-  {
-    category2: 'lang',
-    category: 'fe',
-    label: 'React',
-    strong: true,
-  },
-  { category2: 'libOrFw', category: 'fe', label: 'Next.js' },
-  { category2: 'lang', category: 'fe', label: 'TypeScript', strong: true },
-  {
-    category2: 'lang',
-    category: 'fe',
-    label: 'CSS, Sass',
-    strong: true,
-  },
-  {
-    category2: 'lang',
-    category: 'fe',
-    label: 'Tailwind CSS',
-    strong: true,
-  },
-  { category2: 'libOrFw', category: 'fe', label: 'jQuery' },
-  { category2: 'libOrFw', category: 'fe', label: 'jotai', strong: true },
-
-  {
-    category2: 'lang',
-    category: 'be',
-    label: 'TypeScript',
-    strong: true,
-  },
-  { category2: 'lang', category: 'be', label: 'Node.js', strong: true },
-  { category2: 'libOrFw', category: 'be', label: 'Express', strong: true },
-  { category2: 'lang', category: 'be', label: 'PHP' },
-  { category2: 'lang', category: 'be', label: 'SQL' },
-
-  {
-    category2: 'tools',
-    category: 'tools',
-    label: 'Visual Studio Code',
-    strong: true,
-  },
-  { category2: 'tools', category: 'tools', label: 'GitHub' },
-  { category2: 'tools', category: 'tools', label: 'Notion' },
-  { category2: 'tools', category: 'tools', label: 'Figma' },
+  { category: 'fe', label: 'React', strong: true },
+  { category: 'fe', label: 'Next.js' },
+  { category: 'fe', label: 'TypeScript', strong: true },
+  { category: 'fe', label: 'CSS, Sass', strong: true },
+  { category: 'fe', label: 'Tailwind CSS', strong: true },
+  { category: 'fe', label: 'jQuery' },
+  { category: 'fe', label: 'jotai', strong: true },
+  { category: 'be', label: 'TypeScript', strong: true },
+  { category: 'be', label: 'Node.js', strong: true },
+  { category: 'be', label: 'Express', strong: true },
+  { category: 'be', label: 'PHP' },
+  { category: 'be', label: 'SQL' },
+  { category: 'tools', label: 'Visual Studio Code', strong: true },
+  { category: 'tools', label: 'GitHub' },
+  { category: 'tools', label: 'Notion' },
+  { category: 'tools', label: 'Figma' },
 ];
 
 export type Rank = 'good' | 'normal' | 'bad';
