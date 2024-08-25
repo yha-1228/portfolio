@@ -38,27 +38,31 @@ export const skillDetails: SkillDetail[] = [
     items: [
       {
         rank: 'good',
-        text: 'HTML, CSS, TypeScript, jQuery, Reactが扱えます。',
+        text: 'JSX・CSSを利用したUIのマークアップ',
       },
       {
         rank: 'good',
-        text: 'その他のライブラリはSwiper, Chart.js, FullCalendar, jotai等の利用経験があります。',
+        text: 'デザインに柔軟に対応し、機能性・拡張性を備えたコンポーネントライブラリの構築',
       },
       {
         rank: 'good',
-        text: 'フロントエンドのレイヤーほぼ全てを設計・実装した経験があります。',
+        text: '動的な変化の中でUXを担保した画面の実装',
       },
       {
         rank: 'good',
-        text: 'フルスクラッチまたはCSSライブラリでUIをコーディングできます。',
+        text: 'Swiper・Chart.js・FullCalendar・jotai・Recoil等の発展的なライブラリの利用経験',
       },
       {
         rank: 'good',
-        text: 'useState, useReducer, useContext, useRefを使うことができます。',
+        text: 'プロジェクト構成・BE連携・認証・コンポーネント設計・Lintをはじめとした初期からのアーキテクチャ設計',
       },
       {
         rank: 'good',
-        text: 'カスタムフックやRender Propsパターンを使い状態管理をモジュール化することができます。',
+        text: '様々な規模・領域・実装パターンに対応した状態管理の設計',
+      },
+      {
+        rank: 'good',
+        text: 'BE・デザイン・アーキとの連携',
       },
     ],
   },
@@ -66,21 +70,17 @@ export const skillDetails: SkillDetail[] = [
     category: 'バックエンド',
     items: [
       {
-        rank: 'good',
-        text: 'Node.js, TypeScript, Expressでフルに開発経験があります。',
+        rank: 'normal',
+        text: 'Node.js, TypeScript, Express, SQLを利用した設計からの開発',
+      },
+      { rank: 'normal', text: 'REST APIの設計' },
+      {
+        rank: 'normal',
+        text: 'クリーンアーキテクチャやMVCを参考にしたフレームワークの設計',
       },
       {
         rank: 'normal',
-        text: 'PHPとJavaは軽微なコーディングや基礎的な実装が可能です。PHPの方が少し得意です。',
-      },
-      { rank: 'good', text: 'SQLの知識があります。' },
-      {
-        rank: 'bad',
-        text: 'マイグレーションなどORM特有の経験はありません。',
-      },
-      {
-        rank: 'bad',
-        text: 'インフラは全体的にほぼ知識がないので、勉強中です。',
+        text: 'SQL・PHP等の知識',
       },
     ],
   },
@@ -88,23 +88,27 @@ export const skillDetails: SkillDetail[] = [
     category: 'デザイン',
     items: [
       {
-        rank: 'good',
-        text: 'Webアプリの基本的なUIを1からデザインしたり、既存のデザインを引き継いで作成することができます。',
+        rank: 'normal',
+        text: 'シンプルな管理ツールのUIデザイン',
       },
       {
         rank: 'normal',
-        text: 'LP色やクリエイティブコーディング色が強いものは勉強中です。',
+        text: 'シンプルな静的サイトのUIデザイン',
       },
     ],
   },
   {
-    category: 'マネジメント',
+    category: 'チーム開発',
     items: [
+      { rank: 'normal', text: '初級者メンバーの教育' },
+      { rank: 'normal', text: '教育用のWikiの作成' },
+      { rank: 'normal', text: '勉強会の開催' },
+      { rank: 'normal', text: '継続的なコードレビュー' },
+      { rank: 'normal', text: 'BEのAPIに対するレビューや提案' },
       {
-        rank: 'good',
-        text: '他の開発メンバーをサブリーダーとして管理し、PdMと話し合うことができます。',
+        rank: 'normal',
+        text: '大規模プロジェクトにおけるFEリード内の提案や議論',
       },
-      { rank: 'bad', text: 'PMの経験はありません。' },
     ],
   },
 ];

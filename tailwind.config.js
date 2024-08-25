@@ -60,7 +60,8 @@ module.exports = {
     colors: {
       primary: myColors.myBlue,
       danger: colors.red,
-      marker: colors.yellow[300],
+      accent: colors.yellow,
+      eyecatch: colors.fuchsia,
       gray: {
         foreground: colors.gray[800],
         'foreground-weak': colors.gray[500],
