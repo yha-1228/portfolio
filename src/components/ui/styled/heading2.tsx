@@ -10,7 +10,7 @@ const Heading2 = React.forwardRef<HTMLHeadingElement, Heading2Props>(
     return (
       <h2
         className={clsx(
-          'mb-6 mt-12 text-2xl font-bold leading-tight',
+          'mb-6 mt-12 text-xl font-bold leading-tight sm:text-2xl',
           className,
         )}
         {...restProps}
