@@ -28,8 +28,8 @@ body {
     to top,
     transparent 0%,
     transparent var(--start),
-    theme(colors.marker) var(--start),
-    theme(colors.marker) var(--end),
+    theme(colors.accent.300) var(--start),
+    theme(colors.accent.300) var(--end),
     transparent var(--end),
     transparent 100%
   );

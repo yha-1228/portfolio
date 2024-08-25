@@ -4,7 +4,6 @@ import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
 import Heading2 from './ui/styled/heading2';
-import Show from './ui/unstyled/show';
 import Split from './ui/unstyled/split';
 import type { Rank, SkillDetail, SkillWord } from '@/data/skills';
 
@@ -14,12 +13,6 @@ interface SkillDetailCardProps {
   accent?: boolean;
   className?: string;
 }
-
-const rankHeadingMap: { [key in Rank]: string } = {
-  good: '可能',
-  normal: '少し可能',
-  bad: '未経験レベル',
-};
 
 const rankIconClassNameMap: { [key in Rank]: string } = {
   good: "bg-[url('/assets/check-circle-fill-color-foreground.svg')]",
@@ -33,7 +26,7 @@ function SkillDetailCard(props: SkillDetailCardProps) {
   return (
     <div
       className={clsx(
-        'rounded-lg px-5 lg:px-6',
+        'w-full rounded-lg px-5 lg:px-6',
         'bg-white shadow-card',
         'border-2 border-solid',
         accent ? 'border-primary-600' : 'border-white',
@@ -45,39 +38,24 @@ function SkillDetailCard(props: SkillDetailCardProps) {
       </div>
       <div
         className={clsx(
-          'space-y-5 pb-6 pt-4',
+          'space-y-5 pb-8 pt-5',
           'text-gray-foreground',
           'border-t border-solid border-t-gray-light-300',
         )}
       >
-        {(['good', 'normal', 'bad'] as Rank[]).map((rank) => {
-          const filteredItemsByRank = items.filter(
-            (item) => item.rank === rank,
-          );
-
-          return (
-            <Show key={rank} when={filteredItemsByRank.length > 0}>
-              <div>
-                <h5 className="pb-2 pt-3 text-lg font-bold">
-                  {rankHeadingMap[rank]}
-                </h5>
-                <ul className="mt-2 space-y-2.5 text-sm text-gray-foreground-weak">
-                  {filteredItemsByRank.map((item) => (
-                    <li
-                      key={item.text}
-                      className={clsx(
-                        'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
-                        rankIconClassNameMap[rank],
-                      )}
-                    >
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Show>
-          );
-        })}
+        <ul className="mt-2 space-y-2.5 text-sm text-gray-foreground-weak">
+          {items.map((item) => (
+            <li
+              key={item.text}
+              className={clsx(
+                'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                rankIconClassNameMap[item.rank],
+              )}
+            >
+              {item.text}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -106,21 +84,20 @@ export default function Skills() {
                 );
 
                 return (
-                  <section
-                    key={category}
-                    className="border-t border-solid border-t-gray-light-400 pt-2"
-                  >
+                  <section key={category} className="pt-2">
                     <Heading2 className="mb-2 mt-1 text-2xl sm:mb-3">
                       {skillWordCategoryHeadingMap[category]}
                     </Heading2>
-                    <div className="leading-loose sm:hidden">
+
+                    <div className="leading-loose">
                       <Split separator=", ">
                         {filteredSkillWordsByCategory.map((s) => (
                           <span
                             key={s.label}
                             className={clsx(
+                              'text-lg',
                               s.strong &&
-                                'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
+                                'font-bold text-gray-foreground underline decoration-accent-300 decoration-[1.5px] underline-offset-[6px]',
                             )}
                           >
                             {s.label}
@@ -128,20 +105,6 @@ export default function Skills() {
                         ))}
                       </Split>
                     </div>
-                    <ul className="hidden list-inside list-disc space-y-1 pl-1 sm:block">
-                      {filteredSkillWordsByCategory.map((s) => (
-                        <li
-                          key={s.label}
-                          className={clsx(
-                            'break-all pl-6 indent-[-1.6rem] text-lg',
-                            s.strong &&
-                              'font-bold text-gray-foreground underline decoration-marker decoration-[1.5px] underline-offset-[6px]',
-                          )}
-                        >
-                          {s.label}
-                        </li>
-                      ))}
-                    </ul>
                   </section>
                 );
               },
@@ -152,7 +115,7 @@ export default function Skills() {
 
       <div className="bg-gray-light-100 pt-3">
         <Container>
-          <hr className="h-[2px] w-full border-0 bg-gray-foreground" />
+          <hr className="h-px w-full border-0 bg-gray-light-400" />
         </Container>
       </div>
 
@@ -163,16 +126,12 @@ export default function Skills() {
             {skillDetails.map((skillDetail, idx) => (
               <li
                 key={skillDetail.category}
-                className="lg:w-[calc(50%-calc(16px/2))]"
+                className="lg:flex lg:w-[calc(50%-calc(16px/2))]"
               >
                 <SkillDetailCard
                   accent={idx === 0}
                   heading={skillDetail.category}
                   items={skillDetail.items}
-                  className={clsx(
-                    0 <= idx && idx <= 1 && 'lg:h-[calc(8px*62)]',
-                    2 <= idx && idx <= 3 && 'lg:h-[calc(8px*43)]',
-                  )}
                 />
               </li>
             ))}
