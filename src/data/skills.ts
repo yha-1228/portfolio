@@ -20,6 +20,8 @@ export const skillWords: SkillWord[] = [
   { category: 'tools', label: 'Visual Studio Code', strong: true },
   { category: 'tools', label: 'GitHub' },
   { category: 'tools', label: 'Notion' },
+  { category: 'tools', label: 'Jira' },
+  { category: 'tools', label: 'Redmine' },
   { category: 'tools', label: 'Figma' },
 ];
 
