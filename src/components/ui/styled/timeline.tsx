@@ -1,7 +1,6 @@
+import type { CSSProperties } from 'react';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
-import { px } from '@/utils/css/unit';
-import createStyleAttr from '@/utils/react/create-style-attr';
 import AvoidTelLink from '../unstyled/avoid-tel-link';
 import Show from '../unstyled/show';
 
@@ -26,10 +25,12 @@ export default function Timeline({ items }: TimelineProps) {
         'flex',
         'pt-[9px]', // dotを上に上げた分、ルート要素はそれも囲うようにする。目視
       )}
-      style={createStyleAttr({
-        '--dot-size': px(16),
-        '--space-between-content': theme?.spacing?.[6],
-      })}
+      style={
+        {
+          '--dot-size': '16px',
+          '--space-between-content': theme?.spacing?.[6],
+        } as CSSProperties
+      }
     >
       {spacer}
       <ul className="flex-1 border-l-2 border-solid border-l-primary-600">
