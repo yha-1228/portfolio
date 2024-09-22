@@ -1,16 +1,33 @@
 'use client';
 
-import type { CSSProperties } from 'react';
+import type { ComponentProps, CSSProperties } from 'react';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { BsChevronRight, BsList, BsX } from 'react-icons/bs';
 import useMediaQuery from '@/hooks/use-media-query';
 import useScrollLock from '@/hooks/use-scroll-lock';
-import ActiveLink from '@/lib/next/components/active-link';
 import { routes } from '@/routes';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
 import Container from '../ui/styled/container';
+
+function ActiveNavLink(props: ComponentProps<'a'>) {
+  const { href, ...restProps } = props;
+  const pathname = usePathname();
+  const active = href === pathname;
+
+  return (
+    <a
+      href={href}
+      aria-current={active ? 'page' : undefined}
+      data-active={active ? 'true' : undefined}
+      {...restProps}
+    />
+  );
+}
+
+// ----------------------------------------
 
 const routesWithoutHome = Object.values(routes).filter(
   (route) => route.href !== '/',
@@ -79,7 +96,7 @@ export default function Header() {
           <ul className="hidden sm:flex">
             {routesWithoutHome.map((route) => (
               <li key={route.href}>
-                <ActiveLink
+                <ActiveNavLink
                   href={route.href}
                   className={clsx(
                     'relative inline-flex h-[calc(var(--header-height)-var(--header-border-bottom-width))] items-center px-3',
@@ -95,7 +112,7 @@ export default function Header() {
                   )}
                 >
                   {route.label}
-                </ActiveLink>
+                </ActiveNavLink>
               </li>
             ))}
           </ul>
@@ -113,17 +130,16 @@ export default function Header() {
         <ul className="divide-y divide-solid divide-gray-light-200 py-3">
           {routesWithoutHome.map((route) => (
             <li key={route.href}>
-              <ActiveLink
+              <ActiveNavLink
                 href={route.href}
                 className={clsx(
                   'flex h-12 items-center justify-between font-bold',
                   '[&>span]:text-gray-foreground-weak [&>span]:data-[active]:text-primary-600',
                 )}
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span>{route.label}</span>
                 <BsChevronRight />
-              </ActiveLink>
+              </ActiveNavLink>
             </li>
           ))}
         </ul>
