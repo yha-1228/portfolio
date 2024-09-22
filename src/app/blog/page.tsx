@@ -26,9 +26,9 @@ export default async function Page() {
                 <Link
                   href={routes.blog.routes[':id'].generateHref(content.id)}
                   className={clsx(
-                    'Wactive:border-primary-600 group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out',
-                    'active:outline active:outline-2 active:outline-primary-300',
-                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
+                    'group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-primary-600',
+                    'active:outline active:outline-2 active:outline-primary-600',
+                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600',
                   )}
                 >
                   <div className="text-xl font-bold underline-offset-[0.15em] group-hover:underline">
