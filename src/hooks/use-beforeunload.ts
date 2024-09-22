@@ -1,14 +1,22 @@
-import useWindowEvent from './use-window-event';
+import { useEffect } from 'react';
 
-interface UseBeforeUnloadOptions {
+export interface UseBeforeUnloadOptions {
   enabled: boolean;
 }
 
 export default function useBeforeUnload({ enabled }: UseBeforeUnloadOptions) {
-  return useWindowEvent('beforeunload', (e) => {
-    if (enabled) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  });
+  useEffect(() => {
+    const handler = (event: BeforeUnloadEvent) => {
+      if (enabled) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handler);
+
+    return () => {
+      window.removeEventListener('beforeunload', handler);
+    };
+  }, [enabled]);
 }

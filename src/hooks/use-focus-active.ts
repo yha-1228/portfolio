@@ -1,28 +1,26 @@
-import { useState } from 'react';
-import useElementEvent from './use-element-event';
-
-interface UseFocusActiveOptions {
-  onFocusin?: (ev: HTMLElementEventMap['focusin']) => void;
-  onFocusout?: (ev: HTMLElementEventMap['focusout']) => void;
-}
+import type { RefObject } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useFocusActive<T extends HTMLElement>(
-  ref: React.RefObject<T>,
-  options: UseFocusActiveOptions = {},
+  ref: RefObject<T>,
 ) {
-  const { onFocusin, onFocusout } = options;
-
   const [focusActive, setFocusActive] = useState(false);
 
-  useElementEvent(ref, 'focusin', (e) => {
-    setFocusActive(true);
-    onFocusin?.(e);
-  });
+  useEffect(() => {
+    const elem = ref.current;
+    if (!elem) return;
 
-  useElementEvent(ref, 'focusout', (e) => {
-    setFocusActive(false);
-    onFocusout?.(e);
-  });
+    const handleFocusin = () => setFocusActive(true);
+    const handleFocusout = () => setFocusActive(false);
+
+    elem.addEventListener('focusin', handleFocusin);
+    elem.addEventListener('focusout', handleFocusout);
+
+    return () => {
+      elem.removeEventListener('focusin', handleFocusin);
+      elem.removeEventListener('focusout', handleFocusout);
+    };
+  }, [ref]);
 
   return focusActive;
 }

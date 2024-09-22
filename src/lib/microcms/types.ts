@@ -1,10 +1,9 @@
-import type { Prettify } from '@/types/utils';
 import type {
   MicroCMSListContent,
   MicroCMSListResponse,
 } from 'microcms-js-sdk';
 
-type Content<TFields> = Prettify<TFields & MicroCMSListContent>;
+type Content<TFields> = TFields & MicroCMSListContent;
 
 interface TagFields {
   tagName: string;
@@ -20,4 +19,4 @@ interface BlogFields {
 
 export type BlogContent = Content<BlogFields>;
 
-export type BlogListResponse = Prettify<MicroCMSListResponse<BlogFields>>;
+export type BlogListResponse = MicroCMSListResponse<BlogFields>;

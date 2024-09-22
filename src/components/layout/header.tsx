@@ -1,5 +1,6 @@
 'use client';
 
+import type { CSSProperties } from 'react';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { BsChevronRight, BsList, BsX } from 'react-icons/bs';
@@ -9,7 +10,6 @@ import ActiveLink from '@/lib/next/components/active-link';
 import { routes } from '@/routes';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
-import createStyleAttr from '@/utils/react/create-style-attr';
 import Container from '../ui/styled/container';
 
 const routesWithoutHome = Object.values(routes).filter(
@@ -35,10 +35,12 @@ export default function Header() {
 
   return (
     <header
-      style={createStyleAttr({
-        '--header-height': headerHeightRem,
-        '--header-border-bottom-width': hederBorderBottomWidth,
-      })}
+      style={
+        {
+          '--header-height': headerHeightRem,
+          '--header-border-bottom-width': hederBorderBottomWidth,
+        } as CSSProperties
+      }
       className="relative h-[var(--header-height)] border-b-[length:var(--header-border-bottom-width)] border-solid border-b-gray-light-300"
     >
       <Container as="nav">
