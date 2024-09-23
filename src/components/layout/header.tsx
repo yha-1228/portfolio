@@ -6,19 +6,20 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BsChevronRight, BsList, BsX } from 'react-icons/bs';
 import useMediaQuery from '@/hooks/use-media-query';
+import useOnRouteChange from '@/hooks/use-on-route-change';
 import useScrollLock from '@/hooks/use-scroll-lock';
 import { routes } from '@/routes';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
 import Container from '../ui/styled/container';
 
-function ActiveNavLink(props: ComponentProps<'a'>) {
+function ActiveNavLink(props: ComponentProps<typeof Link>) {
   const { href, ...restProps } = props;
   const pathname = usePathname();
   const active = href === pathname;
 
   return (
-    <a
+    <Link
       href={href}
       aria-current={active ? 'page' : undefined}
       data-active={active ? 'true' : undefined}
@@ -42,13 +43,19 @@ export default function Header() {
   useMediaQuery({
     query: `(min-width: ${tailwindFullConfig.theme.screens.sm})`,
     callback: (event) => {
-      if (event.matches) {
+      if (event.matches && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
     },
   });
 
   useScrollLock({ enabled: isMobileMenuOpen });
+
+  useOnRouteChange(async () => {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  });
 
   return (
     <header
