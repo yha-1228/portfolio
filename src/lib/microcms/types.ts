@@ -1,22 +1,11 @@
-import type {
-  MicroCMSListContent,
-  MicroCMSListResponse,
-} from 'microcms-js-sdk';
+import type { MicroCMSListContent } from 'microcms-js-sdk';
 
-type Content<TFields> = TFields & MicroCMSListContent;
-
-interface TagFields {
+export interface TagFields {
   tagName: string;
 }
 
-export type TagContent = Content<TagFields>;
-
-interface BlogFields {
+export interface BlogFields {
   title: string;
   body: string;
   tag: TagFields & MicroCMSListContent;
 }
-
-export type BlogContent = Content<BlogFields>;
-
-export type BlogListResponse = MicroCMSListResponse<BlogFields>;
