@@ -9,7 +9,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
       <SkipToMainContent />
       <Header />
       <main id={MAIN_CONTENT_ID}>{children}</main>
-      <Footer />
+      <Footer className="mt-auto" />
     </div>
   );
 }

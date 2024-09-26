@@ -1,5 +1,6 @@
 import React from 'react';
 import { routes } from '@/routes';
+import clsx from '@/utils/css/clsx';
 import Container from '../ui/styled/container';
 import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
 
@@ -25,9 +26,18 @@ const myExternalLinks: LinkInterface[] = [
 
 const COPYRIGHT_TEXT = `Yuta Hasegawa © ${new Date().getFullYear()}`;
 
-export default function Footer() {
+export interface FooterProps {
+  className?: string;
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className="mt-auto border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10">
+    <footer
+      className={clsx(
+        'border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10',
+        className,
+      )}
+    >
       <Container>
         <div className="flex justify-between">
           <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
