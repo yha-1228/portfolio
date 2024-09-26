@@ -22,7 +22,6 @@ import FormErrorMessage from './ui/styled/form-error-message';
 import Heading1 from './ui/styled/heading1';
 import { Input, Textarea } from './ui/styled/input';
 import Paragraph from './ui/styled/paragraph';
-import Show from './ui/unstyled/show';
 
 interface FeedbackNotificationProps {
   variant: 'primary' | 'danger';
@@ -107,7 +106,7 @@ type ContactFormValues = {
    * @description 必須, 10文字以上, 10000文字以内
    */
   message: string;
-}
+};
 
 const initialValues: ContactFormValues = {
   name: '',
@@ -311,14 +310,14 @@ export default function ContactForm() {
                       aria-describedby={createErrorId(id, 'name')}
                     />
                   </div>
-                  <Show when={showError('name', errors, touched)}>
+                  {showError('name', errors, touched) && (
                     <FormErrorMessage
                       id={createErrorId(id, 'name')}
                       className="mt-2"
                     >
                       {errors.name}
                     </FormErrorMessage>
-                  </Show>
+                  )}
                 </div>
                 <div className="md:w-2/3">
                   <FieldLabel
@@ -341,14 +340,14 @@ export default function ContactForm() {
                       aria-describedby={createErrorId(id, 'email')}
                     />
                   </div>
-                  <Show when={showError('email', errors, touched)}>
+                  {showError('email', errors, touched) && (
                     <FormErrorMessage
                       id={createErrorId(id, 'email')}
                       className="mt-2"
                     >
                       {errors.email}
                     </FormErrorMessage>
-                  </Show>
+                  )}
                 </div>
               </div>
               <div>
@@ -371,14 +370,14 @@ export default function ContactForm() {
                     aria-describedby={createErrorId(id, 'companyName')}
                   />
                 </div>
-                <Show when={showError('companyName', errors, touched)}>
+                {showError('companyName', errors, touched) && (
                   <FormErrorMessage
                     id={createErrorId(id, 'companyName')}
                     className="mt-2"
                   >
                     {errors.companyName}
                   </FormErrorMessage>
-                </Show>
+                )}
               </div>
               <div>
                 <FieldLabel
@@ -404,17 +403,17 @@ export default function ContactForm() {
                   <div className="text-sm text-gray-foreground-weak">
                     10文字以上
                   </div>
-                  <Show when={showError('message', errors, touched)}>
+                  {showError('message', errors, touched) && (
                     <FormErrorMessage id={createErrorId(id, 'message')}>
                       {errors.message}
                     </FormErrorMessage>
-                  </Show>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="mt-10 lg:mt-14">
-              <Show when={existsValue(errors) && allErrorVisible}>
+              {existsValue(errors) && allErrorVisible && (
                 <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
                   <div className="font-bold">
                     {Object.values(errors).length}件の項目に問題があります。
@@ -437,7 +436,7 @@ export default function ContactForm() {
                     ))}
                   </ul>
                 </div>
-              </Show>
+              )}
 
               <Button
                 disabled={submitState.state === 'loading'}

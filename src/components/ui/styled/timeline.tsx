@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
 import AvoidTelLink from '../unstyled/avoid-tel-link';
-import Show from '../unstyled/show';
 
 const { theme } = tailwindFullConfig;
 
@@ -52,11 +51,11 @@ export default function Timeline({ items }: TimelineProps) {
                 <div className="py-1 text-xl font-bold leading-snug">
                   {item.heading}
                 </div>
-                <Show when={!!item.content}>
+                {!!item.content && (
                   <div className="mt-3 space-y-2.5 text-sm leading-[1.65] text-gray-foreground-weak">
                     {item.content}
                   </div>
-                </Show>
+                )}
               </div>
             </div>
           </li>
