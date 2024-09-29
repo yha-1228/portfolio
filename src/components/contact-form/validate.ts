@@ -1,32 +1,33 @@
-import * as m from '@/form/message';
-import * as v from '@/form/validator';
+import validator from '@/form/validator';
 import type { ContactFormValues, ContactFormErrors } from './types';
+
+const { exists, isEmail, isLength } = validator;
 
 export function validate(values: ContactFormValues): ContactFormErrors {
   const errors: ContactFormErrors = {};
 
-  if (!v.exists(values.name)) {
-    errors.name = m.required;
+  if (!exists.check(values.name)) {
+    errors.name = exists.getMessage();
   }
 
-  if (!v.exists(values.email)) {
-    errors.email = m.required;
-  } else if (!v.isEmail(values.email)) {
-    errors.email = m.email;
+  if (!exists.check(values.email)) {
+    errors.email = exists.getMessage();
+  } else if (!isEmail.check(values.email)) {
+    errors.email = isEmail.getMessage();
   }
 
-  if (v.exists(values.companyName)) {
-    if (!v.isLength(values.companyName, { max: 100 })) {
-      errors.companyName = m.length({ max: 100 });
+  if (exists.check(values.companyName)) {
+    if (!isLength.check(values.companyName, { max: 100 })) {
+      errors.companyName = isLength.getMessage({ max: 100 });
     }
   }
 
-  if (!v.exists(values.message)) {
-    errors.message = m.required;
-  } else if (!v.isLength(values.message, { min: 10 })) {
-    errors.message = m.length({ min: 10 });
-  } else if (!v.isLength(values.message, { max: 10000 })) {
-    errors.message = m.length({ max: 10000 });
+  if (!exists.check(values.message)) {
+    errors.message = exists.getMessage();
+  } else if (!isLength.check(values.message, { min: 10 })) {
+    errors.message = isLength.getMessage({ min: 10 });
+  } else if (!isLength.check(values.message, { max: 10000 })) {
+    errors.message = isLength.getMessage({ max: 10000 });
   }
 
   return errors;
