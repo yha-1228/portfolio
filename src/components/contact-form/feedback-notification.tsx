@@ -24,7 +24,7 @@ const variantIconMap: Record<Variant, ReactNode> = {
 };
 
 export interface FeedbackNotificationProps {
-  variant: 'primary' | 'danger';
+  variant: Variant;
   children?: ReactNode;
   onClose?: () => void;
   className?: string;
