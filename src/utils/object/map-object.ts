@@ -24,7 +24,7 @@ export default function mapObject<T extends object, U>(
   for (const key in object) {
     if (Object.prototype.hasOwnProperty.call(object, key)) {
       const value = object[key];
-      newObject[key as keyof T] = condition(value, key);
+      newObject[key] = condition(value, key);
     }
   }
 
