@@ -1,112 +1,40 @@
 'use client';
 
 import { useId, useState } from 'react';
-import {
-  BsFillCheckCircleFill,
-  BsFillExclamationCircleFill,
-  BsX,
-} from 'react-icons/bs';
 import { isFetchNetworkError } from '@/api/misc';
 import { sendContact } from '@/api/requests';
-import * as m from '@/form/message';
-import * as v from '@/form/validator';
 import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
-import existsValue from '@/utils/object/exists-value';
 import mapObject from '@/utils/object/map-object';
 import { entriesOf } from '@/utils/object/typed-native';
-import { Button } from './ui/styled/button';
-import Container from './ui/styled/container';
-import FieldLabel from './ui/styled/field-label';
-import FormErrorMessage from './ui/styled/form-error-message';
-import Heading1 from './ui/styled/heading1';
-import { Input, Textarea } from './ui/styled/input';
-import Paragraph from './ui/styled/paragraph';
+import { Button } from '../ui/styled/button';
+import Container from '../ui/styled/container';
+import FieldLabel from '../ui/styled/field-label';
+import FormErrorMessage from '../ui/styled/form-error-message';
+import Heading1 from '../ui/styled/heading1';
+import { Input, Textarea } from '../ui/styled/input';
+import Paragraph from '../ui/styled/paragraph';
+import { FeedbackNotification } from './feedback-notification';
+import { validate } from './validate';
+import type {
+  ContactFormErrors,
+  ContactFormTouched,
+  ContactFormValues,
+} from './types';
 
-interface FeedbackNotificationProps {
-  variant: 'primary' | 'danger';
-  children?: React.ReactNode;
-  onClose?: () => void;
-  className?: string;
-}
-
-type VariantClassMap = Record<FeedbackNotificationProps['variant'], string>;
-
-const variantRootClassMap: VariantClassMap = {
-  primary: 'bg-primary-500',
-  danger: 'bg-danger-500',
-};
-
-const variantButtonClassMap: VariantClassMap = {
-  primary: 'hover:bg-primary-600 active:bg-primary-700',
-  danger: 'hover:bg-danger-600 active:bg-danger-700',
-};
-
-type VariantIconMap = Record<
-  FeedbackNotificationProps['variant'],
-  React.ReactNode
->;
-
-const variantIconMap: VariantIconMap = {
-  primary: <BsFillCheckCircleFill className="size-6" />,
-  danger: <BsFillExclamationCircleFill className="size-6" />,
-};
-
-function FeedbackNotification(props: FeedbackNotificationProps) {
-  const { variant, children, onClose, className } = props;
-
-  return (
-    <div
-      className={clsx(
-        className,
-        `flex items-center justify-between rounded-lg ${variantRootClassMap[variant]} px-4 py-3 text-white`,
-      )}
-    >
-      <div className="flex items-center space-x-3">
-        {variantIconMap[variant]}
-        <div>{children}</div>
-      </div>
-      <button
-        aria-label="閉じる"
-        className={`inline-flex items-center rounded-full ${variantButtonClassMap[variant]}`}
-        onClick={onClose}
-      >
-        <BsX className="size-8" />
-      </button>
-    </div>
-  );
-}
-
+// types
 // ----------------------------------------
 
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
-type ContactFormValues = {
-  /**
-   * お名前
-   *
-   * @description 必須
-   */
-  name: string;
-  /**
-   * メールアドレス
-   *
-   * @description 必須, Eメール
-   */
-  email: string;
-  /**
-   * 会社名
-   *
-   * @description 任意, 入力された場合は100文字以内
-   */
-  companyName: string;
-  /**
-   * お問い合わせ内容
-   *
-   * @description 必須, 10文字以上, 10000文字以内
-   */
-  message: string;
-};
+type SubmitState =
+  | { state: 'idle' }
+  | { state: 'loading' }
+  | { state: 'success' }
+  | { state: 'error'; error: unknown };
+
+// initial state list
+// ----------------------------------------
 
 const initialValues: ContactFormValues = {
   name: '',
@@ -115,48 +43,17 @@ const initialValues: ContactFormValues = {
   message: '',
 };
 
-type ContactFormErrors = { [key in keyof ContactFormValues]?: string };
-
-function validate(values: ContactFormValues): ContactFormErrors {
-  const errors: ContactFormErrors = {};
-
-  if (!v.exists(values.name)) {
-    errors.name = m.required;
-  }
-
-  if (!v.exists(values.email)) {
-    errors.email = m.required;
-  } else if (!v.isEmail(values.email)) {
-    errors.email = m.email;
-  }
-
-  if (v.exists(values.companyName)) {
-    if (!v.isLength(values.companyName, { max: 100 })) {
-      errors.companyName = m.length({ max: 100 });
-    }
-  }
-
-  if (!v.exists(values.message)) {
-    errors.message = m.required;
-  } else if (!v.isLength(values.message, { min: 10 })) {
-    errors.message = m.length({ min: 10 });
-  } else if (!v.isLength(values.message, { max: 10000 })) {
-    errors.message = m.length({ max: 10000 });
-  }
-
-  return errors;
-}
-
-type ContactFormTouched = { [key in keyof ContactFormValues]: boolean };
-
-const initialTouched: ContactFormTouched = {
-  name: false,
-  companyName: false,
-  email: false,
-  message: false,
-};
+const initialTouched: ContactFormTouched = mapObject(
+  initialValues,
+  () => false,
+);
 
 const initialAllErrorVisible = false;
+
+const initialSubmitState: SubmitState = { state: 'idle' };
+
+// constants, helpers
+// ----------------------------------------
 
 const keyLabelMap: { [key in keyof ContactFormValues]: string } = {
   name: 'お名前',
@@ -173,11 +70,11 @@ const feedbackText = {
   fail: '送信中にエラーが発生しました。',
 };
 
-const createFieldId = (uniqId: string, key: keyof ContactFormTouched) => {
+const createFieldId = (uniqId: string, key: keyof ContactFormValues) => {
   return `${uniqId}-ContactForm-${key}-field`;
 };
 
-const createLabelId = (uniqId: string, key: keyof ContactFormTouched) => {
+const createLabelId = (uniqId: string, key: keyof ContactFormValues) => {
   return `${uniqId}-ContactForm-${key}-label`;
 };
 
@@ -193,11 +90,8 @@ const showError = (
   return !!(errors[name] && touched[name]);
 };
 
-type SubmitState =
-  | { state: 'idle' }
-  | { state: 'loading' }
-  | { state: 'success' }
-  | { state: 'error'; error: unknown };
+// export
+// ----------------------------------------
 
 export default function ContactForm() {
   const id = useId();
@@ -206,9 +100,7 @@ export default function ContactForm() {
   const errors = validate(values);
 
   const [touched, setTouched] = useState(initialTouched);
-  const [submitState, setSubmitState] = useState<SubmitState>({
-    state: 'idle',
-  });
+  const [submitState, setSubmitState] = useState(initialSubmitState);
   const [allErrorVisible, setAllErrorVisible] = useState(
     initialAllErrorVisible,
   );
@@ -233,8 +125,8 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (existsValue(errors)) {
-      setTouched(mapObject(initialTouched, true));
+    if (Object.keys(errors).length > 0) {
+      setTouched(mapObject(initialTouched, () => true));
       setAllErrorVisible(true);
 
       return;
@@ -257,7 +149,7 @@ export default function ContactForm() {
   };
 
   useBeforeUnload({
-    enabled: existsValue(values),
+    enabled: Object.values(values).some((value) => value !== ''),
   });
 
   return (
@@ -413,7 +305,7 @@ export default function ContactForm() {
             </div>
 
             <div className="mt-10 lg:mt-14">
-              {existsValue(errors) && allErrorVisible && (
+              {Object.keys(errors).length > 0 && allErrorVisible && (
                 <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
                   <div className="font-bold">
                     {Object.values(errors).length}件の項目に問題があります。

@@ -1,3 +1,5 @@
+import assertNever from '@/utils/assert-never';
+
 export function exists(input: string) {
   return !!input;
 }
@@ -6,26 +8,25 @@ export function isEmail(input: string) {
   return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input);
 }
 
-interface IsLengthOptions {
-  min?: number;
-  max?: number;
-}
+export type IsLengthOptions =
+  | { min: number; max: number }
+  | { min: number }
+  | { max: number };
 
 export function isLength(input: string, options: IsLengthOptions) {
-  const { min, max } = options;
   const length = input.length;
 
-  if (min == null && max == null) {
-    return true;
+  if ('min' in options && 'max' in options) {
+    return options.min <= length && length <= options.max;
   }
 
-  if (min != null && max == null) {
-    return min <= length;
+  if ('min' in options) {
+    return options.min <= length;
   }
 
-  if (min == null && max != null) {
-    return length <= max;
+  if ('max' in options) {
+    return length <= options.max;
   }
 
-  return (min as number) <= length && length <= (max as number);
+  return assertNever(options);
 }
