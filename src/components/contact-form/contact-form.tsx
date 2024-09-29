@@ -124,13 +124,18 @@ export default function ContactForm() {
     const scrollToTop =
       window.scrollY + labelY - parseInt(headerHeight) - bufferMargin;
 
+    const isTransitionReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
     window.scrollTo({
       top: scrollToTop,
+      behavior: isTransitionReduced ? 'instant' : 'smooth',
     });
 
     const fieldId = createFieldId(id, key);
     const fieldElem = document.getElementById(fieldId);
-    fieldElem?.focus();
+    fieldElem?.focus({ preventScroll: !isTransitionReduced });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
