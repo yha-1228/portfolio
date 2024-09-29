@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import isTouchDevice from '@/utils/device/is-touch-device';
-import Split from './split';
+import splitNode from './split-node';
 
 interface AvildTelLinkProps {
   children: string;
@@ -24,5 +24,5 @@ export default function AvoidTelLink({ children }: AvildTelLinkProps) {
     return <>{children}</>;
   }
 
-  return <Split separator={<>&zwnj;</>}>{children.split('')}</Split>;
+  return splitNode(children.split(''), <>&zwnj;</>);
 }
