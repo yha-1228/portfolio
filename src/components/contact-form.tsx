@@ -66,6 +66,7 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
         <div>{children}</div>
       </div>
       <button
+        type="button"
         aria-label="閉じる"
         className={`inline-flex items-center rounded-full ${variantButtonClassMap[variant]}`}
         onClick={onClose}
