@@ -1,7 +1,7 @@
 import encode from '@/lib/netlify/encode';
 import type { Dict } from '@/types/utils';
 
-export interface SendContactParams {
+export interface SendNetlifyFormParams {
   htmlFilepath: string;
   formName: string;
   data: Dict<string>;
@@ -10,11 +10,11 @@ export interface SendContactParams {
 /**
  * @see https://docs.netlify.com/frameworks/next-js/overview/#netlify-forms-compatibility
  */
-export async function sendContact({
+export async function sendNetlifyForm({
   htmlFilepath,
   formName,
   data,
-}: SendContactParams) {
+}: SendNetlifyFormParams) {
   const res = await fetch(htmlFilepath, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

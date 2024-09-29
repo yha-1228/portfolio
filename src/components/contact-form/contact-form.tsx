@@ -1,8 +1,8 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { sendNetlifyForm } from '@/api/clients/utils';
 import { isFetchNetworkError } from '@/api/misc';
-import { sendContact } from '@/api/requests';
 import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import mapObject from '@/utils/object/map-object';
@@ -150,7 +150,7 @@ export default function ContactForm() {
 
     setSubmitState({ state: 'loading' });
     try {
-      await sendContact({
+      await sendNetlifyForm({
         htmlFilepath: '/__forms.html',
         formName: FORM_NAME,
         data: values,
