@@ -12,7 +12,6 @@ import * as m from '@/form/message';
 import * as v from '@/form/validator';
 import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
-import existsValue from '@/utils/object/exists-value';
 import mapObject from '@/utils/object/map-object';
 import { entriesOf } from '@/utils/object/typed-native';
 import { Button } from './ui/styled/button';
@@ -233,8 +232,8 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (existsValue(errors)) {
-      setTouched(mapObject(initialTouched, true));
+    if (Object.keys(errors).length > 0) {
+      setTouched(mapObject(initialTouched, () => true));
       setAllErrorVisible(true);
 
       return;
@@ -257,7 +256,7 @@ export default function ContactForm() {
   };
 
   useBeforeUnload({
-    enabled: existsValue(values),
+    enabled: Object.values(values).some((value) => value !== ''),
   });
 
   return (
@@ -413,7 +412,7 @@ export default function ContactForm() {
             </div>
 
             <div className="mt-10 lg:mt-14">
-              {existsValue(errors) && allErrorVisible && (
+              {Object.keys(errors).length > 0 && allErrorVisible && (
                 <div className="mb-5 border-t-4 border-solid border-t-danger-600 bg-danger-50 px-5 py-4 text-danger-600">
                   <div className="font-bold">
                     {Object.values(errors).length}件の項目に問題があります。
