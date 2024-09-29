@@ -7,12 +7,12 @@ type FieldLabelProps = React.ComponentPropsWithRef<'label'> & {
    *
    * - "*"マークを表示 (スクリーンリーダーの場合: "必須項目")
    */
-  reqired?: boolean;
+  required?: boolean;
 };
 
 const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
   (props, ref) => {
-    const { className, children, reqired, ...restProps } = props;
+    const { className, children, required, ...restProps } = props;
 
     return (
       <label
@@ -20,7 +20,7 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
         {...restProps}
         ref={ref}
       >
-        {reqired ? (
+        {required ? (
           <>
             {children}{' '}
             <span aria-hidden="true" className="font-normal text-danger-500">

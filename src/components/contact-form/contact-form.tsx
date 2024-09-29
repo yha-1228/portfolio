@@ -185,7 +185,7 @@ export default function ContactForm() {
                   <FieldLabel
                     id={createLabelId(id, 'name')}
                     htmlFor={createFieldId(id, 'name')}
-                    reqired
+                    required
                   >
                     {keyLabelMap.name}
                   </FieldLabel>
@@ -215,7 +215,7 @@ export default function ContactForm() {
                   <FieldLabel
                     id={createLabelId(id, 'email')}
                     htmlFor={createFieldId(id, 'email')}
-                    reqired
+                    required
                   >
                     {keyLabelMap.email}
                   </FieldLabel>
@@ -275,7 +275,7 @@ export default function ContactForm() {
                 <FieldLabel
                   id={createLabelId(id, 'message')}
                   htmlFor={createFieldId(id, 'message')}
-                  reqired
+                  required
                 >
                   {keyLabelMap.message}
                 </FieldLabel>
