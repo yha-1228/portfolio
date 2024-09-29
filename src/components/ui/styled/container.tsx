@@ -30,7 +30,8 @@ export default function Container(props: ContainerProps) {
   return (
     <Component
       className={clsx(
-        `${fluid ? 'w-full' : 'container mx-auto'} px-5`,
+        fluid ? 'w-full' : 'container mx-auto',
+        'px-5',
         until && untilMaxWidthMap[until],
         className,
       )}

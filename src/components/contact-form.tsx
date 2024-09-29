@@ -57,8 +57,9 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
   return (
     <div
       className={clsx(
+        'flex items-center justify-between rounded-lg px-4 py-3 text-white',
+        variantRootClassMap[variant],
         className,
-        `flex items-center justify-between rounded-lg ${variantRootClassMap[variant]} px-4 py-3 text-white`,
       )}
     >
       <div className="flex items-center space-x-3">
@@ -68,7 +69,10 @@ function FeedbackNotification(props: FeedbackNotificationProps) {
       <button
         type="button"
         aria-label="閉じる"
-        className={`inline-flex items-center rounded-full ${variantButtonClassMap[variant]}`}
+        className={clsx(
+          'inline-flex items-center rounded-full',
+          variantButtonClassMap[variant],
+        )}
         onClick={onClose}
       >
         <BsX className="size-8" />
