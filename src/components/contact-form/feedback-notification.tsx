@@ -54,7 +54,7 @@ export function FeedbackNotification(props: FeedbackNotificationProps) {
         )}
         onClick={onClose}
       >
-        <BsX className="size-8" />
+        <BsX aria-hidden="true" className="size-8" />
       </button>
     </div>
   );
