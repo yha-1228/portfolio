@@ -1,9 +1,9 @@
 import { BsChevronLeft } from 'react-icons/bs';
+import { getBlogDetail, getBlogList } from '@/api/clients/blog';
 import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Tag from '@/components/ui/styled/tag';
 import { TextLink } from '@/components/ui/styled/text-link';
-import { getBlogDetail, getBlogList } from '@/lib/microcms/client';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
 import { formatISODate } from '@/utils/date/formatter';
@@ -17,10 +17,10 @@ export async function generateMetadata({
   params,
 }: GenerateMetadataProps<'id'>): Promise<Metadata> {
   const { id } = params;
-  const blogContent = await getBlogDetail(id);
+  const blogDetail = await getBlogDetail(id);
 
   return {
-    title: blogContent.title,
+    title: blogDetail.title,
   };
 }
 
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
   const { id } = params;
-  const content = await getBlogDetail(id);
+  const blogDetail = await getBlogDetail(id);
 
   return (
     <div className="py-14">
@@ -46,13 +46,13 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
 
         <article className="mt-8">
           <header>
-            <Heading1 className="mb-0">{content.title}</Heading1>
+            <Heading1 className="mb-0">{blogDetail.title}</Heading1>
             <p className="mt-4 text-sm font-normal text-gray-foreground-weak">
-              {formatISODate(content.publishedAt)} に投稿
+              {formatISODate(blogDetail.publishedAt)} に投稿
             </p>
           </header>
           <div className="mt-8 border-t border-solid border-t-gray-light-300 py-5 md:py-6">
-            <Tag>{content.tag.tagName}</Tag>
+            <Tag>{blogDetail.tag.tagName}</Tag>
             <div
               className={clsx(
                 'pt-4',
@@ -63,7 +63,7 @@ export default async function Page({ params }: NextPagePropsWithParams<'id'>) {
                 '[&>hr]:my-6 [&>hr]:border-y-2 [&>hr]:text-gray-light-200',
               )}
               dangerouslySetInnerHTML={{
-                __html: content.body,
+                __html: blogDetail.body,
               }}
             />
           </div>
