@@ -23,7 +23,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
   return (
     <html lang="ja" dir="ltr">
       <body className={clsx(inter.variable, 'font-base text-gray-foreground')}>
-        <div className="flex min-h-dvh flex-col overflow-y-scroll">
+        <div className="flex min-h-dvh flex-col">
           <SkipToMainContent />
           <Header />
           <main id={MAIN_CONTENT_ID}>{children}</main>

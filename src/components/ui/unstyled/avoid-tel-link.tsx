@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import isTouchDevice from '@/utils/device/is-touch-device';
-import Split from './split';
+import splitNode from './split-node';
 
-interface AvildTelLinkProps {
+interface AvoidTelLinkProps {
   children: string;
 }
 
@@ -12,7 +12,7 @@ interface AvildTelLinkProps {
  * `<meta name="format-detection" .. />`を指定してもiOSのChromeで電話番号リンクが付いてしまうため、
  * それを強制的に阻止するためのコンポーネント。
  */
-export default function AvoidTelLink({ children }: AvildTelLinkProps) {
+export default function AvoidTelLink({ children }: AvoidTelLinkProps) {
   const [splitDisabled, setSplitDisabled] = useState(false);
 
   useEffect(() => {
@@ -24,5 +24,5 @@ export default function AvoidTelLink({ children }: AvildTelLinkProps) {
     return <>{children}</>;
   }
 
-  return <Split separator={<>&zwnj;</>}>{children.split('')}</Split>;
+  return splitNode(children.split(''), <>&zwnj;</>);
 }

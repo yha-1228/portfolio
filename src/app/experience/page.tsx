@@ -1,3 +1,4 @@
+import React from 'react';
 import Container from '@/components/ui/styled/container';
 import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';

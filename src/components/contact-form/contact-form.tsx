@@ -7,6 +7,7 @@ import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import mapObject from '@/utils/object/map-object';
 import { entriesOf } from '@/utils/object/typed-native';
+import { headerHeight } from '../layouts/header';
 import { Button } from '../ui/styled/button';
 import Container from '../ui/styled/container';
 import FieldLabel from '../ui/styled/field-label';
@@ -115,11 +116,26 @@ export default function ContactForm() {
 
   const handleErrorListItemClick = (key: keyof ContactFormValues) => {
     const labelId = createLabelId(id, key);
-    window.location.href = `#${labelId}`;
+    const labelElem = document.getElementById(labelId);
+    const labelY = labelElem?.getBoundingClientRect().top;
+    if (!labelY) return;
+
+    const bufferMargin = 12;
+    const scrollToTop =
+      window.scrollY + labelY - parseInt(headerHeight) - bufferMargin;
+
+    const isTransitionReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    window.scrollTo({
+      top: scrollToTop,
+      behavior: isTransitionReduced ? 'instant' : 'smooth',
+    });
 
     const fieldId = createFieldId(id, key);
     const fieldElem = document.getElementById(fieldId);
-    fieldElem?.focus();
+    fieldElem?.focus({ preventScroll: !isTransitionReduced });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -185,7 +201,7 @@ export default function ContactForm() {
                   <FieldLabel
                     id={createLabelId(id, 'name')}
                     htmlFor={createFieldId(id, 'name')}
-                    reqired
+                    required
                   >
                     {keyLabelMap.name}
                   </FieldLabel>
@@ -215,7 +231,7 @@ export default function ContactForm() {
                   <FieldLabel
                     id={createLabelId(id, 'email')}
                     htmlFor={createFieldId(id, 'email')}
-                    reqired
+                    required
                   >
                     {keyLabelMap.email}
                   </FieldLabel>
@@ -275,7 +291,7 @@ export default function ContactForm() {
                 <FieldLabel
                   id={createLabelId(id, 'message')}
                   htmlFor={createFieldId(id, 'message')}
-                  reqired
+                  required
                 >
                   {keyLabelMap.message}
                 </FieldLabel>
