@@ -16,12 +16,12 @@ import Heading1 from '../ui/styled/heading1';
 import { Input, Textarea } from '../ui/styled/input';
 import Paragraph from '../ui/styled/paragraph';
 import { FeedbackNotification } from './feedback-notification';
-import { validate } from './validate';
-import type {
-  ContactFormErrors,
-  ContactFormTouched,
-  ContactFormValues,
+import {
+  type ContactFormErrors,
+  type ContactFormTouched,
+  type ContactFormValues,
 } from './types';
+import { validate } from './validate';
 
 // types
 // ----------------------------------------

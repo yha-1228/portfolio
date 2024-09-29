@@ -2,10 +2,8 @@ import { createClient } from 'microcms-js-sdk';
 import {
   getBlogDetailResponseSchema,
   getBlogListResponseSchema,
-} from '../validation/blog';
-import type {
-  GetBlogDetailResponse,
-  GetBlogListResponse,
+  type GetBlogDetailResponse,
+  type GetBlogListResponse,
 } from '../validation/blog';
 
 /**

@@ -1,5 +1,5 @@
 import validator from '@/form/validator';
-import type { ContactFormValues, ContactFormErrors } from './types';
+import { type ContactFormValues, type ContactFormErrors } from './types';
 
 const { exists, isEmail, isLength } = validator;
 

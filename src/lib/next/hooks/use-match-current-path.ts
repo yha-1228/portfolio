@@ -1,6 +1,6 @@
+import { type Url } from 'next/dist/shared/lib/router/router';
 import { usePathname } from 'next/navigation';
 import { isMatchFirstPath } from '@/utils/url/matching';
-import type { Url } from 'next/dist/shared/lib/router/router';
 
 export default function useIsMatchCurrentPath(target: Url) {
   if (typeof target !== 'string') {

@@ -1,4 +1,4 @@
-import type { ValueOf } from '@/types/utils';
+import { type ValueOf } from '@/types/utils';
 
 /**
  * @example

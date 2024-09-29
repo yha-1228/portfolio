@@ -1,7 +1,6 @@
 'use client';
 
-import type { ComponentProps, CSSProperties } from 'react';
-import React, { useState } from 'react';
+import React, { type ComponentProps, type CSSProperties , useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BsChevronRight, BsList, BsX } from 'react-icons/bs';
