@@ -7,6 +7,7 @@ import useBeforeUnload from '@/hooks/use-beforeunload';
 import clsx from '@/utils/css/clsx';
 import mapObject from '@/utils/object/map-object';
 import { entriesOf } from '@/utils/object/typed-native';
+import { headerHeight } from '../layouts/header';
 import { Button } from '../ui/styled/button';
 import Container from '../ui/styled/container';
 import FieldLabel from '../ui/styled/field-label';
@@ -115,7 +116,17 @@ export default function ContactForm() {
 
   const handleErrorListItemClick = (key: keyof ContactFormValues) => {
     const labelId = createLabelId(id, key);
-    window.location.href = `#${labelId}`;
+    const labelElem = document.getElementById(labelId);
+    const labelY = labelElem?.getBoundingClientRect().top;
+    if (!labelY) return;
+
+    const bufferMargin = 12;
+    const scrollToTop =
+      window.scrollY + labelY - parseInt(headerHeight) - bufferMargin;
+
+    window.scrollTo({
+      top: scrollToTop,
+    });
 
     const fieldId = createFieldId(id, key);
     const fieldElem = document.getElementById(fieldId);
