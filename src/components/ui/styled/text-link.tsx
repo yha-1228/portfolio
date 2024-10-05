@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import { type LinkComponentProps } from '@/lib/next/types';
 import clsx from '@/utils/css/clsx';
-import ExternalLink, { type ExternalLinkProps } from '../unstyled/external-link';
+import ExternalLink, {
+  type ExternalLinkProps,
+} from '../unstyled/external-link';
 
 const baseClassName = clsx(
   'rounded-sm underline-offset-[0.15em] hover:underline',

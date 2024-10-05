@@ -5,7 +5,7 @@ import Heading1 from '@/components/ui/styled/heading1';
 import Heading2 from '@/components/ui/styled/heading2';
 import Timeline, { type TimelineItem } from '@/components/ui/styled/timeline';
 import AvoidTelLink from '@/components/ui/unstyled/avoid-tel-link';
-import { experiencesOverviewItems , type Experience } from '@/data/experience';
+import { experiencesOverviewItems, type Experience } from '@/data/experience';
 
 export const metadata: Metadata = {
   title: '職務経歴',

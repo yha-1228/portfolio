@@ -1,5 +1,11 @@
 import React from 'react';
-import { skillDetails, skillWords , type Rank, type SkillDetail, type SkillWord } from '@/data/skills';
+import {
+  skillDetails,
+  skillWords,
+  type Rank,
+  type SkillDetail,
+  type SkillWord,
+} from '@/data/skills';
 import clsx from '@/utils/css/clsx';
 import Container from './ui/styled/container';
 import Heading1 from './ui/styled/heading1';
@@ -102,7 +108,7 @@ export default function Skills() {
                             {s.label}
                           </span>
                         )),
-                        ',',
+                        ', ',
                       )}
                     </div>
                   </section>
