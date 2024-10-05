@@ -1,7 +1,6 @@
 import React from 'react';
 
-interface GenerateContextOptions<T> {
-  defaultValue?: T;
+export interface GenerateContextOptions {
   /**
    * @default "useContext"
    */
@@ -12,13 +11,10 @@ interface GenerateContextOptions<T> {
   providerName?: string;
 }
 
-export function generateContext<T>(options: GenerateContextOptions<T> = {}) {
-  const {
-    defaultValue,
-    hookName = 'useContext',
-    providerName = 'Context.Provider',
-  } = options;
-  const Context = React.createContext<T | undefined>(defaultValue);
+export function generateContext<T>(options: GenerateContextOptions = {}) {
+  const { hookName = 'useContext', providerName = 'Context.Provider' } =
+    options;
+  const Context = React.createContext<T | null>(null);
 
   function useContext() {
     const value = React.useContext(Context);

@@ -8,14 +8,18 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 /**
  * `Array.map`のオブジェクト版
+ *
+ * @see `src/utils/object/map-object.ts` (コピー)
  */
-function mapBy(object, callbackfn) {
+function mapObject(object, condition) {
   const newObject = {};
 
-  Object.entries(object).forEach(([key, value]) => {
-    const newValue = callbackfn(value, key);
-    newObject[key] = newValue;
-  });
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      const value = object[key];
+      newObject[key] = condition(value, key);
+    }
+  }
 
   return newObject;
 }
@@ -93,7 +97,7 @@ module.exports = {
         ],
       },
       // line-heightだけ共通の値で上書きする
-      fontSize: mapBy(defaultTheme.fontSize, (fontSizeConfig) => [
+      fontSize: mapObject(defaultTheme.fontSize, (fontSizeConfig) => [
         fontSizeConfig[0],
         { lineHeight: baseLineHeight.toString() },
       ]),
@@ -106,7 +110,7 @@ module.exports = {
         wide: '0 30px 60px rgba(0,0,0,.12)',
       },
       zIndex: {
-        'header': 9999,
+        header: 9999,
       },
     },
   },

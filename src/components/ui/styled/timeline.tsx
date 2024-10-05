@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
 import AvoidTelLink from '../unstyled/avoid-tel-link';

@@ -1,3 +1,4 @@
+import { type Metadata } from 'next';
 import Link from 'next/link';
 import { getBlogList } from '@/api/clients/blog';
 import Container from '@/components/ui/styled/container';
@@ -6,7 +7,6 @@ import Tag from '@/components/ui/styled/tag';
 import { routes } from '@/routes';
 import clsx from '@/utils/css/clsx';
 import { formatISODate } from '@/utils/date/formatter';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ブログ',

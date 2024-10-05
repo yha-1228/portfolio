@@ -1,20 +1,10 @@
-import { createClient } from 'microcms-js-sdk';
 import {
   getBlogDetailResponseSchema,
   getBlogListResponseSchema,
+  type GetBlogDetailResponse,
+  type GetBlogListResponse,
 } from '../validation/blog';
-import type {
-  GetBlogDetailResponse,
-  GetBlogListResponse,
-} from '../validation/blog';
-
-/**
- * @see https://document.microcms.io/tutorial/next/next-getting-started
- */
-const client = createClient({
-  serviceDomain: process.env.SERVICE_DOMAIN || '',
-  apiKey: process.env.API_KEY || '',
-});
+import { client } from './common';
 
 export async function getBlogList(): Promise<GetBlogListResponse> {
   const response = await client.getList({
