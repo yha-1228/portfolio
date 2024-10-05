@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 import { sendNetlifyForm } from '@/api/clients/utils';
 import { isFetchNetworkError } from '@/api/misc';
 import useBeforeUnload from '@/hooks/use-beforeunload';
+import { getKeyErrorMessageMap } from '@/lib/zod/utils';
 import clsx from '@/utils/css/clsx';
 import mapObject from '@/utils/object/map-object';
 import { entriesOf } from '@/utils/object/typed-native';
@@ -17,11 +18,10 @@ import { Input, Textarea } from '../ui/styled/input';
 import Paragraph from '../ui/styled/paragraph';
 import { FeedbackNotification } from './feedback-notification';
 import {
-  type ContactFormErrors,
+  contactFormSchema,
   type ContactFormTouched,
   type ContactFormValues,
-} from './types';
-import { validate } from './validate';
+} from './validation';
 
 // types
 // ----------------------------------------
@@ -85,7 +85,7 @@ const createErrorId = (uniqId: string, key: keyof ContactFormValues) => {
 
 const showError = (
   name: keyof ContactFormValues,
-  errors: ContactFormErrors,
+  errors: ReturnType<typeof getKeyErrorMessageMap<ContactFormValues>>,
   touched: ContactFormTouched,
 ) => {
   return !!(errors[name] && touched[name]);
@@ -98,7 +98,7 @@ export default function ContactForm() {
   const id = useId();
 
   const [values, setValues] = useState(initialValues);
-  const errors = validate(values);
+  const errors = getKeyErrorMessageMap(contactFormSchema.safeParse(values));
 
   const [touched, setTouched] = useState(initialTouched);
   const [submitState, setSubmitState] = useState(initialSubmitState);
