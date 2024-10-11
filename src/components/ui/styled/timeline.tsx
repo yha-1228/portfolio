@@ -1,7 +1,6 @@
 import { type CSSProperties } from 'react';
 import { tailwindFullConfig } from '@/tailwind-config';
 import clsx from '@/utils/css/clsx';
-import AvoidTelLink from '../unstyled/avoid-tel-link';
 
 const { theme } = tailwindFullConfig;
 
@@ -16,38 +15,34 @@ export interface TimelineProps {
 }
 
 export default function Timeline({ items }: TimelineProps) {
-  const spacer = <div className="w-[calc(var(--dot-size)/2)]" />;
-
   return (
     <div
-      className={clsx(
-        'flex',
-        'pt-[9px]', // dotを上に上げた分、ルート要素はそれも囲うようにする。目視
-      )}
       style={
         {
-          '--dot-size': '16px',
-          '--space-between-content': theme?.spacing?.[6],
+          '--dot-size': theme.spacing['4'],
+          '--border-width': theme.spacing['0.5'],
         } as CSSProperties
       }
+      className="pl-[calc(var(--dot-size)/2)]"
     >
-      {spacer}
-      <ul className="flex-1 border-l-2 border-solid border-l-primary-600">
+      <ul className="space-y-10 border-l-[length:var(--border-width)] border-solid border-l-primary-600">
         {items.map((item, index) => (
-          <li key={index} className="mb-10 flex last:mb-0">
-            <div className="relative ml-[var(--space-between-content)] w-full">
-              <div
-                className={clsx(
-                  'absolute -top-2',
-                  'left-[calc(-1*calc(var(--space-between-content)+calc(var(--dot-size)/2))-2px+1px)]',
-                )}
-              >
-                <div className="size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white" />
+          <li key={index} className="relative w-full">
+            {/* Dot */}
+            <div
+              className={clsx(
+                'absolute left-[calc(-8px-calc(var(--border-width)/2))] top-0',
+                'size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white',
+              )}
+            />
+
+            {/* Body */}
+            <div className="ml-6">
+              <div className="font-semibold leading-none text-primary-600">
+                {item.point}
               </div>
-              <div className="absolute top-[-0.85rem] font-semibold text-primary-600">
-                <AvoidTelLink>{item.point}</AvoidTelLink>
-              </div>
-              <div className="mt-6 border-t border-solid border-t-gray-light-300 pt-2">
+
+              <div className="mt-4 border-t border-solid border-t-gray-light-300 pt-2">
                 <div className="py-1 text-xl font-bold leading-snug">
                   {item.heading}
                 </div>
