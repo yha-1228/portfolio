@@ -27,7 +27,7 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
             </p>
             <p>
               <b>技術:</b> React 18, Next.js 13 (App Router), TypeScript,
-              Tailwind CSS
+              Tailwind CSS, Radix UI
             </p>
           </>
         ),
@@ -69,7 +69,7 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
               Appとして閲覧する。
             </p>
             <p>
-              <b>技術:</b> React 18, TypeScript, Sass
+              <b>技術:</b> React 18, TypeScript, Sass, FullCalendar
             </p>
           </>
         ),
