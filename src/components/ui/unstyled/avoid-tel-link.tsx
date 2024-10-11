@@ -1,28 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {
+  type ComponentPropsWithRef,
+  type ElementType,
+  forwardRef,
+  useEffect,
+  useState,
+} from 'react';
+import { type Replace } from '@/types/utils';
 import isTouchDevice from '@/utils/device/is-touch-device';
 import splitNode from './split-node';
 
-interface AvoidTelLinkProps {
-  children: string;
+interface AvoidTelLinkProps
+  extends Replace<ComponentPropsWithRef<'div'>, { children: string }> {
+  as: ElementType;
 }
 
 /**
  * `<meta name="format-detection" .. />`を指定してもiOSのChromeで電話番号リンクが付いてしまうため、
  * それを強制的に阻止するためのコンポーネント。
  */
-export default function AvoidTelLink({ children }: AvoidTelLinkProps) {
-  const [splitDisabled, setSplitDisabled] = useState(false);
+const AvoidTelLink = forwardRef<HTMLDivElement, AvoidTelLinkProps>(
+  ({ as: Component, children, ...restProps }, ref) => {
+    const [splitDisabled, setSplitDisabled] = useState(false);
 
-  useEffect(() => {
-    const touchDevice = isTouchDevice();
-    setSplitDisabled(!touchDevice);
-  }, []);
+    useEffect(() => {
+      const touchDevice = isTouchDevice();
+      setSplitDisabled(!touchDevice);
+    }, []);
 
-  if (splitDisabled) {
-    return <>{children}</>;
-  }
+    if (splitDisabled) {
+      return (
+        <Component {...restProps} ref={ref}>
+          {children}
+        </Component>
+      );
+    }
 
-  return splitNode(children.split(''), <>&zwnj;</>);
-}
+    return (
+      <Component {...restProps} ref={ref}>
+        {splitNode(children.split(''), <>&zwnj;</>)}
+      </Component>
+    );
+  },
+);
+
+AvoidTelLink.displayName = 'AvoidTelLink';
+
+export default AvoidTelLink;

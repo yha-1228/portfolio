@@ -45,9 +45,12 @@ export default function Page() {
             >
               <div className="space-y-1">
                 <Heading2>{experiencesOverviewItem.company}</Heading2>
-                <div className="text-sm text-gray-foreground-weak">
-                  <AvoidTelLink>{experiencesOverviewItem.kikan}</AvoidTelLink>
-                </div>
+                <AvoidTelLink
+                  as="div"
+                  className="text-sm text-gray-foreground-weak"
+                >
+                  {experiencesOverviewItem.kikan}
+                </AvoidTelLink>
               </div>
               <Timeline
                 items={experiencesOverviewItem.experiences.map((experience) =>
