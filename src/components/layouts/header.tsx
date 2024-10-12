@@ -133,9 +133,10 @@ export default function Header() {
         {/* mobile only */}
         <Container
           className={clsx(
-            !isMobileMenuOpen && 'hidden',
             'sm:hidden',
-            'absolute left-0 top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] w-full bg-white',
+
+            'absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white transition-[height] duration-200 ease-in',
+            isMobileMenuOpen ? 'h-[calc(100dvh-var(--header-height))]' : 'h-0',
           )}
         >
           <ul className="divide-y divide-solid divide-gray-light-200 py-3">
