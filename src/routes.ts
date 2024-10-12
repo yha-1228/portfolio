@@ -1,3 +1,10 @@
+export interface Route {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  href: string | ((...args: any[]) => string);
+  label?: string;
+  routes?: Record<string, Route>;
+}
+
 export const routes = {
   index: {
     href: "/",
@@ -12,8 +19,8 @@ export const routes = {
     label: "ブログ",
     routes: {
       ":id": {
-        generateHref: (id: string) => `/blog/${id}`,
+        href: (id: string) => `/blog/${id}`,
       },
     },
   },
-} as const;
+} as const satisfies Record<string, Route>;

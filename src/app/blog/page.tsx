@@ -24,7 +24,7 @@ export default async function Page() {
             {contents.map((content) => (
               <li key={content.id}>
                 <Link
-                  href={routes.blog.routes[":id"].generateHref(content.id)}
+                  href={routes.blog.routes[":id"].href(content.id)}
                   className={clsx(
                     "group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-primary-600",
                     "active:outline active:outline-2 active:outline-primary-600",
