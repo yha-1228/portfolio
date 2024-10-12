@@ -67,6 +67,14 @@ export default function Header() {
     }
   });
 
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleHomeLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-header">
       <div
@@ -86,7 +94,7 @@ export default function Header() {
                 "text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300",
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleHomeLinkClick}
             >
               Yuta Hasegawa
             </Link>
@@ -98,7 +106,7 @@ export default function Header() {
                 "flex size-9 items-center justify-center sm:hidden",
                 "absolute -right-1.5 top-1/2 -translate-y-1/2",
               )}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={handleMobileMenuToggle}
               aria-label={
                 isMobileMenuOpen ? "メニューを開く" : "メニューを閉じる"
               }
