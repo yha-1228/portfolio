@@ -62,10 +62,8 @@ export default function Header() {
   });
 
   useKeydown((event) => {
-    if (event.key === "Escape") {
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
+    if (event.key === "Escape" && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
     }
   });
 
