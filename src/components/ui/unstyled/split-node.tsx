@@ -1,4 +1,4 @@
-import { Children, type ReactNode } from 'react';
+import { Children, type ReactNode } from "react";
 
 export default function splitNode(node: ReactNode, separator: ReactNode) {
   return (

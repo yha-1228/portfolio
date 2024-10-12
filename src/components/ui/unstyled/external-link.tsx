@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export type ExternalLinkProps = Omit<
-  React.ComponentPropsWithRef<'a'>,
-  'target' | 'rel'
+  React.ComponentPropsWithRef<"a">,
+  "target" | "rel"
 >;
 
 const ExternalLink = React.forwardRef<HTMLAnchorElement, ExternalLinkProps>(
@@ -11,6 +11,6 @@ const ExternalLink = React.forwardRef<HTMLAnchorElement, ExternalLinkProps>(
   },
 );
 
-ExternalLink.displayName = 'ExternalLink';
+ExternalLink.displayName = "ExternalLink";
 
 export default ExternalLink;

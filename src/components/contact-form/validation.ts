@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { errorMessages } from '@/form/error-messages';
+import { z } from "zod";
+import { errorMessages } from "@/form/error-messages";
 
 export const contactFormSchema = z.object({
   /**
@@ -28,7 +28,7 @@ export const contactFormSchema = z.object({
     .string()
     .min(1)
     .max(100, { message: errorMessages.isLength({ max: 100 }) })
-    .or(z.literal('')),
+    .or(z.literal("")),
 
   /**
    * お問い合わせ内容

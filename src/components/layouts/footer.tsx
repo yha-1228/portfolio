@@ -1,8 +1,8 @@
-import React from 'react';
-import { routes } from '@/routes';
-import clsx from '@/utils/css/clsx';
-import Container from '../ui/styled/container';
-import { ExternalTextLink, TextLink } from '../ui/styled/text-link';
+import React from "react";
+import { routes } from "@/routes";
+import clsx from "@/utils/css/clsx";
+import Container from "../ui/styled/container";
+import { ExternalTextLink, TextLink } from "../ui/styled/text-link";
 
 interface LinkInterface {
   href: string;
@@ -11,16 +11,16 @@ interface LinkInterface {
 
 const myExternalLinks: LinkInterface[] = [
   {
-    href: 'https://github.com/yha-1228',
-    label: 'GitHub',
+    href: "https://github.com/yha-1228",
+    label: "GitHub",
   },
   {
-    href: 'https://zenn.dev/yhase_rqp',
-    label: 'Zenn',
+    href: "https://zenn.dev/yhase_rqp",
+    label: "Zenn",
   },
   {
-    href: 'https://codepen.io/yh10050846',
-    label: 'Codepen',
+    href: "https://codepen.io/yh10050846",
+    label: "Codepen",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={clsx(
-        'border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10',
+        "border-t border-solid border-t-transparent bg-gray-light-100 pb-14 pt-10",
         className,
       )}
     >

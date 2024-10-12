@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { useId, useState } from 'react';
-import { sendNetlifyForm } from '@/api/clients/utils';
-import { isFetchNetworkError } from '@/api/misc';
-import useBeforeUnload from '@/hooks/use-beforeunload';
-import { getKeyErrorMessageMap } from '@/lib/zod/utils';
-import clsx from '@/utils/css/clsx';
-import mapObject from '@/utils/object/map-object';
-import { entriesOf } from '@/utils/object/typed-native';
-import { headerHeight } from '../layouts/header';
-import { Button } from '../ui/styled/button';
-import Container from '../ui/styled/container';
-import FieldLabel from '../ui/styled/field-label';
-import FormErrorMessage from '../ui/styled/form-error-message';
-import Heading1 from '../ui/styled/heading1';
-import { Input, Textarea } from '../ui/styled/input';
-import Paragraph from '../ui/styled/paragraph';
-import { FeedbackNotification } from './feedback-notification';
+import { useId, useState } from "react";
+import { sendNetlifyForm } from "@/api/clients/utils";
+import { isFetchNetworkError } from "@/api/misc";
+import useBeforeUnload from "@/hooks/use-beforeunload";
+import { getKeyErrorMessageMap } from "@/lib/zod/utils";
+import clsx from "@/utils/css/clsx";
+import mapObject from "@/utils/object/map-object";
+import { entriesOf } from "@/utils/object/typed-native";
+import { headerHeight } from "../layouts/header";
+import { Button } from "../ui/styled/button";
+import Container from "../ui/styled/container";
+import FieldLabel from "../ui/styled/field-label";
+import FormErrorMessage from "../ui/styled/form-error-message";
+import Heading1 from "../ui/styled/heading1";
+import { Input, Textarea } from "../ui/styled/input";
+import Paragraph from "../ui/styled/paragraph";
+import { FeedbackNotification } from "./feedback-notification";
 import {
   contactFormSchema,
   type ContactFormTouched,
   type ContactFormValues,
-} from './validation';
+} from "./validation";
 
 // types
 // ----------------------------------------
@@ -29,19 +29,19 @@ import {
 type FieldType = HTMLInputElement | HTMLTextAreaElement;
 
 type SubmitState =
-  | { state: 'idle' }
-  | { state: 'loading' }
-  | { state: 'success' }
-  | { state: 'error'; error: unknown };
+  | { state: "idle" }
+  | { state: "loading" }
+  | { state: "success" }
+  | { state: "error"; error: unknown };
 
 // initial state list
 // ----------------------------------------
 
 const initialValues: ContactFormValues = {
-  name: '',
-  email: '',
-  companyName: '',
-  message: '',
+  name: "",
+  email: "",
+  companyName: "",
+  message: "",
 };
 
 const initialTouched: ContactFormTouched = mapObject(
@@ -51,24 +51,24 @@ const initialTouched: ContactFormTouched = mapObject(
 
 const initialAllErrorVisible = false;
 
-const initialSubmitState: SubmitState = { state: 'idle' };
+const initialSubmitState: SubmitState = { state: "idle" };
 
 // constants, helpers
 // ----------------------------------------
 
 const keyLabelMap: { [key in keyof ContactFormValues]: string } = {
-  name: 'お名前',
-  email: 'メールアドレス',
-  companyName: '会社名',
-  message: 'お問い合わせ内容',
+  name: "お名前",
+  email: "メールアドレス",
+  companyName: "会社名",
+  message: "お問い合わせ内容",
 };
 
-const FORM_NAME = 'contact';
+const FORM_NAME = "contact";
 
 const feedbackText = {
-  done: 'お問い合わせありがとうございます。',
-  networkError: 'ネットワークに接続されていません。',
-  fail: '送信中にエラーが発生しました。',
+  done: "お問い合わせありがとうございます。",
+  networkError: "ネットワークに接続されていません。",
+  fail: "送信中にエラーが発生しました。",
 };
 
 const createFieldId = (uniqId: string, key: keyof ContactFormValues) => {
@@ -125,12 +125,12 @@ export default function ContactForm() {
       window.scrollY + labelY - parseInt(headerHeight) - bufferMargin;
 
     const isTransitionReduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     window.scrollTo({
       top: scrollToTop,
-      behavior: isTransitionReduced ? 'instant' : 'smooth',
+      behavior: isTransitionReduced ? "instant" : "smooth",
     });
 
     const fieldId = createFieldId(id, key);
@@ -148,24 +148,24 @@ export default function ContactForm() {
       return;
     }
 
-    setSubmitState({ state: 'loading' });
+    setSubmitState({ state: "loading" });
     try {
       await sendNetlifyForm({
-        htmlFilepath: '/__forms.html',
+        htmlFilepath: "/__forms.html",
         formName: FORM_NAME,
         data: values,
       });
-      setSubmitState({ state: 'success' });
+      setSubmitState({ state: "success" });
       setValues(initialValues);
       setTouched(initialTouched);
       setAllErrorVisible(initialAllErrorVisible);
     } catch (error) {
-      setSubmitState({ state: 'error', error });
+      setSubmitState({ state: "error", error });
     }
   };
 
   useBeforeUnload({
-    enabled: Object.values(values).some((value) => value !== ''),
+    enabled: Object.values(values).some((value) => value !== ""),
   });
 
   return (
@@ -183,8 +183,8 @@ export default function ContactForm() {
 
         <div
           className={clsx(
-            'mt-10',
-            'lg:rounded-xl lg:border lg:border-solid lg:border-gray-light-200 lg:bg-white lg:px-10 lg:pb-11 lg:pt-8 lg:shadow-wide',
+            "mt-10",
+            "lg:rounded-xl lg:border lg:border-solid lg:border-gray-light-200 lg:bg-white lg:px-10 lg:pb-11 lg:pt-8 lg:shadow-wide",
           )}
         >
           <form
@@ -199,8 +199,8 @@ export default function ContactForm() {
               <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
                 <div className="md:w-1/3">
                   <FieldLabel
-                    id={createLabelId(id, 'name')}
-                    htmlFor={createFieldId(id, 'name')}
+                    id={createLabelId(id, "name")}
+                    htmlFor={createFieldId(id, "name")}
                     required
                   >
                     {keyLabelMap.name}
@@ -208,19 +208,19 @@ export default function ContactForm() {
                   <div className="mt-2">
                     <Input
                       type="text"
-                      id={createFieldId(id, 'name')}
+                      id={createFieldId(id, "name")}
                       name="name"
                       placeholder="田中 太郎"
                       value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      invalid={showError('name', errors, touched)}
-                      aria-describedby={createErrorId(id, 'name')}
+                      invalid={showError("name", errors, touched)}
+                      aria-describedby={createErrorId(id, "name")}
                     />
                   </div>
-                  {showError('name', errors, touched) && (
+                  {showError("name", errors, touched) && (
                     <FormErrorMessage
-                      id={createErrorId(id, 'name')}
+                      id={createErrorId(id, "name")}
                       className="mt-2"
                     >
                       {errors.name}
@@ -229,8 +229,8 @@ export default function ContactForm() {
                 </div>
                 <div className="md:w-2/3">
                   <FieldLabel
-                    id={createLabelId(id, 'email')}
-                    htmlFor={createFieldId(id, 'email')}
+                    id={createLabelId(id, "email")}
+                    htmlFor={createFieldId(id, "email")}
                     required
                   >
                     {keyLabelMap.email}
@@ -238,19 +238,19 @@ export default function ContactForm() {
                   <div className="mt-2">
                     <Input
                       type="email"
-                      id={createFieldId(id, 'email')}
+                      id={createFieldId(id, "email")}
                       name="email"
                       placeholder="email@example.com"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      invalid={showError('email', errors, touched)}
-                      aria-describedby={createErrorId(id, 'email')}
+                      invalid={showError("email", errors, touched)}
+                      aria-describedby={createErrorId(id, "email")}
                     />
                   </div>
-                  {showError('email', errors, touched) && (
+                  {showError("email", errors, touched) && (
                     <FormErrorMessage
-                      id={createErrorId(id, 'email')}
+                      id={createErrorId(id, "email")}
                       className="mt-2"
                     >
                       {errors.email}
@@ -260,27 +260,27 @@ export default function ContactForm() {
               </div>
               <div>
                 <FieldLabel
-                  id={createLabelId(id, 'companyName')}
-                  htmlFor={createFieldId(id, 'companyName')}
+                  id={createLabelId(id, "companyName")}
+                  htmlFor={createFieldId(id, "companyName")}
                 >
                   {keyLabelMap.companyName}
                 </FieldLabel>
                 <div className="mt-2">
                   <Input
                     type="text"
-                    id={createFieldId(id, 'companyName')}
+                    id={createFieldId(id, "companyName")}
                     name="companyName"
                     placeholder="株式会社ABC / 自営業"
                     value={values.companyName}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    invalid={showError('companyName', errors, touched)}
-                    aria-describedby={createErrorId(id, 'companyName')}
+                    invalid={showError("companyName", errors, touched)}
+                    aria-describedby={createErrorId(id, "companyName")}
                   />
                 </div>
-                {showError('companyName', errors, touched) && (
+                {showError("companyName", errors, touched) && (
                   <FormErrorMessage
-                    id={createErrorId(id, 'companyName')}
+                    id={createErrorId(id, "companyName")}
                     className="mt-2"
                   >
                     {errors.companyName}
@@ -289,30 +289,30 @@ export default function ContactForm() {
               </div>
               <div>
                 <FieldLabel
-                  id={createLabelId(id, 'message')}
-                  htmlFor={createFieldId(id, 'message')}
+                  id={createLabelId(id, "message")}
+                  htmlFor={createFieldId(id, "message")}
                   required
                 >
                   {keyLabelMap.message}
                 </FieldLabel>
                 <div className="mt-2">
                   <Textarea
-                    id={createFieldId(id, 'message')}
+                    id={createFieldId(id, "message")}
                     name="message"
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     rows={6}
-                    invalid={showError('message', errors, touched)}
-                    aria-describedby={createErrorId(id, 'message')}
+                    invalid={showError("message", errors, touched)}
+                    aria-describedby={createErrorId(id, "message")}
                   />
                 </div>
                 <div className="mt-2">
                   <div className="text-sm text-gray-foreground-weak">
                     10文字以上
                   </div>
-                  {showError('message', errors, touched) && (
-                    <FormErrorMessage id={createErrorId(id, 'message')}>
+                  {showError("message", errors, touched) && (
+                    <FormErrorMessage id={createErrorId(id, "message")}>
                       {errors.message}
                     </FormErrorMessage>
                   )}
@@ -347,27 +347,27 @@ export default function ContactForm() {
               )}
 
               <Button
-                disabled={submitState.state === 'loading'}
+                disabled={submitState.state === "loading"}
                 className="w-full"
               >
-                {submitState.state === 'loading' ? '送信中...' : '送信する'}
+                {submitState.state === "loading" ? "送信中..." : "送信する"}
               </Button>
             </div>
           </form>
-          {submitState.state === 'success' && (
+          {submitState.state === "success" && (
             <FeedbackNotification
               className="mt-10"
               variant="primary"
-              onClose={() => setSubmitState({ state: 'idle' })}
+              onClose={() => setSubmitState({ state: "idle" })}
             >
               {feedbackText.done}
             </FeedbackNotification>
           )}
-          {submitState.state === 'error' && (
+          {submitState.state === "error" && (
             <FeedbackNotification
               className="mt-10"
               variant="danger"
-              onClose={() => setSubmitState({ state: 'idle' })}
+              onClose={() => setSubmitState({ state: "idle" })}
             >
               {isFetchNetworkError(submitState.error)
                 ? feedbackText.networkError

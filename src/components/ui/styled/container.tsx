@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import clsx from "@/utils/css/clsx";
 
-type Until = 'md' | 'lg';
+type Until = "md" | "lg";
 
 const untilMaxWidthMap: { [key in Until]: string } = {
-  md: 'md:max-w-screen-md',
-  lg: 'lg:max-w-screen-lg',
+  md: "md:max-w-screen-md",
+  lg: "lg:max-w-screen-lg",
 };
 
-type ContainerProps = React.ComponentProps<'div'> & {
+type ContainerProps = React.ComponentProps<"div"> & {
   fluid?: boolean;
   until?: Until;
   /**
@@ -23,15 +23,15 @@ export default function Container(props: ContainerProps) {
     className,
     fluid,
     until,
-    as: Component = 'div',
+    as: Component = "div",
     ...restProps
   } = props;
 
   return (
     <Component
       className={clsx(
-        fluid ? 'w-full' : 'container mx-auto',
-        'px-5',
+        fluid ? "w-full" : "container mx-auto",
+        "px-5",
         until && untilMaxWidthMap[until],
         className,
       )}

@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
   skillDetails,
   skillWords,
   type Rank,
   type SkillDetail,
   type SkillWord,
-} from '@/data/skills';
-import clsx from '@/utils/css/clsx';
-import Container from './ui/styled/container';
-import Heading1 from './ui/styled/heading1';
-import Heading2 from './ui/styled/heading2';
-import splitNode from './ui/unstyled/split-node';
+} from "@/data/skills";
+import clsx from "@/utils/css/clsx";
+import Container from "./ui/styled/container";
+import Heading1 from "./ui/styled/heading1";
+import Heading2 from "./ui/styled/heading2";
+import splitNode from "./ui/unstyled/split-node";
 
 interface SkillDetailCardProps {
   heading: React.ReactNode;
-  items: SkillDetail['items'];
+  items: SkillDetail["items"];
   accent?: boolean;
   className?: string;
 }
@@ -31,10 +31,10 @@ function SkillDetailCard(props: SkillDetailCardProps) {
   return (
     <div
       className={clsx(
-        'w-full rounded-lg px-5 lg:px-6',
-        'bg-white shadow-card',
-        'border-2 border-solid',
-        accent ? 'border-primary-600' : 'border-white',
+        "w-full rounded-lg px-5 lg:px-6",
+        "bg-white shadow-card",
+        "border-2 border-solid",
+        accent ? "border-primary-600" : "border-white",
         className,
       )}
     >
@@ -43,9 +43,9 @@ function SkillDetailCard(props: SkillDetailCardProps) {
       </div>
       <div
         className={clsx(
-          'space-y-5 pb-8 pt-5',
-          'text-gray-foreground',
-          'border-t border-solid border-t-gray-light-300',
+          "space-y-5 pb-8 pt-5",
+          "text-gray-foreground",
+          "border-t border-solid border-t-gray-light-300",
         )}
       >
         <ul className="mt-2 space-y-2.5 text-sm text-gray-foreground-weak">
@@ -53,7 +53,7 @@ function SkillDetailCard(props: SkillDetailCardProps) {
             <li
               key={item.text}
               className={clsx(
-                'bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]',
+                "bg-[length:18px_18px] bg-[0_0.12rem] bg-no-repeat ps-[1.75rem] leading-[1.6]",
                 rankIconClassNameMap[item.rank],
               )}
             >
@@ -68,11 +68,11 @@ function SkillDetailCard(props: SkillDetailCardProps) {
 
 // ----------------------------------------
 
-const skillWordCategoryHeadingMap: { [key in SkillWord['category']]: string } =
+const skillWordCategoryHeadingMap: { [key in SkillWord["category"]]: string } =
   {
-    fe: 'フロントエンド',
-    be: 'バックエンド',
-    tools: 'ツール等',
+    fe: "フロントエンド",
+    be: "バックエンド",
+    tools: "ツール等",
   };
 
 export default function Skills() {
@@ -82,7 +82,7 @@ export default function Skills() {
         <Container>
           <Heading1>言語/FW等</Heading1>
           <div className="space-y-3 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
-            {(['fe', 'be', 'tools'] as SkillWord['category'][]).map(
+            {(["fe", "be", "tools"] as SkillWord["category"][]).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
                   (s) => s.category === category,
@@ -100,15 +100,15 @@ export default function Skills() {
                           <span
                             key={s.label}
                             className={clsx(
-                              'text-lg',
+                              "text-lg",
                               s.strong &&
-                                'font-bold text-gray-foreground underline decoration-accent-300 decoration-[1.5px] underline-offset-[6px]',
+                                "font-bold text-gray-foreground underline decoration-accent-300 decoration-[1.5px] underline-offset-[6px]",
                             )}
                           >
                             {s.label}
                           </span>
                         )),
-                        ', ',
+                        ", ",
                       )}
                     </div>
                   </section>
