@@ -9,6 +9,6 @@
  * ```
  */
 export const isMatchFirstPath = (base: string, target: string | null) => {
-  if (target == null) target = '';
-  return base.split('/')[1] === target.split('/')[1];
+  if (target == null) target = "";
+  return base.split("/")[1] === target.split("/")[1];
 };

@@ -3,12 +3,12 @@ import {
   getBlogListResponseSchema,
   type GetBlogDetailResponse,
   type GetBlogListResponse,
-} from '../validation/blog';
-import { client } from './common';
+} from "../validation/blog";
+import { client } from "./common";
 
 export async function getBlogList(): Promise<GetBlogListResponse> {
   const response = await client.getList({
-    endpoint: 'blog',
+    endpoint: "blog",
   });
 
   const parsedResponse = getBlogListResponseSchema.safeParse(response);
@@ -24,7 +24,7 @@ export async function getBlogDetail(
   id: string,
 ): Promise<GetBlogDetailResponse> {
   const response = await client.getListDetail({
-    endpoint: 'blog',
+    endpoint: "blog",
     contentId: id,
   });
 

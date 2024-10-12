@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   type ComponentPropsWithRef,
@@ -6,13 +6,13 @@ import {
   forwardRef,
   useEffect,
   useState,
-} from 'react';
-import { type Replace } from '@/types/utils';
-import isTouchDevice from '@/utils/device/is-touch-device';
-import splitNode from './split-node';
+} from "react";
+import { type Replace } from "@/types/utils";
+import isTouchDevice from "@/utils/device/is-touch-device";
+import splitNode from "./split-node";
 
 interface AvoidTelLinkProps
-  extends Replace<ComponentPropsWithRef<'div'>, { children: string }> {
+  extends Replace<ComponentPropsWithRef<"div">, { children: string }> {
   as: ElementType;
 }
 
@@ -39,12 +39,12 @@ const AvoidTelLink = forwardRef<HTMLDivElement, AvoidTelLinkProps>(
 
     return (
       <Component {...restProps} ref={ref}>
-        {splitNode(children.split(''), <>&zwnj;</>)}
+        {splitNode(children.split(""), <>&zwnj;</>)}
       </Component>
     );
   },
 );
 
-AvoidTelLink.displayName = 'AvoidTelLink';
+AvoidTelLink.displayName = "AvoidTelLink";
 
 export default AvoidTelLink;

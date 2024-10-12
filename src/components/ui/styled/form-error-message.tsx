@@ -1,8 +1,8 @@
-import React from 'react';
-import { BsFillExclamationCircleFill } from 'react-icons/bs';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import { BsFillExclamationCircleFill } from "react-icons/bs";
+import clsx from "@/utils/css/clsx";
 
-type FormErrorMessageProps = React.ComponentPropsWithRef<'p'>;
+type FormErrorMessageProps = React.ComponentPropsWithRef<"p">;
 
 const FormErrorMessage = React.forwardRef<
   HTMLParagraphElement,
@@ -12,7 +12,7 @@ const FormErrorMessage = React.forwardRef<
 
   return (
     <p
-      className={clsx('flex items-center text-sm text-danger-500', className)}
+      className={clsx("flex items-center text-sm text-danger-500", className)}
       {...restProps}
       ref={ref}
     >
@@ -22,6 +22,6 @@ const FormErrorMessage = React.forwardRef<
   );
 });
 
-FormErrorMessage.displayName = 'FormErrorMessage';
+FormErrorMessage.displayName = "FormErrorMessage";
 
 export default FormErrorMessage;

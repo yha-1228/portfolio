@@ -13,13 +13,13 @@ export interface ExperiencesOverviewItem {
 
 export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
   {
-    company: '自営業',
-    kikan: '2023年9月 - 現在',
+    company: "自営業",
+    kikan: "2023年9月 - 現在",
     experiences: [
       {
-        kikan: '2024年8月 - 現在',
-        title: 'ポータルサイト (新規開発)',
-        projectCompanyName: '受託開発会社',
+        kikan: "2024年8月 - 現在",
+        title: "ポータルサイト (新規開発)",
+        projectCompanyName: "受託開発会社",
         description: (
           <>
             <p>
@@ -33,9 +33,9 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
         ),
       },
       {
-        kikan: '2023年9月中旬 - 2024年6月',
-        title: '求人掲載システム (リニューアル)',
-        projectCompanyName: '大手デジタルコンテンツ制作会社',
+        kikan: "2023年9月中旬 - 2024年6月",
+        title: "求人掲載システム (リニューアル)",
+        projectCompanyName: "大手デジタルコンテンツ制作会社",
         description: (
           <>
             <p>
@@ -53,12 +53,12 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
     ],
   },
   {
-    company: '株式会社アイキューブ',
-    kikan: '2019年4月 - 2023年8月',
+    company: "株式会社アイキューブ",
+    kikan: "2019年4月 - 2023年8月",
     experiences: [
       {
-        kikan: '2022年5月初旬 - 2023年7月',
-        title: 'SFAツール (新規開発)',
+        kikan: "2022年5月初旬 - 2023年7月",
+        title: "SFAツール (新規開発)",
         description: (
           <>
             <p>
@@ -75,8 +75,8 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
         ),
       },
       {
-        kikan: '2020年12月 - 2022年5月初旬',
-        title: '請求書管理アプリ (新規開発)',
+        kikan: "2020年12月 - 2022年5月初旬",
+        title: "請求書管理アプリ (新規開発)",
         description: (
           <>
             <p>
@@ -93,8 +93,8 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
         ),
       },
       {
-        kikan: '2020年8月 - 2020年11月',
-        title: '勤怠・締め日管理アプリ (新規開発)',
+        kikan: "2020年8月 - 2020年11月",
+        title: "勤怠・締め日管理アプリ (新規開発)",
         description: (
           <>
             <p>
@@ -110,12 +110,12 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
         ),
       },
       {
-        kikan: '2020年5月 - 2020年6月',
-        title: '以下同様',
+        kikan: "2020年5月 - 2020年6月",
+        title: "以下同様",
       },
       {
-        kikan: '2019年7月 - 2020年1月',
-        title: '建物維持管理アプリ (保守)',
+        kikan: "2019年7月 - 2020年1月",
+        title: "建物維持管理アプリ (保守)",
         description: (
           <>
             <p>

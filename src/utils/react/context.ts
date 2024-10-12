@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface GenerateContextOptions {
   /**
@@ -12,7 +12,7 @@ export interface GenerateContextOptions {
 }
 
 export function generateContext<T>(options: GenerateContextOptions = {}) {
-  const { hookName = 'useContext', providerName = 'Context.Provider' } =
+  const { hookName = "useContext", providerName = "Context.Provider" } =
     options;
   const Context = React.createContext<T | null>(null);
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import clsx from "@/utils/css/clsx";
 
-type Heading3Props = React.ComponentPropsWithRef<'h3'>;
+type Heading3Props = React.ComponentPropsWithRef<"h3">;
 
 const Heading3 = React.forwardRef<HTMLHeadingElement, Heading3Props>(
   (props, ref) => {
@@ -10,7 +10,7 @@ const Heading3 = React.forwardRef<HTMLHeadingElement, Heading3Props>(
     return (
       <h3
         className={clsx(
-          'mb-5 mt-8 text-lg font-bold leading-tight sm:text-xl',
+          "mb-5 mt-8 text-lg font-bold leading-tight sm:text-xl",
           className,
         )}
         {...restProps}
@@ -20,6 +20,6 @@ const Heading3 = React.forwardRef<HTMLHeadingElement, Heading3Props>(
   },
 );
 
-Heading3.displayName = 'Heading3';
+Heading3.displayName = "Heading3";
 
 export default Heading3;

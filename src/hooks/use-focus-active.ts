@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useState } from 'react';
+import { type RefObject, useEffect, useState } from "react";
 
 export default function useFocusActive<T extends HTMLElement>(
   ref: RefObject<T>,
@@ -12,12 +12,12 @@ export default function useFocusActive<T extends HTMLElement>(
     const handleFocusin = () => setFocusActive(true);
     const handleFocusout = () => setFocusActive(false);
 
-    elem.addEventListener('focusin', handleFocusin);
-    elem.addEventListener('focusout', handleFocusout);
+    elem.addEventListener("focusin", handleFocusin);
+    elem.addEventListener("focusout", handleFocusout);
 
     return () => {
-      elem.removeEventListener('focusin', handleFocusin);
-      elem.removeEventListener('focusout', handleFocusout);
+      elem.removeEventListener("focusin", handleFocusin);
+      elem.removeEventListener("focusout", handleFocusout);
     };
   }, [ref]);
 

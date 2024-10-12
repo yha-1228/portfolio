@@ -1,21 +1,21 @@
-import { type ReactNode } from 'react';
+import { type ReactNode } from "react";
 import {
   BsFillCheckCircleFill,
   BsFillExclamationCircleFill,
   BsX,
-} from 'react-icons/bs';
-import clsx from '@/utils/css/clsx';
+} from "react-icons/bs";
+import clsx from "@/utils/css/clsx";
 
-type Variant = 'primary' | 'danger';
+type Variant = "primary" | "danger";
 
 const variantRootClassMap: Record<Variant, string> = {
-  primary: 'bg-primary-500',
-  danger: 'bg-danger-500',
+  primary: "bg-primary-500",
+  danger: "bg-danger-500",
 };
 
 const variantButtonClassMap: Record<Variant, string> = {
-  primary: 'hover:bg-primary-600 active:bg-primary-700',
-  danger: 'hover:bg-danger-600 active:bg-danger-700',
+  primary: "hover:bg-primary-600 active:bg-primary-700",
+  danger: "hover:bg-danger-600 active:bg-danger-700",
 };
 
 const variantIconMap: Record<Variant, ReactNode> = {
@@ -36,7 +36,7 @@ export function FeedbackNotification(props: FeedbackNotificationProps) {
   return (
     <div
       className={clsx(
-        'flex items-center justify-between rounded-lg px-4 py-3 text-white',
+        "flex items-center justify-between rounded-lg px-4 py-3 text-white",
         variantRootClassMap[variant],
         className,
       )}
@@ -49,7 +49,7 @@ export function FeedbackNotification(props: FeedbackNotificationProps) {
         type="button"
         aria-label="閉じる"
         className={clsx(
-          'inline-flex items-center rounded-full',
+          "inline-flex items-center rounded-full",
           variantButtonClassMap[variant],
         )}
         onClick={onClose}
