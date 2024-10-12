@@ -8,6 +8,7 @@ import React, {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsChevronRight, BsList, BsX } from "react-icons/bs";
+import useKeydown from "@/hooks/use-keydown";
 import useMediaQuery from "@/hooks/use-media-query";
 import useOnRouteChange from "@/hooks/use-on-route-change";
 import useScrollLock from "@/hooks/use-scroll-lock";
@@ -57,6 +58,14 @@ export default function Header() {
   useOnRouteChange(() => {
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
+    }
+  });
+
+  useKeydown((event) => {
+    if (event.key === "Escape") {
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
     }
   });
 
