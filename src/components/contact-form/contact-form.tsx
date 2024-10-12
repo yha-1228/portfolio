@@ -6,6 +6,7 @@ import { isFetchNetworkError } from "@/api/misc";
 import useBeforeUnload from "@/hooks/use-beforeunload";
 import { getKeyErrorMessageMap } from "@/lib/zod/utils";
 import clsx from "@/utils/css/clsx";
+import { remToPx } from "@/utils/css/unit";
 import mapObject from "@/utils/object/map-object";
 import { entriesOf } from "@/utils/object/typed-native";
 import { headerHeight } from "../layouts/header";
@@ -18,21 +19,11 @@ import { Input, Textarea } from "../ui/styled/input";
 import Paragraph from "../ui/styled/paragraph";
 import { FeedbackNotification } from "./feedback-notification";
 import {
-  contactFormSchema,
+  type SubmitState,
+  type FieldType,
   type ContactFormTouched,
-  type ContactFormValues,
-} from "./validation";
-
-// types
-// ----------------------------------------
-
-type FieldType = HTMLInputElement | HTMLTextAreaElement;
-
-type SubmitState =
-  | { state: "idle" }
-  | { state: "loading" }
-  | { state: "success" }
-  | { state: "error"; error: unknown };
+} from "./types";
+import { contactFormSchema, type ContactFormValues } from "./validation";
 
 // initial state list
 // ----------------------------------------
@@ -122,7 +113,7 @@ export default function ContactForm() {
 
     const bufferMargin = 12;
     const scrollToTop =
-      window.scrollY + labelY - parseInt(headerHeight) - bufferMargin;
+      window.scrollY + labelY - remToPx(headerHeight) - bufferMargin;
 
     const isTransitionReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",

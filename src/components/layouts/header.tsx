@@ -14,7 +14,6 @@ import useScrollLock from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
 import { tailwindFullConfig } from "@/tailwind-config";
 import clsx from "@/utils/css/clsx";
-import { rem } from "@/utils/css/unit";
 import Container from "../ui/styled/container";
 
 function ActiveNavLink(props: ComponentProps<typeof Link>) {
@@ -38,8 +37,8 @@ const routesWithoutHome = Object.values(routes).filter(
   (route) => route.href !== "/",
 );
 
-export const headerHeight = "64px";
-export const hederBorderBottomWidth = "1px";
+export const headerHeight = tailwindFullConfig.theme.spacing["16"];
+export const hederBorderBottomWidth = tailwindFullConfig.theme.spacing.px;
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -55,7 +54,7 @@ export default function Header() {
 
   useScrollLock({ enabled: isMobileMenuOpen });
 
-  useOnRouteChange(async () => {
+  useOnRouteChange(() => {
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
@@ -66,7 +65,7 @@ export default function Header() {
       <div
         style={
           {
-            "--header-height": rem({ px: parseInt(headerHeight) }),
+            "--header-height": headerHeight,
             "--header-border-bottom-width": hederBorderBottomWidth,
           } as CSSProperties
         }
