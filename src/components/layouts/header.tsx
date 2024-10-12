@@ -134,7 +134,6 @@ export default function Header() {
         <Container
           className={clsx(
             'sm:hidden',
-
             'absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white transition-[height] duration-200 ease-in',
             isMobileMenuOpen ? 'h-[calc(100dvh-var(--header-height))]' : 'h-0',
           )}
