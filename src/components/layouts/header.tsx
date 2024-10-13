@@ -3,11 +3,13 @@
 import React, {
   type ComponentProps,
   type CSSProperties,
+  useRef,
   useState,
 } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsChevronRight, BsList, BsX } from "react-icons/bs";
+import { MOBILE_MENU_ID } from "@/constants";
 import useKeydown from "@/hooks/use-keydown";
 import useMediaQuery from "@/hooks/use-media-query";
 import useOnRouteChange from "@/hooks/use-on-route-change";
@@ -15,6 +17,7 @@ import useScrollLock from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
 import { tailwindFullConfig } from "@/tailwind-config";
 import clsx from "@/utils/css/clsx";
+import { loopFocus } from "@/utils/dom/utils";
 import Container from "../ui/styled/container";
 
 function ActiveNavLink(props: ComponentProps<typeof Link>) {
@@ -42,13 +45,16 @@ export const headerHeight = tailwindFullConfig.theme.spacing["16"];
 export const hederBorderBottomWidth = tailwindFullConfig.theme.spacing.px;
 
 export default function Header() {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useMediaQuery({
     query: `(min-width: ${tailwindFullConfig.theme.screens.sm})`,
     callback: (event) => {
-      if (event.matches && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+      if (isMobileMenuOpen) {
+        if (event.matches) {
+          setIsMobileMenuOpen(false);
+        }
       }
     },
   });
@@ -62,13 +68,25 @@ export default function Header() {
   });
 
   useKeydown((event) => {
-    if (event.key === "Escape" && isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
+    if (isMobileMenuOpen) {
+      loopFocus(event, rootRef.current!);
+
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
     }
   });
 
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleHomeLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-header">
+    <header className="sticky top-0 z-header" ref={rootRef}>
       <div
         style={
           {
@@ -86,7 +104,7 @@ export default function Header() {
                 "text-2xl font-bold transition-colors duration-200 ease-out hover:text-gray-foreground-weak",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300",
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleHomeLinkClick}
             >
               Yuta Hasegawa
             </Link>
@@ -98,10 +116,12 @@ export default function Header() {
                 "flex size-9 items-center justify-center sm:hidden",
                 "absolute -right-1.5 top-1/2 -translate-y-1/2",
               )}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={handleMobileMenuToggle}
               aria-label={
                 isMobileMenuOpen ? "メニューを開く" : "メニューを閉じる"
               }
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={MOBILE_MENU_ID}
             >
               {isMobileMenuOpen ? (
                 <BsX aria-hidden="true" className="size-8" />
@@ -138,10 +158,13 @@ export default function Header() {
 
         {/* mobile only */}
         <Container
+          id={MOBILE_MENU_ID}
           className={clsx(
             "sm:hidden",
-            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white transition-[height] duration-200 ease-in",
-            isMobileMenuOpen ? "h-[calc(100dvh-var(--header-height))]" : "h-0",
+            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white transition-[height,visibility] duration-200 ease-in",
+            isMobileMenuOpen
+              ? "visible h-[calc(100dvh-var(--header-height))]"
+              : "invisible block h-0",
           )}
         >
           <ul className="divide-y divide-solid divide-gray-light-200 py-3">
