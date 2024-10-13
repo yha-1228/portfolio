@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import clsx from "@/utils/css/clsx";
 
-type FieldLabelProps = React.ComponentPropsWithRef<'label'> & {
+type FieldLabelProps = React.ComponentPropsWithRef<"label"> & {
   /**
    * 必須項目を示す。以下の処理が入る。
    *
@@ -16,13 +16,13 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
 
     return (
       <label
-        className={clsx('block font-bold', className)}
+        className={clsx("block font-bold", className)}
         {...restProps}
         ref={ref}
       >
         {required ? (
           <>
-            {children}{' '}
+            {children}{" "}
             <span aria-hidden="true" className="font-normal text-danger-500">
               *
             </span>
@@ -36,6 +36,6 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
   },
 );
 
-FieldLabel.displayName = 'FieldLabel';
+FieldLabel.displayName = "FieldLabel";
 
 export default FieldLabel;

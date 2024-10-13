@@ -1,6 +1,6 @@
-import { type CSSProperties } from 'react';
-import { tailwindFullConfig } from '@/tailwind-config';
-import clsx from '@/utils/css/clsx';
+import { type CSSProperties } from "react";
+import { tailwindFullConfig } from "@/tailwind-config";
+import clsx from "@/utils/css/clsx";
 
 const { theme } = tailwindFullConfig;
 
@@ -19,8 +19,8 @@ export default function Timeline({ items }: TimelineProps) {
     <div
       style={
         {
-          '--dot-size': theme.spacing['4'],
-          '--border-width': theme.spacing['0.5'],
+          "--dot-size": theme.spacing["4"],
+          "--border-width": theme.spacing["0.5"],
         } as CSSProperties
       }
       className="pl-[calc(var(--dot-size)/2)]"
@@ -31,8 +31,8 @@ export default function Timeline({ items }: TimelineProps) {
             {/* Dot */}
             <div
               className={clsx(
-                'absolute left-[calc(-8px-calc(var(--border-width)/2))] top-0',
-                'size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white',
+                "absolute left-[calc(-8px-calc(var(--border-width)/2))] top-0",
+                "size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white",
               )}
             />
 

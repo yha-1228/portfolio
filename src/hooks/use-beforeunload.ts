@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export interface UseBeforeUnloadOptions {
   enabled: boolean;
@@ -9,14 +9,14 @@ export default function useBeforeUnload({ enabled }: UseBeforeUnloadOptions) {
     const handler = (event: BeforeUnloadEvent) => {
       if (enabled) {
         event.preventDefault();
-        event.returnValue = '';
+        event.returnValue = "";
       }
     };
 
-    window.addEventListener('beforeunload', handler);
+    window.addEventListener("beforeunload", handler);
 
     return () => {
-      window.removeEventListener('beforeunload', handler);
+      window.removeEventListener("beforeunload", handler);
     };
   }, [enabled]);
 }

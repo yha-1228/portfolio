@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import { type LinkComponentProps } from '@/lib/next/types';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import Link from "next/link";
+import { type LinkComponentProps } from "@/lib/next/types";
+import clsx from "@/utils/css/clsx";
 
 // common
 // ----------------------------------------
@@ -12,17 +12,17 @@ interface ButtonBaseProps {
 }
 
 const baseClassName = clsx(
-  'inline-flex items-center justify-center rounded-md px-5 py-2 font-bold',
-  'transition-colors duration-200 ease-out',
-  'bg-primary-600 text-white',
-  'hover:bg-primary-800',
-  'active:bg-primary-800',
-  'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300',
+  "inline-flex items-center justify-center rounded-md px-5 py-2 font-bold",
+  "transition-colors duration-200 ease-out",
+  "bg-primary-600 text-white",
+  "hover:bg-primary-800",
+  "active:bg-primary-800",
+  "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-300",
 );
 
 // ----------------------------------------
 
-type ButtonProps = React.ComponentPropsWithRef<'button'> & ButtonBaseProps;
+type ButtonProps = React.ComponentPropsWithRef<"button"> & ButtonBaseProps;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -32,7 +32,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={clsx(
           baseClassName,
-          'disabled:cursor-not-allowed disabled:bg-gray-light-400',
+          "disabled:cursor-not-allowed disabled:bg-gray-light-400",
           className,
         )}
         {...restProps}
@@ -53,7 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 // ----------------------------------------
 
@@ -65,10 +65,10 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
 
     const ariaProps: Pick<
       LinkComponentProps,
-      'aria-disabled' | 'role' | 'tabIndex'
+      "aria-disabled" | "role" | "tabIndex"
     > = {
-      'aria-disabled': disabled,
-      role: 'button',
+      "aria-disabled": disabled,
+      role: "button",
       ...(disabled ? { tabIndex: -1 } : {}),
     };
 
@@ -76,7 +76,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       <Link
         className={clsx(
           baseClassName,
-          disabled && 'pointer-events-none bg-gray-light-400',
+          disabled && "pointer-events-none bg-gray-light-400",
           className,
         )}
         {...ariaProps}
@@ -98,7 +98,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   },
 );
 
-ButtonLink.displayName = 'ButtonLink';
+ButtonLink.displayName = "ButtonLink";
 
 // ----------------------------------------
 

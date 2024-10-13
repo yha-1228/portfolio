@@ -1,15 +1,15 @@
-import { type Metadata } from 'next';
-import Link from 'next/link';
-import { getBlogList } from '@/api/clients/blog';
-import Container from '@/components/ui/styled/container';
-import Heading1 from '@/components/ui/styled/heading1';
-import Tag from '@/components/ui/styled/tag';
-import { routes } from '@/routes';
-import clsx from '@/utils/css/clsx';
-import { formatISODate } from '@/utils/date/formatter';
+import { type Metadata } from "next";
+import Link from "next/link";
+import { getBlogList } from "@/api/clients/blog";
+import Container from "@/components/ui/styled/container";
+import Heading1 from "@/components/ui/styled/heading1";
+import Tag from "@/components/ui/styled/tag";
+import { routes } from "@/routes";
+import clsx from "@/utils/css/clsx";
+import { formatISODate } from "@/utils/date/formatter";
 
 export const metadata: Metadata = {
-  title: 'ブログ',
+  title: "ブログ",
 };
 
 export default async function Page() {
@@ -24,11 +24,11 @@ export default async function Page() {
             {contents.map((content) => (
               <li key={content.id}>
                 <Link
-                  href={routes.blog.routes[':id'].generateHref(content.id)}
+                  href={routes.blog.routes[":id"].href(content.id)}
                   className={clsx(
-                    'group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-primary-600',
-                    'active:outline active:outline-2 active:outline-primary-600',
-                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600',
+                    "group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-primary-600",
+                    "active:outline active:outline-2 active:outline-primary-600",
+                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600",
                   )}
                 >
                   <div className="text-xl font-bold underline-offset-[0.15em] group-hover:underline">

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const getBlogListResponseSchema = z.object({
   contents: z.array(

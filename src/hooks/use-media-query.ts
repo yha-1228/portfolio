@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 export interface UseMediaQueryOptions {
   query: string;
@@ -22,8 +22,8 @@ export default function useMediaQuery({
       savedCallback.current?.(event);
     };
 
-    mql.addEventListener('change', listener);
+    mql.addEventListener("change", listener);
 
-    return () => mql.removeEventListener('change', listener);
+    return () => mql.removeEventListener("change", listener);
   }, [query]);
 }

@@ -1,5 +1,5 @@
-import encode from '@/lib/netlify/encode';
-import { type Dict } from '@/types/utils';
+import encode from "@/lib/netlify/encode";
+import { type Dict } from "@/types/utils";
 
 export interface SendNetlifyFormParams {
   htmlFilepath: string;
@@ -16,9 +16,9 @@ export async function sendNetlifyForm({
   data,
 }: SendNetlifyFormParams) {
   const res = await fetch(htmlFilepath, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encode({ 'form-name': formName, ...data }),
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encode({ "form-name": formName, ...data }),
   });
 
   if (!res.ok) {

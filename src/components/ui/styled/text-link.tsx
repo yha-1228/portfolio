@@ -1,15 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import { FiExternalLink } from 'react-icons/fi';
-import { type LinkComponentProps } from '@/lib/next/types';
-import clsx from '@/utils/css/clsx';
+import React from "react";
+import Link from "next/link";
+import { FiExternalLink } from "react-icons/fi";
+import { type LinkComponentProps } from "@/lib/next/types";
+import clsx from "@/utils/css/clsx";
 import ExternalLink, {
   type ExternalLinkProps,
-} from '../unstyled/external-link';
+} from "../unstyled/external-link";
 
 const baseClassName = clsx(
-  'rounded-sm underline-offset-[0.15em] hover:underline',
-  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300',
+  "rounded-sm underline-offset-[0.15em] hover:underline",
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300",
 );
 
 // ----------------------------------------
@@ -30,7 +30,7 @@ const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
   },
 );
 
-TextLink.displayName = 'TextLink';
+TextLink.displayName = "TextLink";
 
 // ----------------------------------------
 
@@ -46,7 +46,7 @@ const ExternalTextLink = React.forwardRef<
     <ExternalLink
       className={clsx(
         baseClassName,
-        'inline-flex items-center space-x-1',
+        "inline-flex items-center space-x-1",
         className,
       )}
       {...restProps}
@@ -58,7 +58,7 @@ const ExternalTextLink = React.forwardRef<
   );
 });
 
-ExternalTextLink.displayName = 'ExternalTextLink';
+ExternalTextLink.displayName = "ExternalTextLink";
 
 // ----------------------------------------
 

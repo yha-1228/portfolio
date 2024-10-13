@@ -1,6 +1,6 @@
-import { type SafeParseReturnType } from 'zod';
-import mapObject from '@/utils/object/map-object';
-import omit from '@/utils/object/omit';
+import { type SafeParseReturnType } from "zod";
+import mapObject from "@/utils/object/map-object";
+import omit from "@/utils/object/omit";
 
 export function getKeyErrorMessagesMap<Input>(
   safeParseReturn: SafeParseReturnType<Input, Input>,
@@ -8,8 +8,8 @@ export function getKeyErrorMessagesMap<Input>(
   const formattedError = safeParseReturn.error?.format();
   if (!formattedError) return {};
 
-  const errors = mapObject(omit(formattedError, ['_errors']), (value) => {
-    if (typeof value === 'object' && !!value && '_errors' in value) {
+  const errors = mapObject(omit(formattedError, ["_errors"]), (value) => {
+    if (typeof value === "object" && !!value && "_errors" in value) {
       return value._errors as string[];
     } else {
       return undefined;
