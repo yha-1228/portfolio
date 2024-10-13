@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint  --fix",
-    "format": "prettier --write .",
-    "lint-all": "npm run lint:fix && npm run format"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.3.2",
