@@ -9,7 +9,7 @@ import {
 } from "../unstyled/external-link";
 
 const baseClassName = clsx(
-  "rounded-sm underline-offset-[0.15em] hover:underline",
+  "rounded-sm underline-offset-[5px] hover:underline",
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-300",
 );
 
