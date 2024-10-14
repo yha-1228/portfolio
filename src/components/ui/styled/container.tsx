@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type Until = "md" | "lg";
 
@@ -18,7 +18,7 @@ type ContainerProps = React.ComponentProps<"div"> & {
   as?: React.ElementType<any>;
 };
 
-export default function Container(props: ContainerProps) {
+export function Container(props: ContainerProps) {
   const {
     className,
     fluid,

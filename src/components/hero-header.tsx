@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { routes } from "@/routes";
 import { ButtonLink } from "./ui/styled/button";
-import Container from "./ui/styled/container";
+import { Container } from "./ui/styled/container";
 
-export default function HeroHeader() {
+export function HeroHeader() {
   return (
     <div className="pb-12 pt-10">
       <Container>

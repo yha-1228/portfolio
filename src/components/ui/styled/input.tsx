@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 // common
 // ----------------------------------------

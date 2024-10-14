@@ -1,7 +1,7 @@
 import React from "react";
 import { routes } from "@/routes";
-import clsx from "@/utils/css/clsx";
-import Container from "../ui/styled/container";
+import { clsx } from "@/utils/css/clsx";
+import { Container } from "../ui/styled/container";
 import { ExternalTextLink, TextLink } from "../ui/styled/text-link";
 
 interface LinkInterface {
@@ -30,7 +30,7 @@ export interface FooterProps {
   className?: string;
 }
 
-export default function Footer({ className }: FooterProps) {
+export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={clsx(

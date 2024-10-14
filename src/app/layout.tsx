@@ -1,12 +1,12 @@
 import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
-import Footer from "@/components/layouts/footer";
-import Header from "@/components/layouts/header";
-import SkipToMainContent from "@/components/layouts/skip-to-main-content";
+import { Footer } from "@/components/layouts/footer";
+import { Header } from "@/components/layouts/header";
+import { SkipToMainContent } from "@/components/layouts/skip-to-main-content";
 import { MAIN_CONTENT_ID, SITE_TITLE } from "@/constants";
 import { type NextLayoutProps } from "@/lib/next/types";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 export const metadata: Metadata = {
   title: { template: `${SITE_TITLE} | %s`, default: SITE_TITLE },

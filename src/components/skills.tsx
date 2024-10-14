@@ -6,11 +6,11 @@ import {
   type SkillDetail,
   type SkillWord,
 } from "@/data/skills";
-import clsx from "@/utils/css/clsx";
-import Container from "./ui/styled/container";
-import Heading1 from "./ui/styled/heading1";
-import Heading2 from "./ui/styled/heading2";
-import splitNode from "./ui/unstyled/split-node";
+import { clsx } from "@/utils/css/clsx";
+import { Container } from "./ui/styled/container";
+import { Heading1 } from "./ui/styled/heading1";
+import { Heading2 } from "./ui/styled/heading2";
+import { splitNode } from "./ui/unstyled/split-node";
 
 interface SkillDetailCardProps {
   heading: React.ReactNode;
@@ -75,7 +75,7 @@ const skillWordCategoryHeadingMap: { [key in SkillWord["category"]]: string } =
     tools: "ツール等",
   };
 
-export default function Skills() {
+export function Skills() {
   return (
     <>
       <div className="bg-gray-light-100 py-14">

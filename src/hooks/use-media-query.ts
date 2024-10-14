@@ -5,10 +5,7 @@ export interface UseMediaQueryOptions {
   callback?: (event: MediaQueryListEvent) => void;
 }
 
-export default function useMediaQuery({
-  query,
-  callback,
-}: UseMediaQueryOptions) {
+export function useMediaQuery({ query, callback }: UseMediaQueryOptions) {
   const savedCallback = useRef(callback);
 
   useEffect(() => {

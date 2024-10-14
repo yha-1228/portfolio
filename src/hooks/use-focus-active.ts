@@ -1,8 +1,6 @@
 import { type RefObject, useEffect, useState } from "react";
 
-export default function useFocusActive<T extends HTMLElement>(
-  ref: RefObject<T>,
-) {
+export function useFocusActive<T extends HTMLElement>(ref: RefObject<T>) {
   const [focusActive, setFocusActive] = useState(false);
 
   useEffect(() => {

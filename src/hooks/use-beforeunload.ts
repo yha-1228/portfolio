@@ -4,7 +4,7 @@ export interface UseBeforeUnloadOptions {
   enabled: boolean;
 }
 
-export default function useBeforeUnload({ enabled }: UseBeforeUnloadOptions) {
+export function useBeforeUnload({ enabled }: UseBeforeUnloadOptions) {
   useEffect(() => {
     const handler = (event: BeforeUnloadEvent) => {
       if (enabled) {

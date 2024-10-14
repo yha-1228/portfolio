@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function useKeydown(callback: (event: KeyboardEvent) => void) {
+export function useKeydown(callback: (event: KeyboardEvent) => void) {
   const savedCallback = useRef(callback);
 
   useEffect(() => {

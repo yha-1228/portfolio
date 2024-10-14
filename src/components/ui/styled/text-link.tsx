@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 import { type LinkComponentProps } from "@/lib/next/types";
-import clsx from "@/utils/css/clsx";
-import ExternalLink, {
+import { clsx } from "@/utils/css/clsx";
+import {
+  ExternalLink,
   type ExternalLinkProps,
 } from "../unstyled/external-link";
 
