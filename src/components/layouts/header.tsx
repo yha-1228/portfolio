@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsChevronRight, BsList, BsX } from "react-icons/bs";
+import { BsList, BsX } from "react-icons/bs";
 import { MOBILE_MENU_ID } from "@/constants";
 import { useKeydown } from "@/hooks/use-keydown";
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -17,8 +17,8 @@ import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
 import { tailwindFullConfig } from "@/tailwind-config";
 import { clsx } from "@/utils/css/clsx";
-import { loopFocus } from "@/utils/dom/utils";
 import { Container } from "../ui/styled/container";
+import { LoopFocusContainer } from "../ui/unstyled/loop-focus-container";
 
 function ActiveNavLink(props: ComponentProps<typeof Link>) {
   const { href, ...restProps } = props;
@@ -45,7 +45,7 @@ export const headerHeight = tailwindFullConfig.theme.spacing["16"];
 export const hederBorderBottomWidth = tailwindFullConfig.theme.spacing.px;
 
 export function Header() {
-  const rootRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useMediaQuery({
@@ -69,10 +69,9 @@ export function Header() {
 
   useKeydown((event) => {
     if (isMobileMenuOpen) {
-      loopFocus(event, rootRef.current!);
-
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
       }
     }
   });
@@ -86,7 +85,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-header" ref={rootRef}>
+    <LoopFocusContainer as="header" className="sticky top-0 z-header">
       <div
         style={
           {
@@ -112,6 +111,7 @@ export function Header() {
             {/* mobile only */}
             <button
               type="button"
+              ref={mobileMenuButtonRef}
               className={clsx(
                 "flex size-9 items-center justify-center sm:hidden",
                 "absolute -right-1.5 top-1/2 -translate-y-1/2",
@@ -157,34 +157,34 @@ export function Header() {
         </Container>
 
         {/* mobile only */}
-        <Container
+        <ul
           id={MOBILE_MENU_ID}
           className={clsx(
             "sm:hidden",
-            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white transition-[height,visibility] duration-200 ease-in",
+            // height, visibilityを同時にtransitionで切り替えることで
+            // 高さのアニメーションを適用しつつ、閉じているときにフォーカスも無効にする
+            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-gray-light-100 pt-2.5 transition-[height,visibility] duration-200 ease-out",
             isMobileMenuOpen
               ? "visible h-[calc(100dvh-var(--header-height))]"
               : "invisible block h-0",
           )}
         >
-          <ul className="divide-y divide-solid divide-gray-light-200 py-3">
-            {routesWithoutHome.map((route) => (
-              <li key={route.href}>
-                <ActiveNavLink
-                  href={route.href}
-                  className={clsx(
-                    "flex h-12 items-center justify-between font-bold",
-                    "[&>span]:text-gray-foreground-weak [&>span]:data-[active]:text-primary-600",
-                  )}
-                >
-                  <span>{route.label}</span>
-                  <BsChevronRight />
-                </ActiveNavLink>
-              </li>
-            ))}
-          </ul>
-        </Container>
+          {routesWithoutHome.map((route) => (
+            <li key={route.href}>
+              <ActiveNavLink
+                href={route.href}
+                className={clsx(
+                  "flex items-center justify-between py-2.5 text-gray-foreground-weak",
+                  "hover:font-bold hover:text-primary-600",
+                  "data-[active]:relative data-[active]:font-bold data-[active]:text-primary-600 data-[active]:before:absolute data-[active]:before:left-0 data-[active]:before:h-full data-[active]:before:w-1 data-[active]:before:bg-primary-600 data-[active]:before:content-['']",
+                )}
+              >
+                <Container>{route.label}</Container>
+              </ActiveNavLink>
+            </li>
+          ))}
+        </ul>
       </div>
-    </header>
+    </LoopFocusContainer>
   );
 }
