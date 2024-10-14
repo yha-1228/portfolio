@@ -17,8 +17,8 @@ import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
 import { tailwindFullConfig } from "@/tailwind-config";
 import { clsx } from "@/utils/css/clsx";
-import { loopFocus } from "@/utils/dom/utils";
 import { Container } from "../ui/styled/container";
+import { LoopFocusContainer } from "../ui/unstyled/loop-focus-container";
 
 function ActiveNavLink(props: ComponentProps<typeof Link>) {
   const { href, ...restProps } = props;
@@ -45,7 +45,8 @@ export const headerHeight = tailwindFullConfig.theme.spacing["16"];
 export const hederBorderBottomWidth = tailwindFullConfig.theme.spacing.px;
 
 export function Header() {
-  const rootRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useMediaQuery({
@@ -69,10 +70,9 @@ export function Header() {
 
   useKeydown((event) => {
     if (isMobileMenuOpen) {
-      loopFocus(event, rootRef.current!);
-
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
       }
     }
   });
@@ -86,7 +86,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-header" ref={rootRef}>
+    <LoopFocusContainer as="header" className="sticky top-0 z-header">
       <div
         style={
           {
@@ -112,6 +112,7 @@ export function Header() {
             {/* mobile only */}
             <button
               type="button"
+              ref={mobileMenuButtonRef}
               className={clsx(
                 "flex size-9 items-center justify-center sm:hidden",
                 "absolute -right-1.5 top-1/2 -translate-y-1/2",
@@ -185,6 +186,6 @@ export function Header() {
           </ul>
         </Container>
       </div>
-    </header>
+    </LoopFocusContainer>
   );
 }
