@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function useScrollLock({ enabled }: { enabled: boolean }) {
+export function useScrollLock({ enabled }: { enabled: boolean }) {
   useEffect(() => {
     const defaultBodyOverflow = window.getComputedStyle(document.body).overflow;
 

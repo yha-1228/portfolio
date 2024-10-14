@@ -1,6 +1,6 @@
 import React from "react";
 import { BsFillExclamationCircleFill } from "react-icons/bs";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type FormErrorMessageProps = React.ComponentPropsWithRef<"p">;
 
@@ -24,4 +24,4 @@ const FormErrorMessage = React.forwardRef<
 
 FormErrorMessage.displayName = "FormErrorMessage";
 
-export default FormErrorMessage;
+export { FormErrorMessage };

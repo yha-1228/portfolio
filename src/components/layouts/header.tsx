@@ -10,15 +10,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsChevronRight, BsList, BsX } from "react-icons/bs";
 import { MOBILE_MENU_ID } from "@/constants";
-import useKeydown from "@/hooks/use-keydown";
-import useMediaQuery from "@/hooks/use-media-query";
-import useOnRouteChange from "@/hooks/use-on-route-change";
-import useScrollLock from "@/hooks/use-scroll-lock";
+import { useKeydown } from "@/hooks/use-keydown";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { useOnRouteChange } from "@/hooks/use-on-route-change";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
 import { tailwindFullConfig } from "@/tailwind-config";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 import { loopFocus } from "@/utils/dom/utils";
-import Container from "../ui/styled/container";
+import { Container } from "../ui/styled/container";
 
 function ActiveNavLink(props: ComponentProps<typeof Link>) {
   const { href, ...restProps } = props;
@@ -44,7 +44,7 @@ const routesWithoutHome = Object.values(routes).filter(
 export const headerHeight = tailwindFullConfig.theme.spacing["16"];
 export const hederBorderBottomWidth = tailwindFullConfig.theme.spacing.px;
 
-export default function Header() {
+export function Header() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

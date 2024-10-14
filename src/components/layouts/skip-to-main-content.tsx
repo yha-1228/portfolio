@@ -1,12 +1,12 @@
 import { MAIN_CONTENT_ID } from "@/constants";
-import clsx from "@/utils/css/clsx";
-import Container from "../ui/styled/container";
+import { clsx } from "@/utils/css/clsx";
+import { Container } from "../ui/styled/container";
 import {
   TabOnlySkipContainer,
   TabOnlySkipLink,
 } from "../ui/unstyled/tab-only-skip";
 
-export default function SkipToMainContent() {
+export function SkipToMainContent() {
   return (
     <TabOnlySkipContainer className="bg-primary-600 py-2 text-white">
       <Container>

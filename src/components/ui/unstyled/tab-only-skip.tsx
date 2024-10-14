@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import useFocusActive from "@/hooks/use-focus-active";
-import clsx from "@/utils/css/clsx";
+import { useFocusActive } from "@/hooks/use-focus-active";
+import { clsx } from "@/utils/css/clsx";
 import { generateContext } from "@/utils/react/context";
 
 const [Context, useContext] =

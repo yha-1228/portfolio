@@ -4,7 +4,7 @@ import {
   BsFillExclamationCircleFill,
   BsX,
 } from "react-icons/bs";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type Variant = "primary" | "danger";
 

@@ -1,16 +1,16 @@
 import { type Metadata } from "next";
 import { BsChevronLeft } from "react-icons/bs";
 import { getBlogDetail, getBlogList } from "@/api/clients/blog";
-import Container from "@/components/ui/styled/container";
-import Heading1 from "@/components/ui/styled/heading1";
-import Tag from "@/components/ui/styled/tag";
+import { Container } from "@/components/ui/styled/container";
+import { Heading1 } from "@/components/ui/styled/heading1";
+import { Tag } from "@/components/ui/styled/tag";
 import { TextLink } from "@/components/ui/styled/text-link";
 import {
   type GenerateMetadataProps,
   type NextPagePropsWithParams,
 } from "@/lib/next/types";
 import { routes } from "@/routes";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 import { formatISODate } from "@/utils/date/formatter";
 
 export async function generateMetadata({

@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type TagProps = React.ComponentPropsWithRef<"div">;
 
@@ -20,4 +20,4 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
 Tag.displayName = "Tag";
 
-export default Tag;
+export { Tag };

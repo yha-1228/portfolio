@@ -3,20 +3,20 @@
 import { useId, useState } from "react";
 import { sendNetlifyForm } from "@/api/clients/utils";
 import { isFetchNetworkError } from "@/api/misc";
-import useBeforeUnload from "@/hooks/use-beforeunload";
+import { useBeforeUnload } from "@/hooks/use-beforeunload";
 import { getKeyErrorMessageMap } from "@/lib/zod/utils";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 import { remToPx } from "@/utils/css/unit";
-import mapObject from "@/utils/object/map-object";
+import { mapObject } from "@/utils/object/map-object";
 import { entriesOf } from "@/utils/object/typed-native";
 import { headerHeight } from "../layouts/header";
 import { Button } from "../ui/styled/button";
-import Container from "../ui/styled/container";
-import FieldLabel from "../ui/styled/field-label";
-import FormErrorMessage from "../ui/styled/form-error-message";
-import Heading1 from "../ui/styled/heading1";
+import { Container } from "../ui/styled/container";
+import { FieldLabel } from "../ui/styled/field-label";
+import { FormErrorMessage } from "../ui/styled/form-error-message";
+import { Heading1 } from "../ui/styled/heading1";
 import { Input, Textarea } from "../ui/styled/input";
-import Paragraph from "../ui/styled/paragraph";
+import { Paragraph } from "../ui/styled/paragraph";
 import { FeedbackNotification } from "./feedback-notification";
 import {
   type SubmitState,
@@ -85,7 +85,7 @@ const showError = (
 // export
 // ----------------------------------------
 
-export default function ContactForm() {
+export function ContactForm() {
   const id = useId();
 
   const [values, setValues] = useState(initialValues);

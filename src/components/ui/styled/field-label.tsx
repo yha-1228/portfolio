@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type FieldLabelProps = React.ComponentPropsWithRef<"label"> & {
   /**
@@ -38,4 +38,4 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
 
 FieldLabel.displayName = "FieldLabel";
 
-export default FieldLabel;
+export { FieldLabel };
