@@ -1,6 +1,6 @@
 import { Children, type ReactNode } from "react";
 
-export default function splitNode(node: ReactNode, separator: ReactNode) {
+export function splitNode(node: ReactNode, separator: ReactNode) {
   return (
     <>
       {Children.map(node, (child, index) => {

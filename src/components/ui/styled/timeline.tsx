@@ -1,6 +1,6 @@
 import { type CSSProperties } from "react";
 import { tailwindFullConfig } from "@/tailwind-config";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 const { theme } = tailwindFullConfig;
 
@@ -14,7 +14,7 @@ export interface TimelineProps {
   items: TimelineItem[];
 }
 
-export default function Timeline({ items }: TimelineProps) {
+export function Timeline({ items }: TimelineProps) {
   return (
     <div
       style={

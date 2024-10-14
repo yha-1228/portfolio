@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type Heading1Props = React.ComponentPropsWithRef<"h1">;
 
@@ -22,4 +22,4 @@ const Heading1 = React.forwardRef<HTMLHeadingElement, Heading1Props>(
 
 Heading1.displayName = "Heading1";
 
-export default Heading1;
+export { Heading1 };

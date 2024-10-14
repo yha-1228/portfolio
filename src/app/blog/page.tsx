@@ -1,11 +1,11 @@
 import { type Metadata } from "next";
 import Link from "next/link";
 import { getBlogList } from "@/api/clients/blog";
-import Container from "@/components/ui/styled/container";
-import Heading1 from "@/components/ui/styled/heading1";
-import Tag from "@/components/ui/styled/tag";
+import { Container } from "@/components/ui/styled/container";
+import { Heading1 } from "@/components/ui/styled/heading1";
+import { Tag } from "@/components/ui/styled/tag";
 import { routes } from "@/routes";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 import { formatISODate } from "@/utils/date/formatter";
 
 export const metadata: Metadata = {

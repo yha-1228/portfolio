@@ -15,7 +15,7 @@ import { type ValueOf } from "@/types/utils";
  *
  * ```
  */
-export default function mapObject<T extends object, U>(
+export function mapObject<T extends object, U>(
   object: T,
   condition: (value: ValueOf<T>, key: keyof T) => U,
 ) {

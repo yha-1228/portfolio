@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 type ParagraphProps = React.ComponentPropsWithRef<"p">;
 
@@ -16,4 +16,4 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
 
 Paragraph.displayName = "Paragraph";
 
-export default Paragraph;
+export { Paragraph };

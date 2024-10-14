@@ -1,3 +1,3 @@
-export default function isTouchDevice() {
+export function isTouchDevice() {
   return "ontouchstart" in window;
 }

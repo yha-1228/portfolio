@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 import { type Replace } from "@/types/utils";
-import isTouchDevice from "@/utils/device/is-touch-device";
-import splitNode from "./split-node";
+import { isTouchDevice } from "@/utils/device/is-touch-device";
+import { splitNode } from "./split-node";
 
 interface AvoidTelLinkProps
   extends Replace<ComponentPropsWithRef<"div">, { children: string }> {
@@ -47,4 +47,4 @@ const AvoidTelLink = forwardRef<HTMLDivElement, AvoidTelLinkProps>(
 
 AvoidTelLink.displayName = "AvoidTelLink";
 
-export default AvoidTelLink;
+export { AvoidTelLink };

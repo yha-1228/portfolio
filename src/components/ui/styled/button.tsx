@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { type LinkComponentProps } from "@/lib/next/types";
-import clsx from "@/utils/css/clsx";
+import { clsx } from "@/utils/css/clsx";
 
 // common
 // ----------------------------------------
