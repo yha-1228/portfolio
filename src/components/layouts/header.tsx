@@ -163,7 +163,7 @@ export function Header() {
             "sm:hidden",
             // height, visibilityを同時にtransitionで切り替えることで
             // 高さのアニメーションを適用しつつ、閉じているときにフォーカスも無効にする
-            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-gray-light-100 pt-2.5 transition-[height,visibility] duration-200 ease-out",
+            "absolute left-0 top-[var(--header-height)] w-full overflow-y-hidden bg-white pt-2.5 transition-[height,visibility] duration-200 ease-out",
             isMobileMenuOpen
               ? "visible h-[calc(100dvh-var(--header-height))]"
               : "invisible block h-0",
@@ -175,8 +175,8 @@ export function Header() {
                 href={route.href}
                 className={clsx(
                   "flex items-center justify-between py-2.5 text-gray-foreground-weak",
-                  "hover:font-bold hover:text-primary-600",
-                  "data-[active]:relative data-[active]:font-bold data-[active]:text-primary-600 data-[active]:before:absolute data-[active]:before:left-0 data-[active]:before:h-full data-[active]:before:w-1 data-[active]:before:bg-primary-600 data-[active]:before:content-['']",
+                  "hover:bg-gray-light-100",
+                  "data-[active]:relative data-[active]:font-bold data-[active]:text-primary-600",
                 )}
               >
                 <Container>{route.label}</Container>
