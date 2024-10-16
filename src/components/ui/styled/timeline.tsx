@@ -1,9 +1,3 @@
-import { type CSSProperties } from "react";
-import { tailwindFullConfig } from "@/tailwind-config";
-import { clsx } from "@/utils/css/clsx";
-
-const { theme } = tailwindFullConfig;
-
 export interface TimelineItem {
   point: string;
   heading: React.ReactNode;
@@ -16,46 +10,36 @@ export interface TimelineProps {
 
 export function Timeline({ items }: TimelineProps) {
   return (
-    <div
-      style={
-        {
-          "--dot-size": theme.spacing["4"],
-          "--axis-width": theme.spacing["0.5"],
-        } as CSSProperties
-      }
-      className="pl-[calc(var(--dot-size)/2)]"
-    >
-      <ul className="space-y-10 border-l-[length:var(--axis-width)] border-solid border-l-primary-600">
-        {items.map((item, index) => (
-          <li key={index} className="relative w-full">
+    <ul>
+      {items.map((item, index) => (
+        <li key={index} className="flex [&:last-child>*:nth-child(2)]:pb-0">
+          {/* Dot + Axis */}
+          <div className="flex shrink-0 flex-col items-center">
             {/* Dot */}
-            <div
-              className={clsx(
-                "absolute left-[calc(-1*calc(var(--dot-size)/2)-calc(var(--axis-width)/2))] top-0",
-                "size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white",
-              )}
-            />
+            <div className="size-4 rounded-full border-4 border-solid border-primary-600 bg-white" />
+            {/* Axis */}
+            <div className="h-full w-0.5 bg-primary-600" />
+          </div>
 
-            {/* Body */}
-            <div className="ml-6">
-              <div className="font-semibold leading-none text-primary-600">
-                {item.point}
-              </div>
-
-              <div className="mt-4 border-t border-solid border-t-gray-light-300 pt-2">
-                <div className="py-1 text-xl font-bold leading-snug">
-                  {item.heading}
-                </div>
-                {!!item.content && (
-                  <div className="mt-3 space-y-2.5 text-sm leading-[1.65] text-gray-foreground-weak">
-                    {item.content}
-                  </div>
-                )}
-              </div>
+          {/* Body */}
+          <div className="ml-5 w-full pb-10">
+            <div className="font-semibold leading-none text-primary-600">
+              {item.point}
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+
+            <div className="mt-4 border-t border-solid border-t-gray-light-300 pt-2">
+              <div className="py-1 text-xl font-bold leading-snug">
+                {item.heading}
+              </div>
+              {!!item.content && (
+                <div className="mt-3 space-y-2.5 text-sm leading-[1.65] text-gray-foreground-weak">
+                  {item.content}
+                </div>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
