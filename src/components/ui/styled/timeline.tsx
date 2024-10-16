@@ -20,18 +20,18 @@ export function Timeline({ items }: TimelineProps) {
       style={
         {
           "--dot-size": theme.spacing["4"],
-          "--border-width": theme.spacing["0.5"],
+          "--axis-width": theme.spacing["0.5"],
         } as CSSProperties
       }
       className="pl-[calc(var(--dot-size)/2)]"
     >
-      <ul className="space-y-10 border-l-[length:var(--border-width)] border-solid border-l-primary-600">
+      <ul className="space-y-10 border-l-[length:var(--axis-width)] border-solid border-l-primary-600">
         {items.map((item, index) => (
           <li key={index} className="relative w-full">
             {/* Dot */}
             <div
               className={clsx(
-                "absolute left-[calc(-8px-calc(var(--border-width)/2))] top-0",
+                "absolute left-[calc(-1*calc(var(--dot-size)/2)-calc(var(--axis-width)/2))] top-0",
                 "size-[var(--dot-size)] rounded-full border-4 border-solid border-primary-600 bg-white",
               )}
             />
