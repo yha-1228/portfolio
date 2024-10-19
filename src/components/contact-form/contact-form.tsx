@@ -7,12 +7,14 @@ import { useBeforeUnload } from "@/hooks/use-beforeunload";
 import { getKeyErrorMessageMap } from "@/lib/zod/utils";
 import { clsx } from "@/utils/css/clsx";
 import { remToPx } from "@/utils/css/unit";
+import { join } from "@/utils/object/join";
 import { mapObject } from "@/utils/object/map-object";
 import { entriesOf } from "@/utils/object/typed-native";
 import { headerHeight } from "../layouts/header";
 import { Button } from "../ui/styled/button";
 import { Container } from "../ui/styled/container";
 import { FieldLabel } from "../ui/styled/field-label";
+import { FormDescription } from "../ui/styled/form-description";
 import { FormErrorMessage } from "../ui/styled/form-error-message";
 import { Heading1 } from "../ui/styled/heading1";
 import { Input, Textarea } from "../ui/styled/input";
@@ -72,6 +74,10 @@ const createLabelId = (uniqId: string, key: keyof ContactFormValues) => {
 
 const createErrorId = (uniqId: string, key: keyof ContactFormValues) => {
   return `${uniqId}-ContactForm-${key}-error`;
+};
+
+const createDescriptionId = (uniqId: string, key: keyof ContactFormValues) => {
+  return `${uniqId}-ContactForm-${key}-description`;
 };
 
 const showError = (
@@ -206,7 +212,11 @@ export function ContactForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       invalid={showError("name", errors, touched)}
-                      aria-describedby={createErrorId(id, "name")}
+                      aria-describedby={
+                        showError("name", errors, touched)
+                          ? createErrorId(id, "name")
+                          : undefined
+                      }
                     />
                   </div>
                   {showError("name", errors, touched) && (
@@ -236,7 +246,11 @@ export function ContactForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       invalid={showError("email", errors, touched)}
-                      aria-describedby={createErrorId(id, "email")}
+                      aria-describedby={
+                        showError("email", errors, touched)
+                          ? createErrorId(id, "email")
+                          : undefined
+                      }
                     />
                   </div>
                   {showError("email", errors, touched) && (
@@ -266,7 +280,11 @@ export function ContactForm() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     invalid={showError("companyName", errors, touched)}
-                    aria-describedby={createErrorId(id, "companyName")}
+                    aria-describedby={
+                      showError("companyName", errors, touched)
+                        ? createErrorId(id, "companyName")
+                        : undefined
+                    }
                   />
                 </div>
                 {showError("companyName", errors, touched) && (
@@ -295,13 +313,20 @@ export function ContactForm() {
                     onBlur={handleBlur}
                     rows={6}
                     invalid={showError("message", errors, touched)}
-                    aria-describedby={createErrorId(id, "message")}
+                    aria-describedby={join(
+                      [
+                        createDescriptionId(id, "message"),
+                        showError("message", errors, touched) &&
+                          createErrorId(id, "message"),
+                      ],
+                      " ",
+                    )}
                   />
                 </div>
                 <div className="mt-2">
-                  <div className="text-sm text-gray-foreground-weak">
+                  <FormDescription id={createDescriptionId(id, "message")}>
                     10文字以上
-                  </div>
+                  </FormDescription>
                   {showError("message", errors, touched) && (
                     <FormErrorMessage id={createErrorId(id, "message")}>
                       {errors.message}
