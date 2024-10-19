@@ -54,7 +54,6 @@ function useField(props: UseFieldProps) {
 
   const errorProps = {
     id: errorId,
-    style: { display: "none" },
   } as const satisfies CommonHTMLProps;
 
   return {

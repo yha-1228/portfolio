@@ -210,9 +210,14 @@ export function ContactForm() {
                           invalid={field.whenError}
                         />
                       </div>
-                      <FormErrorMessage {...field.errorProps} className="mt-2">
-                        {errors.name}
-                      </FormErrorMessage>
+                      {field.whenError && (
+                        <FormErrorMessage
+                          {...field.errorProps}
+                          className="mt-2"
+                        >
+                          {errors.name}
+                        </FormErrorMessage>
+                      )}
                     </div>
                   )}
                 />
