@@ -6,7 +6,7 @@ import { clsx } from "@/utils/css/clsx";
 
 interface InputBaseProps {
   /**
-   * エラー時のスタイルと`aria-invalid`属性を指定する
+   * エラー時のスタイルを指定する
    */
   invalid?: boolean;
 }
@@ -27,7 +27,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   return (
     <input
-      aria-invalid={invalid || undefined}
       className={clsx("h-10", createClassName(invalid), className)}
       {...restProps}
       ref={ref}
@@ -47,7 +46,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <textarea
-        aria-invalid={invalid || undefined}
         className={clsx(createClassName(invalid), className)}
         {...restProps}
         ref={ref}
