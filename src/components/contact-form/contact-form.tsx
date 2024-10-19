@@ -13,10 +13,12 @@ import { headerHeight } from "../layouts/header";
 import { Button } from "../ui/styled/button";
 import { Container } from "../ui/styled/container";
 import { FieldLabel } from "../ui/styled/field-label";
+import { FormDescription } from "../ui/styled/form-description";
 import { FormErrorMessage } from "../ui/styled/form-error-message";
 import { Heading1 } from "../ui/styled/heading1";
 import { Input, Textarea } from "../ui/styled/input";
 import { Paragraph } from "../ui/styled/paragraph";
+import { Field } from "../ui/unstyled/field";
 import { FeedbackNotification } from "./feedback-notification";
 import {
   type SubmitState,
@@ -62,16 +64,12 @@ const feedbackText = {
   fail: "送信中にエラーが発生しました。",
 };
 
-const createFieldId = (uniqId: string, key: keyof ContactFormValues) => {
-  return `${uniqId}-ContactForm-${key}-field`;
+const createFieldId = (id: string, key: keyof ContactFormValues) => {
+  return `${id}-${key}-field`;
 };
 
-const createLabelId = (uniqId: string, key: keyof ContactFormValues) => {
-  return `${uniqId}-ContactForm-${key}-label`;
-};
-
-const createErrorId = (uniqId: string, key: keyof ContactFormValues) => {
-  return `${uniqId}-ContactForm-${key}-error`;
+const createLabelId = (id: string, key: keyof ContactFormValues) => {
+  return `${id}-${key}-label`;
 };
 
 const showError = (
@@ -188,127 +186,139 @@ export function ContactForm() {
             <input type="hidden" name="form-name" value="contact" />
             <div className="space-y-5">
               <div className="space-y-5 md:flex md:space-x-4 md:space-y-0">
-                <div className="md:w-1/3">
-                  <FieldLabel
-                    id={createLabelId(id, "name")}
-                    htmlFor={createFieldId(id, "name")}
-                    required
-                  >
-                    {keyLabelMap.name}
-                  </FieldLabel>
-                  <div className="mt-2">
-                    <Input
-                      type="text"
-                      id={createFieldId(id, "name")}
-                      name="name"
-                      placeholder="田中 太郎"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      invalid={showError("name", errors, touched)}
-                      aria-describedby={createErrorId(id, "name")}
-                    />
-                  </div>
-                  {showError("name", errors, touched) && (
-                    <FormErrorMessage
-                      id={createErrorId(id, "name")}
-                      className="mt-2"
-                    >
-                      {errors.name}
-                    </FormErrorMessage>
+                <Field
+                  whenError={showError("name", errors, touched)}
+                  fieldId={createFieldId(id, "name")}
+                  render={(field) => (
+                    <div className="md:w-1/3">
+                      <FieldLabel
+                        {...field.labelProps}
+                        id={createLabelId(id, "name")}
+                        required
+                      >
+                        {keyLabelMap.name}
+                      </FieldLabel>
+                      <div className="mt-2">
+                        <Input
+                          {...field.fieldProps}
+                          type="text"
+                          name="name"
+                          placeholder="田中 太郎"
+                          value={values.name}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          invalid={field.whenError}
+                        />
+                      </div>
+                      <FormErrorMessage {...field.errorProps} className="mt-2">
+                        {errors.name}
+                      </FormErrorMessage>
+                    </div>
                   )}
-                </div>
-                <div className="md:w-2/3">
-                  <FieldLabel
-                    id={createLabelId(id, "email")}
-                    htmlFor={createFieldId(id, "email")}
-                    required
-                  >
-                    {keyLabelMap.email}
-                  </FieldLabel>
-                  <div className="mt-2">
-                    <Input
-                      type="email"
-                      id={createFieldId(id, "email")}
-                      name="email"
-                      placeholder="email@example.com"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      invalid={showError("email", errors, touched)}
-                      aria-describedby={createErrorId(id, "email")}
-                    />
-                  </div>
-                  {showError("email", errors, touched) && (
-                    <FormErrorMessage
-                      id={createErrorId(id, "email")}
-                      className="mt-2"
-                    >
-                      {errors.email}
-                    </FormErrorMessage>
+                />
+                <Field
+                  whenError={showError("email", errors, touched)}
+                  fieldId={createFieldId(id, "email")}
+                  render={(field) => (
+                    <div className="md:w-2/3">
+                      <FieldLabel
+                        {...field.labelProps}
+                        id={createLabelId(id, "email")}
+                        required
+                      >
+                        {keyLabelMap.email}
+                      </FieldLabel>
+                      <div className="mt-2">
+                        <Input
+                          {...field.fieldProps}
+                          type="email"
+                          name="email"
+                          placeholder="email@example.com"
+                          value={values.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          invalid={field.whenError}
+                        />
+                      </div>
+                      {field.whenError && (
+                        <FormErrorMessage
+                          {...field.errorProps}
+                          className="mt-2"
+                        >
+                          {errors.email}
+                        </FormErrorMessage>
+                      )}
+                    </div>
                   )}
-                </div>
+                />
               </div>
-              <div>
-                <FieldLabel
-                  id={createLabelId(id, "companyName")}
-                  htmlFor={createFieldId(id, "companyName")}
-                >
-                  {keyLabelMap.companyName}
-                </FieldLabel>
-                <div className="mt-2">
-                  <Input
-                    type="text"
-                    id={createFieldId(id, "companyName")}
-                    name="companyName"
-                    placeholder="株式会社ABC / 自営業"
-                    value={values.companyName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    invalid={showError("companyName", errors, touched)}
-                    aria-describedby={createErrorId(id, "companyName")}
-                  />
-                </div>
-                {showError("companyName", errors, touched) && (
-                  <FormErrorMessage
-                    id={createErrorId(id, "companyName")}
-                    className="mt-2"
-                  >
-                    {errors.companyName}
-                  </FormErrorMessage>
+              <Field
+                whenError={showError("companyName", errors, touched)}
+                fieldId={createFieldId(id, "companyName")}
+                render={(field) => (
+                  <div>
+                    <FieldLabel
+                      {...field.labelProps}
+                      id={createLabelId(id, "companyName")}
+                    >
+                      {keyLabelMap.companyName}
+                    </FieldLabel>
+                    <div className="mt-2">
+                      <Input
+                        {...field.fieldProps}
+                        type="text"
+                        name="companyName"
+                        placeholder="株式会社ABC / 自営業"
+                        value={values.companyName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        invalid={field.whenError}
+                      />
+                    </div>
+                    {field.whenError && (
+                      <FormErrorMessage {...field.errorProps} className="mt-2">
+                        {errors.companyName}
+                      </FormErrorMessage>
+                    )}
+                  </div>
                 )}
-              </div>
-              <div>
-                <FieldLabel
-                  id={createLabelId(id, "message")}
-                  htmlFor={createFieldId(id, "message")}
-                  required
-                >
-                  {keyLabelMap.message}
-                </FieldLabel>
-                <div className="mt-2">
-                  <Textarea
-                    id={createFieldId(id, "message")}
-                    name="message"
-                    value={values.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    rows={6}
-                    invalid={showError("message", errors, touched)}
-                    aria-describedby={createErrorId(id, "message")}
-                  />
-                </div>
-                <div className="mt-2">
-                  <div className="text-sm text-gray-foreground-weak">
-                    10文字以上
+              />
+              <Field
+                whenError={showError("message", errors, touched)}
+                fieldId={createFieldId(id, "message")}
+                render={(field) => (
+                  <div>
+                    <FieldLabel
+                      {...field.labelProps}
+                      id={createLabelId(id, "message")}
+                      required
+                    >
+                      {keyLabelMap.message}
+                    </FieldLabel>
+                    <div className="mt-2">
+                      <Textarea
+                        {...field.fieldProps}
+                        name="message"
+                        value={values.message}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        rows={6}
+                        invalid={field.whenError}
+                      />
+                    </div>
+                    <div className="mt-2">
+                      <FormDescription {...field.descriptionProps}>
+                        10文字以上
+                      </FormDescription>
+                      {field.whenError && (
+                        <FormErrorMessage {...field.errorProps}>
+                          {errors.message}
+                        </FormErrorMessage>
+                      )}
+                    </div>
                   </div>
-                  {showError("message", errors, touched) && (
-                    <FormErrorMessage id={createErrorId(id, "message")}>
-                      {errors.message}
-                    </FormErrorMessage>
-                  )}
-                </div>
-              </div>
+                )}
+              />
             </div>
 
             <div className="mt-10 lg:mt-14">
