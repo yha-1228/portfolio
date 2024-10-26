@@ -118,7 +118,7 @@ export function Header() {
               )}
               onClick={handleMobileMenuToggle}
               aria-label={
-                isMobileMenuOpen ? "メニューを開く" : "メニューを閉じる"
+                isMobileMenuOpen ? "メニューを閉じる" : "メニューを開く"
               }
               aria-expanded={isMobileMenuOpen}
               aria-controls={MOBILE_MENU_ID}
