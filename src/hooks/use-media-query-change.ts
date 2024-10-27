@@ -1,11 +1,13 @@
 import { useRef, useEffect } from "react";
 
-export interface UseMediaQueryOptions {
+export interface UseMediaQueryChangeOptions {
   query: string;
   callback?: (event: MediaQueryListEvent) => void;
 }
 
-export function useMediaQuery({ query, callback }: UseMediaQueryOptions) {
+export function useMediaQueryChange(options: UseMediaQueryChangeOptions) {
+  const { query, callback } = options;
+
   const savedCallback = useRef(callback);
 
   useEffect(() => {

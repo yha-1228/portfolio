@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import { BsList, BsX } from "react-icons/bs";
 import { MOBILE_MENU_ID } from "@/constants";
 import { useKeydown } from "@/hooks/use-keydown";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { useMediaQueryChange } from "@/hooks/use-media-query-change";
 import { useOnRouteChange } from "@/hooks/use-on-route-change";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { routes } from "@/routes";
@@ -48,7 +48,7 @@ export function Header() {
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useMediaQuery({
+  useMediaQueryChange({
     query: `(min-width: ${tailwindFullConfig.theme.screens.sm})`,
     callback: (event) => {
       if (isMobileMenuOpen) {

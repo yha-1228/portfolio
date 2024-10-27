@@ -1,7 +1,7 @@
 import Image from "next/image";
+import { ButtonLink } from "@/components/ui/styled/button";
+import { Container } from "@/components/ui/styled/container";
 import { routes } from "@/routes";
-import { ButtonLink } from "./ui/styled/button";
-import { Container } from "./ui/styled/container";
 
 export function HeroHeader() {
   return (

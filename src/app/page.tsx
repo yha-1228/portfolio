@@ -1,6 +1,6 @@
-import { ContactForm } from "@/components/contact-form";
-import { HeroHeader } from "@/components/hero-header";
-import { Skills } from "@/components/skills";
+import { ContactForm } from "./_contact-form";
+import { HeroHeader } from "./_hero-header";
+import { Skills } from "./_skills";
 
 export default function Page() {
   return (
