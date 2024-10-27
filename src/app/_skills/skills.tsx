@@ -1,4 +1,8 @@
 import React from "react";
+import { Container } from "@/components/ui/styled/container";
+import { Heading1 } from "@/components/ui/styled/heading1";
+import { Heading2 } from "@/components/ui/styled/heading2";
+import { splitNode } from "@/components/ui/unstyled/split-node";
 import {
   skillDetails,
   skillWords,
@@ -7,10 +11,6 @@ import {
   type SkillWord,
 } from "@/data/skills";
 import { clsx } from "@/utils/css/clsx";
-import { Container } from "./ui/styled/container";
-import { Heading1 } from "./ui/styled/heading1";
-import { Heading2 } from "./ui/styled/heading2";
-import { splitNode } from "./ui/unstyled/split-node";
 
 interface SkillDetailCardProps {
   heading: React.ReactNode;
