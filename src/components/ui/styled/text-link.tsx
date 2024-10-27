@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 import { type LinkComponentProps } from "@/lib/next/types";
@@ -15,9 +15,7 @@ const baseClassName = clsx(
 
 // ----------------------------------------
 
-type TextLinkProps = LinkComponentProps;
-
-const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
+const TextLink = forwardRef<HTMLAnchorElement, LinkComponentProps>(
   (props, ref) => {
     const { className, ...restProps } = props;
 
@@ -35,29 +33,26 @@ TextLink.displayName = "TextLink";
 
 // ----------------------------------------
 
-type ExternalTextLinkProps = ExternalLinkProps;
+const ExternalTextLink = forwardRef<HTMLAnchorElement, ExternalLinkProps>(
+  (props, ref) => {
+    const { className, children, ...restProps } = props;
 
-const ExternalTextLink = React.forwardRef<
-  HTMLAnchorElement,
-  ExternalTextLinkProps
->((props, ref) => {
-  const { className, children, ...restProps } = props;
-
-  return (
-    <ExternalLink
-      className={clsx(
-        baseClassName,
-        "inline-flex items-center space-x-1",
-        className,
-      )}
-      {...restProps}
-      ref={ref}
-    >
-      <span>{children}</span>
-      <FiExternalLink />
-    </ExternalLink>
-  );
-});
+    return (
+      <ExternalLink
+        className={clsx(
+          baseClassName,
+          "inline-flex items-center space-x-1",
+          className,
+        )}
+        {...restProps}
+        ref={ref}
+      >
+        <span>{children}</span>
+        <FiExternalLink />
+      </ExternalLink>
+    );
+  },
+);
 
 ExternalTextLink.displayName = "ExternalTextLink";
 

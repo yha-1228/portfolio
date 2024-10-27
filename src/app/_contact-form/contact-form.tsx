@@ -1,6 +1,12 @@
 "use client";
 
-import { useId, useState } from "react";
+import {
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+  useId,
+  useState,
+} from "react";
 import { sendNetlifyForm } from "@/api/clients/utils";
 import { isFetchNetworkError } from "@/api/misc";
 import { headerHeight } from "@/components/layouts/header";
@@ -95,11 +101,11 @@ export function ContactForm() {
     initialAllErrorVisible,
   );
 
-  const handleChange = (e: React.ChangeEvent<FieldType>) => {
+  const handleChange = (e: ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleBlur = (e: React.FocusEvent<FieldType>) => {
+  const handleBlur = (e: FocusEvent<FieldType>) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
@@ -127,7 +133,7 @@ export function ContactForm() {
     fieldElem?.focus({ preventScroll: !isTransitionReduced });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (Object.keys(errors).length > 0) {

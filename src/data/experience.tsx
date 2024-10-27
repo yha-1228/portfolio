@@ -1,8 +1,10 @@
+import { type ReactNode } from "react";
+
 export interface Experience {
   kikan: string;
-  title: React.ReactNode;
-  projectCompanyName?: React.ReactNode;
-  description?: React.ReactNode;
+  title: ReactNode;
+  projectCompanyName?: ReactNode;
+  description?: ReactNode;
 }
 
 export interface ExperiencesOverviewItem {

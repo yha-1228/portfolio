@@ -1,11 +1,9 @@
-import React from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
 import { clsx } from "@/utils/css/clsx";
 
-type FormDescriptionProps = React.ComponentPropsWithRef<"p">;
-
-const FormDescription = React.forwardRef<
+const FormDescription = forwardRef<
   HTMLParagraphElement,
-  FormDescriptionProps
+  ComponentPropsWithRef<"p">
 >((props, ref) => {
   const { className, ...restProps } = props;
 

@@ -1,12 +1,10 @@
-import React from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
 import { clsx } from "@/utils/css/clsx";
-
-type ParagraphProps = React.ComponentPropsWithRef<"p">;
 
 /**
  * my-20pxのみ
  */
-const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+const Paragraph = forwardRef<HTMLParagraphElement, ComponentPropsWithRef<"p">>(
   (props, ref) => {
     const { className, ...restProps } = props;
 

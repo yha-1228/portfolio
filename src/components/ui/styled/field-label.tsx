@@ -1,16 +1,16 @@
-import React from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 import { clsx } from "@/utils/css/clsx";
 
-type FieldLabelProps = React.ComponentPropsWithRef<"label"> & {
+interface FieldLabelProps extends ComponentPropsWithRef<"label"> {
   /**
    * 必須項目を示す。以下の処理が入る。
    *
    * - "*"マークを表示 (スクリーンリーダーの場合: "必須項目")
    */
   required?: boolean;
-};
+}
 
-const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
+const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
   (props, ref) => {
     const { className, children, required, ...restProps } = props;
 
@@ -38,4 +38,4 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
 
 FieldLabel.displayName = "FieldLabel";
 
-export { FieldLabel };
+export { FieldLabel, type FieldLabelProps };

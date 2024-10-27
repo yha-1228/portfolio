@@ -1,4 +1,4 @@
-import React from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
 import { clsx } from "@/utils/css/clsx";
 
 // common
@@ -20,9 +20,9 @@ function createClassName(invalid: boolean | undefined) {
 
 // ----------------------------------------
 
-type InputProps = React.ComponentPropsWithRef<"input"> & InputBaseProps;
+interface InputProps extends ComponentPropsWithRef<"input">, InputBaseProps {}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { invalid, className, ...restProps } = props;
 
   return (
@@ -38,9 +38,11 @@ Input.displayName = "Input";
 
 // ----------------------------------------
 
-type TextareaProps = React.ComponentPropsWithRef<"textarea"> & InputBaseProps;
+interface TextareaProps
+  extends ComponentPropsWithRef<"textarea">,
+    InputBaseProps {}
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
     const { invalid, className, ...restProps } = props;
 
@@ -58,4 +60,4 @@ Textarea.displayName = "Textarea";
 
 // ----------------------------------------
 
-export { Input, Textarea };
+export { Input, type InputProps, Textarea, type TextareaProps };

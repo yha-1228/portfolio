@@ -1,7 +1,9 @@
+import { type ReactNode } from "react";
+
 export interface TimelineItem {
   point: string;
-  heading: React.ReactNode;
-  content?: React.ReactNode;
+  heading: ReactNode;
+  content?: ReactNode;
 }
 
 export interface TimelineProps {

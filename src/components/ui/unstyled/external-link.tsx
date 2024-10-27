@@ -1,11 +1,8 @@
-import React from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
-export type ExternalLinkProps = Omit<
-  React.ComponentPropsWithRef<"a">,
-  "target" | "rel"
->;
+type ExternalLinkProps = Omit<ComponentPropsWithRef<"a">, "target" | "rel">;
 
-const ExternalLink = React.forwardRef<HTMLAnchorElement, ExternalLinkProps>(
+const ExternalLink = forwardRef<HTMLAnchorElement, ExternalLinkProps>(
   (props, ref) => {
     return <a target="_blank" rel="noopener noreferrer" {...props} ref={ref} />;
   },
@@ -13,4 +10,4 @@ const ExternalLink = React.forwardRef<HTMLAnchorElement, ExternalLinkProps>(
 
 ExternalLink.displayName = "ExternalLink";
 
-export { ExternalLink };
+export { ExternalLink, type ExternalLinkProps };
