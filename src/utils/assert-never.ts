@@ -1,21 +1,22 @@
 /**
  * @example
  * ```ts
- * type Pattern = "bowwow" | "meow";
+ * type Type = "morning" | "night";
  *
- * function getAnimal(pattern: Pattern) {
- *   switch (pattern) {
- *     case "bowwow":
- *       return "Dog";
- *     case "meow":
- *       return "Cat";
- *     default:
- *       // (parameter) pattern: never
- *       return assertNever(pattern);
+ * function greet(name: string, type: Type) {
+ *   if (type === "morning") {
+ *     return `Good morning ${name}`;
  *   }
+ *
+ *   if (type === "night") {
+ *     return `Good evening ${name}`;
+ *   }
+ *
+ *   // (parameter) type: never
+ *   return assertNever(type);
  * }
  * ```
  */
 export function assertNever(value: never): never {
-  throw new Error(`Unknown value: ${JSON.stringify(value)}`);
+  throw new Error(`Unexpected value: ${JSON.stringify(value)}`);
 }
