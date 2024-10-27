@@ -35,7 +35,7 @@ export default async function Page({ params }: NextPagePropsWithParams<"id">) {
 
   return (
     <div className="py-14">
-      <Container until="md">
+      <Container className="md:max-w-screen-md">
         <TextLink
           href={routes.blog.href}
           className="inline-flex items-center space-x-1"
