@@ -41,10 +41,10 @@ export function Footer({ className }: FooterProps) {
       <Container>
         <div className="flex justify-between">
           <ul className="w-1/2 space-y-3 md:flex md:w-auto md:space-x-4 md:space-y-0">
-            {myExternalLinks.map((item) => (
-              <li key={item.href}>
-                <ExternalTextLink className="font-bold" href={item.href}>
-                  {item.label}
+            {myExternalLinks.map((link) => (
+              <li key={link.href}>
+                <ExternalTextLink className="font-bold" href={link.href}>
+                  {link.label}
                 </ExternalTextLink>
               </li>
             ))}
