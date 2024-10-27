@@ -1,4 +1,4 @@
-import React from "react";
+import { createContext, useContext } from "react";
 
 export interface GenerateContextOptions {
   /**
@@ -14,14 +14,14 @@ export interface GenerateContextOptions {
 export function generateContext<T>(options: GenerateContextOptions = {}) {
   const { hookName = "useContext", providerName = "Context.Provider" } =
     options;
-  const Context = React.createContext<T | null>(null);
+  const Context = createContext<T | null>(null);
 
-  function useContext() {
-    const value = React.useContext(Context);
+  function useContextValue() {
+    const value = useContext(Context);
     if (!value)
       throw new Error(`${hookName} must be inside <${providerName} />`);
     return value as T;
   }
 
-  return [Context, useContext] as const;
+  return [Context, useContextValue] as const;
 }

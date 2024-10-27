@@ -1,12 +1,10 @@
-import React from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
 import { BsFillExclamationCircleFill } from "react-icons/bs";
 import { clsx } from "@/utils/css/clsx";
 
-type FormErrorMessageProps = React.ComponentPropsWithRef<"p">;
-
-const FormErrorMessage = React.forwardRef<
+const FormErrorMessage = forwardRef<
   HTMLParagraphElement,
-  FormErrorMessageProps
+  ComponentPropsWithRef<"p">
 >((props, ref) => {
   const { className, children, ...restProps } = props;
 

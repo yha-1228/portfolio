@@ -1,4 +1,4 @@
-import React from "react";
+import { type ComponentPropsWithRef, forwardRef, type ReactNode } from "react";
 import Link from "next/link";
 import { type LinkComponentProps } from "@/lib/next/types";
 import { clsx } from "@/utils/css/clsx";
@@ -8,7 +8,7 @@ import { clsx } from "@/utils/css/clsx";
 
 interface ButtonBaseProps {
   disabled?: boolean;
-  rightIcon?: React.ReactNode;
+  rightIcon?: ReactNode;
 }
 
 const baseClassName = clsx(
@@ -22,44 +22,44 @@ const baseClassName = clsx(
 
 // ----------------------------------------
 
-type ButtonProps = React.ComponentPropsWithRef<"button"> & ButtonBaseProps;
+interface ButtonProps
+  extends ComponentPropsWithRef<"button">,
+    ButtonBaseProps {}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const { rightIcon, className, children, ...restProps } = props;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { rightIcon, className, children, ...restProps } = props;
 
-    return (
-      <button
-        className={clsx(
-          baseClassName,
-          "disabled:cursor-not-allowed disabled:bg-gray-light-400",
-          className,
-        )}
-        {...restProps}
-        ref={ref}
-      >
-        {rightIcon ? (
-          <>
-            <span>{children}</span>
-            <span className="ml-2 inline-flex items-center" aria-hidden="true">
-              {rightIcon}
-            </span>
-          </>
-        ) : (
-          children
-        )}
-      </button>
-    );
-  },
-);
+  return (
+    <button
+      className={clsx(
+        baseClassName,
+        "disabled:cursor-not-allowed disabled:bg-gray-light-400",
+        className,
+      )}
+      {...restProps}
+      ref={ref}
+    >
+      {rightIcon ? (
+        <>
+          <span>{children}</span>
+          <span className="ml-2 inline-flex items-center" aria-hidden="true">
+            {rightIcon}
+          </span>
+        </>
+      ) : (
+        children
+      )}
+    </button>
+  );
+});
 
 Button.displayName = "Button";
 
 // ----------------------------------------
 
-type ButtonLinkProps = LinkComponentProps & ButtonBaseProps;
+interface ButtonLinkProps extends LinkComponentProps, ButtonBaseProps {}
 
-const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
+const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (props, ref) => {
     const { rightIcon, disabled, className, children, ...restProps } = props;
 
@@ -102,4 +102,4 @@ ButtonLink.displayName = "ButtonLink";
 
 // ----------------------------------------
 
-export { Button, ButtonLink };
+export { Button, type ButtonProps, ButtonLink, type ButtonLinkProps };

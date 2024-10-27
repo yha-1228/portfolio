@@ -1,9 +1,7 @@
-import React from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
 import { clsx } from "@/utils/css/clsx";
 
-type Heading2Props = React.ComponentPropsWithRef<"h2">;
-
-const Heading2 = React.forwardRef<HTMLHeadingElement, Heading2Props>(
+const Heading2 = forwardRef<HTMLHeadingElement, ComponentPropsWithRef<"h2">>(
   (props, ref) => {
     const { className, ...restProps } = props;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { type ReactNode } from "react";
 import { Button, ButtonLink } from "@/components/ui/styled/button";
 import { SITE_TITLE } from "@/constants";
 import { useTitle } from "@/hooks/use-title";
@@ -11,9 +11,9 @@ import { Container } from "./container";
 
 interface ErrorBoardViewProps {
   className?: string;
-  heading: React.ReactNode;
-  detail: React.ReactNode;
-  action?: React.ReactNode;
+  heading: ReactNode;
+  detail: ReactNode;
+  action?: ReactNode;
 }
 
 function ErrorBoardView(props: ErrorBoardViewProps) {

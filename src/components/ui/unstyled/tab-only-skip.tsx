@@ -1,18 +1,20 @@
 "use client";
 
-import React from "react";
+import {
+  type RefObject,
+  type ComponentProps,
+  useRef,
+  type ComponentPropsWithoutRef,
+} from "react";
 import { useFocusActive } from "@/hooks/use-focus-active";
 import { clsx } from "@/utils/css/clsx";
 import { generateContext } from "@/utils/react/context";
 
-const [Context, useContext] =
-  generateContext<React.RefObject<HTMLAnchorElement>>();
+const [Context, useContext] = generateContext<RefObject<HTMLAnchorElement>>();
 
-type ProviderProps = React.ComponentProps<"div">;
-
-function Provider(props: ProviderProps) {
+function Provider(props: ComponentProps<"div">) {
   const { className, ...restDivProps } = props;
-  const linkRef = React.useRef<HTMLAnchorElement>(null);
+  const linkRef = useRef<HTMLAnchorElement>(null);
   const linkFocusActive = useFocusActive(linkRef);
 
   return (
@@ -27,9 +29,9 @@ function Provider(props: ProviderProps) {
 
 // ----------------------------------------
 
-type LinkProps = Omit<React.ComponentPropsWithoutRef<"a">, "href"> & {
+interface LinkProps extends Omit<ComponentPropsWithoutRef<"a">, "href"> {
   hrefId: string;
-};
+}
 
 function Link(props: LinkProps) {
   const { hrefId, className, ...restProps } = props;
