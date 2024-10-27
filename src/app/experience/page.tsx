@@ -35,7 +35,7 @@ function experienceToTimelineItem(experience: Experience): TimelineItem {
 export default function Page() {
   return (
     <div className="py-14">
-      <Container until="md">
+      <Container className="md:max-w-screen-md">
         <section className="space-y-6">
           <Heading1>職務経歴</Heading1>
           {experiencesOverviewItems.map((experiencesOverviewItem) => (
