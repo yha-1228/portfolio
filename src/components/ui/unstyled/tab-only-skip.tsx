@@ -8,7 +8,7 @@ import {
 } from "react";
 import { useFocusActive } from "@/hooks/use-focus-active";
 import { clsx } from "@/utils/css/clsx";
-import { generateContext } from "@/utils/react/context";
+import { generateContext } from "@/utils/react";
 
 const [Context, useContext] = generateContext<RefObject<HTMLAnchorElement>>();
 

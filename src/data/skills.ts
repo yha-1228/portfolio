@@ -29,7 +29,7 @@ export type Rank = "good" | "normal" | "bad";
 
 export interface SkillDetail {
   category: string;
-  items: { rank: Rank; text: string }[];
+  items: Array<{ rank: Rank; text: string }>;
 }
 
 export const skillDetails: SkillDetail[] = [

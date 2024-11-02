@@ -1,33 +1,58 @@
 import {
-  type ComponentProps,
   useId,
   type ReactNode,
+  type ElementType,
+  type ComponentProps,
   useEffect,
   useState,
 } from "react";
-import { type CommonHTMLProps } from "@/types/react";
+import {
+  type ComponentPropsWithAs,
+  type CommonHTMLProps,
+  type ForwardedElementRef,
+} from "@/types/react";
 import { join } from "@/utils/object/join";
+import { fixedForwardRef, generateContext } from "@/utils/react";
 
-interface UseFieldProps {
-  fieldId?: string;
-  descriptionId?: string;
-  errorId?: string;
+// internal
+// ----------------------------------------
+
+interface UseFieldReturn {
   whenError?: boolean;
+  labelProps: {
+    readonly htmlFor: string;
+  };
+  fieldProps: {
+    readonly id: string;
+    readonly "aria-invalid": true | undefined;
+    readonly "aria-describedby": string | undefined;
+  };
+  descriptionProps: {
+    readonly id: string;
+  };
+  errorProps: {
+    readonly id: string;
+  };
 }
 
-function useField(props: UseFieldProps) {
-  const {
-    whenError = false,
-    fieldId: fieldIdProp,
-    descriptionId: descriptionIdProp,
-    errorId: errorIdProp,
-  } = props;
+const [FieldContext, useField] = generateContext<UseFieldReturn>();
+
+// main
+// ----------------------------------------
+
+interface FieldProviderProps extends Pick<UseFieldReturn, "whenError"> {
+  children: ReactNode;
+  fieldId?: string;
+}
+
+function FieldProvider(props: FieldProviderProps) {
+  const { whenError, children, fieldId: fieldIdProp } = props;
 
   const id = useId();
 
   const fieldId = fieldIdProp || `${id}-field`;
-  const descriptionId = descriptionIdProp || `${id}-field-description`;
-  const errorId = errorIdProp || `${id}-field-error`;
+  const descriptionId = `${id}-field-description`;
+  const errorId = `${id}-field-error`;
 
   const [hasDescription, setHasDescription] = useState(false);
 
@@ -56,82 +81,104 @@ function useField(props: UseFieldProps) {
     id: errorId,
   } as const satisfies CommonHTMLProps;
 
-  return {
-    whenError,
-    labelProps,
-    fieldProps,
-    descriptionProps,
-    errorProps,
-  };
+  return (
+    <FieldContext.Provider
+      value={{
+        whenError,
+        labelProps,
+        fieldProps,
+        descriptionProps,
+        errorProps,
+      }}
+    >
+      {children}
+    </FieldContext.Provider>
+  );
 }
 
-type UseFieldReturn = ReturnType<typeof useField>;
+// ---
 
+type FieldLabelProps<TAs extends ElementType> = Omit<
+  ComponentPropsWithAs<TAs, "label">,
+  "htmlFor"
+>;
+
+const FieldLabel = fixedForwardRef(
+  <TAs extends ElementType>(
+    props: FieldLabelProps<TAs>,
+    ref: ForwardedElementRef<TAs>,
+  ) => {
+    const { as: Comp = "label", ...restProps } = props;
+    const { labelProps } = useField();
+
+    return <Comp {...labelProps} {...restProps} ref={ref} />;
+  },
+);
+
+// ---
+
+type FieldProps<TAs extends ElementType> = ComponentPropsWithAs<TAs, "input">;
+
+const Field = fixedForwardRef(
+  <TAs extends ElementType>(
+    props: FieldProps<TAs>,
+    ref: ForwardedElementRef<TAs>,
+  ) => {
+    const { as: Comp = "input", ...restProps } = props;
+    const { fieldProps } = useField();
+
+    return <Comp {...fieldProps} {...restProps} ref={ref} />;
+  },
+);
+
+// ---
+
+type FieldDescriptionProps<TAs extends ElementType> = Omit<
+  ComponentPropsWithAs<TAs, "p">,
+  "id"
+>;
+
+const FieldDescription = fixedForwardRef(
+  <TAs extends ElementType>(
+    props: FieldDescriptionProps<TAs>,
+    ref: ForwardedElementRef<TAs>,
+  ) => {
+    const { as: Comp = "p", ...restProps } = props;
+    const { descriptionProps } = useField();
+
+    return <Comp {...descriptionProps} {...restProps} ref={ref} />;
+  },
+);
+
+// ---
+
+type FieldErrorProps<TAs extends ElementType> = Omit<
+  ComponentPropsWithAs<TAs, "p">,
+  "id"
+>;
+
+const FieldError = fixedForwardRef(
+  <TAs extends ElementType>(
+    props: FieldErrorProps<TAs>,
+    ref: ForwardedElementRef<TAs>,
+  ) => {
+    const { as: Comp = "p", ...restProps } = props;
+    const { whenError, errorProps } = useField();
+
+    if (!whenError) return null;
+
+    return <Comp {...errorProps} {...restProps} ref={ref} />;
+  },
+);
+
+// exports
 // ----------------------------------------
 
-interface FieldProps extends UseFieldProps {
-  render: (field: UseFieldReturn) => ReactNode;
-}
-
-/**
- * @example
- * ```tsx
- * function FormDemo() {
- *  const [input, setInput] = useState("");
- *  const [touched, setTouched] = useState(false);
- *
- *  const isError = touched && input.length < 10;
- *
- *  const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
- *    e.preventDefault();
- *    // Submit
- *  };
- *
- *  return (
- *    <form onSubmit={onSubmit}>
- *      <Field
- *        whenError={isError}
- *        render={(field) => (
- *          <div>
- *            <label {...field.labelProps}>コメント</label>
- *            <input
- *              {...field.fieldProps}
- *              type="text"
- *              onChange={(e) => setInput(e.target.value)}
- *              onBlur={() => setTouched(true)}
- *              style={{ border: "1px solid #222" }}
- *            />
- *            <p {...field.descriptionProps}>10文字以上</p>
- *            {field.whenError && (
- *              <p {...field.errorProps} style={{ color: "red" }}>
- *                10文字以上で入力してください。
- *              </p>
- *            )}
- *          </div>
- *        )}
- *      />
- *
- *      <button type="submit" disabled={isError}>
- *        送信
- *      </button>
- *    </form>
- *  );
- * }
- *```
- */
-function Field(props: FieldProps) {
-  const { render, ...restProps } = props;
-  const field = useField(restProps);
-
-  return render(field);
-}
-
-// ----------------------------------------
-
-export {
-  useField,
-  type UseFieldProps,
-  type UseFieldReturn,
-  Field,
-  type FieldProps,
+export { FieldProvider, FieldLabel, Field, FieldDescription, FieldError };
+export type {
+  FieldProviderProps,
+  FieldLabelProps,
+  FieldProps,
+  FieldDescriptionProps,
+  FieldErrorProps,
 };

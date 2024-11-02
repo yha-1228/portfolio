@@ -82,7 +82,7 @@ export function Skills() {
         <Container>
           <Heading1>言語/FW等</Heading1>
           <div className="space-y-3 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
-            {(["fe", "be", "tools"] as SkillWord["category"][]).map(
+            {(["fe", "be", "tools"] as Array<SkillWord["category"]>).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
                   (s) => s.category === category,

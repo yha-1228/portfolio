@@ -1,7 +1,7 @@
 import { forwardRef, type ComponentPropsWithRef } from "react";
 import { clsx } from "@/utils/css/clsx";
 
-const FormDescription = forwardRef<
+const FormHelperText = forwardRef<
   HTMLParagraphElement,
   ComponentPropsWithRef<"p">
 >((props, ref) => {
@@ -16,6 +16,6 @@ const FormDescription = forwardRef<
   );
 });
 
-FormDescription.displayName = "FormDescription";
+FormHelperText.displayName = "FormHelperText";
 
-export { FormDescription };
+export { FormHelperText };
