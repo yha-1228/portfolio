@@ -7,3 +7,10 @@ export type Replace<T, U extends { [key in keyof T]?: unknown }> = Omit<
   keyof U
 > &
   U;
+
+export type DistributiveOmit<
+  T,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  K extends keyof any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+> = T extends any ? Omit<T, K> : never;
