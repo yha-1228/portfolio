@@ -28,7 +28,7 @@ export const experiencesOverviewItems: ExperiencesOverviewItem[] = [
               記事投稿プラットフォーム・インフラ申し込み機能などを持つ新規Webサービスの立ち上げ。BtoC向け画面・管理画面の両者にてフロントエンドのレビュアーを主に担当している。
             </p>
             <p>
-              <b>技術:</b> React 18, Next.js 13 (App Router), TypeScript,
+              <b>技術:</b> React 19, Next.js 15 (App Router), TypeScript,
               Tailwind CSS, Radix UI
             </p>
           </>
