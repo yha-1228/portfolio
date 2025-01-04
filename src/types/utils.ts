@@ -14,3 +14,6 @@ export type DistributiveOmit<
   K extends keyof any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = T extends any ? Omit<T, K> : never;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyAsyncFunction = (...args: any[]) => Promise<any>;
