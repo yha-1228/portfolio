@@ -24,16 +24,18 @@ import {
   FieldLabel,
   FieldProvider,
 } from "@/components/ui/unstyled/field";
-import { CONTACT_FORM_NAME } from "@/constants";
 import { useBeforeUnload } from "@/hooks/use-beforeunload";
-import { useMutation } from "@/hooks/use-mutation";
 import { getKeyErrorMessageMap } from "@/lib/zod/utils";
 import { clsx } from "@/utils/css/clsx";
 import { remToPx } from "@/utils/css/unit";
 import { entriesOf } from "@/utils/object/entries-of";
 import { mapObject } from "@/utils/object/map-object";
 import { FeedbackNotification } from "./feedback-notification";
-import { type FieldType, type ContactFormTouched } from "./types";
+import {
+  type SubmitState,
+  type FieldType,
+  type ContactFormTouched,
+} from "./types";
 import { contactFormSchema, type ContactFormValues } from "./validation";
 
 // initial state list
@@ -53,6 +55,8 @@ const initialTouched: ContactFormTouched = mapObject(
 
 const initialAllErrorVisible = false;
 
+const initialSubmitState: SubmitState = { state: "idle" };
+
 // constants, helpers
 // ----------------------------------------
 
@@ -62,6 +66,8 @@ const keyLabelMap: { [key in keyof ContactFormValues]: string } = {
   companyName: "会社名",
   message: "お問い合わせ内容",
 };
+
+const FORM_NAME = "contact";
 
 const feedbackText = {
   done: "お問い合わせありがとうございます。",
@@ -95,25 +101,10 @@ export function ContactForm() {
   const errors = getKeyErrorMessageMap(contactFormSchema.safeParse(values));
 
   const [touched, setTouched] = useState(initialTouched);
-
+  const [submitState, setSubmitState] = useState(initialSubmitState);
   const [allErrorVisible, setAllErrorVisible] = useState(
     initialAllErrorVisible,
   );
-
-  const [submitState, submitAction, resetSubmitAction] = useMutation({
-    fn: (data: ContactFormValues) => {
-      return sendNetlifyForm({
-        htmlFilepath: "/__forms.html",
-        formName: CONTACT_FORM_NAME,
-        data,
-      });
-    },
-    onSuccess: () => {
-      setValues(initialValues);
-      setTouched(initialTouched);
-      setAllErrorVisible(initialAllErrorVisible);
-    },
-  });
 
   const handleChange = (e: ChangeEvent<FieldType>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -157,7 +148,20 @@ export function ContactForm() {
       return;
     }
 
-    await submitAction(values);
+    setSubmitState({ state: "loading" });
+    try {
+      await sendNetlifyForm({
+        htmlFilepath: "/__forms.html",
+        formName: FORM_NAME,
+        data: values,
+      });
+      setSubmitState({ state: "success" });
+      setValues(initialValues);
+      setTouched(initialTouched);
+      setAllErrorVisible(initialAllErrorVisible);
+    } catch (error) {
+      setSubmitState({ state: "error", error });
+    }
   };
 
   useBeforeUnload({
@@ -185,7 +189,7 @@ export function ContactForm() {
         >
           <form
             onSubmit={handleSubmit}
-            name={CONTACT_FORM_NAME}
+            name={FORM_NAME}
             data-netlify="true"
             netlify-honeypot="bot-field"
             noValidate
@@ -340,25 +344,28 @@ export function ContactForm() {
                 </div>
               )}
 
-              <Button disabled={submitState.loading} className="w-full">
-                {submitState.loading ? "送信中..." : "送信する"}
+              <Button
+                disabled={submitState.state === "loading"}
+                className="w-full"
+              >
+                {submitState.state === "loading" ? "送信中..." : "送信する"}
               </Button>
             </div>
           </form>
-          {submitState.isSuccess && (
+          {submitState.state === "success" && (
             <FeedbackNotification
               className="mt-10"
               variant="primary"
-              onClose={resetSubmitAction}
+              onClose={() => setSubmitState({ state: "idle" })}
             >
               {feedbackText.done}
             </FeedbackNotification>
           )}
-          {submitState.isError && (
+          {submitState.state === "error" && (
             <FeedbackNotification
               className="mt-10"
               variant="danger"
-              onClose={resetSubmitAction}
+              onClose={() => setSubmitState({ state: "idle" })}
             >
               {isFetchNetworkError(submitState.error)
                 ? feedbackText.networkError
