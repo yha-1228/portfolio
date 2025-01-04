@@ -110,7 +110,7 @@ function useMutation<TAction extends AnyAsyncFunction>(
     dispatch({ type: "loading" });
 
     try {
-      const result = await fn(args);
+      const result = await fn(...args);
       onSuccess?.(result, ...args);
       dispatch({ type: "success" });
     } catch (error) {
