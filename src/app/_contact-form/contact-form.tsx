@@ -17,7 +17,6 @@ import { FormHelperText } from "@/components/ui/styled/form-helper-text";
 import { Heading1 } from "@/components/ui/styled/heading1";
 import { Input, Textarea } from "@/components/ui/styled/input";
 import { Label } from "@/components/ui/styled/label";
-import { Paragraph } from "@/components/ui/styled/paragraph";
 import {
   Field,
   FieldDescription,
@@ -174,13 +173,13 @@ export function ContactForm() {
       <Container>
         <Heading1>お問い合わせ</Heading1>
 
-        <Paragraph className="mt-8 text-gray-foreground-weak">
+        <p className="mt-8 text-gray-foreground-weak">
           お気軽にお問い合わせください。
           <br />
           <span aria-hidden="true" className="text-danger-500">
             * は必須項目です。
           </span>
-        </Paragraph>
+        </p>
 
         <div
           className={clsx(
