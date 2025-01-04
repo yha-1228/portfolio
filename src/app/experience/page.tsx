@@ -43,11 +43,11 @@ export default function Page() {
               className="mt-12 space-y-5"
               key={experiencesOverviewItem.company}
             >
-              <div className="space-y-1">
+              <div>
                 <Heading2>{experiencesOverviewItem.company}</Heading2>
                 <AvoidTelLink
                   as="div"
-                  className="text-sm text-gray-foreground-weak"
+                  className="mt-6 text-sm text-gray-foreground-weak"
                 >
                   {experiencesOverviewItem.kikan}
                 </AvoidTelLink>
