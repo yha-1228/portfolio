@@ -18,20 +18,20 @@ export default async function Page() {
   return (
     <div className="py-14">
       <Container>
-        <section className="space-y-6">
+        <section>
           <Heading1>ブログ</Heading1>
-          <ul className="space-y-4">
+          <ul className="mt-8 space-y-4">
             {contents.map((content) => (
               <li key={content.id}>
                 <Link
                   href={routes.blog.routes[":id"].href(content.id)}
                   className={clsx(
-                    "group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out active:border-primary-600",
-                    "active:outline active:outline-2 active:outline-primary-600",
-                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600",
+                    "group block rounded-md border border-solid border-gray-light-300 px-5 py-4 transition-colors duration-200 ease-out",
+                    "active:outline active:outline-2 active:outline-offset-0 active:outline-primary-600",
+                    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-primary-600",
                   )}
                 >
-                  <div className="text-xl font-bold underline-offset-[0.15em] group-hover:underline">
+                  <div className="text-xl font-bold underline-offset-4 group-hover:underline">
                     {content.title}
                   </div>
                   <p className="text-sm text-gray-foreground-weak">
