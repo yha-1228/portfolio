@@ -36,7 +36,7 @@ export default function Page() {
   return (
     <div className="py-14">
       <Container className="md:max-w-screen-md">
-        <section className="space-y-6">
+        <section>
           <Heading1>職務経歴</Heading1>
           {experiencesOverviewItems.map((experiencesOverviewItem) => (
             <section

@@ -174,7 +174,7 @@ export function ContactForm() {
       <Container>
         <Heading1>お問い合わせ</Heading1>
 
-        <Paragraph className="text-gray-foreground-weak">
+        <Paragraph className="mt-8 text-gray-foreground-weak">
           お気軽にお問い合わせください。
           <br />
           <span aria-hidden="true" className="text-danger-500">

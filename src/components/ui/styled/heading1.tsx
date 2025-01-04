@@ -8,7 +8,7 @@ const Heading1 = forwardRef<HTMLHeadingElement, ComponentPropsWithRef<"h1">>(
     return (
       <h1
         className={clsx(
-          "mb-8 text-3xl font-bold leading-tight sm:text-4xl",
+          "text-3xl font-bold leading-tight sm:text-4xl",
           className,
         )}
         {...restProps}

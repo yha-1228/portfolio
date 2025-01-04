@@ -81,7 +81,7 @@ export function Skills() {
       <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>言語/FW等</Heading1>
-          <div className="space-y-3 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
+          <div className="mt-8 space-y-3 sm:flex sm:space-x-8 sm:space-y-0 sm:[&>*]:w-1/3">
             {(["fe", "be", "tools"] as Array<SkillWord["category"]>).map(
               (category) => {
                 const filteredSkillWordsByCategory = skillWords.filter(
@@ -128,7 +128,7 @@ export function Skills() {
       <div className="bg-gray-light-100 py-14">
         <Container>
           <Heading1>提供可能な業務</Heading1>
-          <ul className="mt-6 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">
+          <ul className="mt-8 space-y-6 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-[16px] lg:gap-y-[20px] lg:space-y-0">
             {skillDetails.map((skillDetail, idx) => (
               <li
                 key={skillDetail.category}

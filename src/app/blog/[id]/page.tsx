@@ -46,7 +46,7 @@ export default async function Page({ params }: NextPagePropsWithParams<"id">) {
 
         <article className="mt-8">
           <header>
-            <Heading1 className="mb-0">{blogDetail.title}</Heading1>
+            <Heading1>{blogDetail.title}</Heading1>
             <p className="mt-4 text-sm font-normal text-gray-foreground-weak">
               {formatISODate(blogDetail.publishedAt)} に投稿
             </p>

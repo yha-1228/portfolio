@@ -18,9 +18,9 @@ export default async function Page() {
   return (
     <div className="py-14">
       <Container>
-        <section className="space-y-6">
+        <section>
           <Heading1>ブログ</Heading1>
-          <ul className="space-y-4">
+          <ul className="mt-8 space-y-4">
             {contents.map((content) => (
               <li key={content.id}>
                 <Link
