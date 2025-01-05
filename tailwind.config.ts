@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
+import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
 
 // @see https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
 
@@ -11,8 +11,11 @@ const defaultTheme = require("tailwindcss/defaultTheme");
  *
  * @see `src/utils/object/map-object.ts` (コピー)
  */
-function mapObject(object, condition) {
-  const newObject = {};
+function mapObject<T extends object, U>(
+  object: T,
+  condition: (value: T[keyof T], key: keyof T) => U,
+) {
+  const newObject: { [k in keyof T]?: U } = {};
 
   for (const key in object) {
     if (Object.prototype.hasOwnProperty.call(object, key)) {
@@ -21,7 +24,7 @@ function mapObject(object, condition) {
     }
   }
 
-  return newObject;
+  return newObject as { [k in keyof T]: U };
 }
 
 // --------------------------------------------------
@@ -47,8 +50,8 @@ const myColors = {
   },
 };
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -97,10 +100,10 @@ module.exports = {
         ],
       },
       // line-heightだけ共通の値で上書きする
-      fontSize: mapObject(defaultTheme.fontSize, (fontSizeConfig) => [
-        fontSizeConfig[0],
-        { lineHeight: baseLineHeight.toString() },
-      ]),
+      // @ts-expect-error TODO: あとで直す
+      fontSize: mapObject(defaultTheme.fontSize, (fontSizeConfig) => {
+        return [fontSizeConfig[0], { lineHeight: baseLineHeight.toString() }];
+      }),
       // @see https://tailwindcss.com/docs/line-height
       lineHeight: {
         base: baseLineHeight.toString(),
@@ -110,9 +113,9 @@ module.exports = {
         wide: "0 30px 60px rgba(0,0,0,.12)",
       },
       zIndex: {
-        header: 9999,
+        header: "9999",
       },
     },
   },
   plugins: [],
-};
+} as const satisfies Config;
