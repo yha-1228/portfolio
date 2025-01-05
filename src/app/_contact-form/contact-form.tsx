@@ -30,6 +30,7 @@ import { useMutation } from "@/hooks/use-mutation";
 import { getKeyErrorMessageMap } from "@/lib/zod/utils";
 import { clsx } from "@/utils/css/clsx";
 import { remToPx } from "@/utils/css/unit";
+import { scrollWithFocus } from "@/utils/dom/utils";
 import { entriesOf } from "@/utils/object/entries-of";
 import { mapObject } from "@/utils/object/map-object";
 import { FeedbackNotification } from "./feedback-notification";
@@ -133,18 +134,10 @@ export function ContactForm() {
     const scrollToTop =
       window.scrollY + labelY - remToPx(headerHeight) - bufferMargin;
 
-    const isTransitionReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    window.scrollTo({
-      top: scrollToTop,
-      behavior: isTransitionReduced ? "instant" : "smooth",
+    scrollWithFocus({
+      idToFocus: createFieldId(id, key),
+      scrollToOptions: { top: scrollToTop },
     });
-
-    const fieldId = createFieldId(id, key);
-    const fieldElem = document.getElementById(fieldId);
-    fieldElem?.focus({ preventScroll: !isTransitionReduced });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
