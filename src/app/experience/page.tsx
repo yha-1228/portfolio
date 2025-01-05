@@ -37,28 +37,32 @@ export default function Page() {
     <div className="py-14">
       <Container className="md:max-w-screen-md">
         <section>
-          <Heading1>職務経歴</Heading1>
-          {experiencesOverviewItems.map((experiencesOverviewItem) => (
-            <section
-              className="mt-12 space-y-5"
-              key={experiencesOverviewItem.company}
-            >
-              <div>
-                <Heading2>{experiencesOverviewItem.company}</Heading2>
-                <AvoidTelLink
-                  as="div"
-                  className="mt-6 text-sm text-gray-foreground-weak"
-                >
-                  {experiencesOverviewItem.kikan}
-                </AvoidTelLink>
-              </div>
-              <Timeline
-                items={experiencesOverviewItem.experiences.map((experience) =>
-                  experienceToTimelineItem(experience),
-                )}
-              />
-            </section>
-          ))}
+          <div className="pb-10 text-center">
+            <Heading1>職務経歴</Heading1>
+          </div>
+          <div className="space-y-12">
+            {experiencesOverviewItems.map((experiencesOverviewItem) => (
+              <section
+                className="space-y-5"
+                key={experiencesOverviewItem.company}
+              >
+                <div>
+                  <Heading2>{experiencesOverviewItem.company}</Heading2>
+                  <AvoidTelLink
+                    as="div"
+                    className="mt-6 text-sm text-gray-foreground-weak"
+                  >
+                    {experiencesOverviewItem.kikan}
+                  </AvoidTelLink>
+                </div>
+                <Timeline
+                  items={experiencesOverviewItem.experiences.map((experience) =>
+                    experienceToTimelineItem(experience),
+                  )}
+                />
+              </section>
+            ))}
+          </div>
         </section>
       </Container>
     </div>
