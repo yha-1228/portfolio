@@ -1,11 +1,11 @@
 import "@/styles/globals.css";
+import { type ReactNode } from "react";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/layouts/footer";
 import { Header } from "@/components/layouts/header";
 import { SkipToMainContent } from "@/components/layouts/skip-to-main-content";
 import { MAIN_CONTENT_ID, SITE_TITLE } from "@/constants";
-import { type NextLayoutProps } from "@/lib/next/types";
 import { clsx } from "@/utils/css/clsx";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export default function RootLayout({ children }: NextLayoutProps) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja" dir="ltr">
       <body className={clsx(inter.variable, "font-base text-gray-foreground")}>

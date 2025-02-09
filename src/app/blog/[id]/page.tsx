@@ -5,17 +5,15 @@ import { Container } from "@/components/ui/styled/container";
 import { Heading1 } from "@/components/ui/styled/heading1";
 import { Tag } from "@/components/ui/styled/tag";
 import { TextLink } from "@/components/ui/styled/text-link";
-import {
-  type GenerateMetadataProps,
-  type NextPagePropsWithParams,
-} from "@/lib/next/types";
 import { routes } from "@/routes";
 import { clsx } from "@/utils/css/clsx";
 import { formatISODate } from "@/utils/date/formatter";
 
-export async function generateMetadata({
-  params,
-}: GenerateMetadataProps<"id">): Promise<Metadata> {
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = params;
   const blogDetail = await getBlogDetail(id);
 
@@ -29,7 +27,7 @@ export async function generateStaticParams() {
   return contents.map((content) => ({ id: content.id }));
 }
 
-export default async function Page({ params }: NextPagePropsWithParams<"id">) {
+export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const blogDetail = await getBlogDetail(id);
 
